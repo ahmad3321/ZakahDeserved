@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:layout_gravity="center"
+    android:background="@color/white">
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="160dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"/>
+        <TextView
+            style="@style/headerTextPrimary"
+            android:textSize="30sp"
+            android:fontFamily="@font/jaz_bold"
+            android:text="تسجيل الدخول" />
+
+
+        <EditText
+            android:id="@+id/edit_username"
+            style="@style/parent"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/jaz_reg"
+            android:hint="اسم المستخدم"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textAlignment="viewStart">
+
+        </EditText>
+
+        <EditText
+            style="@style/parent"
+            android:id="@+id/edit_password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textAlignment="viewStart"
+            android:hint="كلمة المرور"
+            android:fontFamily="@font/jaz_reg"
+            android:layout_marginTop="40dp">
+        </EditText>
+
+        <TextView
+            android:id="@+id/button"
+            style="@style/parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/jaz_bold"
+            android:onClick="viewRegisterClicked"
+            android:text="دخول"
+            android:textAlignment="center"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/btn_Sync"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerInside"
+            android:background="@color/white"
+            android:src="@drawable/abc" />
+
+    </LinearLayout>
+</LinearLayout>
