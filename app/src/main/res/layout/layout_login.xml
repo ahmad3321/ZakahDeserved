@@ -3,9 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/loginCard"
-    app:cardCornerRadius="@dimen/loginCardRadius"
+    app:cardCornerRadius="10dp"
     android:layout_gravity="center"
-    android:background="@color/white">
+    android:background="@drawable/ic_login_bk">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/personalDetailsCard"
+        style="@style/centreLocatorCardDesign"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="20dp">
     <LinearLayout
         style="@style/linearParent"
         android:layout_gravity="center"
@@ -66,4 +71,5 @@
             android:src="@drawable/abc" />
 
     </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
