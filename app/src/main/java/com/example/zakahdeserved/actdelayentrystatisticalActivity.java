@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class actdelayentrystatisticalActivity extends AppCompatActivity {
     int s;
-    int gf;
+    int gfaaa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
