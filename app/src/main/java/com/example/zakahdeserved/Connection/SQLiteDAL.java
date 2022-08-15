@@ -31,7 +31,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             "'ItemID'	INTEGER," +
             "'SpinnerName'	TEXT," +
             "'ItemName'	TEXT," +
-            "PRIMARY KEY('ItemID' AUTOINCREMENT)" +
+            "PRIMARY KEY('ItemID', 'AUTOINCREMENT')" +
             ");";
 //    Context context;
 
