@@ -27,6 +27,12 @@ public class SQLiteDAL extends SQLiteOpenHelper {
     public static final String TABLE_QUERIES = "Queries";
 
     String[] SpinnersColumns = new String[]{"SpinnerName", "ItemName"};
+    String spinnersCreate = "CREATE TABLE '" + TABLE_SPINNERS + "' (" +
+            "'ItemID'	INTEGER," +
+            "'SpinnerName'	TEXT," +
+            "'ItemName'	TEXT," +
+            "PRIMARY KEY('ItemID' AUTOINCREMENT)" +
+            ");";
 //    Context context;
 
     public SQLiteDAL(@Nullable Context context) {
@@ -37,13 +43,8 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String spinnersCreate =
-                "CREATE TABLE '" + TABLE_SPINNERS + "' (" +
-                        "'ItemID'	INTEGER," +
-                        "'SpinnerName'	TEXT," +
-                        "'ItemName'	TEXT," +
-                        "PRIMARY KEY('ItemID' AUTOINCREMENT)" +
-                        ");";
+//        String spinnersCreate =
+
 
         String queriesCreate = "CREATE TABLE " + TABLE_QUERIES + " ('QueryID' REAL," +
                 "'QueryContents' TEXT);";
