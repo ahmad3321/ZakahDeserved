@@ -42,7 +42,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/watan"
-                    android:text="تطبيق الزروع"
+                    android:text="شؤون المستحقين"
                     android:textSize="35sp" />
                 <include layout="@layout/layout_login" />
 
