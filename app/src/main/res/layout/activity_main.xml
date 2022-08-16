@@ -33,16 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="30dp"
                 android:orientation="vertical">
                 <TextView
                     style="@style/headerText"
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/watan"
-                    android:text="شؤون المستحقين"
+                    android:text="الهيئة العامة للزكاة"
                     android:textSize="35sp" />
                 <include layout="@layout/layout_login" />
 

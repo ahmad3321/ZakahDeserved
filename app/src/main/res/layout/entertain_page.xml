@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:background="#FFFFFF"
         android:layout_below="@+id/tabs"
         android:id="@+id/viewpager"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"  />
 
 
-    <TableLayout
+    <com.google.android.material.tabs.TabLayout
         android:background="#FFFFFF"
         android:elevation="10dp"
         app:tabTextColor="#b19b9b9b"
