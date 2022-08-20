@@ -1,13 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TRAILER FRAGMENT"
-        android:layout_centerInParent="true"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/contact_form_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:text="المستفيد أنثى"
+                style="@style/headerTextPrimary"
+                android:textSize="30sp"
+                android:fontFamily="@font/jaz_bold"
+                android:typeface="serif" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="الحالة الاجتماعية للزوجة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/WifeSocialStatus"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/HusbandName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="اسم الزوج" />
+            <EditText
+                android:id="@+id/HusbandLastName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="الكنية" />
+            <EditText
+                android:id="@+id/HusbandFatherName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="اسم الأب" />
+
+            <EditText
+                android:id="@+id/HusbandMotherFullName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="الاسم الثلاثي للأم" />
+
+            <EditText
+                android:id="@+id/IdentityNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="ارقم الوثيقة" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع الوثيقة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IdentityType"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/BirthDate"
+                style="@style/modifiedEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="تاريخ الميلاد" />
+
+
+            <EditText
+                android:id="@+id/BirthPlace"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/purple_200"
+                android:hint="مكان الولادة" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المحافظة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/City"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/Town"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/purple_200"
+                android:hint="المدينة" />
+            <EditText
+                android:id="@+id/Village"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/purple_200"
+                android:hint="القرية" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المؤهل العلمي"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/AcademicQualification"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="وضع رب الأسرة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/Status"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="تاريخ"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/EventDate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/purple_200"
+                    android:layout_marginStart="20dp"
+                    android:hint="1/1/2001" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/Lockup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/purple_200"
+                android:hint="مكان الاعتقال" />
+            <EditText
+                android:id="@+id/TravelPlace"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/purple_200"
+                android:hint="مكان السفر" /> <EditText
+            android:id="@+id/TravelGoal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="هدف السفر" />
+            <LinearLayout
+                android:id="@+id/linear_image7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_Image_soq_invoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@android:drawable/ic_input_add"
+                    android:text="صورة الوثيقة" />
+
+                <Button
+                    android:id="@+id/btn_Image_exem_deletee"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:background="@android:drawable/ic_delete"
+                    android:onClick="btn_delete_images"
+                    app:backgroundTint="#C50505" />
+            </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/cusom_button"
+            android:elevation="4dp"
+            android:fontFamily="@font/jaz_bold"
+            android:onClick="btninsert_Clicked"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:text="انتقال"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+

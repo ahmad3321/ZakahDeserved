@@ -26,42 +26,48 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="16dp"
-                    android:text="قطع إيصال"
+                    android:text="التقييم الأولي"
                     style="@style/headerTextPrimary"
                     android:textSize="30sp"
                     android:fontFamily="@font/jaz_bold"
                     android:typeface="serif" />
                 <EditText
-                    android:id="@+id/ReceiptID5"
+                    android:id="@+id/Name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
                     android:hint="اسم المرشح" />
                 <EditText
-                    android:id="@+id/ReceiptID"
+                    android:id="@+id/FatherName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
                     android:hint="اسم الأب" />
 
                 <EditText
-                    android:id="@+id/ReceiptID12"
+                    android:id="@+id/LastName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
                     android:hint="الكنية" />
                 <EditText
-                    android:id="@+id/Taxpayer"
+                    android:id="@+id/MotherFullName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
                     android:hint="اسم الأم الثلاثي" />
                 <EditText
-                    android:id="@+id/Taxpayer2"
+                    android:id="@+id/IdentityNumber"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
-                    android:hint="ارقم الوثيقة" />
+                    android:hint="رقم الوثيقة" />
+                <EditText
+                    android:id="@+id/Record"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/purple_200"
+                    android:hint="القيد" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,7 +86,7 @@
                         android:typeface="serif" />
 
                     <Spinner
-                        android:id="@+id/lst_governorates1"
+                        android:id="@+id/lst_IdentityTypes"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp" />
@@ -103,13 +109,42 @@
                         android:typeface="serif" />
 
                     <Spinner
-                        android:id="@+id/lst_governorates121"
+                        android:id="@+id/Gender"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="70dp" />
+                        android:layout_marginStart="73dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jaz_reg"
+                        android:text="الحالة"
+                        android:textSize="18sp"
+                        android:typeface="serif" />
+
+                    <Spinner
+                        android:id="@+id/ExisitStatus"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="81dp" />
                 </LinearLayout>
                 <EditText
-                    android:id="@+id/ManualDate"
+                    android:id="@+id/ExisitStatusAbout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/purple_200"
+                    android:hint="التعليل" />
+                <EditText
+                    android:id="@+id/BirthDate"
                     style="@style/modifiedEditText"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -124,7 +159,7 @@
 
 
                 <EditText
-                    android:id="@+id/DetailedAddressReceipt"
+                    android:id="@+id/BirthPlace"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -150,21 +185,12 @@
                         android:typeface="serif" />
 
                     <Spinner
-                        android:id="@+id/lst_materialtypes"
+                        android:id="@+id/AcademicQualification"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/TotalQuantity"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:backgroundTint="@color/purple_200"
-                    android:inputType="number"
-                    android:hint="" />
 
                 <LinearLayout
                     android:id="@+id/linear_image7"
