@@ -20,12 +20,9 @@ import java.util.Map;
 
 public class DAL {
     static Connection connection;
-    static String username, password, ip, port, database;
+    static String username = "root", password = "12!@abAB", ip = "10.0.2.2", port = "3306", database = "zakatraising";
     public static boolean isConnected = false;
     public static StringBuilder insert_query = null;
-
-
-    int X;
 
     private static void Connect() {
         connection = connectionClass();
@@ -40,24 +37,36 @@ public class DAL {
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
 
-        try {
-            Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
-            connection = DriverManager.getConnection(
-                    "jdbc:mariadb://139.59.208.79:3306/zkdosycom_ZakatOlives?characterEncoding=utf8", "doadmin", "hggi_Hfv2020!");
-        } catch (Exception exc) {
-            exc.printStackTrace();
-            isConnected = false;
-        }
+//        try {
+//            Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
+//            connection = DriverManager.getConnection(
+//                    "jdbc:mariadb://10.0.2.2:3306/zakatraising?characterEncoding=utf8mb4", "root", "12!@abAB");
+//        } catch (Exception exc) {
+//            exc.printStackTrace();
+//            isConnected = false;
+//        }
         // for Ms sql
-       /*try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectionUrl = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";" +
-                    "databasename=" + database + ";user=" + username + ";password=" + password + ";";
-            connection = DriverManager.getConnection(ConnectionUrl);
+//        try {
+//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//            String ConnectionUrl = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";" +
+//                    "databasename=" + database + ";user=" + username + ";password=" + password + ";";
+//            connection = DriverManager.getConnection(ConnectionUrl);
+//        } catch (Exception ex) {
+//            Log.e("Error", ex.getMessage());
+//            isConnected = false;
+//        }
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://10.0.2.2:3306/zakatraising";
+            String user = "root";
+            String pass = "12!@abAB";
+            connection = DriverManager.getConnection(url, user, pass);
+
         } catch (Exception ex) {
             Log.e("Error", ex.getMessage());
             isConnected = false;
-        }*/
+        }
         return connection;
     }
 
@@ -146,8 +155,7 @@ public class DAL {
 
                 st.executeBatch();
                 success = true;
-            }
-            catch (SQLException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } finally {
                 //finally block used to close resources
@@ -169,12 +177,17 @@ public class DAL {
         }
         return success;
     }
+
     public static Boolean pdrUsernameTest(Context context, String strUsername, String strPassword) {
         ResultSet rs;
         Boolean ActiveUser = false;
         Connect();
         if (isConnected) {
-            String strSQLTables = "SELECT * FROM zkdosycom_ZakatOlives.users WHERE employeecode = '" + strUsername + "' AND password = '" + strPassword + "' AND activeuser = 1 ;";
+            String strSQLTables = "SELECT * FROM zakatraising.Employees WHERE " +
+                    "employeecode = '" + strUsername +
+                    "' AND password = '" + strPassword +
+                    "' AND activeuser = 1 " +
+                    "And  Jobtitle in ('0','1');";
             Statement st = null;
             try {
                 st = connection.createStatement();
@@ -182,8 +195,7 @@ public class DAL {
                 if (rs.next() == false) {
                     ActiveUser = false;
                     // connection.close();
-                }
-                else {
+                } else {
                     ActiveUser = true;
                 }
             } catch (SQLException throwables) {
@@ -206,11 +218,8 @@ public class DAL {
                 }//end finally try
             }//end try
 
-        }
-        else
-        {
+        } else {
             Toast.makeText(context, "لايوجد اتصال بالانترنت", Toast.LENGTH_SHORT).show();
-
         }
         return ActiveUser;
     }
@@ -232,8 +241,7 @@ public class DAL {
                         throwables.printStackTrace();
                     }
 
-                }
-                else {
+                } else {
                     max = rs.getString(1);
                 }
             } catch (SQLException throwables) {
@@ -270,8 +278,7 @@ public class DAL {
                 rs = st.executeQuery(strSQLTables);
                 if (!rs.next()) {
                     //connection.close();
-                }
-                else {
+                } else {
                     max = rs.getString(1);
                 }
             } catch (SQLException throwables) {
@@ -346,18 +353,18 @@ public class DAL {
         return success;
     }
 
-    public static String getDepartment(String employeeCode) {
+    public static int getDepartment(String employeeCode) {
         Connect();
         if (isConnected) {
-            String query = "select workdescribtion from users where employeeCode = '" + employeeCode + "';";
+            String query = "select jobtitle from employees where employeeCode = '" + employeeCode + "';";
             Statement st = null;
 
             try {
                 st = connection.createStatement();
                 ResultSet rs = st.executeQuery(query);
-                String result = "";
+                int result = -1;
                 if (rs.next())
-                    result = rs.getString(1);
+                    result = rs.getInt(1);
                 return result;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -380,7 +387,7 @@ public class DAL {
             }//end try
 
         }
-        return "";
+        return -1;
     }
 
     public static Boolean CheckDate(String tableName, String Date) {
@@ -419,6 +426,7 @@ public class DAL {
         }
         return success;
     }
+
     public static boolean executeQueries(String queries) {
         boolean success = false;
         Connect();
@@ -452,6 +460,7 @@ public class DAL {
         }//end try
         return success;
     }
+
     public static ArrayList<String> getSpinnerItems(String spinnerName) {
         String query = "select * from " + spinnerName;
         ArrayList<String> itemsArray = new ArrayList<>();

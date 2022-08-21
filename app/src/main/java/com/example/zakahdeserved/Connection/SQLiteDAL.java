@@ -33,11 +33,9 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             "'ItemName'	TEXT," +
             "PRIMARY KEY('ItemID', 'AUTOINCREMENT')" +
             ");";
-//    Context context;
 
     public SQLiteDAL(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
-//        this.context = context;
     }
 
 
