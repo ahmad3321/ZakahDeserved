@@ -24,6 +24,7 @@
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         android:contentDescription="@string/app_name"
+
         android:elevation="20dp"
         app:tabGravity="fill"
         app:tabIndicatorColor="#9D61FD"

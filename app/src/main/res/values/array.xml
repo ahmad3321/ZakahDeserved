@@ -8,4 +8,35 @@
         <item>مرض مزمن</item>
         <item>إعاقة</item>
     </string-array>
+    <string-array name="WifeSocialStatus">
+        <item>متزوجة</item>
+        <item>مطلقة</item>
+        <item>أرملة</item>
+        <item>عزباء</item>
+        <item>مهجورة</item>
+    </string-array>
+    <string-array name="City">
+        <item>إدلب</item>
+        <item>حلب</item>
+        <item>حماة</item>
+        <item>دمشق</item>
+        <item>حمص</item>
+    </string-array>
+    <string-array name="AcademicQualification">
+        <item>أمي</item>
+        <item>ابتدائي</item>
+        <item>إعدادي</item>
+        <item>ثانوي</item>
+        <item>جامعي</item>
+        <item>ماستر</item>
+        <item>دكتوراه</item>
+    </string-array>
+    <string-array name="Status">
+        <item>سليم</item>
+        <item>معاق</item>
+        <item>متوفى</item>
+        <item>معتقل</item>
+        <item>مفقود</item>
+        <item>مسافر</item>
+    </string-array>
 </resources>
