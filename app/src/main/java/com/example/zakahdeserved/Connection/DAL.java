@@ -24,6 +24,8 @@ public class DAL {
     public static boolean isConnected = false;
     public static StringBuilder insert_query = null;
 
+    String sss;
+
     private static void Connect() {
         connection = connectionClass();
         if (connection != null)
