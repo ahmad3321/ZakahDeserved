@@ -30,6 +30,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
     Button buttonAdd;
     Button buttonSubmitList;
+    Button buttonAdd1;
 
     ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
     public Tab4() {
