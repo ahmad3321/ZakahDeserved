@@ -50,17 +50,17 @@ public class MainTabs extends AppCompatActivity {
 
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabOne.setText("Entertain");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.abc, 0, 0);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText("Music");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.abc, 0, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabThree.setText("News");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.abc, 0, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
     }
 

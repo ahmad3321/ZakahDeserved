@@ -21,8 +21,8 @@
             android:id="@+id/layout_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
-
+            android:orientation="vertical">
+        </LinearLayout>
         <Button
             android:id="@+id/button_add"
             android:background="@drawable/round_primary"
@@ -35,6 +35,7 @@
             android:textAllCaps="false"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:onClick="onClick"
             android:drawableRight="@drawable/ic_add" />
 
         <Button
@@ -49,6 +50,7 @@
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:paddingLeft="10dp"
+            android:onClick="onClick"
             android:paddingRight="10dp" />
 
     </LinearLayout>

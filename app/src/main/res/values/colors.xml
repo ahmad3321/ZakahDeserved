@@ -13,7 +13,8 @@
     <color name="brouwn">#736622</color>
     <color name="toolbarColor">#074C2B</color>
     <color name="black1">#000000</color>
-
+    <color name="grey">#E4E4E4</color>
+    <color name="dark_grey">#6E6D6D</color>
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
 </resources>

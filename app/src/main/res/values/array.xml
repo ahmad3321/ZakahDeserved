@@ -1,0 +1,11 @@
+<resources>
+    <string-array name="CoinType">
+        <item>TL</item>
+        <item>$</item>
+    </string-array>
+    <string-array name="HealthStatus">
+        <item>جيد</item>
+        <item>مرض مزمن</item>
+        <item>إعاقة</item>
+    </string-array>
+</resources>

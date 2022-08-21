@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -23,15 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Tab4 extends Fragment {
+public class Tab4 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutList;
 
     Button buttonAdd;
     Button buttonSubmitList;
 
-    List<String> teamList = new ArrayList<>();
-    ArrayList<HealthStatuses> cricketersList = new ArrayList<>();
+    ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
     public Tab4() {
         // Required empty public constructor
     }
@@ -50,15 +50,9 @@ public class Tab4 extends Fragment {
         buttonAdd = view.findViewById(R.id.button_add);
         buttonSubmitList = view.findViewById(R.id.button_submit_list);
 
-        //buttonAdd.setOnClickListener(view);
-        //buttonSubmitList.setOnClickListener(this);
+        buttonAdd.setOnClickListener(this);
+        buttonSubmitList.setOnClickListener(this);
 
-
-        teamList.add("Team");
-        teamList.add("India");
-        teamList.add("Australia");
-        teamList.add("England");
-        // Inflate the layout for this fragment
         return view;
     }
     public void onClick(View v) {
@@ -80,25 +74,20 @@ public class Tab4 extends Fragment {
                     bundle.putSerializable("list",cricketersList);
                     intent.putExtras(bundle);
                     startActivity(intent);*/
-
                 }
-
                 break;
-
         }
-
-
     }
     private boolean checkIfValidAndRead() {
-        cricketersList.clear();
+        HealthStatusesList.clear();
         boolean result = true;
 
         for(int i=0;i<layoutList.getChildCount();i++){
 
             View cricketerView = layoutList.getChildAt(i);
 
-            EditText editTextName = (EditText)cricketerView.findViewById(R.id.edit_cricketer_name);
-            AppCompatSpinner spinnerTeam = (AppCompatSpinner)cricketerView.findViewById(R.id.spinner_team);
+            EditText editTextName = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+            Spinner spinnerTeam = (Spinner)cricketerView.findViewById(R.id.HealthStatus);
 
             HealthStatuses healthStatuses = new HealthStatuses();
 
@@ -110,17 +99,17 @@ public class Tab4 extends Fragment {
             }
 
             if(spinnerTeam.getSelectedItemPosition()!=0){
-                healthStatuses.setTeamName(teamList.get(spinnerTeam.getSelectedItemPosition()));
+                //healthStatuses.setTeamName(teamList.get(spinnerTeam.getSelectedItemPosition()));
             }else {
                 result = false;
                 break;
             }
 
-            cricketersList.add(healthStatuses);
+            HealthStatusesList.add(healthStatuses);
 
         }
 
-        if(cricketersList.size()==0){
+        if(HealthStatusesList.size()==0){
             result = false;
             Toast.makeText(getActivity(), "Add Cricketers First!", Toast.LENGTH_SHORT).show();
         }else if(!result){
@@ -135,12 +124,11 @@ public class Tab4 extends Fragment {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
 
-        EditText editText = (EditText)cricketerView.findViewById(R.id.edit_cricketer_name);
-        AppCompatSpinner spinnerTeam = (AppCompatSpinner)cricketerView.findViewById(R.id.spinner_team);
+        EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+        Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.HealthStatus);
         ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,teamList);
-        spinnerTeam.setAdapter(arrayAdapter);
+
 
         imageClose.setOnClickListener(new View.OnClickListener() {
             @Override
