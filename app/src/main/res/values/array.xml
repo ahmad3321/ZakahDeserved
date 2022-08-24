@@ -63,4 +63,15 @@
         <item>غاز</item>
         <item>آخر</item>
     </string-array>
+    <string-array name="Sanitation">
+        <item>مخدم</item>
+        <item>غير مخدم</item>
+    </string-array>
+    <string-array name="Location">
+        <item>خيم</item>
+        <item>مخيم بناء</item>
+        <item>حي غير منظم</item>
+        <item>حي منظم</item>
+        <item>حي راقي</item>
+    </string-array>
 </resources>

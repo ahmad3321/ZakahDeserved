@@ -245,12 +245,94 @@
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
                 android:hint="عدد الموتورات" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/FurnitureEvaluationDecrease"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="-"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/FurnitureEvaluation"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/toolbarColor"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:text="0" />
+    <Button
+        android:id="@+id/FurnitureEvaluationIncrease"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="+"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/black"/>
+</LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="الصرف الصحي"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/Sanitation"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Sanitation"
+                    android:layout_marginStart="55dp" />
+            </LinearLayout>
             <EditText
-                android:id="@+id/Village"
+                android:id="@+id/GeneralDescription"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="القرية الأصل" />
+                android:inputType="textMultiLine"
+                android:hint="وصف عام للسكن" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="موقع السكن"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/Location"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Location"
+                    android:layout_marginStart="55dp" />
+            </LinearLayout>
             <EditText
                 android:id="@+id/BirthDate"
                 style="@style/modifiedEditText"
