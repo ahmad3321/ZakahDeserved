@@ -26,7 +26,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
-                android:text="المستفيد أنثى"
+                android:text="معلومات السكن"
                 style="@style/headerTextPrimary"
                 android:textSize="30sp"
                 android:fontFamily="@font/jaz_bold"
@@ -44,7 +44,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/jaz_reg"
-                    android:text="حالة الزوجة الاجتماعية"
+                    android:text="طبيعة السكن"
                     android:textSize="18sp"
                     android:typeface="serif" />
 
@@ -52,42 +52,125 @@
                     android:id="@+id/WifeSocialStatus"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/WifeSocialStatus"
+                    android:entries="@array/HousingNature"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع العملة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/RentValueCoinType"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/CoinType"
+                    android:layout_marginStart="60dp" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/RentValue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="قيمة الأجار" />
 
             <EditText
-                android:id="@+id/HusbandName"
+                android:id="@+id/CoveredSpace"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="اسم الزوج" />
+                android:inputType="number"
+                android:hint="المساحة المسقوفة" />
 
             <EditText
-                android:id="@+id/HusbandFatherName"
+                android:id="@+id/RoomsCount"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="اسم الأب" />
+                android:inputType="number"
+                android:hint="عدد الغرف" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <EditText
-                android:id="@+id/HusbandLastName"
-                android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع الأرضية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <Spinner
+                    android:id="@+id/FloorType"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/FloorType"
+                    android:layout_marginStart="60dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الكنية" />
-            <EditText
-                android:id="@+id/HusbandMotherFullName"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع السقف"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <Spinner
+                    android:id="@+id/RoofType"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/RoofType"
+                    android:layout_marginStart="60dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الاسم الثلاثي للأم" />
-            <EditText
-                android:id="@+id/IdentityNumber"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="رقم الوثيقة" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="الخلاء"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <Spinner
+                    android:id="@+id/WC"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/WC"
+                    android:layout_marginStart="99dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -102,52 +185,66 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/jaz_reg"
-                    android:text="نوع الوثيقة"
+                    android:text="وقود الطبخ"
                     android:textSize="18sp"
                     android:typeface="serif" />
 
                 <Spinner
-                    android:id="@+id/lst_IdentityTypes"
+                    android:id="@+id/CookingGas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp" />
+                    android:entries="@array/CookingGas"
+                    android:layout_marginStart="55dp" />
             </LinearLayout>
             <EditText
-                android:id="@+id/Record"
+                android:id="@+id/CookingGasOther"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="القيد" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:hint="نوعه" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="المحافظة الأصل"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/City"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/City"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
             <EditText
-                android:id="@+id/Town"
+                android:id="@+id/Mobiles"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="المدينة الأصل" />
+                android:inputType="number"
+                android:hint="عدد الموبايلات" />
+            <EditText
+                android:id="@+id/Routers"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="عدد الراوترات" />
+            <EditText
+                android:id="@+id/TVs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="عدد التلفازات" />
+            <EditText
+                android:id="@+id/Fridges"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="عدد الثلاجات" />
+            <EditText
+                android:id="@+id/Cars"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="عدد السيارات" />
+            <EditText
+                android:id="@+id/Motorcycles"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="number"
+                android:hint="عدد الموتورات" />
             <EditText
                 android:id="@+id/Village"
                 android:layout_width="fill_parent"
