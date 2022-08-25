@@ -58,11 +58,11 @@ public class DAL {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://10.0.2.2:3306/zakatraising";
+//            String url = "jdbc:mysql://10.0.2.2:3306/zakatraising";
             String user = "root";
             String pass = "12!@abAB";
-            connection = DriverManager.getConnection(url, user, pass);
-
+//            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/zakatraising",user,pass);
         } catch (Exception ex) {
             Log.e("Error", ex.getMessage());
             isConnected = false;

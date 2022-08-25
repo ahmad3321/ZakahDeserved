@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Models.HealthStatuses;
 import com.example.zakahdeserved.R;
+import com.example.zakahdeserved.Utility.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
 
+        Constants.view4 = view;
         return view;
     }
     public void onClick(View v) {

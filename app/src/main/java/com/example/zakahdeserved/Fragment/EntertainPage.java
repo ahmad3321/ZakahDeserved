@@ -17,6 +17,7 @@ import com.example.zakahdeserved.ChildFragment.Tab3;
 import com.example.zakahdeserved.ChildFragment.Tab4;
 import com.example.zakahdeserved.ChildFragment.Tab5;
 import com.example.zakahdeserved.R;
+import com.example.zakahdeserved.Utility.Constants;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -51,10 +52,7 @@ public class EntertainPage extends Fragment {
         tabLayout = (TabLayout)v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
         return v;
-
-
     }
 
 

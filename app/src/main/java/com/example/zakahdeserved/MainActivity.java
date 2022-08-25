@@ -74,44 +74,46 @@ public class MainActivity extends AppCompatActivity {
         btn_Sync = findViewById(R.id.btn_Sync);
 
         login.setOnClickListener(view -> {
-            try {
-                Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
-                if (isSuccess) {
-                    EmpDepartment = DAL.getDepartment(username.getText().toString());
-                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
-                        Intent intent = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-                        startActivity(intent);
-                    } else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
-                    }
-
-                    // Encrypted Shared Preferences
-                    try {
-                        SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                                getApplicationContext(),
-                                "MySharedPref",
-                                Constants.SHAREDPREFERENCES_KEY, // masterKey created above
-                                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
-
-                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        // Storing the key and its value as the data fetched from edittext
-                        myEdit.putString("username", username.getText().toString());
-                        myEdit.apply();
-                    } catch (GeneralSecurityException | IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            catch (Exception ex)
-            {
-                Toast.makeText(getApplicationContext(), "خطأ..." +ex, Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(getApplicationContext(), MainTabs.class);
+            startActivity(intent);
+//            try {
+//                Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
+//                if (isSuccess) {
+//                    EmpDepartment = DAL.getDepartment(username.getText().toString());
+//                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
+//                        Intent intent = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+//                        startActivity(intent);
+//                    } else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
+//
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    // Encrypted Shared Preferences
+//                    try {
+//                        SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+//                                getApplicationContext(),
+//                                "MySharedPref",
+//                                Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+//                                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+//                                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+//
+//                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+//                        // Storing the key and its value as the data fetched from edittext
+//                        myEdit.putString("username", username.getText().toString());
+//                        myEdit.apply();
+//                    } catch (GeneralSecurityException | IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            catch (Exception ex)
+//            {
+//                Toast.makeText(getApplicationContext(), "خطأ..." +ex, Toast.LENGTH_SHORT).show();
+//            }
 
         });
 
@@ -120,22 +122,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     new TestAsync().execute();
+                } catch (Exception ex) {
                 }
-                catch (Exception ex){}
             }
         });
     }
 
     private void registerNetworkBroadcastForNougat() {
-        try{
+        try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 registerReceiver(broadCastClass, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 registerReceiver(broadCastClass, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
+        } catch (Exception ignored) {
         }
-        catch (Exception ignored){}
     }
 
     protected void unregisterNetworkChanges() {
@@ -157,11 +159,11 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this,"بدأت عملية المزامنة .. انتظر قليلا",Toast.LENGTH_SHORT).show();
-            Log.d(TAG + " PreExceute","On pre Exceute......");
+            Toast.makeText(MainActivity.this, "بدأت عملية المزامنة .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+            Log.d(TAG + " PreExceute", "On pre Exceute......");
         }
 
-        protected String doInBackground(Void...arg0) {
+        protected String doInBackground(Void... arg0) {
             try {
                 Constants.SQLITEDAL.clearSpinners();
                 for (String spinner : allSpinners) {
@@ -169,24 +171,23 @@ public class MainActivity extends AppCompatActivity {
                     Constants.SQLITEDAL.addSpinner(spinner, spinnerItems);
                 }
                 return "true";
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 return "false";
             }
 
         }
 
-        protected void onProgressUpdate(Integer...a) {
+        protected void onProgressUpdate(Integer... a) {
             super.onProgressUpdate(a);
             Log.d(TAG + " onProgressUpdate", "You are in progress update ... " + a[0]);
         }
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result.equalsIgnoreCase("true")){
-                Toast.makeText(MainActivity.this,"تمت عملية المزامنة بنجاح",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(MainActivity.this,"لم تتم عملية المزامنة",Toast.LENGTH_SHORT).show();
+            if (result.equalsIgnoreCase("true")) {
+                Toast.makeText(MainActivity.this, "تمت عملية المزامنة بنجاح", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "لم تتم عملية المزامنة", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
         }

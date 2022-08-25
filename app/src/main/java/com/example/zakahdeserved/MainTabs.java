@@ -8,12 +8,19 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.zakahdeserved.Fragment.EntertainPage;
 import com.example.zakahdeserved.Fragment.MusicPage;
 import com.example.zakahdeserved.Fragment.NewsPage;
+import com.example.zakahdeserved.Utility.Constants;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,6 +30,7 @@ public class MainTabs extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     private int[] tabIcons = {
             R.drawable.abc,
             R.drawable.ic_login_bk,
@@ -50,17 +58,17 @@ public class MainTabs extends AppCompatActivity {
 
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabOne.setText("Entertain");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText("Music");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabThree.setText("News");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0,  R.drawable.ic_enter_selected, 0, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
     }
 
@@ -69,6 +77,7 @@ public class MainTabs extends AppCompatActivity {
         adapter.addFrag(new EntertainPage(), "Enertain");
         adapter.addFrag(new MusicPage(), "Music");
         adapter.addFrag(new NewsPage(), "News");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -94,11 +103,11 @@ public class MainTabs extends AppCompatActivity {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
 
     }
-
-    }
+}

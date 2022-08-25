@@ -6,8 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 
 public class actdelayentrystatisticalActivity extends AppCompatActivity {
-    int s;
-    int l=6;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
