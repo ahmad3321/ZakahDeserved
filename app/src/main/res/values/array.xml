@@ -74,4 +74,9 @@
         <item>حي منظم</item>
         <item>حي راقي</item>
     </string-array>
+    <string-array name="WaterType">
+        <item>شبكة</item>
+        <item>صهريج</item>
+        <item>بئر</item>
+    </string-array>
 </resources>

@@ -5,17 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
 
-public class Tab6 extends Fragment {
+public class Tab6 extends Fragment implements View.OnClickListener {
 
 
 Button FurnitureEvaluationIncrease,FurnitureEvaluationDecrease;
 TextView FurnitureEvaluation;
+    LinearLayout layoutList;
+    Button buttonAdd;
+    Button buttonSubmitList;
     public Tab6() {
         // Required empty public constructor
     }
@@ -37,6 +44,14 @@ TextView FurnitureEvaluation;
         FurnitureEvaluationIncrease=view.findViewById(R.id.FurnitureEvaluationIncrease);
         FurnitureEvaluationDecrease=view.findViewById(R.id.FurnitureEvaluationDecrease);
         FurnitureEvaluation=view.findViewById(R.id.FurnitureEvaluation);
+
+        buttonAdd = view.findViewById(R.id.button_add_waterType);
+        buttonSubmitList = view.findViewById(R.id.button_submit_list);
+
+        layoutList = view.findViewById(R.id.layout_list_waterType);
+        buttonAdd.setOnClickListener(this);
+        buttonSubmitList.setOnClickListener(this);
+
         int value=0;
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,4 +81,54 @@ TextView FurnitureEvaluation;
 
         return view;
     }
+    public void onClick(View v) {
+
+        switch (v.getId()){
+
+            case R.id.button_add_waterType:
+
+                addView();
+
+                break;
+
+            case R.id.button_submit_list:
+
+                /*if(checkIfValidAndRead()){
+
+                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("list",cricketersList);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }*/
+                break;
+        }
+    }
+    private void addView() {
+
+        final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_water_type,null,false);
+
+       // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+        //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
+        ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove_waterType);
+
+
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeView(cricketerView);
+            }
+        });
+
+        layoutList.addView(cricketerView);
+
+    }
+
+    private void removeView(View view){
+
+        layoutList.removeView(view);
+
+    }
+
 }
