@@ -39,4 +39,39 @@
         <item>مفقود</item>
         <item>مسافر</item>
     </string-array>
+    <string-array name="HousingNature">
+        <item>ملك</item>
+        <item>اجار</item>
+        <item>أمانة</item>
+        <item>خيمة</item>
+    </string-array>
+    <string-array name="FloorType">
+        <item>بلاط</item>
+        <item>تعديس</item>
+        <item>رمل</item>
+    </string-array>
+    <string-array name="RoofType">
+        <item>اسمنتي</item>
+        <item>ألواح</item>
+        <item>شادر</item>
+    </string-array>
+    <string-array name="WC">
+        <item>مشترك</item>
+        <item>غير مشترك</item>
+    </string-array>
+    <string-array name="CookingGas">
+        <item>غاز</item>
+        <item>آخر</item>
+    </string-array>
+    <string-array name="Sanitation">
+        <item>مخدم</item>
+        <item>غير مخدم</item>
+    </string-array>
+    <string-array name="Location">
+        <item>خيم</item>
+        <item>مخيم بناء</item>
+        <item>حي غير منظم</item>
+        <item>حي منظم</item>
+        <item>حي راقي</item>
+    </string-array>
 </resources>

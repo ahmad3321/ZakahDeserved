@@ -16,6 +16,7 @@ import com.example.zakahdeserved.ChildFragment.Tab2;
 import com.example.zakahdeserved.ChildFragment.Tab3;
 import com.example.zakahdeserved.ChildFragment.Tab4;
 import com.example.zakahdeserved.ChildFragment.Tab5;
+import com.example.zakahdeserved.ChildFragment.Tab6;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.google.android.material.tabs.TabLayout;
@@ -62,7 +63,8 @@ public class EntertainPage extends Fragment {
         adapter.addFragment(new Tab2(), "Webseries");
         adapter.addFragment(new Tab3(), "Trailer");
         adapter.addFragment(new Tab4(), "Shortflim");
-        adapter.addFragment(new Tab5(), "Shortflim");
+        adapter.addFragment(new Tab5(), "Husband");
+        adapter.addFragment(new Tab6(), "Housing");
 
         viewPager.setAdapter(adapter);
     }
