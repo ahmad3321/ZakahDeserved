@@ -79,4 +79,18 @@
         <item>صهريج</item>
         <item>بئر</item>
     </string-array>
+    <string-array name="YesNo">
+        <item>نعم</item>
+        <item>لا</item>
+    </string-array>
+    <string-array name="IncomeType">
+        <item>راتب وظيفة</item>
+        <item>أجرة يومية</item>
+        <item>عامل حر</item>
+    </string-array>
+    <string-array name="IncomeTime">
+        <item>أسبوعي</item>
+        <item>شهري</item>
+        <item>موسمي</item>
+    </string-array>
 </resources>

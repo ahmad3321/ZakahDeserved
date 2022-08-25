@@ -20,9 +20,10 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
 Button FurnitureEvaluationIncrease,FurnitureEvaluationDecrease;
 TextView FurnitureEvaluation;
-    LinearLayout layoutList;
-    Button buttonAdd;
-    Button buttonSubmitList;
+    LinearLayout layoutList,layoutListIncome;
+    Button buttonAdd,buttonAddIncome;
+    Button buttonSubmitList, buttonSubmitListIncome;
+
     public Tab6() {
         // Required empty public constructor
     }
@@ -47,11 +48,16 @@ TextView FurnitureEvaluation;
 
         buttonAdd = view.findViewById(R.id.button_add_waterType);
         buttonSubmitList = view.findViewById(R.id.button_submit_list);
+        buttonAddIncome = view.findViewById(R.id.button_add_Incomes);
+        buttonSubmitList = view.findViewById(R.id.button_submit_list_Incomes);
+
 
         layoutList = view.findViewById(R.id.layout_list_waterType);
+        layoutListIncome = view.findViewById(R.id.layout_list_Incomes);
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
-
+        buttonAddIncome.setOnClickListener(this);
+        buttonSubmitList.setOnClickListener(this);
         int value=0;
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +96,11 @@ TextView FurnitureEvaluation;
                 addView();
 
                 break;
+            case R.id.button_add_Incomes:
 
+                addViewIncome();
+
+                break;
             case R.id.button_submit_list:
 
                 /*if(checkIfValidAndRead()){
@@ -128,6 +138,32 @@ TextView FurnitureEvaluation;
     private void removeView(View view){
 
         layoutList.removeView(view);
+
+    }
+    private void addViewIncome() {
+
+        final View IncomeCiew = getLayoutInflater().inflate(R.layout.row_add_incomes,null,false);
+
+        // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+        //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
+        ImageView imageClose = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Income);
+
+
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeViewIncome(IncomeCiew);
+            }
+        });
+
+        layoutListIncome.addView(IncomeCiew);
+
+    }
+
+    private void removeViewIncome(View view){
+
+        layoutListIncome.removeView(view);
 
     }
 
