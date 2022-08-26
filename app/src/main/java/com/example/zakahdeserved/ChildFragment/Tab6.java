@@ -20,9 +20,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
 Button FurnitureEvaluationIncrease,FurnitureEvaluationDecrease;
 TextView FurnitureEvaluation;
-    LinearLayout layoutList,layoutListIncome;
-    Button buttonAdd,buttonAddIncome;
-    Button buttonSubmitList, buttonSubmitListIncome;
+    LinearLayout layoutList,layoutListIncome,layoutListAids;
+    Button buttonAdd,buttonAddIncome,buttonAddAids;
+    Button buttonSubmitList;
 
     public Tab6() {
         // Required empty public constructor
@@ -50,14 +50,18 @@ TextView FurnitureEvaluation;
         buttonSubmitList = view.findViewById(R.id.button_submit_list);
         buttonAddIncome = view.findViewById(R.id.button_add_Incomes);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Incomes);
+        buttonAddAids = view.findViewById(R.id.button_add_Aids);
 
 
         layoutList = view.findViewById(R.id.layout_list_waterType);
         layoutListIncome = view.findViewById(R.id.layout_list_Incomes);
+        layoutListAids = view.findViewById(R.id.layout_list_Aids);
+
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
         buttonAddIncome.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
+        buttonAddAids.setOnClickListener(this);
         int value=0;
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +102,12 @@ TextView FurnitureEvaluation;
                 break;
             case R.id.button_add_Incomes:
 
-                addViewIncome();
+                addView(R.layout.row_add_incomes,R.id.image_remove_Income,layoutListIncome);
+
+                break;
+            case R.id.button_add_Aids:
+
+                addView(R.layout.row_add_aids,R.id.image_remove_Aids,layoutListAids);
 
                 break;
             case R.id.button_submit_list:
@@ -140,24 +149,26 @@ TextView FurnitureEvaluation;
         layoutList.removeView(view);
 
     }
-    private void addViewIncome() {
+    private void addView(int id,int imageID,LinearLayout linearLayout) {
 
-        final View IncomeCiew = getLayoutInflater().inflate(R.layout.row_add_incomes,null,false);
+        final View IncomeCiew = getLayoutInflater().inflate(id,null,false);
 
         // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
         //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
-        ImageView imageClose = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Income);
+        //ImageView imageCloseIncome = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Income);
+        //ImageView imageCloseAids = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Aids);
+        ImageView imageClose = (ImageView)IncomeCiew.findViewById(imageID);
 
 
 
         imageClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeViewIncome(IncomeCiew);
+                removeView(IncomeCiew,linearLayout);
             }
         });
 
-        layoutListIncome.addView(IncomeCiew);
+        linearLayout.addView(IncomeCiew);
 
     }
 
@@ -166,5 +177,14 @@ TextView FurnitureEvaluation;
         layoutListIncome.removeView(view);
 
     }
+    private void removeViewAids(View view){
 
+        layoutListAids.removeView(view);
+
+    }
+    private void removeView(View view,LinearLayout linear){
+
+        linear.removeView(view);
+
+    }
 }

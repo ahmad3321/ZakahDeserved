@@ -93,4 +93,8 @@
         <item>شهري</item>
         <item>موسمي</item>
     </string-array>
+    <string-array name="AidType">
+    <item>سلة إغاثية</item>
+    <item>إعانة مالية</item>
+</string-array>
 </resources>
