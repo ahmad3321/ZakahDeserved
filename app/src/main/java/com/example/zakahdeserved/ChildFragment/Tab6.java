@@ -62,7 +62,6 @@ TextView FurnitureEvaluation;
         buttonAddIncome.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
         buttonAddAids.setOnClickListener(this);
-        int value=0;
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

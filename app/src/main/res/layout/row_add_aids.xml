@@ -93,4 +93,5 @@
             app:tint="@color/black" />
 
     </LinearLayout>
+
 </HorizontalScrollView>

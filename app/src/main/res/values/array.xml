@@ -97,4 +97,23 @@
     <item>سلة إغاثية</item>
     <item>إعانة مالية</item>
 </string-array>
+    <string-array name="AssetType">
+        <item>محل</item>
+        <item>منزل</item>
+        <item>أرض زراعية</item>
+        <item>آاليات</item>
+        <item>ألأرض زراعية</item>
+    </string-array>BenefitType
+    <string-array name="AssetAdress">
+        <item>وسط المدينة</item>
+        <item>أطراف المدينة</item>
+        <item>شارع فرعي</item>
+        <item>شارع رئيسي</item>
+    </string-array>
+    <string-array name="BenefitType">
+        <item>مؤجر</item>
+        <item>غير مؤجر</item>
+        <item>مستثمر</item>
+        <item>غير مستثمر</item>
+    </string-array>
 </resources>
