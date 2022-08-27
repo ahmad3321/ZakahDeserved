@@ -116,4 +116,15 @@
         <item>مستثمر</item>
         <item>غير مستثمر</item>
     </string-array>
+    <string-array name="GroundNature">
+        <item>زراعية</item>
+        <item>مشجرة</item>
+        <item>جبلية</item>
+    </string-array>
+    <string-array name="AnimalType">
+        <item>أبقار</item>
+        <item>أغنام</item>
+        <item>ماعز</item>
+        <item>دواجن</item>
+    </string-array>
 </resources>

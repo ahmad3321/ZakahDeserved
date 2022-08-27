@@ -5,11 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
+
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +51,20 @@
                 android:layout_height="40dp"
                 android:entries="@array/CoinType" />
         </FrameLayout>
+        <EditText
+            android:id="@+id/ValueTime"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="وقت عائداتها"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="90dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="40dp" />
         <ImageView
             android:id="@+id/image_remove_Asset"
             android:layout_width="25dp"
@@ -56,8 +74,11 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_close"
             app:tint="@color/black" />
-
     </LinearLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
     <LinearLayout
         android:id="@+id/LinearHousrAndStore"
         android:layout_width="match_parent"
@@ -92,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_gravity="center"
             android:background="@drawable/round_grey">
 
             <Spinner
@@ -102,5 +124,116 @@
         </FrameLayout>
 
     </LinearLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/LinearFarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <EditText
+            android:id="@+id/GroundSpace"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="مساحة الأرض"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="90dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="طبيعة الأرض"
+                android:textSize="18sp"
+                android:typeface="serif" />
 
+            <Spinner
+                android:id="@+id/GroundNature"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:entries="@array/GroundNature" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/LinearMachine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <EditText
+            android:id="@+id/MachineType"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="نوع الالية"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="90dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نوع الثروة الحيوانية"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/AnimalType"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/AnimalType"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/AnimalCount"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="العدد"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_width="70dp"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:layout_height="40dp" />
+    </LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>
