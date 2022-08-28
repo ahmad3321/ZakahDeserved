@@ -8,6 +8,19 @@
         <item>مرض مزمن</item>
         <item>إعاقة</item>
     </string-array>
+    <string-array name="Gender">
+        <item>ذكر</item>
+        <item>أنثى</item>
+    </string-array>
+    <string-array name="ExisitStatus">
+        <item>موجود</item>
+        <item>غير موجود</item>
+        <item>غير معروف</item>
+        <item>عنوان خاطئ</item>
+        <item>مغادر</item>
+        <item>إلغاء</item>
+        <item>تأجيل</item>
+    </string-array>
     <string-array name="WifeSocialStatus">
         <item>متزوجة</item>
         <item>مطلقة</item>
