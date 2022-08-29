@@ -30,5 +30,4 @@ public class Tab3  extends Fragment {
         Constants.view3 = view;
         return view;
     }
-
 }
