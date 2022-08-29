@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/contact_form_title"
+                style="@style/headerTextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/jaz_bold"
+                android:text="بيانات الأسرة والمعالين"
+                android:textSize="30sp"
+                android:typeface="serif" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الزوجات"
+                    android:textSize="15sp"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/jaz_bold"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/layout_list_Wifes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_add_Wifes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_primary"
+                    android:drawableRight="@drawable/ic_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:onClick="onClick"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="إضافة"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button_submit_list_Wifes"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/round_primary"
+                    android:onClick="onClick"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Submit List"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

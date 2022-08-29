@@ -8,6 +8,19 @@
         <item>مرض مزمن</item>
         <item>إعاقة</item>
     </string-array>
+    <string-array name="Gender">
+        <item>ذكر</item>
+        <item>أنثى</item>
+    </string-array>
+    <string-array name="ExisitStatus">
+        <item>موجود</item>
+        <item>غير موجود</item>
+        <item>غير معروف</item>
+        <item>عنوان خاطئ</item>
+        <item>مغادر</item>
+        <item>إلغاء</item>
+        <item>تأجيل</item>
+    </string-array>
     <string-array name="WifeSocialStatus">
         <item>متزوجة</item>
         <item>مطلقة</item>
@@ -73,5 +86,58 @@
         <item>حي غير منظم</item>
         <item>حي منظم</item>
         <item>حي راقي</item>
+    </string-array>
+    <string-array name="WaterType">
+        <item>شبكة</item>
+        <item>صهريج</item>
+        <item>بئر</item>
+    </string-array>
+    <string-array name="YesNo">
+        <item>نعم</item>
+        <item>لا</item>
+    </string-array>
+    <string-array name="IncomeType">
+        <item>راتب وظيفة</item>
+        <item>أجرة يومية</item>
+        <item>عامل حر</item>
+    </string-array>
+    <string-array name="IncomeTime">
+        <item>أسبوعي</item>
+        <item>شهري</item>
+        <item>موسمي</item>
+    </string-array>
+    <string-array name="AidType">
+    <item>سلة إغاثية</item>
+    <item>إعانة مالية</item>
+</string-array>
+    <string-array name="AssetType">
+        <item>محل</item>
+        <item>منزل</item>
+        <item>أرض زراعية</item>
+        <item>آاليات</item>
+        <item>ألأرض زراعية</item>
+    </string-array>BenefitType
+    <string-array name="AssetAdress">
+        <item>وسط المدينة</item>
+        <item>أطراف المدينة</item>
+        <item>شارع فرعي</item>
+        <item>شارع رئيسي</item>
+    </string-array>
+    <string-array name="BenefitType">
+        <item>مؤجر</item>
+        <item>غير مؤجر</item>
+        <item>مستثمر</item>
+        <item>غير مستثمر</item>
+    </string-array>
+    <string-array name="GroundNature">
+        <item>زراعية</item>
+        <item>مشجرة</item>
+        <item>جبلية</item>
+    </string-array>
+    <string-array name="AnimalType">
+        <item>أبقار</item>
+        <item>أغنام</item>
+        <item>ماعز</item>
+        <item>دواجن</item>
     </string-array>
 </resources>

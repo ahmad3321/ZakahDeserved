@@ -112,7 +112,8 @@
                         android:id="@+id/Gender"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="73dp" />
+                        android:layout_marginStart="73dp"
+                        android:entries="@array/Gender" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -135,6 +136,7 @@
                         android:id="@+id/ExisitStatus"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:entries="@array/ExisitStatus"
                         android:layout_marginStart="81dp" />
                 </LinearLayout>
                 <EditText

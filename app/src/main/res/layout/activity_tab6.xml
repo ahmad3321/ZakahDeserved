@@ -435,9 +435,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="الحالة الصحية"
+                    android:text="الماء المنزلي"
                     android:textSize="15sp"
                     android:layout_margin="15dp"
+                    android:fontFamily="@font/jaz_bold"
                     android:textColor="@color/black" />
 
                 <LinearLayout
@@ -446,21 +447,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 </LinearLayout>
+
                 <Button
-                    android:id="@+id/button_add"
-                    android:background="@drawable/round_primary"
+                    android:id="@+id/button_add_waterType"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="إضافة"
-                    android:fontFamily="@font/jaz_bold"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_primary"
+                    android:drawableRight="@drawable/ic_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:onClick="onClick"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:onClick="onClick"
-                    android:drawableRight="@drawable/ic_add" />
+                    android:text="إضافة"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/button_submit_list"
@@ -478,255 +480,114 @@
                     android:paddingRight="10dp" />
 
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="المؤهل العلمي"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/AcademicQualification"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/AcademicQualification"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="وضع رب الأسرة"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/Status"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/Status"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/EventDate"
-                style="@style/modifiedEditText"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="تاريخ" />
-            <LinearLayout
-                android:id="@+id/Linear_Lockup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="vertical"
-                android:padding="10dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="مكان الاعتقال"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/Lockup"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/City"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="المحكومية"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-                <Spinner
-                    android:id="@+id/Ifcondemnation"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/City"
-                    android:layout_marginStart="60dp" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/ArrestDate"
-                style="@style/modifiedEditText"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="تاريخ التوقيف" />
-            <EditText
-                android:id="@+id/CondemnationDuration"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:hint="مدة الحكم" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Linear_Travel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:orientation="vertical"
-            android:padding="10dp">
-            <EditText
-                android:id="@+id/TravelPlace"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:hint="مكان السفر" />
-            <EditText
-                android:id="@+id/TravelGoal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الهدف" />
-        </LinearLayout>
-            <EditText
-                android:id="@+id/Job"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="العمل الحالي" />
-            <EditText
-                android:id="@+id/OrginalJob"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="المهنة الأساسية" />
-            <EditText
-                android:id="@+id/WantedJob"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:hint="العمل الذي يطمح له" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="الجنسية"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/Nationality"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="حالة الإقامة"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/ResidenceStatus"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/ContactNumber1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="phone"
-                android:textAlignment="viewStart"
-                android:hint="رقم التواصل 1" />
-
-            <EditText
-                android:id="@+id/ContactNumber2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:textAlignment="viewStart"
-                android:backgroundTint="@color/purple_200"
-                android:hint="رقم التواصل 2" />
-            <EditText
-                android:id="@+id/RelationWithContact2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الصلة بالمستفيد" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الدخل"
+                    android:textSize="15sp"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/jaz_bold"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/layout_list_Incomes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_add_Incomes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_primary"
+                    android:drawableRight="@drawable/ic_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:onClick="onClick"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="إضافة"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button_submit_list_Incomes"
+                    android:background="@drawable/round_primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Submit List"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:paddingLeft="10dp"
+                    android:onClick="onClick"
+                    android:paddingRight="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الإغاثة"
+                    android:textSize="15sp"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/jaz_bold"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/layout_list_Aids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_add_Aids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_primary"
+                    android:drawableRight="@drawable/ic_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:onClick="onClick"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="إضافة"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button_submit_list_Aids"
+                    android:background="@drawable/round_primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Submit List"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:paddingLeft="10dp"
+                    android:onClick="onClick"
+                    android:paddingRight="10dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
         <Button
