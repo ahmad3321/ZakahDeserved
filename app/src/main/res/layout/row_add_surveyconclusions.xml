@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/Name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="الاسم" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="هل جارك مستأجر"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IfRented"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/YesNo"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="هل لديه دخل"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IfIncome"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/YesNo"
+                    android:layout_marginStart="62dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="هل أولاده يعملون"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IfKidsWorking"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/YesNo"
+                    android:layout_marginStart="35dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="هل لديه أملاك"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IfAssets"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/YesNo"
+                    android:layout_marginStart="55dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="هل هو فقير"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/IfPoor"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/YesNo"
+                    android:layout_marginStart="73dp" />
+            </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_remove_SurveyConclusions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_close"
+                app:tint="@color/black" />
+
+        </LinearLayout>
+
+
+</ScrollView>
+
+
