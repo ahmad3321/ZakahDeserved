@@ -24,7 +24,7 @@ public class HealthStatusesAdapter extends RecyclerView.Adapter<HealthStatusesAd
     @Override
     public HealthStatusesView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_healthstatus,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_add_healthstatus,parent,false);
 
         return new HealthStatusesView(view);
     }

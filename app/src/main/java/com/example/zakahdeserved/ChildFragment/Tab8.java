@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,8 +16,8 @@ import com.example.zakahdeserved.R;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
-    LinearLayout layoutWife;
-    Button buttonAdd;
+    LinearLayout layoutWife,layout_list_Wifes_HealthStatus;
+    Button buttonAdd,button_add_WifesHealthStatus;
     Button buttonSubmitList;
 
     public Tab8() {
@@ -77,6 +79,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         final View WifeView = getLayoutInflater().inflate(id,null,false);
 
         ImageView imageClose = (ImageView)WifeView.findViewById(imageID);
+        Button button_add_WifesHealthStatus = (Button)WifeView.findViewById(R.id.button_add_WifesHealthStatus);
+        layout_list_Wifes_HealthStatus = (LinearLayout) WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
 
         imageClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,11 +91,42 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
         linearLayout.addView(WifeView);
 
+
+        button_add_WifesHealthStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addView();
+            }
+        });
     }
 
     private void removeView(View view,LinearLayout linear){
 
         linear.removeView(view);
+
+    }
+    private void addView() {
+
+        final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
+
+        ImageView imageClose = (ImageView)healthstatusview.findViewById(R.id.image_remove);
+
+
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                removeView(healthstatusview);
+            }
+        });
+
+        layout_list_Wifes_HealthStatus.addView(healthstatusview);
+
+    }
+    private void removeView(View view){
+
+        layout_list_Wifes_HealthStatus.removeView(view);
 
     }
 }
