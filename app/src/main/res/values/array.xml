@@ -156,6 +156,9 @@
         <item>إعاقة ذهنية</item>
         <item>إعاقة بصرية أو سمعية</item>
         <item>بتر أطراف</item>
-
+    </string-array>
+    <string-array name="Deserved">
+        <item>مستحق</item>
+        <item>غير مستحق</item>
     </string-array>
 </resources>
