@@ -35,8 +35,19 @@
         android:inputType="number"
         android:textColor="@color/black"
         android:textSize="14sp" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_grey">
+
+        <Spinner
+            android:id="@+id/HealthStatusType"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:entries="@array/HealthStatusType" />
+    </FrameLayout>
     <EditText
-        android:id="@+id/HealthStatusType"
+        android:id="@+id/HealthStatusDescription"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
@@ -80,6 +91,5 @@
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_close"
         app:tint="@color/black" />
-
 </LinearLayout>
 </HorizontalScrollView>

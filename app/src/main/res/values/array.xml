@@ -140,4 +140,22 @@
         <item>ماعز</item>
         <item>دواجن</item>
     </string-array>
+    <string-array name="WhoIs">
+        <item>رب الأسرة</item>
+        <item>زوجة</item>
+        <item>ابن</item>
+        <item>معال</item>
+    </string-array>
+    <string-array name="WhoIsWifeChildren">
+        <item>زوجة</item>
+        <item>ابن</item>
+        <item>معال</item>
+    </string-array>
+    <string-array name="HealthStatusType">
+        <item>شلل شقي / نصفي</item>
+        <item>إعاقة ذهنية</item>
+        <item>إعاقة بصرية أو سمعية</item>
+        <item>بتر أطراف</item>
+
+    </string-array>
 </resources>

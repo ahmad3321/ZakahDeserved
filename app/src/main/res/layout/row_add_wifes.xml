@@ -18,13 +18,36 @@
             android:layout_gravity="start"
             android:orientation="vertical"
             android:visibility="visible">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع الوثيقة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/WhoIs"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/WhoIsWifeChildren"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
             <EditText
                 android:id="@+id/Name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
-                android:hint="اسم الزوجة" />
+                android:hint="الاسم" />
             <EditText
                 android:id="@+id/FatherName"
                 android:layout_width="fill_parent"
@@ -44,6 +67,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:hint="اسم الأم الثلاثي" />
+            <EditText
+                android:id="@+id/Relation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:hint="الصلة بالمستفيد" />
             <EditText
                 android:id="@+id/IdentityNumber"
                 android:layout_width="fill_parent"
@@ -147,6 +176,42 @@
                     android:layout_height="40dp"
                     android:entries="@array/CoinType" />
             </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الحالة الصحية"
+                    android:textSize="15sp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/layout_list_Wifes_HealthStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_add_WifesHealthStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_primary"
+                    android:drawableRight="@drawable/ic_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="إضافة"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/image_remove_Wife"
