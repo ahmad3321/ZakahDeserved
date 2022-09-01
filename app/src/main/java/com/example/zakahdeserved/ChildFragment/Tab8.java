@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
+import com.example.zakahdeserved.Utility.Constants;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
@@ -49,6 +50,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
+        Constants.view8 = view;
         return view;
     }
     public void onClick(View v) {

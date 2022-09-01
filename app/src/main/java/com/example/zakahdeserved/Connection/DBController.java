@@ -11,9 +11,10 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class DBController {
-    public static String[] tablesNames = new String[]{"Husbands", "Families","Incomes",
+    public static String[] tablesNames = new String[]{"Husbands", "Families", "Incomes",
             "HousingInformations", "Persons", "Aids", "SurveyConclusions", "Assets", "HealthStatuses"};
 
     private static final String[] HusbandsColumns = new String[]{"WifeSocialStatus", "HusbandName", "HusbandLastName",
@@ -23,7 +24,6 @@ public class DBController {
     };
 
     public static HashMap<String, HashMap<String, Object>> allItemsTable = new HashMap<>();
-
 
 
     public static void init() {
@@ -79,5 +79,30 @@ public class DBController {
                 colKeyVal.put(colName, colValue);
             }
         }
+    }
+
+    String getInsertQuery(String[] tablesName, HashMap<String, HashMap<String, Object>> allTables) {
+        StringBuilder insert_query = new StringBuilder();
+
+        for (String tableName : tablesName) {
+            if (tableName.equals("") || tableName == null)
+                continue;
+            StringBuilder strKeys = new StringBuilder("(");
+            StringBuilder strValues = new StringBuilder("(");
+            HashMap<String, Object> tableData = allTables.get(tableName);
+
+            for (Map.Entry<String, Object> entry : tableData.entrySet()) {
+                strKeys.append(entry.getKey()).append(",");
+                strValues.append('\'').append(entry.getValue()).append('\'').append(",");
+            }
+            strKeys.deleteCharAt(strKeys.length() - 1);
+            strValues.deleteCharAt(strValues.length() - 1);
+            strKeys.append(")");
+            strValues.append(")");
+            insert_query.append("insert into ").append(tableName).append(" ")
+                    .append(strKeys).append(" values ").append(strValues).append(";");
+
+        }
+        return insert_query.toString();
     }
 }

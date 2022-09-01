@@ -14,13 +14,14 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
+import com.example.zakahdeserved.Utility.Constants;
 
 public class Tab6 extends Fragment implements View.OnClickListener {
 
 
 Button FurnitureEvaluationIncrease,FurnitureEvaluationDecrease;
 TextView FurnitureEvaluation;
-    LinearLayout layoutList,layoutListIncome,layoutListAids;
+    public LinearLayout layoutList,layoutListIncome,layoutListAids;
     Button buttonAdd,buttonAddIncome,buttonAddAids;
     Button buttonSubmitList;
 
@@ -87,7 +88,7 @@ TextView FurnitureEvaluation;
                 }catch (Exception ex){}
             }
         });
-
+        Constants.view6 = view;
         return view;
     }
     public void onClick(View v) {

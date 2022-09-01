@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
+import com.example.zakahdeserved.Utility.Constants;
 
 public class Tab7 extends Fragment implements View.OnClickListener {
 
@@ -48,6 +49,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
+        Constants.view7 = view;
         return view;
     }
     public void onClick(View v) {
