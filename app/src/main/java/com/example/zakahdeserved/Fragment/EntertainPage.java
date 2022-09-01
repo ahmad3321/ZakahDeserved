@@ -13,7 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.zakahdeserved.ChildFragment.Tab1;
 import com.example.zakahdeserved.ChildFragment.Tab2;
-import com.example.zakahdeserved.ChildFragment.Tab3;
 import com.example.zakahdeserved.ChildFragment.Tab4;
 import com.example.zakahdeserved.ChildFragment.Tab5;
 import com.example.zakahdeserved.ChildFragment.Tab6;
