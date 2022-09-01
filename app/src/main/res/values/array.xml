@@ -9,8 +9,8 @@
         <item>إعاقة</item>
     </string-array>
     <string-array name="Gender">
-        <item>ذكر</item>
         <item>أنثى</item>
+        <item>ذكر</item>
     </string-array>
     <string-array name="ExisitStatus">
         <item>موجود</item>
