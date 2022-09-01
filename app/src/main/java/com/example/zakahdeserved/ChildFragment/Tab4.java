@@ -70,18 +70,18 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
             case R.id.button_submit_list:
 
-                if(checkIfValidAndRead()){
+/*                if(checkIfValidAndRead()){
 
                    /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("list",cricketersList);
                     intent.putExtras(bundle);
-                    startActivity(intent);*/
+                    startActivity(intent);
                 }
-                break;
+                break;*/
         }
     }
-    private boolean checkIfValidAndRead() {
+    /*private boolean checkIfValidAndRead() {
         HealthStatusesList.clear();
         boolean result = true;
 
@@ -121,14 +121,14 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
 
         return result;
-    }
+    }*/
 
     private void addView() {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
 
-        EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
-        Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.HealthStatus);
+        /*EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+        Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.HealthStatus);*/
         ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove);
 
 
