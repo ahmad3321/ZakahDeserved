@@ -15,9 +15,9 @@ public class Constants {
     public static final int DISTRIBUTION_JOcB_TITLE = 1;
     public static SQLiteDAL SQLITEDAL;
     public static MasterKey SHAREDPREFERENCES_KEY;
-    public static View view1, view2, view3, view4, view5, view6, view8, view7, view9;
+    public static View view1, view2, view4, view5, view6, view8, view7, view9;
     public static List<String> dynamisLists = new ArrayList<>(List.of("lst_campaigntypes", "lst_directorates",
             "lst_identitytypes", "lst_jobtitles", "lst_universities"));
     public static String ZakatID;
-    public static String PersonID;
+    public static int PersonID;
 }

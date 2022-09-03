@@ -63,7 +63,6 @@ public class EntertainPage extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Tab1(), "ForU");
         adapter.addFragment(new Tab2(), "Webseries");
-        adapter.addFragment(new Tab3(), "Trailer");
         adapter.addFragment(new Tab4(), "Shortflim");
         adapter.addFragment(new Tab5(), "Husband");
         adapter.addFragment(new Tab6(), "Housing");

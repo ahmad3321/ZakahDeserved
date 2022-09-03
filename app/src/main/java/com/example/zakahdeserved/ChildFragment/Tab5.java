@@ -42,35 +42,6 @@ public class Tab5 extends Fragment {
         View view5 = inflater.inflate(R.layout.activity_tab5, container, false);
         Constants.view5 = view5;
 
-        Button btn = view5.findViewById(R.id.btn_rec);
-
-        btn.setOnClickListener(view -> {
-
-            printViews(Constants.view1);
-            printViews(Constants.view2);
-            printViews(Constants.view3);
-            printViews(Constants.view4);
-            printViews(Constants.view5);
-
-        });
-
-
         return view5;
     }
-
-    void printViews(View view) {
-        if(view == null)
-            return;
-        ViewGroup viewGroup = (ViewGroup) view;
-        int count = viewGroup.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View v = viewGroup.getChildAt(i);
-            if (v instanceof EditText || v instanceof Spinner || v instanceof CheckBox)
-                Log.d("TESTTAB", v.getResources().getResourceEntryName(v.getId()));
-            else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout) {
-                printViews(v);
-            }
-        }
-    }
-
 }

@@ -152,9 +152,11 @@
         <item>معال</item>
     </string-array>
     <string-array name="HealthStatusType">
-        <item>شلل شقي / نصفي</item>
+        <item>شلل شقي</item>
+        <item>شلل نصفي</item>
         <item>إعاقة ذهنية</item>
-        <item>إعاقة بصرية أو سمعية</item>
+        <item>إعاقة بصرية</item>
+        <item>إعاقة سمعية</item>
         <item>بتر أطراف</item>
     </string-array>
     <string-array name="Deserved">

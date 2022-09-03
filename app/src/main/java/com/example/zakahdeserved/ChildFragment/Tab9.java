@@ -120,9 +120,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     HashMap<String, Object> IncomesTable = new HashMap<>();
     HashMap<String, Object> AidsTable = new HashMap<>();
     HashMap<String, Object> AssetsTable = new HashMap<>();
+    HashMap<String, Object> SurveyConclusionTable = new HashMap<>();
 
 
-    String[] PersonsColumns = new String[]{"ZakatID", "Name", "LastName", "FatherName", "MotherFullName", "Gender",
+    String[] PersonsColumns = new String[]{"ZakatID", "PersonID", "Name", "LastName", "FatherName", "MotherFullName", "Gender",
             "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
             "WhoIs", "IsWorking", "Record", "MonthlyIncome", "CoinType"};
 
@@ -153,6 +154,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     String[] AssetsColumns = new String[]{"ZakatID", "AssetType", "AssetAdress", "BenefitType", "BenefitValue",
             "GroundSpace", "ValueTime", "CoinType", "GroundNature", "MachineType", "AnimalType", "AnimalCount"};
 
+    String[] SurveyConclusionColumns = new String[]{"ID", "NeighborName", "IfRented", "IfIncome", "IfKidsWorking", "IfAssets", "IfPoor", "Why"};
+
     void getData() {
         for (String col : PersonsColumns)
             PersonsTable.put(col, "");
@@ -181,9 +184,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         for (String col : AssetsColumns)
             AssetsTable.put(col, "");
 
+        for (String col : SurveyConclusionColumns)
+            SurveyConclusionTable.put(col, "");
+
         FamiliesTable.put("ZakatID", Constants.ZakatID);
         PersonsTable.put("ZakatID", Constants.ZakatID);
-        Helth_StatusesTable.put("PersonID", Constants.PersonID);
         HusbandsTable.put("ZakatID", Constants.ZakatID);
         HousingInformaionTable.put("ZakatID", Constants.ZakatID);
         WaterTypesTable.put("ZakatID", Constants.ZakatID);
@@ -197,6 +202,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView5();
         getFromView6();
         getFromView7();
+        getFromView8();
 
     }
 
@@ -206,6 +212,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         allItemsTable.put(tablesNames[0], PersonsTable);
         allItemsTable.put(tablesNames[1], FamiliesTable);
+
+        PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
 
         getAllControlsNamesAndData(Constants.view1);
 
@@ -226,6 +234,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     //الحالة الصحية لرب الأسرة Helth Status
     void getFromView4() {
         tablesNames = new String[]{"health_statuses"};
+
+        Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++);
 
         allItemsTable.put(tablesNames[0], Helth_StatusesTable);
 
@@ -304,7 +314,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         allItemsTable.put(tablesNames[0], AssetsTable);
 
-        LinearLayout AssetsList= Constants.view7.findViewById(R.id.layout_list_Asset);
+        LinearLayout AssetsList = Constants.view7.findViewById(R.id.layout_list_Asset);
 
         for (int i = 0; i < AssetsList.getChildCount(); i++) {
 
@@ -314,6 +324,63 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         }
     }
 
+
+    //أفراد الأسرة (زوجة, أولاد, معالين) persons
+    void getFromView8() {
+        LinearLayout PersonsList = Constants.view8.findViewById(R.id.layout_list_Wifes);
+
+        for (int i = 0; i < PersonsList.getChildCount(); i++) {
+
+            tablesNames = new String[]{"persons"};
+            PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+
+            allItemsTable.put(tablesNames[0], PersonsTable);
+
+            View PersonInfo = PersonsList.getChildAt(i);
+
+            getAllControlsNamesAndData(PersonInfo);
+
+            insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+
+
+            //الحالة الصحية للفرد HelthStatus Of person
+            LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
+            for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {
+                tablesNames = new String[]{"health_statuses"};
+                Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++); //increase personId after insert helth status for current person
+
+                allItemsTable.put(tablesNames[0], Helth_StatusesTable);
+                getAllControlsNamesAndData(PersonsHelthStatusesList.getChildAt(j));
+
+                insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+            }
+
+        }
+    }
+
+    //رأي الجوارSurvey Conclusons
+    void getFromView9() {
+        tablesNames = new String[]{"families"};
+
+        allItemsTable.put(tablesNames[0], FamiliesTable);
+
+        getAllControlsNamesAndData(Constants.view9);
+
+        insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+
+
+        //رأي الجوار
+        tablesNames = new String[]{"survey_conclusions"};
+        allItemsTable.put(tablesNames[0], WaterTypesTable);
+        LinearLayout SurveyCoinclusionList = Constants.view9.findViewById(R.id.layoutSurveyConclusions);
+        for (int i = 0; i < SurveyCoinclusionList.getChildCount(); i++) {
+
+            getAllControlsNamesAndData(SurveyCoinclusionList.getChildAt(i));
+
+            insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+        }
+
+    }
 
     void getAllControlsNamesAndData(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
@@ -387,6 +454,5 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         }
         return insert_query.toString();
     }
-
 
 }
