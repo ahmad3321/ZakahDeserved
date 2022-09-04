@@ -3,14 +3,19 @@ package com.example.zakahdeserved.ChildFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,7 +27,9 @@ import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Tab4 extends Fragment implements View.OnClickListener {
@@ -69,7 +76,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.button_submit_list:
-
 /*                if(checkIfValidAndRead()){
 
                    /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
@@ -122,6 +128,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
         return result;
     }*/
+
 
     private void addView() {
 

@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
@@ -324,7 +326,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         }
     }
 
-
     //أفراد الأسرة (زوجة, أولاد, معالين) persons
     void getFromView8() {
         LinearLayout PersonsList = Constants.view8.findViewById(R.id.layout_list_Wifes);
@@ -382,7 +383,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     }
 
-    void getAllControlsNamesAndData(View view) {
+    private void getAllControlsNamesAndData(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
         try {
             int count = viewGroup.getChildCount();
@@ -394,7 +395,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                     Object ColumnValue = ((EditText) v).getText();
                     putColumnValue(ColumnName, ColumnValue);
 
-                } else if (v instanceof Spinner) {
+                } else if (v instanceof Spinner || v instanceof AppCompatSpinner) {
                     String ColumnName = v.getResources().getResourceEntryName(v.getId());
 
                     if (ColumnName.contains("1"))
@@ -411,9 +412,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                     String ColumnName = v.getResources().getResourceEntryName(v.getId());
                     Object ColumnValue = ((CheckBox) v).isChecked();
                     putColumnValue(ColumnName, ColumnValue);
-                } else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout) {
+                } else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout) {
                     getAllControlsNamesAndData(v);
-                    Log.d("LinearLayout", v.getResources().getResourceEntryName(v.getId()));
+//                    Log.d("LinearLayout", v.getResources().getResourceEntryName(v.getId()));
                 }
             }
         } catch (Exception e) {
@@ -430,7 +431,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     }
 
 
-    String getInsertQuery(String[] tablesName, HashMap<String, HashMap<String, Object>> allTables) {
+    private String getInsertQuery(String[] tablesName, HashMap<String, HashMap<String, Object>> allTables) {
         StringBuilder insert_query = new StringBuilder();
 
         for (String tableName : tablesName) {

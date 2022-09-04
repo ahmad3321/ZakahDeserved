@@ -42,6 +42,15 @@ public class Tab5 extends Fragment {
         View view5 = inflater.inflate(R.layout.activity_tab5, container, false);
         Constants.view5 = view5;
 
+        Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
+        spnWifeSocialStatus.setOnItemClickListener((adapterView, view, i, l) -> {
+            if(i==0){
+
+            }
+
+        });
+
+
         return view5;
     }
 }
