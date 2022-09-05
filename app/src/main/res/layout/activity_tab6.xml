@@ -49,13 +49,14 @@
                     android:typeface="serif" />
 
                 <Spinner
-                    android:id="@+id/WifeSocialStatus"
+                    android:id="@+id/HousingNature"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/HousingNature"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/Linear_CoinType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -77,7 +78,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="60dp" />
+                    android:layout_marginStart="63dp" />
             </LinearLayout>
             <EditText
                 android:id="@+id/RentValue"

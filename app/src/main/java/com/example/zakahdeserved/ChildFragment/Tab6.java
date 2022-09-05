@@ -15,16 +15,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 public class Tab6 extends Fragment implements View.OnClickListener {
 
 
 Button FurnitureEvaluationIncrease,FurnitureEvaluationDecrease;
 TextView FurnitureEvaluation;
-    public LinearLayout layoutList,layoutListIncome,layoutListAids;
+    public LinearLayout layoutList,layoutListIncome,layoutListAids,Linear_CoinType;
     Button buttonAdd,buttonAddIncome,buttonAddAids;
     Button buttonSubmitList;
-
+    Spinner HousingNature;
+    EditText RentValue;
     public Tab6() {
         // Required empty public constructor
     }
@@ -53,16 +55,28 @@ TextView FurnitureEvaluation;
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Incomes);
         buttonAddAids = view.findViewById(R.id.button_add_Aids);
 
+        RentValue = view.findViewById(R.id.RentValue);
 
         layoutList = view.findViewById(R.id.layout_list_waterType);
         layoutListIncome = view.findViewById(R.id.layout_list_Incomes);
         layoutListAids = view.findViewById(R.id.layout_list_Aids);
+        Linear_CoinType = view.findViewById(R.id.Linear_CoinType);
 
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
         buttonAddIncome.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
         buttonAddAids.setOnClickListener(this);
+        HousingNature = view.findViewById(R.id.HousingNature);
+        HousingNature.setOnItemClickListener((adapterView, view1, i, l) -> {
+            if (i == 1) {   //في حالة اجار
+                Linear_CoinType.setVisibility(View.VISIBLE);
+                RentValue.setVisibility(View.VISIBLE);
+            } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+                Linear_CoinType.setVisibility(View.GONE);
+                RentValue.setVisibility(View.GONE);            }
+        });
+
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
