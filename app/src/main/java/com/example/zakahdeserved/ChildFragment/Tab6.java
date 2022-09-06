@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,8 +26,8 @@ TextView FurnitureEvaluation;
     public LinearLayout layoutList,layoutListIncome,layoutListAids,Linear_CoinType;
     Button buttonAdd,buttonAddIncome,buttonAddAids;
     Button buttonSubmitList;
-    Spinner HousingNature;
-    EditText RentValue;
+    Spinner HousingNature,CookingGas;
+    EditText RentValue,CookingGasOther;
     public Tab6() {
         // Required empty public constructor
     }
@@ -56,6 +57,7 @@ TextView FurnitureEvaluation;
         buttonAddAids = view.findViewById(R.id.button_add_Aids);
 
         RentValue = view.findViewById(R.id.RentValue);
+        CookingGasOther = view.findViewById(R.id.CookingGasOther);
 
         layoutList = view.findViewById(R.id.layout_list_waterType);
         layoutListIncome = view.findViewById(R.id.layout_list_Incomes);
@@ -68,15 +70,41 @@ TextView FurnitureEvaluation;
         buttonSubmitList.setOnClickListener(this);
         buttonAddAids.setOnClickListener(this);
         HousingNature = view.findViewById(R.id.HousingNature);
-        HousingNature.setOnItemClickListener((adapterView, view1, i, l) -> {
-            if (i == 1) {   //في حالة اجار
-                Linear_CoinType.setVisibility(View.VISIBLE);
-                RentValue.setVisibility(View.VISIBLE);
-            } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
-                Linear_CoinType.setVisibility(View.GONE);
-                RentValue.setVisibility(View.GONE);            }
-        });
+        CookingGas = view.findViewById(R.id.CookingGas);
 
+        HousingNature.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 1) {   //في حالة اجار
+                    Linear_CoinType.setVisibility(View.VISIBLE);
+                    RentValue.setVisibility(View.VISIBLE);
+                }   else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+                    Linear_CoinType.setVisibility(View.GONE);
+                    RentValue.setVisibility(View.GONE);            }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        CookingGas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 1) {   //في حالة غير ذلك
+
+                    CookingGasOther.setVisibility(View.VISIBLE);
+
+            }   else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+                    CookingGasOther.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
