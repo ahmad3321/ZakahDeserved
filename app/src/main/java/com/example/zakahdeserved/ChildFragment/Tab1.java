@@ -1,6 +1,7 @@
 package com.example.zakahdeserved.ChildFragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,22 +35,37 @@ public class Tab1 extends Fragment {
         Constants.view1 = view;
 
 
-
         Spinner spnGender = view.findViewById(R.id.Gender);
-        spnGender.setOnItemClickListener((adapterView, view1, i, l) -> {
-            ValidationController.ENABLE_FEMALE_TAB = i == 0;    //حالة المستفيد أنثى أو ذكر
+        spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ValidationController.ENABLE_FEMALE_TAB = i == 0;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
         });
 
         EditText txtExisitStatusAbout = view.findViewById(R.id.ExisitStatusAbout);
 
         Spinner spnExisitStatus = view.findViewById(R.id.ExisitStatus);
-        spnExisitStatus.setOnItemClickListener((adapterView, view1, i, l) -> {
-            if (i == 0) {   //في حالة موجود
-                ValidationController.ENABLE_ALL_TABS = true;
-                txtExisitStatusAbout.setEnabled(false);
-            } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
-                ValidationController.ENABLE_ALL_TABS = false;
-                txtExisitStatusAbout.setEnabled(true);
+        spnExisitStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                 if (i == 0) {   //في حالة موجود
+                    ValidationController.ENABLE_ALL_TABS = true;
+                    txtExisitStatusAbout.setEnabled(false);
+                } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+                    ValidationController.ENABLE_ALL_TABS = false;
+                    txtExisitStatusAbout.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
