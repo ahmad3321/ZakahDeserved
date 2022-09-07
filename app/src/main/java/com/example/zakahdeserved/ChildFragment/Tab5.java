@@ -1,32 +1,30 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 
-import com.example.zakahdeserved.MainActivity;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Tab5 extends Fragment {
 
+    boolean pageLocked = false;
+    Calendar myCalendar;
 
     public Tab5() {
         // Required empty public constructor
@@ -49,25 +47,47 @@ public class Tab5 extends Fragment {
         Constants.view5 = view5;
 
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
+        Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
 
         spnWifeSocialStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String[] listHusbandStatuses = null;
-//
-//                if (i == 0)
-//                    listHusbandStatuses = new String[]{"سليم", "معاق", "معتقل", "مفقود", "مسافر"};
-//                else if(i==1)
-//
-//
-//                Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
-//
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(view5.getContext(),
-//                        android.R.layout.simple_spinner_item, listHusbandStatuses);
-//
-//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                spnHusbandStatuses.setAdapter(adapter);
+
+                String[] listHusbandStatuses = new String[]{"سليم", "معاق", "متوفى", "معتقل", "مفقود", "مسافر"};
+
+                //متزوجة
+                if (i == 0) {
+                    listHusbandStatuses = new String[]{"سليم", "معاق", "معتقل", "مفقود", "مسافر"};
+                    if (pageLocked) {
+                        ValidationController.UnlockThePage(view5);
+                        pageLocked = false;
+                    }
+                }
+
+                //,مهجورة, مطلقة, عزباء
+                else if (i == 1 || i == 3 || i == 4) {
+                    if (!pageLocked) {
+                        ValidationController.lockThePage(view5);
+                        spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
+                        pageLocked = true;
+                    }
+                }
+
+                //أرملة
+                else if (i == 2) {
+                    listHusbandStatuses = new String[]{"متوفى"};
+                    if (pageLocked) {
+                        ValidationController.UnlockThePage(view5);
+                        pageLocked = false;
+                    }
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(view5.getContext(),
+                        android.R.layout.simple_spinner_item, listHusbandStatuses);
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnHusbandStatuses.setAdapter(adapter);
             }
 
             @Override
@@ -76,6 +96,92 @@ public class Tab5 extends Fragment {
             }
         });
 
+        spnHusbandStatuses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (adapterView.getSelectedItem().toString()) {
+
+                    case "متوفى":
+                    case "مفقود":
+                        view5.findViewById(R.id.EventDate).setVisibility(View.VISIBLE);
+                        view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+                        break;
+
+                    case "معتقل":
+                        view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Lockup).setVisibility(View.VISIBLE);
+                        view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+                        break;
+
+                    case "مسافر":
+                        view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Travel).setVisibility(View.VISIBLE);
+                        break;
+
+                    default:
+                        view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
+                        view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        EditText txtEventDate = view5.findViewById(R.id.EventDate);
+
+        myCalendar = Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel(txtEventDate);
+        };
+
+        txtEventDate.setOnClickListener(v -> {
+            new DatePickerDialog(view5.getContext(), date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+        });
+
+
+        Spinner spnIfCondemnation = view5.findViewById(R.id.Ifcondemnation);
+        spnIfCondemnation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //محكوم
+                if (i == 0) {
+                    view5.findViewById(R.id.ArrestDate).setVisibility(View.GONE);
+                    view5.findViewById(R.id.CondemnationDuration).setVisibility(View.VISIBLE);
+                }
+                //غير محكوم
+                else if (i == 1) {
+                    view5.findViewById(R.id.ArrestDate).setVisibility(View.VISIBLE);
+                    view5.findViewById(R.id.CondemnationDuration).setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         return view5;
+    }
+
+
+    private void updateLabel(EditText txtDate) {
+        String myFormat = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        txtDate.setText(sdf.format(myCalendar.getTime()));
     }
 }

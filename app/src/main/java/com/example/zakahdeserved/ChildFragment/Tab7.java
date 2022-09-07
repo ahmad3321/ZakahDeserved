@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -83,6 +85,52 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
         //ImageView imageCloseIncome = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Income);
         //ImageView imageCloseAids = (ImageView)IncomeCiew.findViewById(R.id.image_remove_Aids);
+        Spinner spnAssetType = AssetView.findViewById(R.id.AssetType);
+        spnAssetType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0: //محل
+                    case 1: //منزل
+                        AssetView.findViewById(R.id.LinearHousrAndStore).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.LinearFarm).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.ValueTime).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        break;
+
+                    case 2: //أرض زراعية
+                        AssetView.findViewById(R.id.LinearHousrAndStore).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearFarm).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        break;
+
+                    case 3: //آليات
+                        AssetView.findViewById(R.id.LinearHousrAndStore).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearFarm).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.MachineType).setVisibility(View.VISIBLE);
+                        break;
+
+                    case 4: //ثروة حيوانية
+                        AssetView.findViewById(R.id.LinearHousrAndStore).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearFarm).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         ImageView imageClose = (ImageView)AssetView.findViewById(imageID);
 
         imageClose.setOnClickListener(new View.OnClickListener() {
