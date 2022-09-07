@@ -194,14 +194,15 @@
                     android:id="@+id/CookingGas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/CookingGas"
-                    android:layout_marginStart="55dp" />
+                    android:layout_marginStart="55dp"
+                    android:entries="@array/CookingGas" />
             </LinearLayout>
             <EditText
                 android:id="@+id/CookingGasOther"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:visibility="gone"
                 android:hint="نوعه" />
 
             <EditText
