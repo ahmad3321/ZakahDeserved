@@ -35,6 +35,10 @@
         <item>دمشق</item>
         <item>حمص</item>
     </string-array>
+    <string-array name="Condemnations">
+        <item>محكوم</item>
+        <item>غير محكوم</item>
+    </string-array>
     <string-array name="AcademicQualification">
         <item>أمي</item>
         <item>ابتدائي</item>
@@ -115,7 +119,7 @@
         <item>منزل</item>
         <item>أرض زراعية</item>
         <item>آاليات</item>
-        <item>ألأرض زراعية</item>
+        <item>ثروة حيوانية</item>
     </string-array>BenefitType
     <string-array name="AssetAdress">
         <item>وسط المدينة</item>

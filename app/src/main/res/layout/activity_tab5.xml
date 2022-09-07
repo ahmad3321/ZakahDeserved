@@ -224,7 +224,6 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp" />
-<!--                android:entries="@array/Status"-->
 
             </LinearLayout>
 
@@ -240,7 +239,8 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:fontFamily="@font/jaz_bold"
-                android:hint="تاريخ" />
+                android:hint="التاريخ" />
+
             <LinearLayout
                 android:id="@+id/Linear_Lockup"
                 android:layout_width="match_parent"
@@ -291,7 +291,7 @@
                     android:id="@+id/Ifcondemnation"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/City"
+                    android:entries="@array/Condemnations"
                     android:layout_marginStart="60dp" />
             </LinearLayout>
 
