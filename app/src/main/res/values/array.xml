@@ -167,4 +167,15 @@
         <item>مستحق</item>
         <item>غير مستحق</item>
     </string-array>
+    <string-array name="Program">
+        <item>الخير</item>
+        <item>تكافل</item>
+        <item>لمسة</item>
+        <item>عفاف</item>
+        <item>لا للتسول</item>
+    </string-array>
+    <string-array name="DistributionPlace">
+        <item>محل السكن</item>
+        <item>الدائرة</item>
+    </string-array>
 </resources>
