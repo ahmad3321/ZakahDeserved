@@ -29,7 +29,7 @@ import java.util.List;
 
 public class MusicPage extends Fragment {
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private ViewPager viewpager_programms;
     private FragmentActivity myContext;
     public MusicPage() {
         // Required empty public constructor
@@ -45,15 +45,15 @@ public class MusicPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.music_page, container, false);
-        viewPager = (ViewPager)v.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewpager_programms = (ViewPager)v.findViewById(R.id.viewpager_programms);
+        setupViewPager(viewpager_programms);
 
         tabLayout = (TabLayout)v.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewpager_programms);
         return v;
     }
     private void setupViewPager(ViewPager viewPager) {
-        MusicPage.ViewPagerAdapter adapter = new MusicPage.ViewPagerAdapter(getChildFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Programms_Tab1(), "البرامج");
         viewPager.setAdapter(adapter);
     }

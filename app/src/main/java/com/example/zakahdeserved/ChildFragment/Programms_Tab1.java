@@ -36,7 +36,7 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_Programms_tab1, container, false);
+        View view = inflater.inflate(R.layout.activity_programms_tab1, container, false);
         Constants.view1 = view;
 
         layoutList = view.findViewById(R.id.layout_list_programms_ktlal);
@@ -52,7 +52,7 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
 
-            case R.id.button_add:
+            case R.id.button_add_program_ktlal:
 
                 addView();
 

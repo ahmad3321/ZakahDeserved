@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,36 +22,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         </LinearLayout>
+
         <Button
             android:id="@+id/button_add_program_ktlal"
-            android:background="@drawable/round_primary"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="إضافة"
-            android:fontFamily="@font/jaz_bold"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_primary"
+            android:drawableRight="@drawable/ic_add"
+            android:fontFamily="@font/jaz_bold"
+            android:onClick="onClick"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:onClick="onClick"
-            android:drawableRight="@drawable/ic_add" />
+            android:text="إضافة"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_submit_list"
-            android:background="@drawable/round_primary"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Submit List"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:paddingLeft="10dp"
+            android:background="@drawable/round_primary"
             android:onClick="onClick"
-            android:paddingRight="10dp" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="إدخال"
+            android:fontFamily="@font/jaz_bold"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
