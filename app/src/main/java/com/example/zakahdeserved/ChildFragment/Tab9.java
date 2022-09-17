@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
@@ -113,90 +114,21 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     HashMap<String, HashMap<String, Object>> allItemsTable = new HashMap<>();
     StringBuilder insertQuery = new StringBuilder();
 
-    HashMap<String, Object> PersonsTable = new HashMap<>();
-    HashMap<String, Object> FamiliesTable = new HashMap<>();
-    HashMap<String, Object> Helth_StatusesTable = new HashMap<>();
-    HashMap<String, Object> HusbandsTable = new HashMap<>();
-    HashMap<String, Object> HousingInformaionTable = new HashMap<>();
-    HashMap<String, Object> WaterTypesTable = new HashMap<>();
-    HashMap<String, Object> IncomesTable = new HashMap<>();
-    HashMap<String, Object> AidsTable = new HashMap<>();
-    HashMap<String, Object> AssetsTable = new HashMap<>();
-    HashMap<String, Object> SurveyConclusionTable = new HashMap<>();
 
 
-    String[] PersonsColumns = new String[]{"ZakatID", "PersonID", "Name", "LastName", "FatherName", "MotherFullName", "Gender",
-            "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
-            "WhoIs", "IsWorking", "Record", "MonthlyIncome", "CoinType"};
-
-    String[] FamiliesColumns = new String[]{"ZakatID", "OrginalCity", "OrginalTown", "OrginalVillage", "City", "Town", "Village",
-            "Neighborhood", "BuldingSymbol", "BuldingNumber", "AdressDetails", "KnownBy", "IfSmokers", "SmokersCount", "Job",
-            "OrginalJob", "WantedJob", "Nationality", "ResidenceStatus", "ContactNumber1", "ContactNumber2",
-            "RelationWithContact2", "Deserved", "Reson", "ExisitStatus", "ExisitStatusAbout"};
-
-    String[] Helth_StatusesColumns = new String[]{"HealthStatusID", "PersonID", "HealthStatus",
-            "HealthStatusEvaluation", "HealthStatusType", "HealthStatusDescription", "CoinType", "MonthlyCost"};
-
-    String[] HusbandsColumns = new String[]{"ZakatID", "WifeSocialStatus", "HusbandName", "HusbandLastName", "HusbandFatherName",
-            "HusbandMotherFullName", "IdentityNumber", "lst_IdentityTypes", "City", "Town", "Village", "BirthPlace",
-            "BirthDate", "AcademicQualification", "Status", "EventDate", "Lockup", "TravelPlace", "TravelGoal", "Record",
-            "Ifcondemnation", "CondemnationDuration", "ArrestDate"};
-
-    String[] HousingInformationColumns = new String[]{"ZakatID", "HousingNature", "RentValueCoinType", "RentValue",
-            "CoveredSpace", "RoomsCount", "FloorType", "RoofType", "WC", "CookingGas", "Mobiles", "Routers", "TVs", "Fridges", "Cars",
-            "Motorcycles", "FurnitureEvaluation", "Sanitation", "Location", "GeneralDescription", "SolarPanelsCount", "SolarPanelsAmpCount",
-            "AmpCount", "AmpValueCoinType", "OneAmpValue", "ConsumptionValueCoinType", "ConsumptionValue", "CookingGasOther"};
-
-    String[] IncomesColumns = new String[]{"ZakatID", "IfIncome", "IncomeType", "IncomeTime", "IncomeValue", "CoinType"};
-
-    String[] WaterTypesColumns = new String[]{"WaterTypeID", "ZakatID", "WaterType", "CoinType", "MonthlyValue"};
-
-    String[] AidsColumns = new String[]{"AidID", "ZakatID", "AidType", "CoinType", "AidValue", "ReceivingTime", "From"};
-
-    String[] AssetsColumns = new String[]{"ZakatID", "AssetType", "AssetAdress", "BenefitType", "BenefitValue",
-            "GroundSpace", "ValueTime", "CoinType", "GroundNature", "MachineType", "AnimalType", "AnimalCount"};
-
-    String[] SurveyConclusionColumns = new String[]{"ID", "NeighborName", "IfRented", "IfIncome", "IfKidsWorking", "IfAssets", "IfPoor", "Why"};
 
     void getData() {
-        for (String col : PersonsColumns)
-            PersonsTable.put(col, "");
+        
 
-        for (String col : FamiliesColumns)
-            FamiliesTable.put(col, "");
-
-        for (String col : Helth_StatusesColumns)
-            Helth_StatusesTable.put(col, "");
-
-        for (String col : HusbandsColumns)
-            HusbandsTable.put(col, "");
-
-        for (String col : HousingInformationColumns)
-            HousingInformaionTable.put(col, "");
-
-        for (String col : WaterTypesColumns)
-            WaterTypesTable.put(col, "");
-
-        for (String col : IncomesColumns)
-            IncomesTable.put(col, "");
-
-        for (String col : AidsColumns)
-            AidsTable.put(col, "");
-
-        for (String col : AssetsColumns)
-            AssetsTable.put(col, "");
-
-        for (String col : SurveyConclusionColumns)
-            SurveyConclusionTable.put(col, "");
-
-        FamiliesTable.put("ZakatID", Constants.ZakatID);
-        PersonsTable.put("ZakatID", Constants.ZakatID);
-        HusbandsTable.put("ZakatID", Constants.ZakatID);
-        HousingInformaionTable.put("ZakatID", Constants.ZakatID);
-        WaterTypesTable.put("ZakatID", Constants.ZakatID);
-        IncomesTable.put("ZakatID", Constants.ZakatID);
-        AidsTable.put("ZakatID", Constants.ZakatID);
-        AssetsTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.PersonsTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.HusbandsTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.HousingInformaionTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.WaterTypesTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.IncomesTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.AidsTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.AssetsTable.put("ZakatID", Constants.ZakatID);
+        DBHelper.SurveyConclusionTable.put("ZakatID", Constants.ZakatID);
 
         getFromView1();
         getFromView2();
@@ -205,17 +137,20 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView6();
         getFromView7();
         getFromView8();
-
+        getFromView9();
     }
 
     //معلومات المرشح والعائلة  Person and Family
     void getFromView1() {
+        if (Constants.view1 == null)
+            return;
+
         tablesNames = new String[]{"persons", "families"};
 
-        allItemsTable.put(tablesNames[0], PersonsTable);
-        allItemsTable.put(tablesNames[1], FamiliesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
+        allItemsTable.put(tablesNames[1], DBHelper.FamiliesTable);
 
-        PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
 
         getAllControlsNamesAndData(Constants.view1);
 
@@ -224,9 +159,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //معلومات العائلة family
     void getFromView2() {
+        if (Constants.view2 == null)
+            return;
         tablesNames = new String[]{"families"};
 
-        allItemsTable.put(tablesNames[0], FamiliesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.FamiliesTable);
 
         getAllControlsNamesAndData(Constants.view2);
 
@@ -235,11 +172,13 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //الحالة الصحية لرب الأسرة Helth Status
     void getFromView4() {
+        if (Constants.view4 == null)
+            return;
         tablesNames = new String[]{"health_statuses"};
 
-        Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++);
+        DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++);
 
-        allItemsTable.put(tablesNames[0], Helth_StatusesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
 
         LinearLayout Helth_Statuses_List = Constants.view4.findViewById(R.id.layout_list);
 
@@ -253,9 +192,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //معلومات الزوج (المستفيد أنثى) Husband Info
     void getFromView5() {
+        if (Constants.view5 == null)
+            return;
         tablesNames = new String[]{"husbands"};
 
-        allItemsTable.put(tablesNames[0], HusbandsTable);
+        allItemsTable.put(tablesNames[0], DBHelper.HusbandsTable);
 
         getAllControlsNamesAndData(Constants.view5);
 
@@ -264,9 +205,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     // معلومات السكن HousingInformations
     void getFromView6() {
+        if (Constants.view6 == null)
+            return;
         tablesNames = new String[]{"housing_informations"};
 
-        allItemsTable.put(tablesNames[0], HousingInformaionTable);
+        allItemsTable.put(tablesNames[0], DBHelper.HousingInformaionTable);
 
         getAllControlsNamesAndData(Constants.view6);
 
@@ -275,7 +218,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //مصادر الماء WaterTypes
         tablesNames = new String[]{"water_types"};
-        allItemsTable.put(tablesNames[0], WaterTypesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.WaterTypesTable);
         LinearLayout Water_Types_List = Constants.view6.findViewById(R.id.layout_list_waterType);
         for (int i = 0; i < Water_Types_List.getChildCount(); i++) {
 
@@ -286,7 +229,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //مصادر الدخل Incomes
         tablesNames = new String[]{"incomes"};
-        allItemsTable.put(tablesNames[0], IncomesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.IncomesTable);
         LinearLayout IncomesList = Constants.view6.findViewById(R.id.layout_list_Incomes);
         for (int i = 0; i < IncomesList.getChildCount(); i++) {
 
@@ -298,7 +241,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //مصادر الإغاثة Aids
         tablesNames = new String[]{"aids"};
-        allItemsTable.put(tablesNames[0], AidsTable);
+        allItemsTable.put(tablesNames[0],DBHelper. AidsTable);
         LinearLayout AidsList = Constants.view6.findViewById(R.id.layout_list_Aids);
         for (int i = 0; i < AidsList.getChildCount(); i++) {
 
@@ -312,9 +255,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //الممتلكات والأصول Assets
     void getFromView7() {
+        if (Constants.view7 == null)
+            return;
         tablesNames = new String[]{"assets"};
 
-        allItemsTable.put(tablesNames[0], AssetsTable);
+        allItemsTable.put(tablesNames[0], DBHelper.AssetsTable);
 
         LinearLayout AssetsList = Constants.view7.findViewById(R.id.layout_list_Asset);
 
@@ -328,14 +273,16 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //أفراد الأسرة (زوجة, أولاد, معالين) persons
     void getFromView8() {
+        if (Constants.view8 == null)
+            return;
         LinearLayout PersonsList = Constants.view8.findViewById(R.id.layout_list_Wifes);
 
         for (int i = 0; i < PersonsList.getChildCount(); i++) {
 
             tablesNames = new String[]{"persons"};
-            PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+            DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
 
-            allItemsTable.put(tablesNames[0], PersonsTable);
+            allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
 
             View PersonInfo = PersonsList.getChildAt(i);
 
@@ -348,9 +295,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
             for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {
                 tablesNames = new String[]{"health_statuses"};
-                Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++); //increase personId after insert helth status for current person
+                DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++); //increase personId after insert helth status for current person
 
-                allItemsTable.put(tablesNames[0], Helth_StatusesTable);
+                allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
                 getAllControlsNamesAndData(PersonsHelthStatusesList.getChildAt(j));
 
                 insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
@@ -361,9 +308,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //رأي الجوارSurvey Conclusons
     void getFromView9() {
+        if (Constants.view9 == null)
+            return;
+
         tablesNames = new String[]{"families"};
 
-        allItemsTable.put(tablesNames[0], FamiliesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.FamiliesTable);
 
         getAllControlsNamesAndData(Constants.view9);
 
@@ -372,7 +322,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //رأي الجوار
         tablesNames = new String[]{"survey_conclusions"};
-        allItemsTable.put(tablesNames[0], WaterTypesTable);
+        allItemsTable.put(tablesNames[0], DBHelper.SurveyConclusionTable);
         LinearLayout SurveyCoinclusionList = Constants.view9.findViewById(R.id.layoutSurveyConclusions);
         for (int i = 0; i < SurveyCoinclusionList.getChildCount(); i++) {
 

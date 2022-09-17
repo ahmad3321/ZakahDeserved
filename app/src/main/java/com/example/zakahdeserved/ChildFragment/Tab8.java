@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -98,6 +99,25 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 addView();
+            }
+        });
+
+        Spinner spnIsWorking = WifeView.findViewById(R.id.IsWorking);
+        spnIsWorking.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    WifeView.findViewById(R.id.IncomeMoney).setVisibility(View.GONE);
+                    WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
+                }
+                else{
+                    WifeView.findViewById(R.id.IncomeMoney).setVisibility(View.GONE);
+                    WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

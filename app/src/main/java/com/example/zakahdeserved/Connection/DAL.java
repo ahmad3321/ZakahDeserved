@@ -37,14 +37,14 @@ public class DAL {
         StrictMode.setThreadPolicy(policy);
         Connection connection = null;
 
-//        try {
-//            Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
-//            connection = DriverManager.getConnection(
-//                    "jdbc:mariadb://10.0.2.2:3306/zakatraising?characterEncoding=utf8mb4", "root", "12!@abAB");
-//        } catch (Exception exc) {
-//            exc.printStackTrace();
-//            isConnected = false;
-//        }
+        try {
+            Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
+            connection = DriverManager.getConnection(
+                    "jdbc:mariadb://191.96.1.66:3306/zakatraising?characterEncoding=utf8mb4", "admin", "Qwe123@Qwe123");
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            isConnected = false;
+        }
         // for Ms sql
 //        try {
 //            Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -56,17 +56,6 @@ public class DAL {
 //            isConnected = false;
 //        }
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-//            String url = "jdbc:mysql://10.0.2.2:3306/zakatraising";
-            String user = "root";
-            String pass = "12!@abAB";
-//            connection = DriverManager.getConnection(url, user, pass);
-            connection = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/zakatraising",user,pass);
-        } catch (Exception ex) {
-            Log.e("Error", ex.getMessage());
-            isConnected = false;
-        }
         return connection;
     }
 
@@ -461,9 +450,9 @@ public class DAL {
         return success;
     }
 
-    public static ArrayList<String> getSpinnerItems(String spinnerName) {
+    public static HashMap<String, String> getSpinnerItems(String spinnerName) {
         String query = "select * from " + spinnerName;
-        ArrayList<String> itemsArray = new ArrayList<>();
+        HashMap<String, String> itemsArray = new HashMap<>();
 
         DAL.Connect();
         Statement st = null;
@@ -473,7 +462,7 @@ public class DAL {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                itemsArray.add(rs.getString(2));
+                itemsArray.put(rs.getString(1), rs.getString(2));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

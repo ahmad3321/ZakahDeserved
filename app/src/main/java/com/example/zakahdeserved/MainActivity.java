@@ -26,15 +26,13 @@ import com.example.zakahdeserved.Utility.Constants;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     TextView login;
     EditText username, password;
     BroadCastClass broadCastClass = new BroadCastClass();
     ImageButton btn_Sync;
-    int EmpDepartment = -1;
-
-    String[] allSpinners = new String[]{};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Sync = findViewById(R.id.btn_Sync);
 
         login.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MainTabs.class);
+            Intent intent = new Intent(getApplicationContext(), SQLiteTest.class);
             startActivity(intent);
 //            try {
 //                Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
@@ -166,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... arg0) {
             try {
                 Constants.SQLITEDAL.clearSpinners();
-                for (String spinner : allSpinners) {
-                    ArrayList<String> spinnerItems = DAL.getSpinnerItems(spinner);
+                for (String spinner : Constants.dynamisLists) {
+                    HashMap<String, String> spinnerItems = DAL.getSpinnerItems(spinner);
                     Constants.SQLITEDAL.addSpinner(spinner, spinnerItems);
                 }
                 return "true";

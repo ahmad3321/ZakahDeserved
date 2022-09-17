@@ -218,6 +218,33 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
         linearLayout.addView(IncomeView);
 
+
+        if (id == R.layout.row_add_incomes){
+            Spinner spnIfIncome = IncomeView.findViewById(R.id.IfIncome);
+            spnIfIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (i == 0) {
+                        IncomeView.findViewById(R.id.IncomeWorkType).setEnabled(false);
+                        IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(false);
+                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(false);
+                        IncomeView.findViewById(R.id.spnIncomeCoinType).setEnabled(false);
+                    }
+                    else{
+                        IncomeView.findViewById(R.id.IncomeWorkType).setEnabled(true);
+                        IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(true);
+                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
+                        IncomeView.findViewById(R.id.spnIncomeCoinType).setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
+
     }
 
     private void removeViewIncome(View view) {

@@ -54,12 +54,18 @@
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_healthstatus.xml" value="0.87" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/drawable-v24/abc.xml" value="0.1475" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/act_delay_entry_statistical.xml" value="0.264" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_healthstatuses.xml" value="0.2296875" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_main_tabs.xml" value="0.1422615945805107" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_sqlite_test.xml" value="0.25416666666666665" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab1.xml" value="0.264" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab2.xml" value="0.25416666666666665" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab4.xml" value="0.25416666666666665" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab5.xml" value="0.2" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab6.xml" value="0.2325408618127786" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab7.xml" value="0.25416666666666665" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab8.xml" value="0.2296875" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_tab9.xml" value="0.2296875" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/content_Tabs.xml" value="0.24010416666666667" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/content_main.xml" value="0.264" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/content_tabs.xml" value="0.16041666666666668" />
@@ -68,7 +74,10 @@
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/layout_login.xml" value="0.25416666666666665" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_aids.xml" value="0.25416666666666665" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_asset.xml" value="0.25416666666666665" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_healthstatus.xml" value="0.2296875" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_incomes.xml" value="0.3074626865671642" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_water_type.xml" value="0.25416666666666665" />
+        <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/row_add_wifes.xml" value="0.2296875" />
       </map>
     </option>
   </component>

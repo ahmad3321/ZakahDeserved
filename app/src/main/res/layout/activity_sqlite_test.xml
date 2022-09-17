@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainLayout"
+    tools:context=".SQLiteTest">
+
+    <Button
+        android:id="@+id/btnLoadDataFromSQLite"
+        android:layout_width="176dp"
+        android:layout_height="88dp"
+        android:text="Load Family Info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="0.124" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="244dp"
+        android:ems="10"
+        android:hint="ZakatID"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/btnLoadDataFromSQLite"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnLoadDataFromSQLite"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnLoadDataFromSQLite"
+        app:layout_constraintStart_toStartOf="@+id/btnLoadDataFromSQLite"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoadDataFromSQLite"
+        android:entries="@array/AidType"
+        app:layout_constraintVertical_bias="0.492" />
+</androidx.constraintlayout.widget.ConstraintLayout>
