@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-android:layout_height="match_parent">
+<!--suppress ALL -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="MUSIC FRAGMENT"
-    android:layout_centerInParent="true"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_programms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabs"
+        android:background="#FFFFFF" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        app:tabTextColor="#b19b9b9b"
+        app:tabSelectedTextColor="#EFBFD5"
+        app:tabIndicatorColor="#9D61FD"
+        android:id="@+id/tabs"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable" />
+
+
 
 </RelativeLayout>
