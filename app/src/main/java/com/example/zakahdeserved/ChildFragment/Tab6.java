@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
@@ -41,8 +42,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view6 = inflater.inflate(R.layout.activity_tab6, container, false);
         FurnitureEvaluationIncrease = view6.findViewById(R.id.FurnitureEvaluationIncrease);
@@ -138,6 +138,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             }
         });
 
+
+        if (Constants.loadingData)
+            DBHelper.loadDataToControls(view6, Constants.familyInfo);
         return view6;
     }
 
@@ -219,7 +222,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         linearLayout.addView(IncomeView);
 
 
-        if (id == R.layout.row_add_incomes){
+        if (id == R.layout.row_add_incomes) {
             Spinner spnIfIncome = IncomeView.findViewById(R.id.IfIncome);
             spnIfIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -229,8 +232,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                         IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(false);
                         IncomeView.findViewById(R.id.IncomeValue).setEnabled(false);
                         IncomeView.findViewById(R.id.spnIncomeCoinType).setEnabled(false);
-                    }
-                    else{
+                    } else {
                         IncomeView.findViewById(R.id.IncomeWorkType).setEnabled(true);
                         IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(true);
                         IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);

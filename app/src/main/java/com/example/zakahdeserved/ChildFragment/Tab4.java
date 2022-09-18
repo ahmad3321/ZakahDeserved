@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Models.HealthStatuses;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
@@ -63,6 +64,11 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
         Constants.view4 = view;
+
+
+        if (Constants.loadingData)
+            DBHelper.loadDataToControls(view, Constants.familyInfo);
+
         return view;
     }
     public void onClick(View v) {

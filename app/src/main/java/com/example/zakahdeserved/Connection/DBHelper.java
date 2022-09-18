@@ -1,6 +1,23 @@
 package com.example.zakahdeserved.Connection;
 
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.Spinner;
+
+import androidx.appcompat.widget.AppCompatSpinner;
+
+import com.example.zakahdeserved.Utility.Constants;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class DBHelper {
 
@@ -81,5 +98,60 @@ public class DBHelper {
 
         for (String col : SurveyConclusionColumns)
             SurveyConclusionTable.put(col, "");
+    }
+
+    public static void getfamilyFormFromSQLite(String ZakatID) {
+        Constants.familyInfo = Constants.SQLITEDAL.getFamilyInfo(ZakatID);
+    }
+
+    public static void loadDataToControls(View view, ArrayList<SQLiteRecord> familyInfo) {
+        final ViewGroup viewGroup = (ViewGroup) view;
+        try {
+            int count = viewGroup.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = viewGroup.getChildAt(i);
+
+                if (v instanceof EditText) {
+                    String name = v.getResources().getResourceEntryName(v.getId());
+                    ((EditText) v).setText(getValueOfControl(name, familyInfo, false).toString());
+
+                } else if (v instanceof Spinner || v instanceof AppCompatSpinner) {
+                    String name = v.getResources().getResourceEntryName(v.getId());
+                    Object value = getValueOfControl(name, familyInfo, false);
+
+                    if (Constants.dynamisLists.contains(name))
+                        ((Spinner) v).setSelection(Integer.parseInt(value.toString()));
+                    else
+                        ((Spinner) v).setSelection(((ArrayAdapter<String>) ((Spinner) v).getAdapter()).getPosition(value.toString()));
+
+                } else if (v instanceof CheckBox) {
+                    String name = v.getResources().getResourceEntryName(v.getId());
+                    Object value = getValueOfControl(name, familyInfo, false);
+                    ((CheckBox) v).setChecked(Boolean.getBoolean(value.toString()));
+
+                } else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout) {
+                    loadDataToControls(v, familyInfo);
+//                    Log.d("LinearLayout", v.getResources().getResourceEntryName(v.getId()));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Object getValueOfControl(String controlName, ArrayList<SQLiteRecord> familyInfo, boolean deleteRecord) {
+        Object value;
+        Optional<SQLiteRecord> row = familyInfo.stream()
+                .filter(x -> x.getRecord().containsKey(controlName))
+                .findFirst();
+        if (row.isPresent()) {
+            value = row.get().getRecord().get(controlName);
+
+            if (deleteRecord)
+                familyInfo.remove(row.get());
+        } else
+            value = 0;
+
+        return value;
     }
 }

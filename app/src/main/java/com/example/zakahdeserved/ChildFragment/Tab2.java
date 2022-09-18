@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
@@ -27,6 +28,10 @@ public class Tab2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_tab2, container, false);
         Constants.view2 = view;
+
+
+        if (Constants.loadingData)
+            DBHelper.loadDataToControls(view, Constants.familyInfo);
         return view;
     }
 

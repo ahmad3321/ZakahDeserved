@@ -61,6 +61,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
         Constants.view9 = view;
+
+        if (Constants.loadingData)
+            DBHelper.loadDataToControls(view, Constants.familyInfo);
+
         return view;
     }
 
@@ -118,7 +122,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
     void getData() {
-        
 
         DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
         DBHelper.PersonsTable.put("ZakatID", Constants.ZakatID);
@@ -249,8 +252,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
         }
-
-
     }
 
     //الممتلكات والأصول Assets

@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.security.crypto.MasterKey;
 
 import com.example.zakahdeserved.Connection.SQLiteDAL;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,4 +27,12 @@ public class Constants {
     public static String ZakatID;
     public static int PersonID;
 
+
+    // this boolean indicates if we are loading the data from SQLite to fragments
+    // true => load the data to fragments, show the family informations (modify / update)
+    // false => dont't load data from SQLite, data will be intered (insert)
+    //عندما يكون هناك استعلام عن الاستمارة من أجل التحديث أو التعديل, يشير هذا المتغير إلى جلب البيانات ونعبئتها في الواجهة عند تشغيل الواجهة
+    public static boolean loadingData = false;
+
+    public static ArrayList<SQLiteRecord> familyInfo;
 }

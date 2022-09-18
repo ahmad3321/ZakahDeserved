@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
@@ -175,6 +176,11 @@ public class Tab5 extends Fragment {
 
             }
         });
+
+
+        if (Constants.loadingData)
+            DBHelper.loadDataToControls(view5, Constants.familyInfo);
+
         return view5;
     }
 

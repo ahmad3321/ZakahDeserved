@@ -46,17 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 "android.permission.READ_EXTERNAL_STORAGE"};
 
         int permsRequestCode = 200;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(perms, permsRequestCode);
-        }
+        requestPermissions(perms, permsRequestCode);
 
         try {
             Constants.SHAREDPREFERENCES_KEY = new MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
                     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                     .build();
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
 
@@ -115,13 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        btn_Sync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    new TestAsync().execute();
-                } catch (Exception ex) {
-                }
+        btn_Sync.setOnClickListener(view -> {
+            try {
+                new TestAsync().execute();
+            } catch (Exception ex) {
             }
         });
     }
