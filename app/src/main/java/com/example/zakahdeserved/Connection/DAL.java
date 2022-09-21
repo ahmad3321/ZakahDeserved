@@ -45,17 +45,6 @@ public class DAL {
             exc.printStackTrace();
             isConnected = false;
         }
-        // for Ms sql
-//        try {
-//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-//            String ConnectionUrl = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";" +
-//                    "databasename=" + database + ";user=" + username + ";password=" + password + ";";
-//            connection = DriverManager.getConnection(ConnectionUrl);
-//        } catch (Exception ex) {
-//            Log.e("Error", ex.getMessage());
-//            isConnected = false;
-//        }
-
         return connection;
     }
 
@@ -172,11 +161,10 @@ public class DAL {
         Boolean ActiveUser = false;
         Connect();
         if (isConnected) {
-            String strSQLTables = "SELECT * FROM zakatraising.Employees WHERE " +
+            String strSQLTables = "SELECT * FROM zakatraising.employees WHERE " +
                     "employeecode = '" + strUsername +
                     "' AND password = '" + strPassword +
-                    "' AND activeuser = 1 " +
-                    "And  Jobtitle in ('0','1');";
+                    "' AND activeuser = 1 ;";
             Statement st = null;
             try {
                 st = connection.createStatement();
@@ -186,6 +174,7 @@ public class DAL {
                     // connection.close();
                 } else {
                     ActiveUser = true;
+                    Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
                 }
             } catch (SQLException throwables) {
                 ActiveUser = false;

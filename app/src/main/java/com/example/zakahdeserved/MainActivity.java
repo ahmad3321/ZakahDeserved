@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText username, password;
     BroadCastClass broadCastClass = new BroadCastClass();
     ImageButton btn_Sync;
-
+    int EmpDepartment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.MANAGE_EXTERNAL_STORAGE",
                 "android.permission.READ_EXTERNAL_STORAGE"};
-
         int permsRequestCode = 200;
-        requestPermissions(perms, permsRequestCode);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(perms, permsRequestCode);
+        }
         try {
             Constants.SHAREDPREFERENCES_KEY = new MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
                     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -69,45 +69,44 @@ public class MainActivity extends AppCompatActivity {
 
         login.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SQLiteTest.class);
-            startActivity(intent);
-//            try {
-//                Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
-//                if (isSuccess) {
-//                    EmpDepartment = DAL.getDepartment(username.getText().toString());
-//                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
-//                        Intent intent = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-//                        startActivity(intent);
-//                    } else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
-//
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    // Encrypted Shared Preferences
-//                    try {
-//                        SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-//                                getApplicationContext(),
-//                                "MySharedPref",
-//                                Constants.SHAREDPREFERENCES_KEY, // masterKey created above
-//                                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-//                                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
-//
-//                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-//                        // Storing the key and its value as the data fetched from edittext
-//                        myEdit.putString("username", username.getText().toString());
-//                        myEdit.apply();
-//                    } catch (GeneralSecurityException | IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            catch (Exception ex)
-//            {
-//                Toast.makeText(getApplicationContext(), "خطأ..." +ex, Toast.LENGTH_SHORT).show();
-//            }
+            //startActivity(intent);
+            try {
+                Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
+               if (isSuccess) {
+                    EmpDepartment = DAL.getDepartment(username.getText().toString());
+                   if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
+                       Intent intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+                       startActivity(intent);
+                    } /*else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
+
+                    }
+                     */else {
+                        Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
+                    }
+
+                    // Encrypted Shared Preferences
+                    try {
+                        SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                                getApplicationContext(),
+                                "MySharedPref",
+                                Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+                       SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                       // Storing the key and its value as the data fetched from edittext
+                       myEdit.putString("username", username.getText().toString());
+                       myEdit.apply();
+                  } catch (GeneralSecurityException | IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+           catch (Exception ex)
+           {Toast.makeText(getApplicationContext(), "خطأ..." +ex, Toast.LENGTH_SHORT).show();
+            }
 
         });
 
