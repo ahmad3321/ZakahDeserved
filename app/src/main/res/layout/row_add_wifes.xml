@@ -180,7 +180,7 @@
                 android:layout_marginStart="55dp" />
         </LinearLayout>
             <EditText
-                android:id="@+id/BirthPlace"
+                android:id="@+id/IncomeMoney"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
