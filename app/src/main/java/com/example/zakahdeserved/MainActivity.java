@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Sync = findViewById(R.id.btn_Sync);
 
         login.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SQLiteTest.class);
+            Intent intent = new Intent(getApplicationContext(), MainTabs.class);
             //startActivity(intent);
             try {
                 Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());

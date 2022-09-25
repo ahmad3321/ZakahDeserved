@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="وقل ربي زدني علما"
+            android:textSize="15sp"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/PreviousExperiences"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="خبرات سابقة" />
+        <EditText
+            android:id="@+id/MonthlyDuration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:backgroundTint="@color/purple_200"
+            android:hint="المدة بالأشهر" />
+        <EditText
+            android:id="@+id/RequiredExperiences"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jaz_bold"
+            android:backgroundTint="@color/purple_200"
+            android:hint="خبرات لازمة" />
+        <EditText
+            android:id="@+id/ExperiencesEffect"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="تأثير الخبرات بعد الحصول عليها" />
+        <EditText
+            android:id="@+id/BeneficiaryContribution"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="مساهمات المستفيد في تمويل المشروع" />
+        <LinearLayout
+            android:id="@+id/layout_list_programms_amal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_add_program_amal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_primary"
+            android:drawableRight="@drawable/ic_add"
+            android:fontFamily="@font/jaz_bold"
+            android:onClick="onClick"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="إضافة"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button_submit_list"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_primary"
+            android:onClick="onClick"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="إدخال"
+            android:fontFamily="@font/jaz_bold"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+

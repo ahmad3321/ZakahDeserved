@@ -21,8 +21,7 @@ import com.example.zakahdeserved.Utility.ValidationController;
 public class Programms_Tab1 extends Fragment implements View.OnClickListener {
     LinearLayout layoutList;
 
-    Button buttonAdd;
-    Button buttonSubmitList;
+    Button button_Insert_Ktlal;
     public Programms_Tab1() {
 
     }
@@ -38,13 +37,9 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_programms_tab1, container, false);
         Constants.view1 = view;
+        button_Insert_Ktlal = view.findViewById(R.id.button_Insert_Ktlal);
 
-        layoutList = view.findViewById(R.id.layout_list_programms_ktlal);
-        buttonAdd = view.findViewById(R.id.button_add_program_ktlal);
-        buttonSubmitList = view.findViewById(R.id.button_submit_list);
-
-        buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
+        button_Insert_Ktlal.setOnClickListener(this);
 
         return view;
     }
@@ -52,46 +47,10 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
 
-            case R.id.button_add_program_ktlal:
-
-                addView();
+            case R.id.button_Insert_Ktlal:
 
                 break;
 
-            case R.id.button_submit_list:
-/*                if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
-                break;*/
         }
-    }
-    private void addView() {
-
-        final View ProgrammsView = getLayoutInflater().inflate(R.layout.row_add_group_programms,null,false);
-
-        ImageView imageClose = (ImageView)ProgrammsView.findViewById(R.id.image_remove_program_ktlal);
-
-
-
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(ProgrammsView);
-            }
-        });
-
-        layoutList.addView(ProgrammsView);
-
-    }
-
-    private void removeView(View view){
-
-        layoutList.removeView(view);
-
     }
 }

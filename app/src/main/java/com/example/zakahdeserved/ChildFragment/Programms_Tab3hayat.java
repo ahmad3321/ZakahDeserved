@@ -14,9 +14,10 @@ import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
 
-public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListener {
-    Button button_Insert_Fidaa;
-    public Programms_Tab2Fidaa() {
+public class Programms_Tab3hayat extends Fragment implements View.OnClickListener {
+
+    Button button_Insert_Hayat;
+    public Programms_Tab3hayat() {
     }
 
     @Override
@@ -28,12 +29,12 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_programms_tab2fidaa, container, false);
+        View view = inflater.inflate(R.layout.activity_programms_tab3hayat, container, false);
         Constants.view1 = view;
 
-        button_Insert_Fidaa = view.findViewById(R.id.button_Insert_Fidaa);
+        button_Insert_Hayat = view.findViewById(R.id.button_Insert_Hayat);
 
-        button_Insert_Fidaa.setOnClickListener(this);
+        button_Insert_Hayat.setOnClickListener(this);
 
         return view;
     }
@@ -41,11 +42,10 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
 
         switch (v.getId()){
 
-            case R.id.button_Insert_Fidaa:
+            case R.id.button_Insert_Hayat:
 
                 break;
 
         }
     }
-
 }

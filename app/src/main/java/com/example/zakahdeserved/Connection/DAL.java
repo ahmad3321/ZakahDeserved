@@ -334,7 +334,7 @@ public class DAL {
     public static int getDepartment(String employeeCode) {
         Connect();
         if (isConnected) {
-            String query = "select jobtitle from employees where employeeCode = '" + employeeCode + "';";
+            String query = "select lst_JobTitles from employees where employeeCode = '" + employeeCode + "';";
             Statement st = null;
 
             try {
