@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/ArrestPlace"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="مكان الاعتقال"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/ArrestDate"
+            style="@style/modifiedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:layout_marginStart="7dp"
+            android:ems="5"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="تاريخ الاعتقال" />
+        <EditText
+            android:id="@+id/ArrestReson"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="سبب الاعتقال"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/PrisonName"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="اسم السجن"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/StockValue"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="قيمة السهم"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/Mediator"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="الوسيط"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/RecipientName"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="اسم المستلم"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نوع الوثيقة"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <Spinner
+                android:id="@+id/lst_IdentityTypes1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/IdentityNumber"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="رقم الوثيقة"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/ReceivedDate"
+            style="@style/modifiedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:layout_marginStart="7dp"
+            android:ems="5"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="تاريخ" />
+        <EditText
+            android:id="@+id/ReleaseDate"
+            style="@style/modifiedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:layout_marginStart="7dp"
+            android:ems="5"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="تاريخ الإفراج" />
+        <LinearLayout
+            android:id="@+id/linear_image7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_Image_Fidaaprogram_File"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:text="اضافة وثيقة" />
+
+            <Button
+                android:id="@+id/btn_Image_exem_deletee"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@android:drawable/ic_delete"
+                android:onClick="btn_delete_images"
+                app:backgroundTint="#C50505" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/image_remove_program_Fidaa"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_close"
+            app:tint="@color/black" />
+
+    </LinearLayout>
+</HorizontalScrollView>
