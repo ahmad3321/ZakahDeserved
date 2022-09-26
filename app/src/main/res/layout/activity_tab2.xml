@@ -52,18 +52,21 @@
                     android:id="@+id/OrginalCity"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:entries="@array/City"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
             <EditText
                 android:id="@+id/OrginalTown"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="المدينة الأصلية" />
             <EditText
                 android:id="@+id/OrginalNeighborhood"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="القرية الأصلية" />
 
@@ -71,6 +74,7 @@
                 android:id="@+id/ReceiptID12"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الحي الأصلي" />
             <LinearLayout
@@ -94,24 +98,28 @@
                     android:id="@+id/City"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:entries="@array/City"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
             <EditText
                 android:id="@+id/Town"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="المدينة الحالية" />
             <EditText
                 android:id="@+id/Village"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="القرية الحالية" />
             <EditText
                 android:id="@+id/Neighborhood"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الحي الحالي" />
             <EditText
@@ -131,6 +139,7 @@
                 android:id="@+id/AdressDetails"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
                 android:hint="تفاصيل العنوان" />
@@ -138,6 +147,7 @@
                 android:id="@+id/KnownBy"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="معروف من قبل" />
             <CheckBox
@@ -157,18 +167,21 @@
                 android:id="@+id/Job"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="العمل الحالي" />
             <EditText
                 android:id="@+id/OrginalJob"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="المهنة الأساسية" />
             <EditText
                 android:id="@+id/WantedJob"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="العمل الذي يطمح له" />
             <LinearLayout
@@ -214,6 +227,7 @@
                     android:id="@+id/ResidenceStatus"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:entries="@array/ResidenceStatus"
                     android:layout_marginStart="16dp" />
             </LinearLayout>
 
@@ -240,6 +254,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الصلة بالمستفيد" />
 

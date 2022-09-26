@@ -15,10 +15,8 @@ import com.example.zakahdeserved.Utility.Constants;
 
 
 public class Programms_Tab5Student extends Fragment implements View.OnClickListener {
-    LinearLayout layoutList;
 
-    Button buttonAdd;
-    Button buttonSubmitList;
+    Button button_Insert_Student;
     public Programms_Tab5Student() {
     }
 
@@ -34,12 +32,9 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
         View view = inflater.inflate(R.layout.activity_programms_tab5student, container, false);
         Constants.view1 = view;
 
-        layoutList = view.findViewById(R.id.layout_list_programms_amal);
-        buttonAdd = view.findViewById(R.id.button_add_program_amal);
-        buttonSubmitList = view.findViewById(R.id.button_submit_list);
+        button_Insert_Student = view.findViewById(R.id.button_Insert_Student);
 
-        buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
+        button_Insert_Student.setOnClickListener(this);
 
         return view;
     }
@@ -47,35 +42,13 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
 
         switch (v.getId()){
 
-            case R.id.button_add_program_amal:
+            case R.id.button_Insert_Student:
 
-                addView();
 
                 break;
 
-            case R.id.button_submit_list:
 
         }
     }
-    private void addView() {
 
-        final View ProgrammsView = getLayoutInflater().inflate(R.layout.row_add_group_amal_programm,null,false);
-        ImageView imageClose = (ImageView)ProgrammsView.findViewById(R.id.image_remove_program_amal);
-
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(ProgrammsView);
-            }
-        });
-
-        layoutList.addView(ProgrammsView);
-
-    }
-
-    private void removeView(View view){
-
-        layoutList.removeView(view);
-
-    }
 }
