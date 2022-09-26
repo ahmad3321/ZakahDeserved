@@ -12,14 +12,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.zakahdeserved.ChildFragment.Programms_Tab1;
-import com.example.zakahdeserved.ChildFragment.Tab1;
-import com.example.zakahdeserved.ChildFragment.Tab2;
-import com.example.zakahdeserved.ChildFragment.Tab4;
-import com.example.zakahdeserved.ChildFragment.Tab5;
-import com.example.zakahdeserved.ChildFragment.Tab6;
-import com.example.zakahdeserved.ChildFragment.Tab7;
-import com.example.zakahdeserved.ChildFragment.Tab8;
-import com.example.zakahdeserved.ChildFragment.Tab9;
+import com.example.zakahdeserved.ChildFragment.Programms_Tab2Fidaa;
+import com.example.zakahdeserved.ChildFragment.Programms_Tab3hayat;
+import com.example.zakahdeserved.ChildFragment.Programms_Tab4amal;
+
 import com.example.zakahdeserved.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -55,6 +51,9 @@ public class MusicPage extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Programms_Tab1(), "البرامج");
+        adapter.addFragment(new Programms_Tab2Fidaa(), "فداء");
+        adapter.addFragment(new Programms_Tab3hayat(), "حياة");
+        adapter.addFragment(new Programms_Tab4amal(), "أمل");
         viewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {

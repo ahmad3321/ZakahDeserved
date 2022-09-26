@@ -334,7 +334,7 @@ public class DAL {
     public static int getDepartment(String employeeCode) {
         Connect();
         if (isConnected) {
-            String query = "select lst_jobtitles from employees where employeeCode = '" + employeeCode + "';";
+            String query = "select lst_JobTitles from employees where employeeCode = '" + employeeCode + "';";
             Statement st = null;
 
             try {
@@ -413,7 +413,7 @@ public class DAL {
         try {
             st = connection.createStatement();
 
-            for (String s : queries.split(";"))
+            for (String s : queries.split("\n"))
                 st.addBatch(s);
 
             st.executeBatch();

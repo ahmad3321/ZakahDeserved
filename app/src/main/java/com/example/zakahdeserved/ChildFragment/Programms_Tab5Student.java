@@ -4,26 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
-import com.example.zakahdeserved.Utility.ValidationController;
 
 
-public class Programms_Tab1 extends Fragment implements View.OnClickListener {
-    LinearLayout layoutList;
+public class Programms_Tab5Student extends Fragment implements View.OnClickListener {
 
-    Button button_Insert_Ktlal;
-    public Programms_Tab1() {
-
+    Button button_Insert_Student;
+    public Programms_Tab5Student() {
     }
 
     @Override
@@ -35,11 +29,12 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_programms_tab1, container, false);
+        View view = inflater.inflate(R.layout.activity_programms_tab5student, container, false);
         Constants.view1 = view;
-        button_Insert_Ktlal = view.findViewById(R.id.button_Insert_Ktlal);
 
-        button_Insert_Ktlal.setOnClickListener(this);
+        button_Insert_Student = view.findViewById(R.id.button_Insert_Student);
+
+        button_Insert_Student.setOnClickListener(this);
 
         return view;
     }
@@ -47,10 +42,13 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
 
-            case R.id.button_Insert_Ktlal:
+            case R.id.button_Insert_Student:
+
 
                 break;
 
+
         }
     }
+
 }

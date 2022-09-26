@@ -12,35 +12,163 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="الاستفادة"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:layout_margin="15dp"
+            android:fontFamily="@font/heaven"
             android:textColor="@color/black" />
-
         <LinearLayout
-            android:id="@+id/layout_list_programms_ktlal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="اسم ابرنامج"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <Spinner
+                android:id="@+id/Program"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/Program"
+                android:layout_marginStart="78dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_add_program_ktlal"
+        <LinearLayout
+            android:id="@+id/IncomeWorkType"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/round_primary"
-            android:drawableRight="@drawable/ic_add"
-            android:fontFamily="@font/jaz_bold"
-            android:onClick="onClick"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="إضافة"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نوع الحملة"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <Spinner
+                android:id="@+id/lst_CampaignTypes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_grey">
+            <EditText
+                android:id="@+id/StockValue"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_grey"
+                android:hint="قيمة السهم"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:inputType="number"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/CoinType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:entries="@array/CoinType" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/StockCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="عدد الأسهم"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:backgroundTint="@color/purple_200" />
+        <EditText
+            android:id="@+id/IdentityNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="رقم الوثيقة"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:backgroundTint="@color/purple_200" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نوع الوثيقة"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <Spinner
+                android:id="@+id/lst_IdentityTypes"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/RecipientName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="اسم المستلم"
+            android:textSize="16sp"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/purple_200" />
+        <EditText
+            android:id="@+id/DistributionDate"
+            style="@style/modifiedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:textSize="16dp"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="تاريخ التوزيع" />
+        <EditText
+            android:id="@+id/DistributionMember"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="عضو لجنة توزيع"
+            android:textSize="16sp"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/purple_200" />
         <Button
-            android:id="@+id/button_submit_list"
+            android:id="@+id/button_Insert_Ktlal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"

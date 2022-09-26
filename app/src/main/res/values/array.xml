@@ -8,6 +8,15 @@
         <item>مرض مزمن</item>
         <item>إعاقة</item>
     </string-array>
+    <string-array name="ResidenceStatus">
+        <item>مقيم</item>
+        <item>مهجر</item>
+    </string-array>
+    <string-array name="StatusType">
+        <item>مرض مزمن</item>
+        <item>إعاقة</item>
+        <item>حالة مرضية</item>
+    </string-array>
     <string-array name="Gender">
         <item>أنثى</item>
         <item>ذكر</item>
@@ -34,6 +43,15 @@
         <item>حماة</item>
         <item>دمشق</item>
         <item>حمص</item>
+        <item>ريف دمشق</item>
+        <item>درعا</item>
+        <item>السويداء</item>
+        <item>القنيطرة</item>
+        <item>دير الزور</item>
+        <item>الرقة</item>
+        <item>الحسكة</item>
+        <item>اللاذقية</item>
+        <item>طرطوس</item>
     </string-array>
     <string-array name="Condemnations">
         <item>محكوم</item>
@@ -177,5 +195,63 @@
     <string-array name="DistributionPlace">
         <item>محل السكن</item>
         <item>الدائرة</item>
+    </string-array>
+    <string-array name="DoctorOrInstitution">
+        <item>طبيب</item>
+        <item>لجان التزكية</item>
+        <item>حالة إعلامية</item>
+        <item>إدارة المنطقة</item>
+    </string-array>
+    <string-array name="MedicalService">
+        <item>أدوية</item>
+        <item>تحاليل مخبرية</item>
+        <item>صور وأشعة</item>
+        <item>أجهزة طبية</item>
+        <item>علاج فيزيائي</item>
+        <item>جراحة</item>
+        <item>نقل</item>
+        <item>استشارة طبية</item>
+    </string-array>
+    <string-array name="ServiceProvider">
+        <item>خاص</item>
+        <item>عام</item>
+    </string-array>
+    <string-array name="Result">
+        <item>الشفاء</item>
+        <item>إحالة إلى مزود خدمة آخر</item>
+    </string-array>
+    <string-array name="ServiceType">
+        <item>تأهيل وتدريب</item>
+        <item>مشروع خاص</item>
+        <item>مشروع تعاوني</item>
+        <item>إدماج مهني</item>
+    </string-array>
+    <string-array name="UniversityYear">
+        <item>أولى</item>
+        <item>ثانية</item>
+        <item>ثالثة</item>
+        <item>رابعة</item>
+        <item>خامسة</item>
+        <item>سادسة</item>
+        <item>أولى ماستر</item>
+        <item>ثانية ماستر</item>
+        <item>أولى دكتوراه</item>
+        <item>ثانية دكتوراه</item>
+        <item>ثالثة دكتوراه</item>
+    </string-array>
+    <string-array name="EducationSystem">
+        <item>موازي</item>
+        <item>عام</item>
+        <item>خاص</item>
+    </string-array>
+    <string-array name="UniversitySituation">
+        <item>منقول</item>
+        <item>راسب</item>
+        <item>ناجح</item>
+    </string-array>
+    <string-array name="GrantType">
+        <item>منحة كاملة</item>
+        <item>نصف منحة</item>
+        <item>القسط المتبقي</item>
     </string-array>
 </resources>

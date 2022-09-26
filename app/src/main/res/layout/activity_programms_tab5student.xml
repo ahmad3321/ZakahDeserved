@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="وقل ربي زدني علما"
+            android:textSize="15sp"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/PersonID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:enabled="false"
+            android:hint="رقم المستفيد"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/BeneficiaryName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="اسم المستفيد"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="الجامعات"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/lst_Universities"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/College"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="الكلية"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/Department"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="القسم"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/Specialization"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="الاختصاص"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/UniversityID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="الرقم الجامعي"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_grey">
+            <EditText
+                android:id="@+id/CollegeTuition"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_grey"
+                android:hint="القسط الجامعي"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/CollegeTuitionCoinType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:entries="@array/CoinType" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_grey">
+            <EditText
+                android:id="@+id/DiscountValue"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_grey"
+                android:hint="قيمة الحسم"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/DiscountValueCoinType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="67dp"
+                android:entries="@array/CoinType" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="السنة الجامعية"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/UniversityYear"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:entries="@array/UniversityYear" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/PracticalCoursesCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="عدد المواد التطبيقية"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نظام التعليم"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/EducationSystem"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:entries="@array/EducationSystem" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="الحياة الجامعية"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/UniversitySituation"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:entries="@array/UniversitySituation" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/DistanceToFamily"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="المسافة بين الأهل والسكن"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/DistanceToCollege"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="المسافة عن الكلية"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/Transportation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:hint="وسيلة النقل"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_grey">
+            <EditText
+                android:id="@+id/TransportationCost"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_grey"
+                android:hint="كلفة النقل"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/TransportationCoinType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:entries="@array/CoinType" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="نوع المنحة"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <Spinner
+                android:id="@+id/GrantType"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:entries="@array/GrantType" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_grey">
+            <EditText
+                android:id="@+id/StockValue"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_grey"
+                android:hint="قيمة السهم"
+                android:textSize="14sp"
+                android:paddingStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:inputType="numberDecimal"
+                android:layout_height="40dp" />
+            <Spinner
+                android:id="@+id/CoinType"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:entries="@array/CoinType" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/ReceivedDate"
+            style="@style/modifiedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:textSize="16sp"
+            android:focusableInTouchMode="false"
+            android:hint="تاريخ الاستلام" />
+        <EditText
+            android:id="@+id/GraduationExpectedYear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:inputType="number"
+            android:hint="السنة المتوقعة للتخرج"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/Average"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_200"
+            android:inputType="numberDecimal"
+            android:hint="المعدل التراكمي"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <Button
+            android:id="@+id/button_Insert_Student"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_primary"
+            android:onClick="onClick"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="إدخال"
+            android:fontFamily="@font/jaz_bold"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
