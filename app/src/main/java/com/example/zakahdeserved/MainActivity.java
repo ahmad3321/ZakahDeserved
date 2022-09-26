@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     BroadCastClass broadCastClass = new BroadCastClass();
     ImageButton btn_Sync;
     int EmpDepartment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +70,18 @@ public class MainActivity extends AppCompatActivity {
         btn_Sync = findViewById(R.id.btn_Sync);
 
         login.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SQLiteTest.class);
-            //startActivity(intent);
             try {
                 Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
-               if (isSuccess) {
+                if (isSuccess) {
                     EmpDepartment = DAL.getDepartment(username.getText().toString());
-                   if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
-                       Intent intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-                       startActivity(intent);
+                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
+//                       Intent intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+                        Intent intent1 = new Intent(getApplicationContext(), MainTabs.class);
+                        startActivity(intent1);
                     } /*else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
 
                     }
-                     */else {
+                     */ else {
                         Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
                     }
 
@@ -92,20 +93,18 @@ public class MainActivity extends AppCompatActivity {
                                 Constants.SHAREDPREFERENCES_KEY, // masterKey created above
                                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
-                       SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                       // Storing the key and its value as the data fetched from edittext
-                       myEdit.putString("username", username.getText().toString());
-                       myEdit.apply();
-                  } catch (GeneralSecurityException | IOException e) {
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        // Storing the key and its value as the data fetched from edittext
+                        myEdit.putString("username", username.getText().toString());
+                        myEdit.apply();
+                    } catch (GeneralSecurityException | IOException e) {
                         e.printStackTrace();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-           catch (Exception ex)
-           {Toast.makeText(getApplicationContext(), "خطأ..." +ex, Toast.LENGTH_SHORT).show();
+            } catch (Exception ex) {
+                Toast.makeText(getApplicationContext(), "خطأ..." + ex, Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -116,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception ex) {
             }
         });
+
     }
 
     private void registerNetworkBroadcastForNougat() {

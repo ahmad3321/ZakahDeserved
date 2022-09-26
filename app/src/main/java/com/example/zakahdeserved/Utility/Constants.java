@@ -7,9 +7,7 @@ import androidx.security.crypto.MasterKey;
 import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Constants {
@@ -22,10 +20,10 @@ public class Constants {
     public static View view1, view2, view4, view5, view6, view8, view7, view9;
 
     public static List<String> dynamisLists = new ArrayList<>(List.of(
-            "lst_campaigntypes", "lst_directorates", "lst_identitytypes", "lst_jobtitles", "lst_universities"));
+            "lst_CampaignTypes", "lst_Directorates", "lst_IdentityTypes", "lst_JobTitles", "lst_Universities"));
 
-    public static String ZakatID;
-    public static int PersonID;
+    public static String ZakatID = "aa0";
+    public static int PersonID = 0;
 
 
     // this boolean indicates if we are loading the data from SQLite to fragments

@@ -119,7 +119,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         });
 
 
-        Spinner spnCookingGasOther = view6.findViewById(R.id.CookingGasOther);
+        Spinner spnCookingGasOther = view6.findViewById(R.id.CookingGas);
         spnCookingGasOther.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -127,7 +127,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 if (i == 0)
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.GONE);
 
-                    //آخر
+                //آخر
                 else
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.VISIBLE);
             }

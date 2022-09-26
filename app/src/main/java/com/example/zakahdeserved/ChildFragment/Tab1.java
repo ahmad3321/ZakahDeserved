@@ -69,6 +69,9 @@ public class Tab1 extends Fragment {
             }
         });
 
+        Spinner lst_IdentityTypes = view.findViewById(R.id.lst_IdentityTypes);
+        Constants.SQLITEDAL.fillSpinner(view.getContext(), lst_IdentityTypes);
+
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
 

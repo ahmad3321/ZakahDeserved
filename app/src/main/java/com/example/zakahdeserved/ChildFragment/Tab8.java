@@ -124,6 +124,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             }
         });
+
+Spinner lst_IdentityTypes = WifeView.findViewById(R.id.lst_IdentityTypes);
+        Constants.SQLITEDAL.fillSpinner(WifeView.getContext(), lst_IdentityTypes);
     }
 
     private void removeView(View view,LinearLayout linear){

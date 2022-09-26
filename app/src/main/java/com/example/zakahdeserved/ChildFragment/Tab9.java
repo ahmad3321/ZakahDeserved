@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
@@ -78,7 +79,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.button_submit_list:
-
+                getData();
+                if(!DAL.executeQueries(insertQuery.toString()))
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
                 /*if(checkIfValidAndRead()){
 
                    /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
