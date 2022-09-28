@@ -14,7 +14,6 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/personalDetailsCard"
         style="@style/centreLocatorCardDesign"
-        android:layout_marginTop="70dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="20dp">
 
@@ -33,97 +32,106 @@
                 android:fontFamily="@font/jaz_bold"
                 android:text="فني إحصائي"
                 android:textSize="20sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-
-                android:id="@+id/txtInputName"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/EmployeeCode"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-
-                <EditText
-                    android:id="@+id/txtName"
-                    style="@style/modifiedEditText"
-                    android:hint="الاسم"
-                    android:fontFamily="@font/jaz_bold"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputEmail"
-                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:hint="الرقم الوظيفي (لمدخل البيانات)"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/primaryTextColor"/>
+            <EditText
+                android:id="@+id/EmployeeFullName"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-
-                <EditText
-                    android:id="@+id/txtEmail"
-                    style="@style/modifiedEditText"
-                    android:ems="10"
-                    android:fontFamily="@font/jaz_bold"
-                    android:hint="مسؤول لجنة الإحصاء 'الرقم الوظيفي'"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputMob"
-                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:hint="اسم الموظف الثلاثي"
+                android:textSize="16sp"
+                android:fontFamily="@font/jaz_bold"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/primaryTextColor" />
+            <EditText
+                android:id="@+id/AdminEmployeeCode"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-                <EditText
-                    android:id="@+id/txtMob"
-                    style="@style/modifiedEditText"
-                    android:ems="10"
-                    android:fontFamily="@font/jaz_bold"
-                    android:hint="مسؤول لجنة الإحصاء 'الرقم الوظيفي'" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <Spinner
-            android:id="@+id/lst_Directorates1"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/contact_form_title4"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="5dp" />
+                android:layout_margin="10dp"
+                android:hint="الرقم الوظيفي لمسؤول اللجنة"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/primaryTextColor" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputReg"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/ManualDate"
-                    style="@style/modifiedEditText"
-                    android:layout_width="fill_parent"
+            <EditText
+                android:id="@+id/AdminEmployeeFullName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="اسم مسؤؤول اللجنة الثلاثي"
+                android:textSize="16sp"
+                android:fontFamily="@font/jaz_bold"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/primaryTextColor" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/jaz_bold"
-                    android:hint="تاريخ الزيارة" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputFeedback"
-                android:layout_width="match_parent"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المديرية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <Spinner
+                    android:id="@+id/lst_Directorates"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="78dp" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/ManualVisitDate"
+                style="@style/modifiedEditText"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-                <EditText
-                    android:id="@+id/txtFeed"
-                    style="@style/modifiedEditText"
-                    android:hint="سعر الدولار"
-                    android:fontFamily="@font/jaz_bold"
-                    android:inputType="textMultiLine" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:textSize="16dp"
+                android:backgroundTint="@color/primaryTextColor"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="تاريخ الزيارة" />
+            <EditText
+                android:id="@+id/LastVisitDate"
+                style="@style/modifiedEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:textSize="16dp"
+                android:backgroundTint="@color/primaryTextColor"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="تاريخ اخر زيارة" />
+            <EditText
+                android:id="@+id/DollarExchangeRate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="سعر الدولار بالليرة التركية"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/primaryTextColor" />
 
             <Button
                 android:id="@+id/btnSend"
