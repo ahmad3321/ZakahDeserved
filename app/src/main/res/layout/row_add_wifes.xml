@@ -40,18 +40,21 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/WhoIsWifeChildren"
+                    android:theme="@style/SpinnerTheme"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
             <EditText
                 android:id="@+id/Name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الاسم" />
             <EditText
                 android:id="@+id/FatherName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="اسم الأب" />
 
@@ -59,30 +62,35 @@
                 android:id="@+id/LastName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الكنية" />
             <EditText
                 android:id="@+id/MotherFullName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="اسم الأم الثلاثي" />
             <EditText
                 android:id="@+id/Relation"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الصلة بالمستفيد" />
             <EditText
                 android:id="@+id/IdentityNumber"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="رقم الوثيقة" />
             <EditText
                 android:id="@+id/Record"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="القيد" />
             <LinearLayout
@@ -107,6 +115,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/Gender"
+                    android:theme="@style/SpinnerTheme"
                     android:layout_marginStart="70dp" />
             </LinearLayout>
             <LinearLayout
@@ -129,6 +138,7 @@
                 <Spinner
                     android:id="@+id/lst_IdentityTypes"
                     android:layout_width="150dp"
+                    android:theme="@style/SpinnerTheme"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
@@ -153,6 +163,7 @@
                     android:id="@+id/AcademicQualification"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:theme="@style/SpinnerTheme"
                     android:layout_marginStart="15dp" />
             </LinearLayout>
             <LinearLayout
@@ -177,6 +188,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/YesNo"
+                android:theme="@style/SpinnerTheme"
                 android:layout_marginStart="55dp" />
         </LinearLayout>
             <EditText
@@ -210,6 +222,7 @@
                     android:layout_height="wrap_content"
                     android:text="الحالة الصحية"
                     android:textSize="15sp"
+                    android:fontFamily="@font/heaven"
                     android:layout_margin="15dp"
                     android:textColor="@color/black" />
 

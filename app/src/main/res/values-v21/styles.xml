@@ -7,10 +7,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="spinnerTheme">
+
+    <style name="SpinnerTheme">
+        <item name="android:fontFamily">@font/jaz_bold</item>
         <item name="colorPrimary">#000000</item>
     </style>
-
 
     <style name="loginParent" parent="parent">
         <item name="android:layout_height">match_parent</item>

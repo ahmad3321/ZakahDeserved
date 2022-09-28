@@ -46,7 +46,6 @@ public class MusicPage extends Fragment {
         setupViewPager(viewpager_programms,"KTLAL");
         tabLayout = (TabLayout)v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewpager_programms);
-        setProgramTabs("");
         return v;
     }
     private void setupViewPager(ViewPager viewPager,String Programm) {
@@ -69,25 +68,6 @@ public class MusicPage extends Fragment {
         adapter.addFragment(new Programms_Tab4amal(), "أمل");
         adapter.addFragment(new Programms_Tab5Student(), "وقل ربي زدني علما");*/
         viewPager.setAdapter(adapter);
-    }
-    private void setProgramTabs(String Program) {
-        ((LinearLayout) tabLayout.getTabAt(0).view).setVisibility(View.GONE);
-        ((LinearLayout) tabLayout.getTabAt(1).view).setVisibility(View.GONE);
-        ((LinearLayout) tabLayout.getTabAt(2).view).setVisibility(View.GONE);
-        ((LinearLayout) tabLayout.getTabAt(3).view).setVisibility(View.GONE);
-        ((LinearLayout) tabLayout.getTabAt(4).view).setVisibility(View.GONE);
-        switch (Program){
-            case "KTLAL":
-                ((LinearLayout) tabLayout.getTabAt(0).view).setVisibility(View.VISIBLE);
-            case "Fidaa":
-                ((LinearLayout) tabLayout.getTabAt(1).view).setVisibility(View.VISIBLE);
-            case "Hayat":
-                ((LinearLayout) tabLayout.getTabAt(2).view).setVisibility(View.VISIBLE);
-            case "Amal":
-                ((LinearLayout) tabLayout.getTabAt(3).view).setVisibility(View.VISIBLE);
-            case "Student":
-                ((LinearLayout) tabLayout.getTabAt(4).view).setVisibility(View.VISIBLE);
-        }
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
