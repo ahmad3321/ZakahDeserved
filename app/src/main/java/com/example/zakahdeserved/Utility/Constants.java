@@ -6,6 +6,7 @@ import androidx.security.crypto.MasterKey;
 
 import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,9 @@ public class Constants {
 
     public static SQLiteDAL SQLITEDAL;
     public static MasterKey SHAREDPREFERENCES_KEY;
+
+
+    public static TabLayout tabLayout;
 
     public static View view1, view2, view4, view5, view6, view8, view7, view9;
 

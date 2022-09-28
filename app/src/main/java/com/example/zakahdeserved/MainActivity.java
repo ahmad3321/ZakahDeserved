@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.zakahdeserved.BroadCast.BroadCastClass;
 import com.example.zakahdeserved.Connection.DAL;
+import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.Utility.Constants;
 
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Constants.SQLITEDAL = new SQLiteDAL(getApplicationContext());
+
+        DBHelper.initDatabaseTables();
 
         BroadCastClass broadCastClass = new BroadCastClass();
 

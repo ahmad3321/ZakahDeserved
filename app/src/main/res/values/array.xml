@@ -254,4 +254,10 @@
         <item>نصف منحة</item>
         <item>القسط المتبقي</item>
     </string-array>
+      <string-array name="Nationality">
+        <item>سوري</item>
+        <item>غير سوري</item>
+    </string-array>
+
+
 </resources>

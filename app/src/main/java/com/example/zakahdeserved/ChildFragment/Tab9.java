@@ -22,6 +22,7 @@ import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,8 +81,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.button_submit_list:
                 getData();
-                if(!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+//                if (!DAL.executeQueries(insertQuery.toString()))
+//                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
                 /*if(checkIfValidAndRead()){
 
                    /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
@@ -122,8 +123,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     StringBuilder insertQuery = new StringBuilder();
 
 
-
-
     void getData() {
 
         DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
@@ -139,7 +138,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView1();
         getFromView2();
         getFromView4();
-        getFromView5();
+        if (ValidationController.ENABLE_FEMALE_TAB) //المستفيد أنثى
+            getFromView5();
         getFromView6();
         getFromView7();
         getFromView8();
@@ -160,7 +160,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         getAllControlsNamesAndData(Constants.view1);
 
-        insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+
+        //لم أضع جدول families هنا لأن الجدول لم نكنمل كل بياناته
+        // ستكتمل بياناته في الفراغمنت التالية view2 وعندها سنأخذ البيانات منه
+        insertQuery.append(getInsertQuery(new String[]{"persons"}, allItemsTable));
     }
 
     //معلومات العائلة family
@@ -247,7 +250,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //مصادر الإغاثة Aids
         tablesNames = new String[]{"aids"};
-        allItemsTable.put(tablesNames[0],DBHelper. AidsTable);
+        allItemsTable.put(tablesNames[0], DBHelper.AidsTable);
         LinearLayout AidsList = Constants.view6.findViewById(R.id.layout_list_Aids);
         for (int i = 0; i < AidsList.getChildCount(); i++) {
 
@@ -397,7 +400,14 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             for (Map.Entry<String, Object> entry : tableData.entrySet()) {
                 strKeys.append(entry.getKey()).append(",");
-                strValues.append('\'').append(entry.getValue()).append('\'').append(",");
+
+                Object value = entry.getValue();
+
+                if (value.toString().equals("0") || value.toString().equals("1"))
+                    strValues.append(value).append(",");
+                else
+                    strValues.append('\'').append(value).append('\'').append(",");
+
             }
             strKeys.deleteCharAt(strKeys.length() - 1);
             strValues.deleteCharAt(strValues.length() - 1);

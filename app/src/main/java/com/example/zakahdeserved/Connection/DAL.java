@@ -413,7 +413,7 @@ public class DAL {
         try {
             st = connection.createStatement();
 
-            for (String s : queries.split("\n"))
+            for (String s : queries.split(";"))
                 st.addBatch(s);
 
             st.executeBatch();

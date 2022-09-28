@@ -37,7 +37,6 @@ public class Tab5 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -46,6 +45,13 @@ public class Tab5 extends Fragment {
         // Inflate the layout for this fragment
         View view5 = inflater.inflate(R.layout.activity_tab5, container, false);
         Constants.view5 = view5;
+
+        if (!ValidationController.ENABLE_FEMALE_TAB)
+            ValidationController.lockThePage(view5);
+//            view5.findViewById(R.id.FemaleScrollView).setEnabled(false);
+        else
+            ValidationController.UnlockThePage(view5);
+        //view5.findViewById(R.id.FemaleScrollView).setEnabled(true);
 
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);

@@ -1,6 +1,8 @@
 package com.example.zakahdeserved.ChildFragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,8 @@ public class Tab6 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view6 = inflater.inflate(R.layout.activity_tab6, container, false);
+        Constants.view6 = view6;
+
         FurnitureEvaluationIncrease = view6.findViewById(R.id.FurnitureEvaluationIncrease);
         FurnitureEvaluationDecrease = view6.findViewById(R.id.FurnitureEvaluationDecrease);
         FurnitureEvaluation = view6.findViewById(R.id.FurnitureEvaluation);
@@ -95,7 +99,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 }
             }
         });
-        Constants.view6 = view6;
 
 
         Spinner spnHousingNature = view6.findViewById(R.id.HousingNature);
@@ -127,7 +130,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 if (i == 0)
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.GONE);
 
-                //آخر
+                    //آخر
                 else
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.VISIBLE);
             }
@@ -138,6 +141,30 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             }
         });
 
+
+        EditText txtAmpCount = view6.findViewById(R.id.AmpCount);
+        txtAmpCount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (Double.parseDouble(txtAmpCount.getText().toString()) < 0.0)
+                        view6.findViewById(R.id.OneAmpValue).setVisibility(View.GONE);
+                    else
+                        view6.findViewById(R.id.OneAmpValue).setVisibility(View.VISIBLE);
+                }
+                catch (Exception ignored){}
+            }
+        });
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view6, Constants.familyInfo);
@@ -228,15 +255,15 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     if (i == 0) {
-                        IncomeView.findViewById(R.id.IncomeWorkType).setEnabled(false);
-                        IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(false);
-                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(false);
-                        IncomeView.findViewById(R.id.spnIncomeCoinType).setEnabled(false);
-                    } else {
-                        IncomeView.findViewById(R.id.IncomeWorkType).setEnabled(true);
-                        IncomeView.findViewById(R.id.IncomeWorkTime).setEnabled(true);
+                        IncomeView.findViewById(R.id.IncomeType).setEnabled(true);
+                        IncomeView.findViewById(R.id.IncomeTime).setEnabled(true);
                         IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
-                        IncomeView.findViewById(R.id.spnIncomeCoinType).setEnabled(true);
+                        IncomeView.findViewById(R.id.CoinType).setEnabled(true);
+                    } else {
+                        IncomeView.findViewById(R.id.IncomeType).setEnabled(false);
+                        IncomeView.findViewById(R.id.IncomeTime).setEnabled(false);
+                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(false);
+                        IncomeView.findViewById(R.id.CoinType).setEnabled(false);
                     }
                 }
 
