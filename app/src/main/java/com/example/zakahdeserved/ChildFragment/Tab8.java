@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 
@@ -41,6 +42,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_tab8, container, false);
 
+        Constants.view8 = view;
+
         buttonAdd = view.findViewById(R.id.button_add_Wifes);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Wifes);
 
@@ -51,7 +54,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
-        Constants.view8 = view;
+
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
@@ -124,6 +127,25 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             }
         });
+
+        Spinner spnWhoIs = WifeView.findViewById(R.id.WhoIs);
+        spnWhoIs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0 || i==1)    //وجة أو ابن
+                    WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
+                else
+                    WifeView.findViewById(R.id.Relation).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        Spinner spnlst_IdentityTypes = WifeView.findViewById(R.id.lst_IdentityTypes);
+        Constants.SQLITEDAL.fillSpinner(getContext(), spnlst_IdentityTypes);
     }
 
     private void removeView(View view,LinearLayout linear){
