@@ -2,6 +2,7 @@ package com.example.zakahdeserved.ChildFragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -152,7 +153,11 @@ public class Tab4 extends Fragment implements View.OnClickListener {
                 removeView(cricketerView);
             }
         });
-
+        if(layoutList.getChildCount()%2!=0){
+            cricketerView.setBackgroundColor(Color.WHITE);
+        }
+        else
+            cricketerView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         layoutList.addView(cricketerView);
 
     }

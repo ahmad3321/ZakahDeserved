@@ -1,5 +1,6 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,7 +104,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 removeView(surveyconclusionsView, linearLayout);
             }
         });
-
+        if(linearLayout.getChildCount()%2!=0){
+            surveyconclusionsView.setBackgroundColor(Color.WHITE);
+        }
+        else
+            surveyconclusionsView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(surveyconclusionsView);
 
     }

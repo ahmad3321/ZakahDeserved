@@ -1,5 +1,6 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,7 +144,11 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                 removeView(AssetView,linearLayout);
             }
         });
-
+        if(linearLayout.getChildCount()%2!=0){
+            AssetView.setBackgroundColor(Color.WHITE);
+        }
+        else
+            AssetView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(AssetView);
 
     }

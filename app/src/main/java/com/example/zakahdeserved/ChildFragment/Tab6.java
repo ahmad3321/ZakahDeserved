@@ -1,5 +1,6 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,7 +120,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         });
 
 
-        Spinner spnCookingGasOther = view6.findViewById(R.id.CookingGasOther);
+        Spinner spnCookingGasOther = view6.findViewById(R.id.CookingGas);
         spnCookingGasOther.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -192,7 +193,11 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 removeWaterTypeView(cricketerView);
             }
         });
-
+        if(layoutWaterTypeList.getChildCount()%2!=0){
+            cricketerView.setBackgroundColor(Color.WHITE);
+        }
+        else
+            cricketerView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         layoutWaterTypeList.addView(cricketerView);
 
     }
@@ -218,7 +223,11 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 removeView(IncomeView, linearLayout);
             }
         });
-
+        if(linearLayout.getChildCount()%2!=0){
+            IncomeView.setBackgroundColor(Color.WHITE);
+        }
+        else
+            IncomeView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(IncomeView);
 
 
