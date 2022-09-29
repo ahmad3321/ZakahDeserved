@@ -18,7 +18,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        Spinner lst_directorates1 = findViewById(R.id.lst_Directorates1);
-        Constants.SQLITEDAL.fillSpinner(this, lst_directorates1);
+        Spinner lst_Directorates = findViewById(R.id.lst_Directorates);
+        Constants.SQLITEDAL.fillSpinner(this, lst_Directorates);
     }
 }

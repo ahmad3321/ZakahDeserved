@@ -33,8 +33,8 @@
     <orderEntry type="jdk" jdkName="Android API 32 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ZakahDeserved.app.main" scope="TEST" />
-    <orderEntry type="library" scope="TEST" name="Gradle: D./workMe/Zakah Desrved/ZakahDeserved/app/libs/mysql-connector-java-5.1.5-bin.jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: D./workMe/Zakah Desrved/ZakahDeserved/app/libs/mariadb-java-client-1.7.2.jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: C./Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/libs/mysql-connector-java-5.1.5-bin.jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: C./Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/libs/mariadb-java-client-1.7.2.jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3" level="project" />
