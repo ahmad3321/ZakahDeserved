@@ -108,10 +108,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 removeView(surveyconclusionsView, linearLayout);
             }
         });
-        if(linearLayout.getChildCount()%2!=0){
+        if (linearLayout.getChildCount() % 2 != 0) {
             surveyconclusionsView.setBackgroundColor(Color.WHITE);
-        }
-        else
+        } else
             surveyconclusionsView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(surveyconclusionsView);
 

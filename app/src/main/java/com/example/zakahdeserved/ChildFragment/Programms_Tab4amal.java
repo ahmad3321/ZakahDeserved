@@ -30,7 +30,7 @@ public class Programms_Tab4amal extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_programms_tab4amal, container, false);
-        Constants.view1 = view;
+
         button_Insert_Amal = view.findViewById(R.id.button_Insert_Amal);
 
         button_Insert_Amal.setOnClickListener(this);

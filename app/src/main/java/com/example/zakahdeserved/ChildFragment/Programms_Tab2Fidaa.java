@@ -29,7 +29,6 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_programms_tab2fidaa, container, false);
-        Constants.view1 = view;
 
         button_Insert_Fidaa = view.findViewById(R.id.button_Insert_Fidaa);
 

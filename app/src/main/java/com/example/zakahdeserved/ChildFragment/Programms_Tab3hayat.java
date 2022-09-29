@@ -30,7 +30,6 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_programms_tab3hayat, container, false);
-        Constants.view1 = view;
 
         button_Insert_Hayat = view.findViewById(R.id.button_Insert_Hayat);
 
