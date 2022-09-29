@@ -39,7 +39,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         String spinnersCreate = "CREATE TABLE '" + TABLE_SPINNERS + "' (" +
                 "'IncrementID'	INTEGER PRIMARY KEY," +
                 "'SpinnerName'	TEXT," +
-                "'ItemID'" +
+                "'ItemID' TEXT," +
                 "'ItemName'	TEXT" +
                 ");";
 
@@ -120,6 +120,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         for (Map.Entry<String, String> entry : items.entrySet()) {
+            contentValues.put("IncrementID", (String) null);
             contentValues.put("SpinnerName", spinnerName);
             contentValues.put("ItemID", entry.getKey());
             contentValues.put("ItemName", entry.getValue());
@@ -144,10 +145,9 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 new String[]{spinnerName},
                 null, null, null, null);
 
-        if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst())/*if cursor has data*/ {
             do {
-                String value = cursor.getString(2);
+                String value = cursor.getString(0);
                 items.add(value);
             } while (cursor.moveToNext());
             cursor.close();
@@ -191,13 +191,13 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(false,
                 TABLE_QUERIES,
-                new String[]{"PersonID"},
+                new String[]{"QueryContents"},
                 null, null, null, null, null, null);
 
         if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
             cursor.moveToFirst();
             do {
-                String value = cursor.getString(1);
+                String value = cursor.getString(0);
                 strQueries.append(value).append("\n");
             } while (cursor.moveToNext());
             cursor.close();
@@ -214,7 +214,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
 
-            value = cursor.getString(1);
+            value = cursor.getString(0);
             cursor.close();
         }
         return value;
@@ -376,7 +376,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         HashMap<String, Object> row = new HashMap<>();
 
         for (int i = 0; i < columns.length; i++)
-            row.put(columns[i], cursor.getString(i + 1));
+            row.put(columns[i], cursor.getString(i));
 
         return new SQLiteRecord(table, row);
     }

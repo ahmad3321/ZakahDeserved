@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
@@ -24,7 +25,8 @@ public class ValidationController {
             for (int i = 0; i < count; i++) {
                 View v = viewGroup.getChildAt(i);
 
-                if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner || v instanceof CheckBox)
+                if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner
+                        || v instanceof CheckBox || v instanceof TextView)
                     v.setEnabled(false);
 
                 else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
@@ -42,7 +44,8 @@ public class ValidationController {
             int count = viewGroup.getChildCount();
             for (int i = 0; i < count; i++) {
                 View v = viewGroup.getChildAt(i);
-                if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner || v instanceof CheckBox)
+                if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner
+                        || v instanceof CheckBox || v instanceof TextView)
                     v.setEnabled(true);
 
                 else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)

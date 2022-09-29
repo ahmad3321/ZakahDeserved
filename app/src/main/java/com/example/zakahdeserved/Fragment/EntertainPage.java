@@ -1,9 +1,12 @@
 package com.example.zakahdeserved.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -29,7 +32,6 @@ import java.util.List;
 
 public class EntertainPage extends Fragment {
 
-    private TabLayout tabLayout;
     private ViewPager viewPager;
     private FragmentActivity myContext;
 
@@ -49,11 +51,11 @@ public class EntertainPage extends Fragment {
 
         View v = inflater.inflate(R.layout.entertain_page, null);
 
-        viewPager = (ViewPager)v.findViewById(R.id.viewpager);
+        viewPager = v.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout)v.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        Constants.tabLayout = v.findViewById(R.id.tabs);
+        Constants.tabLayout.setupWithViewPager(viewPager);
 
         return v;
     }
@@ -61,14 +63,14 @@ public class EntertainPage extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new Tab1(), "ForU");
-        adapter.addFragment(new Tab2(), "Webseries");
-        adapter.addFragment(new Tab4(), "Shortflim");
-        adapter.addFragment(new Tab5(), "Husband");
-        adapter.addFragment(new Tab6(), "Housing");
-        adapter.addFragment(new Tab7(), "Assets");
-        adapter.addFragment(new Tab8(), "Wifes");
-        adapter.addFragment(new Tab9(), "SurveyConclusions");
+        adapter.addFragment(new Tab1(), "التقييم الأولي");
+        adapter.addFragment(new Tab2(), "المعلومات الشخصية");
+        adapter.addFragment(new Tab4(), "الحالة الصحية");
+        adapter.addFragment(new Tab5(), "الزوج");
+        adapter.addFragment(new Tab6(), "السكن");
+        adapter.addFragment(new Tab7(), "الممتلكات");
+        adapter.addFragment(new Tab8(), "أفراد الأسرة");
+        adapter.addFragment(new Tab9(), "الجوار");
 
         viewPager.setAdapter(adapter);
     }

@@ -41,6 +41,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_tab7, container, false);
+        Constants.view7 = view;
 
         buttonAdd = view.findViewById(R.id.button_add_Asset);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Asset);
@@ -52,7 +53,6 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
-        Constants.view7 = view;
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
