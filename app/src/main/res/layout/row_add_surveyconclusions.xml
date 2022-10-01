@@ -150,7 +150,13 @@
                     android:theme="@style/SpinnerTheme"
                     android:layout_marginStart="73dp" />
             </LinearLayout>
-
+            <EditText
+                android:id="@+id/Why"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:inputType="textMultiLine"
+                android:hint="لماذا" />
             </LinearLayout>
 
             <ImageView

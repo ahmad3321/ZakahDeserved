@@ -79,6 +79,30 @@
                 android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="الصلة بالمستفيد" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوع الوثيقة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <Spinner
+                    android:id="@+id/lst_IdentityTypes"
+                    android:layout_width="150dp"
+                    android:theme="@style/SpinnerTheme"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp" />
+            </LinearLayout>
             <EditText
                 android:id="@+id/IdentityNumber"
                 android:layout_width="fill_parent"
@@ -86,6 +110,27 @@
                 android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="رقم الوثيقة" />
+
+            <EditText
+                android:id="@+id/BirthPlace"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="مكان الولادة" />
+            <EditText
+                android:id="@+id/BirthDate"
+                style="@style/modifiedEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:textSize="16sp"
+                android:focusableInTouchMode="false"
+                android:hint="تاريخ الولادة" />
             <EditText
                 android:id="@+id/Record"
                 android:layout_width="fill_parent"
@@ -118,30 +163,7 @@
                     android:theme="@style/SpinnerTheme"
                     android:layout_marginStart="70dp" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:orientation="horizontal"
-                android:padding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/jaz_reg"
-                    android:text="نوع الوثيقة"
-                    android:textSize="18sp"
-                    android:typeface="serif" />
-
-                <Spinner
-                    android:id="@+id/lst_IdentityTypes"
-                    android:layout_width="150dp"
-                    android:theme="@style/SpinnerTheme"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp" />
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,14 +215,14 @@
                 android:layout_marginStart="55dp" />
         </LinearLayout>
             <EditText
-                android:id="@+id/IncomeMoney"
+                android:id="@+id/MonthlyIncome"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:hint="الايراد" />
+                android:inputType="numberDecimal"
+                android:hint="الدخل الشهري" />
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

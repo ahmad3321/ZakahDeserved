@@ -63,20 +63,13 @@
                 android:backgroundTint="@color/purple_200"
                 android:hint="المدينة الأصلية" />
             <EditText
-                android:id="@+id/OrginalNeighborhood"
+                android:id="@+id/OrginalVillage"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="القرية الأصلية" />
 
-            <EditText
-                android:id="@+id/ReceiptID12"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الحي الأصلي" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

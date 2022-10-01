@@ -96,7 +96,7 @@
             android:padding="5dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_height="40dp" />
         <FrameLayout
             android:id="@+id/spnIncomeCoinType"
@@ -111,8 +111,6 @@
                 android:layout_height="40dp"
                 android:entries="@array/CoinType" />
         </FrameLayout>
-
-
 
         <ImageView
             android:id="@+id/image_remove_Income"
