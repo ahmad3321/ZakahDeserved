@@ -30,7 +30,6 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_programms_tab5student, container, false);
-        Constants.view1 = view;
 
         button_Insert_Student = view.findViewById(R.id.button_Insert_Student);
 

@@ -20,7 +20,7 @@
             android:visibility="visible">
 
             <EditText
-                android:id="@+id/Name"
+                android:id="@+id/NeighborName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"

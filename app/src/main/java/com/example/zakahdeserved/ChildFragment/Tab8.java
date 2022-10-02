@@ -1,5 +1,6 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +15,21 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutWife,layout_list_Wifes_HealthStatus;
     Button buttonAdd,button_add_WifesHealthStatus;
     Button buttonSubmitList;
+
+    Calendar myCalendar;
 
     public Tab8() {
         // Required empty public constructor
@@ -33,13 +41,14 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_tab8, container, false);
+
+        Constants.view8 = view;
 
         buttonAdd = view.findViewById(R.id.button_add_Wifes);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Wifes);
@@ -51,7 +60,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
-        Constants.view8 = view;
+
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
@@ -111,11 +120,11 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    WifeView.findViewById(R.id.IncomeMoney).setVisibility(View.GONE);
+                    WifeView.findViewById(R.id.MonthlyIncome).setVisibility(View.GONE);
                     WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
                 }
                 else{
-                    WifeView.findViewById(R.id.IncomeMoney).setVisibility(View.GONE);
+                    WifeView.findViewById(R.id.MonthlyIncome).setVisibility(View.GONE);
                     WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
                 }
             }
@@ -124,6 +133,49 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             }
         });
+
+        Spinner spnWhoIs = WifeView.findViewById(R.id.WhoIs);
+        spnWhoIs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0 || i==1)    //زوجة أو ابن
+                    WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
+                else
+                    WifeView.findViewById(R.id.Relation).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        EditText txtBirthDate = WifeView.findViewById(R.id.BirthDate);
+
+        myCalendar = Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener date = (view1, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel(txtBirthDate);
+        };
+
+        txtBirthDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+        Spinner spnlst_IdentityTypes = WifeView.findViewById(R.id.lst_IdentityTypes);
+        Constants.SQLITEDAL.fillSpinner(getContext(), spnlst_IdentityTypes);
     }
 
     private void removeView(View view,LinearLayout linear){
@@ -154,5 +206,11 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
         layout_list_Wifes_HealthStatus.removeView(view);
 
+    }
+
+    private void updateLabel(EditText txtDate) {
+        String myFormat = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        txtDate.setText(sdf.format(myCalendar.getTime()));
     }
 }
