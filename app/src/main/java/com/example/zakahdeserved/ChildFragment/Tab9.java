@@ -166,7 +166,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
         //لم أضع جدول families هنا لأن الجدول لم نكنمل كل بياناته
-        // ستكتمل بياناته في الفراغمنت التالية view2 وعندها سنأخذ البيانات منه
+        // ستكتمل بياناته في الفراغمنت الأخيرة view9 وعندها سنأخذ البيانات منه
         insertQuery.append(getInsertQuery(new String[]{"persons"}, allItemsTable));
     }
 
@@ -180,7 +180,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         getAllControlsNamesAndData(Constants.view2);
 
-        insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
+        // لم نأخذ بيانات جدول families من هنا لأم البيانات لم تكتمل بعد
+        // سوف تكتمل البيانات في التاب الأخير
+//        insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
     }
 
     //الحالة الصحية لرب الأسرة Helth Status
