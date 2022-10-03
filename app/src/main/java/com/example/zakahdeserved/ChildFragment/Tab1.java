@@ -84,7 +84,7 @@ public class Tab1 extends Fragment {
         });
 
         Spinner lst_IdentityTypes = view.findViewById(R.id.lst_IdentityTypes);
-        Constants.SQLITEDAL.fillSpinner(view.getContext(), lst_IdentityTypes);
+        //Constants.SQLITEDAL.fillSpinner(view.getContext(), lst_IdentityTypes);
 
 
         EditText txtBirthDate = view.findViewById(R.id.BirthDate);

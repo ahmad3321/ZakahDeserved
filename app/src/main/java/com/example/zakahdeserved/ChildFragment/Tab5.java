@@ -184,7 +184,7 @@ public class Tab5 extends Fragment {
         });
 
         Spinner lst_IdentityTypes = view5.findViewById(R.id.lst_IdentityTypes);
-        Constants.SQLITEDAL.fillSpinner(view5.getContext(), lst_IdentityTypes);
+        //Constants.SQLITEDAL.fillSpinner(view5.getContext(), lst_IdentityTypes);
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view5, Constants.familyInfo);
