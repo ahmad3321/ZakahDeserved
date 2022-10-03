@@ -71,7 +71,7 @@ public class EntertainPage extends Fragment {
         adapter.addFragment(new Tab7(), "الممتلكات");
         adapter.addFragment(new Tab8(), "أفراد الأسرة");
         adapter.addFragment(new Tab9(), "الجوار");
-
+        viewPager.setOffscreenPageLimit(8);
         viewPager.setAdapter(adapter);
     }
 

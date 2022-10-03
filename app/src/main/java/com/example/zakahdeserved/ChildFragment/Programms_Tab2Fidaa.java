@@ -56,7 +56,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
 
         ((EditText) view.findViewById(R.id.ZakatID)).setText(Constants.ZakatID);
 
-        Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes1));
+       // Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes1));
 
         myCalendar = Calendar.getInstance();
 
