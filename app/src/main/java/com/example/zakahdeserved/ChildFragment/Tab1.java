@@ -49,10 +49,6 @@ public class Tab1 extends Fragment {
         spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                if(i==1)    //ذكر
-//                    ((ScrollView) Constants.tabLayout.getTabAt(3).view.findViewById(R.id.FemaleScrollView)).setEnabled(false);
-//                else    //أنثى
-//                    ((ScrollView) Constants.tabLayout.getTabAt(3).view.findViewById(R.id.FemaleScrollView)).setEnabled(true);
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
             }
 

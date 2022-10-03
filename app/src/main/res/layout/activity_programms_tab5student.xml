@@ -17,7 +17,7 @@
             android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black" />
         <EditText
-            android:id="@+id/PersonID"
+            android:id="@+id/ZakatID"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -97,6 +97,7 @@
             android:hint="الرقم الجامعي"
             android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
+            android:inputType="number"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -236,6 +237,7 @@
             android:backgroundTint="@color/purple_200"
             android:hint="المسافة بين الأهل والسكن"
             android:textColor="@color/black"
+            android:inputType="number"
             android:textSize="16sp" />
         <EditText
             android:id="@+id/DistanceToCollege"
@@ -245,6 +247,7 @@
             android:backgroundTint="@color/purple_200"
             android:hint="المسافة عن الكلية"
             android:textColor="@color/black"
+            android:inputType="number"
             android:textSize="16sp" />
         <EditText
             android:id="@+id/Transportation"

@@ -108,7 +108,6 @@
             android:hint="رقم الوثيقة"
             android:textSize="16sp"
             android:textColor="@color/black"
-            android:inputType="number"
             android:backgroundTint="@color/purple_200" />
         <LinearLayout
             android:layout_width="wrap_content"

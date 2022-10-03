@@ -18,7 +18,7 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
         <EditText
-            android:id="@+id/PersonID"
+            android:id="@+id/ZakatID"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
