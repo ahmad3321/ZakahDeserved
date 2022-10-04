@@ -25,8 +25,8 @@ import java.util.Locale;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
-    LinearLayout layoutWife,layout_list_Wifes_HealthStatus;
-    Button buttonAdd,button_add_WifesHealthStatus;
+    LinearLayout layoutWife, layout_list_Wifes_HealthStatus;
+    Button buttonAdd, button_add_WifesHealthStatus;
     Button buttonSubmitList;
 
     Calendar myCalendar;
@@ -60,23 +60,22 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonSubmitList.setOnClickListener(this);
 
 
-
-
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;
     }
+
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.button_add_Wifes:
 
-                addView(R.layout.row_add_wifes,R.id.image_remove_Wife,layoutWife);
+                addView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
 
                 break;
-                case R.id.button_submit_list:
+            case R.id.button_submit_list:
 
                 /*if(checkIfValidAndRead()){
 
@@ -90,18 +89,18 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void addView(int id,int imageID,LinearLayout linearLayout) {
+    private void addView(int id, int imageID, LinearLayout linearLayout) {
 
-        final View WifeView = getLayoutInflater().inflate(id,null,false);
+        final View WifeView = getLayoutInflater().inflate(id, null, false);
 
-        ImageView imageClose = (ImageView)WifeView.findViewById(imageID);
-        Button button_add_WifesHealthStatus = (Button)WifeView.findViewById(R.id.button_add_WifesHealthStatus);
+        ImageView imageClose = (ImageView) WifeView.findViewById(imageID);
+        Button button_add_WifesHealthStatus = (Button) WifeView.findViewById(R.id.button_add_WifesHealthStatus);
         layout_list_Wifes_HealthStatus = (LinearLayout) WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
 
         imageClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeView(WifeView,linearLayout);
+                removeView(WifeView, linearLayout);
             }
         });
 
@@ -119,15 +118,17 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         spnIsWorking.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {
+                if (i == 0) {   //تعمل
+                    WifeView.findViewById(R.id.MonthlyIncome).setVisibility(View.VISIBLE);
+                    WifeView.findViewById(R.id.CoinType).setVisibility(View.VISIBLE);
+                } else {   //لاتعمل
                     WifeView.findViewById(R.id.MonthlyIncome).setVisibility(View.GONE);
                     WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
-                }
-                else{
-                    WifeView.findViewById(R.id.MonthlyIncome).setVisibility(View.GONE);
-                    WifeView.findViewById(R.id.CoinType).setVisibility(View.GONE);
+
+                    ((EditText) WifeView.findViewById(R.id.MonthlyIncome)).setText("");
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -138,9 +139,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         spnWhoIs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0 || i==1)    //زوجة أو ابن
+                if (i == 0 || i == 1) {   //زوجة أو ابن
                     WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
-                else
+                    ((EditText) WifeView.findViewById(R.id.Relation)).setText("");
+                } else
                     WifeView.findViewById(R.id.Relation).setVisibility(View.VISIBLE);
             }
 
@@ -178,17 +180,17 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         Constants.SQLITEDAL.fillSpinner(getContext(), spnlst_IdentityTypes);
     }
 
-    private void removeView(View view,LinearLayout linear){
+    private void removeView(View view, LinearLayout linear) {
 
         linear.removeView(view);
 
     }
+
     private void addView() {
 
-        final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
+        final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
 
-        ImageView imageClose = (ImageView)healthstatusview.findViewById(R.id.image_remove);
-
+        ImageView imageClose = (ImageView) healthstatusview.findViewById(R.id.image_remove);
 
 
         imageClose.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +204,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         layout_list_Wifes_HealthStatus.addView(healthstatusview);
 
     }
-    private void removeView(View view){
+
+    private void removeView(View view) {
 
         layout_list_Wifes_HealthStatus.removeView(view);
 

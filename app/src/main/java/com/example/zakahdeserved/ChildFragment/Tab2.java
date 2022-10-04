@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
@@ -36,8 +37,10 @@ public class Tab2 extends Fragment {
         chkIfSmokers.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b)
                 view.findViewById(R.id.SmokersCount).setVisibility(View.VISIBLE);
-            else
+            else {
                 view.findViewById(R.id.SmokersCount).setVisibility(View.GONE);
+                ((EditText)view.findViewById(R.id.SmokersCount)).setText("");
+            }
         });
 
 

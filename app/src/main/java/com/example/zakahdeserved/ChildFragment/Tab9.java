@@ -148,6 +148,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView7();
         getFromView8();
         getFromView9();
+
+
     }
 
     //معلومات المرشح والعائلة  Person and Family
@@ -344,6 +346,42 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
         }
 
+    }
+
+    //حساب المؤشرات
+    void calculatePointers() {
+        int pointer = 0;
+
+        //view1
+        if (Constants.view1 != null) {
+            if (((Spinner) Constants.view1.findViewById(R.id.Gender)).getSelectedItemId() == 0)   //المستفيد أنثى
+                pointer += 2;
+
+            switch ((int) ((Spinner) Constants.view1.findViewById(R.id.Gender)).getSelectedItemId()) {    //المستوى الدراسي
+                case 0: //أمي
+                    pointer -= 4;
+                    break;
+                case 1: //ابتدائي
+                    pointer -= 4;
+                    break;
+                case 2: //إعدادي
+                    pointer += 1;
+                    break;
+                case 3: //ثانوي
+                    pointer += 2;
+                    break;
+                case 4: //جامعي
+                    pointer += 6;
+                    break;
+            }
+        }
+
+
+        //view2
+        if (Constants.view2 != null) {
+            if (((Spinner) Constants.view2.findViewById(R.id.ResidenceStatus)).getSelectedItemId() == 1)   //مهجر
+                pointer += 2;
+        }
     }
 
     private void getAllControlsNamesAndData(View view) {

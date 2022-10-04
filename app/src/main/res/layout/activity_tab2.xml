@@ -155,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:visibility="gone"
                 android:hint="عدد المدخنين" />
             <EditText
                 android:id="@+id/Job"

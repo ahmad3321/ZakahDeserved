@@ -113,24 +113,37 @@ public class Tab5 extends Fragment {
                         view5.findViewById(R.id.EventDate).setVisibility(View.VISIBLE);
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Lockup));
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Travel));
                         break;
 
                     case "معتقل":
                         view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.VISIBLE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+
+                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Travel));
                         break;
 
                     case "مسافر":
                         view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.VISIBLE);
+
+                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Lockup));
                         break;
 
                     default:
                         view5.findViewById(R.id.EventDate).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
+
+                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Lockup));
+                        ValidationController.ClearView(view5.findViewById(R.id.Linear_Travel));
                         break;
                 }
             }
@@ -169,11 +182,15 @@ public class Tab5 extends Fragment {
                 if (i == 0) {
                     view5.findViewById(R.id.ArrestDate).setVisibility(View.GONE);
                     view5.findViewById(R.id.CondemnationDuration).setVisibility(View.VISIBLE);
+
+                    ((EditText)view5.findViewById(R.id.ArrestDate)).setText("");
                 }
                 //غير محكوم
                 else if (i == 1) {
                     view5.findViewById(R.id.ArrestDate).setVisibility(View.VISIBLE);
                     view5.findViewById(R.id.CondemnationDuration).setVisibility(View.GONE);
+
+                    ((EditText)view5.findViewById(R.id.CondemnationDuration)).setText("");
                 }
             }
 

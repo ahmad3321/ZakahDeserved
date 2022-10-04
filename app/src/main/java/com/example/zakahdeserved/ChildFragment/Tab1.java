@@ -67,6 +67,7 @@ public class Tab1 extends Fragment {
                 if (i == 0) {   //في حالة موجود
                     ValidationController.ENABLE_ALL_TABS = true;
                     txtExisitStatusAbout.setVisibility(View.GONE);
+                    txtExisitStatusAbout.setText("");
                 } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
                     ValidationController.ENABLE_ALL_TABS = false;
                     txtExisitStatusAbout.setVisibility(View.VISIBLE);

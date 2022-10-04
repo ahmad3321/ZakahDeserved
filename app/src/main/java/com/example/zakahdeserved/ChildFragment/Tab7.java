@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 public class Tab7 extends Fragment implements View.OnClickListener {
 
@@ -94,6 +96,14 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         spnAssetType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //clear all controls
+                ValidationController.ClearView(AssetView.findViewById(R.id.LinearHousrAndStore));
+                ValidationController.ClearView(AssetView.findViewById(R.id.LinearFarm));
+                ValidationController.ClearView(AssetView.findViewById(R.id.LinearAnimals));
+               ((EditText)AssetView.findViewById(R.id.MachineType)).setText("");
+               ((EditText)AssetView.findViewById(R.id.ValueTime)).setText("");
+
                 switch (i){
                     case 0: //محل
                     case 1: //منزل

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import java.util.ArrayList;
+
 
 public class ValidationController {
     public static boolean ENABLE_FEMALE_TAB = true;
@@ -50,6 +52,29 @@ public class ValidationController {
 
                 else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
                     UnlockThePage(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ClearView(View view) {
+        final ViewGroup viewGroup = (ViewGroup) view;
+        try {
+            int count = viewGroup.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = viewGroup.getChildAt(i);
+
+                if (v instanceof EditText)
+                    ((EditText) v).setText("");
+                else if (v instanceof Spinner || v instanceof AppCompatSpinner)
+                    ((Spinner) v).setSelection(0);
+                else if (v instanceof CheckBox)
+                    ((CheckBox) v).setChecked(false);
+
+                else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
+                    ClearView(v);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -113,6 +113,8 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 } else {
                     view6.findViewById(R.id.Linear_CoinType).setVisibility(View.GONE);
                     view6.findViewById(R.id.RentValue).setVisibility(View.GONE);
+
+                    ((EditText)view6.findViewById(R.id.RentValue)).setText("");
                 }
             }
 
@@ -128,8 +130,10 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //غاز
-                if (i == 0)
+                if (i == 0) {
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.GONE);
+                    ((EditText)view6.findViewById(R.id.CookingGasOther)).setText("");
+                }
 
                     //آخر
                 else
@@ -139,31 +143,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
-
-
-        EditText txtAmpCount = view6.findViewById(R.id.AmpCount);
-        txtAmpCount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                try {
-                    if (Double.parseDouble(txtAmpCount.getText().toString()) < 0.0)
-                        view6.findViewById(R.id.OneAmpValue).setVisibility(View.GONE);
-                    else
-                        view6.findViewById(R.id.OneAmpValue).setVisibility(View.VISIBLE);
-                }
-                catch (Exception ignored){}
             }
         });
 
