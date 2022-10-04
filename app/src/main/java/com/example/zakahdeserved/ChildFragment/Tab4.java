@@ -141,8 +141,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
 
-        /*EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
-        Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.HealthStatus);*/
         ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove);
 
 

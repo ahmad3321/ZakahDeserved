@@ -73,7 +73,7 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
-        Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_Universities));
+        //Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_Universities));
 
         return view;
     }

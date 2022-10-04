@@ -77,7 +77,7 @@ public class MainTabs extends AppCompatActivity {
         adapter.addFrag(new EntertainPage(), "Enertain");
         adapter.addFrag(new MusicPage(), "Music");
         adapter.addFrag(new NewsPage(), "News");
-
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
     }
 
