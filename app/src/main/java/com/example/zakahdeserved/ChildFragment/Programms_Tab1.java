@@ -59,8 +59,8 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
         button_Insert_Ktlal = view.findViewById(R.id.button_Insert_Ktlal);
         button_Insert_Ktlal.setOnClickListener(this);
 
-        //Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_CampaignTypes));
-        //Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes));
+        Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_CampaignTypes));
+        Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes));
 
 
         EditText txtDistributionDate = view.findViewById(R.id.DistributionDate);

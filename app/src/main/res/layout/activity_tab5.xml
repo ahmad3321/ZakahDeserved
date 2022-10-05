@@ -61,6 +61,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="اسم الزوج" />
 
             <EditText
@@ -68,6 +69,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="اسم الأب" />
 
             <EditText
@@ -75,18 +77,21 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="الكنية" />
             <EditText
                 android:id="@+id/HusbandMotherFullName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="الاسم الثلاثي للأم" />
             <EditText
                 android:id="@+id/IdentityNumber"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="رقم الوثيقة" />
 
             <LinearLayout
@@ -117,6 +122,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="القيد" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -147,12 +153,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="المدينة الأصل" />
             <EditText
                 android:id="@+id/Village"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="القرية الأصل" />
             <EditText
                 android:id="@+id/BirthDate"
@@ -176,6 +184,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="مكان الولادة" />
 
             <LinearLayout
@@ -314,6 +323,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="مدة الحكم" />
         </LinearLayout>
 
@@ -330,12 +340,14 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="مكان السفر" />
             <EditText
                 android:id="@+id/TravelGoal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="الهدف" />
         </LinearLayout>
         </LinearLayout>

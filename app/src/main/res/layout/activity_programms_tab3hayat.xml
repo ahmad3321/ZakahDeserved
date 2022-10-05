@@ -25,6 +25,7 @@
             android:backgroundTint="@color/purple_200"
             android:enabled="false"
             android:hint="رقم المستفيد"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -177,6 +178,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:textSize="16sp"
+            android:fontFamily="@font/jaz_bold"
             android:focusableInTouchMode="false"
             android:hint="التاريخ" />
         <LinearLayout
@@ -216,6 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@android:drawable/ic_input_add"
+                android:fontFamily="@font/jaz_bold"
                 android:text="اضافة وثيقة" />
 
             <Button

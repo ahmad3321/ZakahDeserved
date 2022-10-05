@@ -156,6 +156,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="textMultiLine"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="لماذا" />
             </LinearLayout>
 

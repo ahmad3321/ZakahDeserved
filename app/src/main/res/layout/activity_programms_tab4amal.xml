@@ -25,6 +25,7 @@
             android:backgroundTint="@color/purple_200"
             android:enabled="false"
             android:hint="رقم المستفيد"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
         <EditText
@@ -56,6 +57,7 @@
             android:layout_margin="10dp"
             android:textSize="16sp"
             android:backgroundTint="@color/purple_200"
+            android:fontFamily="@font/jaz_bold"
             android:hint="المدة بالأشهر" />
         <EditText
             android:id="@+id/RequiredExperiences"
@@ -153,6 +155,7 @@
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:layout_height="40dp" />
             <Spinner
                 android:id="@+id/CoinType"
@@ -172,6 +175,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:textSize="16sp"
+            android:fontFamily="@font/jaz_bold"
             android:focusableInTouchMode="false"
             android:hint="التاريخ" />
         <EditText
