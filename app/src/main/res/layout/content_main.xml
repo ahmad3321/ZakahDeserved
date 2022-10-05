@@ -69,11 +69,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="اسم مسؤؤول اللجنة الثلاثي"
-                android:textSize="16sp"
+                android:backgroundTint="@color/primaryTextColor"
                 android:fontFamily="@font/jaz_bold"
+                android:hint="اسم مسؤول اللجنة الثلاثي"
                 android:textColor="@color/black"
-                android:backgroundTint="@color/primaryTextColor" />
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
