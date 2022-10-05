@@ -16,6 +16,7 @@
             android:layout_margin="15dp"
             android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black" />
+
         <EditText
             android:id="@+id/ZakatID"
             android:layout_width="fill_parent"
@@ -24,8 +25,10 @@
             android:backgroundTint="@color/purple_200"
             android:enabled="false"
             android:hint="رقم المستفيد"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
         <EditText
             android:id="@+id/BeneficiaryName"
             android:layout_width="fill_parent"
@@ -116,6 +119,7 @@
                 android:padding="5dp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:inputType="numberDecimal"
                 android:layout_height="40dp" />
             <Spinner
@@ -140,6 +144,7 @@
                 android:textSize="14sp"
                 android:paddingStart="10dp"
                 android:padding="5dp"
+                android:fontFamily="@font/jaz_bold"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:inputType="numberDecimal"
@@ -182,6 +187,7 @@
             android:backgroundTint="@color/purple_200"
             android:hint="عدد المواد التطبيقية"
             android:inputType="number"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
         <LinearLayout
@@ -237,8 +243,10 @@
             android:backgroundTint="@color/purple_200"
             android:hint="المسافة بين الأهل والسكن"
             android:textColor="@color/black"
+            android:fontFamily="@font/jaz_bold"
             android:inputType="number"
             android:textSize="16sp" />
+
         <EditText
             android:id="@+id/DistanceToCollege"
             android:layout_width="fill_parent"
@@ -246,9 +254,11 @@
             android:layout_margin="10dp"
             android:backgroundTint="@color/purple_200"
             android:hint="المسافة عن الكلية"
-            android:textColor="@color/black"
             android:inputType="number"
+            android:fontFamily="@font/jaz_bold"
+            android:textColor="@color/black"
             android:textSize="16sp" />
+
         <EditText
             android:id="@+id/Transportation"
             android:layout_width="fill_parent"
@@ -276,6 +286,7 @@
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:inputType="numberDecimal"
+                android:fontFamily="@font/jaz_bold"
                 android:layout_height="40dp" />
             <Spinner
                 android:id="@+id/TransportationCoinType"
@@ -321,6 +332,7 @@
                 android:textSize="14sp"
                 android:paddingStart="10dp"
                 android:padding="5dp"
+                android:fontFamily="@font/jaz_bold"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:inputType="numberDecimal"
@@ -344,6 +356,7 @@
             android:focusable="false"
             android:textSize="16sp"
             android:focusableInTouchMode="false"
+            android:fontFamily="@font/jaz_bold"
             android:hint="تاريخ الاستلام" />
         <EditText
             android:id="@+id/GraduationExpectedYear"
@@ -353,6 +366,7 @@
             android:backgroundTint="@color/purple_200"
             android:inputType="number"
             android:hint="السنة المتوقعة للتخرج"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
         <EditText
@@ -363,6 +377,7 @@
             android:backgroundTint="@color/purple_200"
             android:inputType="numberDecimal"
             android:hint="المعدل التراكمي"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:textSize="16sp" />
         <Button

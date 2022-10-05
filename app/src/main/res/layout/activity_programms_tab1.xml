@@ -81,6 +81,7 @@
                 android:padding="5dp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:inputType="number"
                 android:layout_height="40dp" />
             <Spinner
@@ -99,6 +100,7 @@
             android:textSize="16sp"
             android:textColor="@color/black"
             android:inputType="number"
+            android:fontFamily="@font/jaz_bold"
             android:backgroundTint="@color/purple_200" />
         <EditText
             android:id="@+id/IdentityNumber"
@@ -107,6 +109,7 @@
             android:layout_margin="10dp"
             android:hint="رقم الوثيقة"
             android:textSize="16sp"
+            android:fontFamily="@font/jaz_bold"
             android:textColor="@color/black"
             android:backgroundTint="@color/purple_200" />
         <LinearLayout
@@ -132,16 +135,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"/>
         </LinearLayout>
+
         <EditText
             android:id="@+id/RecipientName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="اسم المستلم"
-            android:textSize="16sp"
+            android:backgroundTint="@color/purple_200"
             android:fontFamily="@font/jaz_bold"
+            android:hint="اسم المستلم"
             android:textColor="@color/black"
-            android:backgroundTint="@color/purple_200" />
+            android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

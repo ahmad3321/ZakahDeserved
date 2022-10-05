@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="قيمة الأجار" />
 
             <EditText
@@ -94,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="المساحة المسقوفة" />
 
             <EditText
@@ -102,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد الغرف" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -211,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد الموبايلات" />
             <EditText
                 android:id="@+id/Routers"
@@ -218,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد الراوترات" />
             <EditText
                 android:id="@+id/TVs"
@@ -225,6 +230,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد التلفازات" />
             <EditText
                 android:id="@+id/Fridges"
@@ -232,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد الثلاجات" />
             <EditText
                 android:id="@+id/Cars"
@@ -239,6 +246,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد السيارات" />
             <EditText
                 android:id="@+id/Motorcycles"
@@ -246,6 +254,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد الموتورات" />
 
 <LinearLayout
@@ -312,6 +321,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="textMultiLine"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="وصف عام للسكن" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -345,6 +355,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد ألواح الطاقة" />
             <EditText
                 android:id="@+id/SolarPanelsAmpCount"
@@ -354,6 +365,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد أمبيرات الطاقة" />
             <EditText
                 android:id="@+id/AmpCount"
@@ -363,6 +375,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد أمبيرات مولدة" />
             <EditText
                 android:id="@+id/OneAmpValue"
@@ -372,6 +385,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="قيمة أمبير مولدة" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -405,6 +419,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="قيمة استهلاك الشركة" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -439,7 +454,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="الماء المنزلي"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:layout_margin="15dp"
                     android:fontFamily="@font/jaz_bold"
                     android:textColor="@color/black" />
@@ -493,7 +508,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="الدخل"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:layout_margin="15dp"
                     android:fontFamily="@font/jaz_bold"
                     android:textColor="@color/black" />
@@ -547,7 +562,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="الإغاثة"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:layout_margin="15dp"
                     android:fontFamily="@font/jaz_bold"
                     android:textColor="@color/black" />

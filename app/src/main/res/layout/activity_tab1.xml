@@ -35,6 +35,7 @@
                     android:id="@+id/Name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/jaz_bold"
                     android:backgroundTint="@color/purple_200"
                     android:hint="اسم المرشح" />
                 <EditText
@@ -42,6 +43,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="اسم الأب" />
 
                 <EditText
@@ -49,24 +51,28 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="الكنية" />
                 <EditText
                     android:id="@+id/MotherFullName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="اسم الأم الثلاثي" />
                 <EditText
                     android:id="@+id/IdentityNumber"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="رقم الوثيقة" />
                 <EditText
                     android:id="@+id/Record"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="القيد" />
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -88,6 +94,7 @@
                     <Spinner
                         android:id="@+id/lst_IdentityTypes"
                         android:layout_width="150dp"
+                        android:fontFamily="@font/jaz_bold"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp" />
                 </LinearLayout>
@@ -113,6 +120,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="73dp"
+                        android:fontFamily="@font/jaz_bold"
                         android:entries="@array/Gender" />
                 </LinearLayout>
                 <LinearLayout
@@ -144,6 +152,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="التعليل" />
                 <EditText
                     android:id="@+id/BirthDate"
@@ -157,6 +166,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:fontFamily="@font/jaz_bold"
+                    android:textSize="13sp"
                     android:hint="تاريخ الميلاد" />
 
 
@@ -167,6 +177,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
                     android:hint="مكان الولادة" />
 
                 <LinearLayout
@@ -208,6 +219,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@android:drawable/ic_input_add"
+                        android:fontFamily="@font/jaz_bold"
                         android:text="صورة الوثيقة" />
 
                     <Button

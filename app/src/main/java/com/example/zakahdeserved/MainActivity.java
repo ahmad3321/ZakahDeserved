@@ -79,11 +79,14 @@ public class MainActivity extends AppCompatActivity {
                     EmpDepartment = DAL.getDepartment(username.getText().toString());
                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
                        Intent intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-                       startActivity(intent);
-                    } /*else if (EmpDepartment == Constants.DISTRIBUTION_JOB_TITLE) {
-
+                       intent1.putExtra("JobTitle","احصائي"); //احصاء أو توزيع
+                       startActivity(intent1);
+                    } else if (EmpDepartment == Constants.DISTRIBUTION_JOcB_TITLE) {
+                       Intent intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+                       intent1.putExtra("JobTitle","توزيع"); //احصاء أو توزيع
+                       startActivity(intent1);
                     }
-                     */else {
+                     else {
                         Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
                     }
 

@@ -13,8 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="رأي الجوار"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:layout_margin="15dp"
+            android:fontFamily="@font/heaven"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -68,6 +69,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/purple_200"
             android:inputType="textMultiLine"
+            android:fontFamily="@font/jaz_bold"
             android:hint="السبب" />
         <Button
             android:id="@+id/button_submit_list"

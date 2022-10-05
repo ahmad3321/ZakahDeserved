@@ -16,12 +16,13 @@
 
 
     <com.google.android.material.tabs.TabLayout
-        android:background="#FFFFFF"
+        android:background="#0F7313"
         android:elevation="10dp"
-        app:tabTextColor="#b19b9b9b"
-        app:tabSelectedTextColor="#EFBFD5"
-        app:tabIndicatorColor="#9D61FD"
+        app:tabTextColor="#B1FFFFFF"
+        app:tabSelectedTextColor="#FFC107"
+        app:tabIndicatorColor="#0B610E"
         android:id="@+id/tabs"
+        android:theme="@style/TabLay"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

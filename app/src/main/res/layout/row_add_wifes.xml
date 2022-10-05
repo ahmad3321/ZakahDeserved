@@ -130,6 +130,7 @@
                 android:focusable="false"
                 android:textSize="16sp"
                 android:focusableInTouchMode="false"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="تاريخ الولادة" />
             <EditText
                 android:id="@+id/Record"
@@ -222,6 +223,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="numberDecimal"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="الدخل الشهري" />
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -244,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="الحالة الصحية"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:fontFamily="@font/heaven"
                     android:layout_margin="15dp"
                     android:textColor="@color/black" />

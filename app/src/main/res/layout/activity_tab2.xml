@@ -119,6 +119,7 @@
                 android:id="@+id/BuldingSymbol"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/jaz_bold"
                 android:backgroundTint="@color/purple_200"
                 android:hint="رمز البناء" />
             <EditText
@@ -127,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="رقم البناء" />
             <EditText
                 android:id="@+id/AdressDetails"
@@ -155,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_200"
                 android:inputType="number"
-                android:visibility="gone"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="عدد المدخنين" />
             <EditText
                 android:id="@+id/Job"
@@ -233,6 +235,7 @@
                 android:backgroundTint="@color/purple_200"
                 android:inputType="phone"
                 android:textAlignment="viewStart"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="رقم التواصل 1" />
 
             <EditText
@@ -242,6 +245,7 @@
                 android:inputType="phone"
                 android:textAlignment="viewStart"
                 android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
                 android:hint="رقم التواصل 2" />
             <EditText
                 android:id="@+id/RelationWithContact2"
