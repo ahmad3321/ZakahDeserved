@@ -25,8 +25,8 @@ public class DBHelper {
 
     //لا نضمن AutoIncrement ID في الحقول حتى لا يظهر في تعليمة الإدخال فيعطي خطأ
 
-    public static String[] PersonsColumns = new String[]{"PersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName", "Gender",
-            "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
+    public static String[] PersonsColumns = new String[]{"PersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName",
+            "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "Gender", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
             "WhoIs", "IsWorking", "Record", "MonthlyIncome", "CoinType"};
 
     public static String[] FamiliesColumns = new String[]{"ZakatID", "OrginalCity", "OrginalTown", "OrginalVillage", "City", "Town", "Village",
@@ -201,6 +201,5 @@ public class DBHelper {
 
         return value;
     }
-
 
 }

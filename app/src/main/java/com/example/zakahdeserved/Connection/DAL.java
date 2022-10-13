@@ -439,6 +439,43 @@ public class DAL {
         return success;
     }
 
+    public static ArrayList<PackageRecord> getPackeges(String query) {
+        Connect();
+
+        ArrayList<PackageRecord> lstPackage = new ArrayList<>();
+
+        Statement st = null;
+        try {
+            st = connection.createStatement();
+
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                lstPackage.add(new PackageRecord(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ignored) {
+            }// do nothing
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        return lstPackage;
+    }
+
     public static HashMap<String, String> getSpinnerItems(String spinnerName) {
         String query = "select * from " + spinnerName;
         HashMap<String, String> itemsArray = new HashMap<>();
@@ -463,6 +500,48 @@ public class DAL {
                     st.close();
                 }
             } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        return itemsArray;
+    }
+
+    public static ArrayList<SQLiteRecord> getTableData(String tableName, List<String> Columns, String query, List<Integer> filePositions) {
+        ArrayList<SQLiteRecord> itemsArray = new ArrayList<>();
+
+        DAL.Connect();
+        Statement st = null;
+
+        try {
+            st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                HashMap<String, Object> dataTable = new HashMap<>();
+                for (int i = 0; i < Columns.size(); i++) {
+                    if (filePositions.contains(i + 1))  //if pdf file
+                        dataTable.put(Columns.get(i), rs.getBlob(i + 1));
+                    else
+                        dataTable.put(Columns.get(i), rs.getString(i + 1));
+                }
+                itemsArray.add(new SQLiteRecord(tableName, dataTable));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            isConnected = false;
+        } finally {
+            //finally block used to close resources
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ignored) {
             }// do nothing
             try {
                 if (connection != null) {

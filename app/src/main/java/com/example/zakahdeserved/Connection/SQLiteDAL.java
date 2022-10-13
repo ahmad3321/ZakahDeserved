@@ -5,21 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Selection;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SQLiteDAL extends SQLiteOpenHelper {
@@ -94,6 +87,10 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         String SurveyConclusionCreate = "CREATE TABLE 'survey_conclusions' ( 'ID' TEXT  , 'ZakatID' TEXT , 'NeighborName' TEXT ," +
                 " 'IfRented' TEXT , 'IfIncome' TEXT , 'IfKidsWorking' TEXT , 'IfAssets' TEXT , 'IfPoor' TEXT , 'Why' TEXT) ;";
 
+
+        String PackagesCreate = "CREATE TABLE 'Packages' ( 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
+                " 'ToEmployeeCode' TEXT, 'Package' TEXT) ;";
+
         db.execSQL(spinnersCreate);
         db.execSQL(queriesCreate);
         db.execSQL(PersonCreate);
@@ -106,11 +103,24 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         db.execSQL(AidsCreate);
         db.execSQL(AssetsCreate);
         db.execSQL(SurveyConclusionCreate);
+        db.execSQL(PackagesCreate);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("Drop Table If Exists " + TABLE_SPINNERS);
+        db.execSQL("Drop Table If Exists " + TABLE_QUERIES);
+        db.execSQL("Drop Table If Exists " + "persons");
+        db.execSQL("Drop Table If Exists " + "families");
+        db.execSQL("Drop Table If Exists " + "health_statuses");
+        db.execSQL("Drop Table If Exists " + "husbands");
+        db.execSQL("Drop Table If Exists " + "housing_informations");
+        db.execSQL("Drop Table If Exists " + "incomes");
+        db.execSQL("Drop Table If Exists " + "water_types");
+        db.execSQL("Drop Table If Exists " + "aids");
+        db.execSQL("Drop Table If Exists " + "assets");
+        db.execSQL("Drop Table If Exists " + "survey_conclusions");
+        db.execSQL("Drop Table If Exists " + "Packages");
         onCreate(db);
     }
 
@@ -168,20 +178,15 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addQuery(String query) {
-
-        boolean success = false;
+    public void addQuery(String query) {
 
         try {
             SQLiteDatabase db = getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put("QueryContents", query);
             db.insert(TABLE_QUERIES, null, contentValues);
-            success = true;
         } catch (Exception ignored) {
 
-        } finally {
-            return success;
         }
     }
 
@@ -221,8 +226,12 @@ public class SQLiteDAL extends SQLiteOpenHelper {
     }
 
     public void clearQueries() {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("Delete from " + TABLE_QUERIES);
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("Delete from " + TABLE_QUERIES);
+        } catch (Exception ex) {
+            Log.d("SQLITEErr", ex.toString());
+        }
     }
 
     public ArrayList<SQLiteRecord> getFamilyInfo(String ZaktID) {
@@ -381,4 +390,67 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return new SQLiteRecord(table, row);
     }
 
+    public void RefreshPackages(ArrayList<PackageRecord> lstPackages) {
+        try {
+
+            SQLiteDatabase db = getWritableDatabase();
+
+            for (int i = 0; i < lstPackages.size(); i++) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("ZakatID", lstPackages.get(i).ZakatID);
+                contentValues.put("PersonID", lstPackages.get(i).PersonID);
+                contentValues.put("Program", lstPackages.get(i).Program);
+                contentValues.put("FromEmployeeCode", lstPackages.get(i).FromEmployeeCode);
+                contentValues.put("ToEmployeeCode", lstPackages.get(i).ToEmployeeCode);
+                contentValues.put("Package", lstPackages.get(i).Package);
+
+                db.insert("Packages", null, contentValues);
+            }
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    public void ClearAllRecords() {
+        ClearTable("persons");
+        ClearTable("families");
+        ClearTable("health_statuses");
+        ClearTable("husbands");
+        ClearTable("housing_informations");
+        ClearTable("incomes");
+        ClearTable("water_types");
+        ClearTable("aids");
+        ClearTable("assets");
+        ClearTable("survey_conclusions");
+        ClearTable("Packages");
+    }
+
+    private void ClearTable(String tableName) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("Delete from " + tableName);
+        } catch (Exception ex) {
+            Log.d("SQLITEErr", ex.toString());
+        }
+    }
+
+    public void insertAllRecords(ArrayList<SQLiteRecord> AllFamilyRecords) {//String tableName, ArrayList<HashMap<String, Object>> Records) {
+
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+
+            for (SQLiteRecord sqLiteRecord : AllFamilyRecords) {
+                for (Map.Entry<String, Object> entry : sqLiteRecord.getRecord().entrySet()) {
+
+                    if (!(entry.getValue() instanceof String))//for bdf files
+                        contentValues.put(entry.getKey(), (byte[]) entry.getValue());
+                    else
+                        contentValues.put(entry.getKey(), (String) entry.getValue());
+                }
+                db.insert(sqLiteRecord.tableName, null, contentValues);
+            }
+        } catch (Exception ignored) {
+        }
+    }
 }

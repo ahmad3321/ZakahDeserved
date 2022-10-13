@@ -6,6 +6,7 @@ import androidx.security.crypto.MasterKey;
 
 import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
+import com.example.zakahdeserved.Connection.ShowRecord;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -37,4 +38,6 @@ public class Constants {
     public static boolean loadingData = false;
 
     public static ArrayList<SQLiteRecord> familyInfo;
+
+    public static ArrayList<ShowRecord> ShwoRecords = new ArrayList<>();
 }
