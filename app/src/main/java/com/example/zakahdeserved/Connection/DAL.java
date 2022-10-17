@@ -40,7 +40,7 @@ public class DAL {
         try {
             Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
             connection = DriverManager.getConnection(
-                    "jdbc:mariadb://191.96.1.66:3306/zakatraising?characterEncoding=utf8mb4", "admin", "Qwe123@Qwe123");
+                    "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_contabo", "wRps04*60");
         } catch (Exception exc) {
             exc.printStackTrace();
             isConnected = false;

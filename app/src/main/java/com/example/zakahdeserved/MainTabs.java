@@ -57,11 +57,11 @@ public class MainTabs extends AppCompatActivity {
     private void setupTabIcons() {
 
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText("Entertain");
+        tabOne.setText("الاستمارة الشخصية");
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+       /* TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText("Music");
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
@@ -69,15 +69,15 @@ public class MainTabs extends AppCompatActivity {
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabThree.setText("News");
         tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_enter_selected, 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
+        tabLayout.getTabAt(2).setCustomView(tabThree);*/
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new EntertainPage(), "Enertain");
-        adapter.addFrag(new MusicPage(), "Music");
-        adapter.addFrag(new NewsPage(), "News");
-        viewPager.setOffscreenPageLimit(3);
+        //adapter.addFrag(new MusicPage(), "Music");
+        //adapter.addFrag(new NewsPage(), "News");
+        viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(adapter);
     }
 

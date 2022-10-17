@@ -63,13 +63,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:focusable="true" />
-        <ImageButton
-            android:id="@+id/btn_Sync"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleType="centerInside"
-            android:background="@color/white"
-            android:src="@drawable/abc" />
+
 
     </LinearLayout>
     </androidx.cardview.widget.CardView>

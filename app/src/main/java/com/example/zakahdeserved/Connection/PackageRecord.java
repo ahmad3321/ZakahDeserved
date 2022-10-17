@@ -1,7 +1,20 @@
 package com.example.zakahdeserved.Connection;
 
 public class PackageRecord {
+    public String getZakatID() {
+        return ZakatID;
+    }
 
+    public String getPersonID() {
+        return PersonID;
+    }
+
+    public String getPackage() {
+        return Package;
+    }
+    public String getProgram() {
+        return Program;
+    }
     public String ZakatID, PersonID, Program, FromEmployeeCode, ToEmployeeCode, Package;
 
     public PackageRecord(String zakatID, String personID, String program, String fromEmployeeCode, String toEmployeeCode, String aPackage) {

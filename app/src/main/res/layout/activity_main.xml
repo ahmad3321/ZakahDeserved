@@ -42,6 +42,7 @@
                     android:fontFamily="@font/watan"
                     android:text="الهيئة العامة للزكاة"
                     android:textSize="35sp" />
+
                 <include layout="@layout/layout_login" />
 
             </LinearLayout>
