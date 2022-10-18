@@ -25,17 +25,16 @@ import com.example.zakahdeserved.Utility.Constants;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class PackageView extends AppCompatActivity {
 
-    LinearLayout layoutAsset;
-    Button buttonAdd,buttonAddIncome,buttonAddAids;
-    Button btn_download,btn_upload,btn_refresh;
+    Button btn_download, btn_upload, btn_refresh;
     ImageButton btn_Sync;
-    ArrayList<PackageRecord> lstPackages;
+    ArrayList<PackageRecord> lstPackages = new ArrayList<>();
 
 
     @Override
@@ -49,37 +48,35 @@ public class PackageView extends AppCompatActivity {
 
 
         btn_Sync.setOnClickListener(view -> {
-            try {
-                new PackageView.TestAsync().execute();
-            } catch (Exception ex) {
-            }
+
         });
     }
 
     public void onClick_UDR(View view) {
 
-        switch (view.getId()){
-            case R.id.btn_download :
-                addView(lstPackages);
+        switch (view.getId()) {
+            case R.id.btn_download:
+                try {
+                    (new TestAsync()).execute();
+                } catch (Exception ignored) {
+                }
                 break;
-            case R.id.btn_upload :
+            case R.id.btn_upload:
                 break;
-            case R.id.btn_Refresh :
+            case R.id.btn_Refresh:
                 break;
         }
-
-
     }
+
     private void addView(ArrayList<PackageRecord> list) {
 
-        LayoutInflater linf = (LayoutInflater) getApplicationContext().getSystemService(getApplicationContext().LAYOUT_INFLATER_SERVICE);
-        linf = LayoutInflater.from(PackageView.this);
+        LayoutInflater linf = LayoutInflater.from(PackageView.this);
 
         //Linear Layout on you want to add inflated View
-        LinearLayout layout_list_Add=(LinearLayout)findViewById(R.id.layout_list_Add);
-        LinearLayout layout_list_Update=(LinearLayout)findViewById(R.id.layout_list_Update);
-        LinearLayout layout_list_Refresh=(LinearLayout)findViewById(R.id.layout_list_Refresh);
-        LinearLayout layout_list_Program=(LinearLayout)findViewById(R.id.layout_list_Program);
+        LinearLayout layout_list_Add = findViewById(R.id.layout_list_Add);
+        LinearLayout layout_list_Update = findViewById(R.id.layout_list_Update);
+        LinearLayout layout_list_Refresh = findViewById(R.id.layout_list_Refresh);
+        LinearLayout layout_list_Program = findViewById(R.id.layout_list_Program);
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -89,29 +86,29 @@ public class PackageView extends AppCompatActivity {
             ((EditText) v.findViewById(R.id.PersonID)).setText(list.get(0).getPersonID());
             ((EditText) v.findViewById(R.id.Program)).setText(list.get(0).getProgram());
 
-            switch (packageName){
-                case"إضافة":
+            switch (packageName) {
+                case "إضافة":
                     layout_list_Add.addView(v);
                     break;
-                case"تعديل":
+                case "تعديل":
                     layout_list_Update.addView(v);
                     break;
-                case"تحديث":
+                case "تحديث":
                     layout_list_Refresh.addView(v);
                     break;
-                case"توزيع":
+                case "توزيع":
                     layout_list_Program.addView(v);
                     break;
             }
         }
-
     }
+
     class TestAsync extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
 
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(PackageView.this, "بدأت عملية المزامنة .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PackageView.this, "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
             Log.d(TAG + " PreExceute", "On pre Exceute......");
         }
 
@@ -139,20 +136,21 @@ public class PackageView extends AppCompatActivity {
 
 
                 //get packages info from server
-                lstPackages = DAL.getPackeges("SELECT ZakatID, PersonID, Program," +
+                lstPackages = DAL.getPackeges("SELECT packages.PackageID,ZakatID, PersonID, Program," +
                         " FromEmployeeCode, ToEmployeeCode, Package\n" +
                         "FROM zakatraising.packages \n" +
                         "INNER JOIN zakatraising.package_contents \n" +
                         "on zakatraising.packages.packageID = zakatraising.package_contents.packageID\n" +
-                        " where packages.ToEmployeeCode = " + empCode + " and package_contents.PackageStatus = 'قيد العمل';");
-
-                //store packages info locally
-                Constants.SQLITEDAL.RefreshPackages(lstPackages);
+                        " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
 
 
                 // Clear all stored informations about families
                 Constants.SQLITEDAL.ClearAllRecords();
                 Constants.ShwoRecords.clear();
+
+                //store packages info locally
+                Constants.SQLITEDAL.StorePackages(lstPackages);
+
 
                 // get families informations from server
                 for (int i = 0; i < lstPackages.size(); i++) {
@@ -167,7 +165,7 @@ public class PackageView extends AppCompatActivity {
 
                     // get how many persons in the family
                     for (int j = 0; j < AllFamilyRecords.size(); j++)
-                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(i).getRecord().get("PersonID")).toString());
+                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(j).getRecord().get("PersonID")).toString());
 
 
                     //get from families table
@@ -191,15 +189,15 @@ public class PackageView extends AppCompatActivity {
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                     Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-                                    lstPackages.get(i).Package));
+                                    lstPackages.get(i).Package,
+                                    lstPackages.get(i).Program));
                         continue;   //don't get more information
                     }
 
 
                     //get from health_statuses table
-//                    ArrayList<HashMap<String, Object>> health_statusesRecords = new ArrayList<>();
                     for (String personID : PersonsIDs) {
-                        List<String> health_statusesColumns = Arrays.asList(DBHelper.Helth_StatusesColumns);
+                        List<String> health_statusesColumns = new LinkedList<>(Arrays.asList(DBHelper.Helth_StatusesColumns));
                         health_statusesColumns.add(0, "HealthStatusID");
                         AllFamilyRecords.addAll(DAL.getTableData("health_statuses", health_statusesColumns,
                                 "select " + String.join(",", health_statusesColumns) + " from health_statuses where PersonID like '" + personID + "';",
@@ -219,7 +217,7 @@ public class PackageView extends AppCompatActivity {
                             List.of()));
 
                     //get from incomes table
-                    List<String> incomesColumns = Arrays.asList(DBHelper.IncomesColumns);
+                    List<String> incomesColumns = new LinkedList<>(Arrays.asList(DBHelper.IncomesColumns));
                     incomesColumns.add(0, "ID");
                     AllFamilyRecords.addAll(DAL.getTableData("incomes", incomesColumns,
                             "select " + String.join(",", incomesColumns) + " from incomes where ZakatID like '" + zakatId + "';",
@@ -227,7 +225,7 @@ public class PackageView extends AppCompatActivity {
 
 
                     //get from water_types table
-                    List<String> waterTypesColumns = Arrays.asList(DBHelper.WaterTypesColumns);
+                    List<String> waterTypesColumns = new LinkedList<>(Arrays.asList(DBHelper.WaterTypesColumns));
                     waterTypesColumns.add(0, "WaterTypeID");
                     AllFamilyRecords.addAll(DAL.getTableData("water_types", waterTypesColumns,
                             "select " + String.join(",", waterTypesColumns) + " from water_types where ZakatID like '" + zakatId + "';",
@@ -235,7 +233,7 @@ public class PackageView extends AppCompatActivity {
 
 
                     //get from aids table
-                    List<String> aidsColumns = Arrays.asList(DBHelper.AidsColumns);
+                    List<String> aidsColumns = new LinkedList<>(Arrays.asList(DBHelper.AidsColumns));
                     aidsColumns.add(0, "AidID");
                     AllFamilyRecords.addAll(DAL.getTableData("aids", aidsColumns,
                             "select " + String.join(",", aidsColumns) + " from aids where ZakatID like '" + zakatId + "';",
@@ -243,7 +241,7 @@ public class PackageView extends AppCompatActivity {
 
 
                     //get from assets table
-                    List<String> assetsColumns = Arrays.asList(DBHelper.AssetsColumns);
+                    List<String> assetsColumns = new LinkedList<>(Arrays.asList(DBHelper.AssetsColumns));
                     assetsColumns.add(0, "AssetID");
                     AllFamilyRecords.addAll(DAL.getTableData("assets", assetsColumns,
                             "select " + String.join(",", assetsColumns) + " from assets where ZakatID like '" + zakatId + "';",
@@ -251,7 +249,7 @@ public class PackageView extends AppCompatActivity {
 
 
                     //get from survey_conclusions table
-                    List<String> survey_conclusionsColumns = Arrays.asList(DBHelper.SurveyConclusionColumns);
+                    List<String> survey_conclusionsColumns = new LinkedList<>(Arrays.asList(DBHelper.SurveyConclusionColumns));
                     survey_conclusionsColumns.add(0, "ID");
                     AllFamilyRecords.addAll(DAL.getTableData("survey_conclusions", survey_conclusionsColumns,
                             "select " + String.join(",", survey_conclusionsColumns) + " from survey_conclusions where ZakatID like '" + zakatId + "';",
@@ -271,7 +269,8 @@ public class PackageView extends AppCompatActivity {
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                 Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-                                lstPackages.get(i).Package));
+                                lstPackages.get(i).Package,
+                                lstPackages.get(i).Program));
                 }
 
                 return "true";
@@ -288,13 +287,25 @@ public class PackageView extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result.equalsIgnoreCase("true")) {
-                Toast.makeText(PackageView.this, "تمت عملية المزامنة بنجاح", Toast.LENGTH_SHORT).show();
+
+                ArrayList<String> packagesIDs = new ArrayList<>();
+                for (PackageRecord packageRecord : lstPackages)
+                    packagesIDs.add(packageRecord.PackageID);
+                String packagesDoneQuery = "UPDATE 'package_contents' SET 'PackageStatus' = 'تم الانتهاء منها' " +
+                        " WHERE 'PackageID' in (" + String.join(",", packagesIDs) + ") ;";
+
+                if (!DAL.executeQueries(packagesDoneQuery))
+                    Constants.SQLITEDAL.addQuery(packagesDoneQuery);
+
+
+                runOnUiThread(() -> addView(lstPackages));
+
+                Toast.makeText(PackageView.this, "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(PackageView.this, "لم تتم عملية المزامنة", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PackageView.this, "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
         }
     }
-
 
 }

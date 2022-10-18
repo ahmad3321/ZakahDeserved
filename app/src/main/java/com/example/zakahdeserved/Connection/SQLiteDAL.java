@@ -390,7 +390,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return new SQLiteRecord(table, row);
     }
 
-    public void RefreshPackages(ArrayList<PackageRecord> lstPackages) {
+    public void StorePackages(ArrayList<PackageRecord> lstPackages) {
         try {
 
             SQLiteDatabase db = getWritableDatabase();
@@ -438,9 +438,9 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         try {
             SQLiteDatabase db = getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
 
             for (SQLiteRecord sqLiteRecord : AllFamilyRecords) {
+                ContentValues contentValues = new ContentValues();
                 for (Map.Entry<String, Object> entry : sqLiteRecord.getRecord().entrySet()) {
 
                     if (!(entry.getValue() instanceof String))//for bdf files

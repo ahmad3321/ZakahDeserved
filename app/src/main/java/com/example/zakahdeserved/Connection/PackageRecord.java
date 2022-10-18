@@ -15,14 +15,15 @@ public class PackageRecord {
     public String getProgram() {
         return Program;
     }
-    public String ZakatID, PersonID, Program, FromEmployeeCode, ToEmployeeCode, Package;
+    public String PackageID,ZakatID, PersonID, Program, FromEmployeeCode, ToEmployeeCode, Package;
 
-    public PackageRecord(String zakatID, String personID, String program, String fromEmployeeCode, String toEmployeeCode, String aPackage) {
+    public PackageRecord(String packageID, String zakatID, String personID, String program, String fromEmployeeCode, String toEmployeeCode, String aPackage) {
+        PackageID = packageID;
         ZakatID = zakatID;
         PersonID = personID;
         Program = program;
         FromEmployeeCode = fromEmployeeCode;
-        Package = aPackage;
         ToEmployeeCode = toEmployeeCode;
+        Package = aPackage;
     }
 }
