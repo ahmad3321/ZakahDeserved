@@ -48,21 +48,6 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/button_submit_list_Add"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/round_primary"
-                    android:onClick="onClick"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Submit List"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/UpdatePackageLayout"
@@ -86,21 +71,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/button_submit_list_Update"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -126,21 +96,6 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/button_submit_list_Refresh"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
-
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ProgramPackageLayout"
@@ -165,38 +120,14 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/button_submit_list_Program"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
-
             </LinearLayout>
-            <ImageButton
-                android:id="@+id/btn_Sync"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerInside"
-                android:background="@color/white"
-                android:src="@drawable/abc" />
 
             <Button
                 android:id="@+id/btn_upload"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/round_primary1"
                 android:onClick="onClick_UDR"

@@ -25,10 +25,23 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
         <EditText
-            android:id="@+id/PersonID"
+            android:id="@+id/city"
             android:layout_marginStart="10dp"
             android:background="@drawable/round_grey"
-            android:hint="ID"
+            android:hint="المدينة"
+            android:textSize="14sp"
+            android:paddingStart="30dp"
+            android:fontFamily="@font/jaz_bold"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:enabled="false"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        <EditText
+            android:id="@+id/town"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="القرية"
             android:textSize="14sp"
             android:paddingStart="50dp"
             android:fontFamily="@font/jaz_bold"
@@ -38,10 +51,10 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
         <EditText
-            android:id="@+id/Program"
+            android:id="@+id/name"
             android:layout_marginStart="10dp"
             android:background="@drawable/round_grey"
-            android:hint="الرنامج"
+            android:hint="الاسم"
             android:textSize="14sp"
             android:paddingStart="50dp"
             android:fontFamily="@font/jaz_bold"
@@ -51,8 +64,19 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
 
-
-
+        <EditText
+            android:id="@+id/program"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_grey"
+            android:hint="البرنامج"
+            android:textSize="14sp"
+            android:paddingStart="50dp"
+            android:fontFamily="@font/jaz_bold"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:enabled="false"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
 
     </LinearLayout>
 </HorizontalScrollView>

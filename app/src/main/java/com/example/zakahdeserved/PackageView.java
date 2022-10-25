@@ -41,15 +41,10 @@ public class PackageView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.packageview);
-        btn_Sync = findViewById(R.id.btn_Sync);
+       // btn_Sync = findViewById(R.id.btn_Sync);
         btn_download = findViewById(R.id.btn_download);
         btn_upload = findViewById(R.id.btn_upload);
         btn_refresh = findViewById(R.id.btn_Refresh);
-
-
-        btn_Sync.setOnClickListener(view -> {
-
-        });
     }
 
     public void onClick_UDR(View view) {
@@ -68,7 +63,7 @@ public class PackageView extends AppCompatActivity {
         }
     }
 
-    private void addView(ArrayList<PackageRecord> list) {
+    private void addView(ArrayList<ShowRecord> list) {
 
         LayoutInflater linf = LayoutInflater.from(PackageView.this);
 
@@ -81,10 +76,12 @@ public class PackageView extends AppCompatActivity {
         for (int i = 0; i < list.size(); i++) {
 
             View v = linf.inflate(R.layout.row_add_package, null);//Pass your lineraLayout
-            String packageName = list.get(0).getPackage();
+            String packageName = list.get(0).getPackageType();
             ((EditText) v.findViewById(R.id.ZakatID)).setText(list.get(0).getZakatID());
-            ((EditText) v.findViewById(R.id.PersonID)).setText(list.get(0).getPersonID());
-            ((EditText) v.findViewById(R.id.Program)).setText(list.get(0).getProgram());
+            ((EditText) v.findViewById(R.id.city)).setText(list.get(0).getCity());
+            ((EditText) v.findViewById(R.id.town)).setText(list.get(0).getTown());
+            ((EditText) v.findViewById(R.id.Name)).setText(list.get(0).getName());
+            ((EditText) v.findViewById(R.id.program)).setText(list.get(0).getProgram());
 
             switch (packageName) {
                 case "إضافة":
@@ -298,7 +295,7 @@ public class PackageView extends AppCompatActivity {
                     Constants.SQLITEDAL.addQuery(packagesDoneQuery);
 
 
-                runOnUiThread(() -> addView(lstPackages));
+                runOnUiThread(() -> addView(Constants.ShwoRecords));
 
                 Toast.makeText(PackageView.this, "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
