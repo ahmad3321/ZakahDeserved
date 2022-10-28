@@ -1,7 +1,11 @@
 package com.example.zakahdeserved.ChildFragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +15,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteDAL;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -28,7 +39,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     LinearLayout layoutWife, layout_list_Wifes_HealthStatus;
     Button buttonAdd, button_add_WifesHealthStatus;
     Button buttonSubmitList;
-
+    Button btn_Image_Document_Person, btn_Image_Document_Person_delete;
+    private static final int pic_id = 1;
+    ArrayList<byte[]> ImagesByte = new ArrayList<>();
+    Document document;
     Calendar myCalendar;
 
     public Tab8() {
@@ -49,6 +63,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.activity_tab8, container, false);
 
         Constants.view8 = view;
+        document = new Document();
+        btn_Image_Document_Person = view.findViewById(R.id.btn_Image_Document_Person);
+        btn_Image_Document_Person_delete = view.findViewById(R.id.btn_Image_Document_Person_delete);
 
         buttonAdd = view.findViewById(R.id.button_add_Wifes);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Wifes);
@@ -59,6 +76,19 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
 
+        btn_Image_Document_Person.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(camera_intent, pic_id);
+            }
+        });
+        btn_Image_Document_Person_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagesByte = new ArrayList<>();
+            }
+        });
 
         if (Constants.loadingData)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
@@ -105,7 +135,6 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         });
 
         linearLayout.addView(WifeView);
-
 
         button_add_WifesHealthStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +214,25 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         linear.removeView(view);
 
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            switch (requestCode) {
+                case pic_id:
+                    if (data != null) {
+                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
+                        byte[] byte_arr = stream.toByteArray();
+                        ImagesByte.add(byte_arr);
+                    }
+                    break;
+            }
+        } catch (Exception ex) {
+            Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
+        }
+    }
     private void addView() {
 
         final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
@@ -215,5 +262,26 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         String myFormat = "yyyy-MM-dd HH:mm";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         txtDate.setText(sdf.format(myCalendar.getTime()));
+    }
+    public String ConvertImagesToPdf(){
+        Image image1;
+        ByteArrayOutputStream baos = null;
+        String pdfString="";
+        try {
+            for (int i = 0; i < ImagesByte.size(); i++) {
+                baos = new ByteArrayOutputStream();
+                PdfWriter pdfWriter = PdfWriter.getInstance(document, baos);
+                image1 = Image.getInstance(ImagesByte.get(i));
+                document.open();
+                document.add(image1);
+                document.close();
+                pdfWriter.flush();
+                byte[] pdfByteArray = baos.toByteArray();
+                pdfString = Base64.encodeToString(pdfByteArray, Base64.DEFAULT);
+            }
+        }catch (Exception ex){
+            Toast.makeText(getContext(),ex.toString(),Toast.LENGTH_LONG).show();
+        }
+        return pdfString;
     }
 }

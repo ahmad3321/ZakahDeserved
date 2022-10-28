@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 if (isSuccess) {
                     EmpDepartment = DAL.getDepartment(username.getText().toString());
                     if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
-                        Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
+                        Intent intent1 = new Intent(getApplicationContext(), MainTabs.class);
                         intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع
                         startActivity(intent1);
                     } else if (EmpDepartment == Constants.DISTRIBUTION_JOcB_TITLE) {
-                        Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
+                        Intent intent1 = new Intent(getApplicationContext(), MainTabs.class);
                         intent1.putExtra("JobTitle", "توزيع"); //احصاء أو توزيع
                         startActivity(intent1);
                     } else {

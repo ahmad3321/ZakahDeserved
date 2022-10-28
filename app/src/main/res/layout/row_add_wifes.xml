@@ -238,6 +238,31 @@
                     android:entries="@array/CoinType" />
             </FrameLayout>
             <LinearLayout
+                android:id="@+id/linear_image7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_Image_Document_Person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@android:drawable/ic_input_add"
+                    android:fontFamily="@font/jaz_bold"
+                    android:text="اضافة الوثائق" />
+
+                <Button
+                    android:id="@+id/btn_Image_Document_Person_delete"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:drawable/ic_delete"
+                    android:onClick="btn_Image_Document_Person_delete"
+                    app:backgroundTint="#C50505" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

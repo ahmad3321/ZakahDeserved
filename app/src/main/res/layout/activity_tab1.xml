@@ -214,21 +214,21 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btn_Image_soq_invoice"
+                        android:id="@+id/btn_Image_Document"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@android:drawable/ic_input_add"
                         android:fontFamily="@font/jaz_bold"
-                        android:text="صورة الوثيقة" />
+                        android:text="اضافة الوثائق" />
 
                     <Button
-                        android:id="@+id/btn_Image_exem_deletee"
+                        android:id="@+id/btn_Image_Document_delete"
                         android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@android:drawable/ic_delete"
-                        android:onClick="btn_delete_images"
+                        android:onClick="btn_Image_Document_delete"
                         app:backgroundTint="#C50505" />
                 </LinearLayout>
             </LinearLayout>
