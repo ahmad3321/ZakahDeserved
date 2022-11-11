@@ -1,5 +1,6 @@
 package com.example.zakahdeserved;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -33,7 +33,6 @@ import java.util.Optional;
 public class PackageView extends AppCompatActivity {
 
     Button btn_download, btn_upload, btn_refresh;
-    ImageButton btn_Sync;
     ArrayList<PackageRecord> lstPackages = new ArrayList<>();
 
 
@@ -41,10 +40,18 @@ public class PackageView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.packageview);
-       // btn_Sync = findViewById(R.id.btn_Sync);
+        // btn_Sync = findViewById(R.id.btn_Sync);
         btn_download = findViewById(R.id.btn_download);
         btn_upload = findViewById(R.id.btn_upload);
         btn_refresh = findViewById(R.id.btn_Refresh);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DBHelper.getPackagesFromSQLite();
+        runOnUiThread(() -> addView(Constants.ShwoRecords));
     }
 
     public void onClick_UDR(View view) {
@@ -59,11 +66,13 @@ public class PackageView extends AppCompatActivity {
             case R.id.btn_upload:
                 break;
             case R.id.btn_Refresh:
+                DBHelper.getPackagesFromSQLite();
+                runOnUiThread(() -> addView(Constants.ShwoRecords));
                 break;
         }
     }
 
-    private void addView(ArrayList<ShowRecord> list) {
+    private void addView(ArrayList<ShowRecord> listShowRecords) {
 
         LayoutInflater linf = LayoutInflater.from(PackageView.this);
 
@@ -73,15 +82,15 @@ public class PackageView extends AppCompatActivity {
         LinearLayout layout_list_Refresh = findViewById(R.id.layout_list_Refresh);
         LinearLayout layout_list_Program = findViewById(R.id.layout_list_Program);
 
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < listShowRecords.size(); i++) {
 
             View v = linf.inflate(R.layout.row_add_package, null);//Pass your lineraLayout
-            String packageName = list.get(0).getPackageType();
-            ((EditText) v.findViewById(R.id.ZakatID)).setText(list.get(0).getZakatID());
-            ((EditText) v.findViewById(R.id.city)).setText(list.get(0).getCity());
-            ((EditText) v.findViewById(R.id.town)).setText(list.get(0).getTown());
-            ((EditText) v.findViewById(R.id.Name)).setText(list.get(0).getName());
-            ((EditText) v.findViewById(R.id.program)).setText(list.get(0).getProgram());
+            String packageName = listShowRecords.get(i).getPackageType();
+            ((EditText) v.findViewById(R.id.ZakatID)).setText(listShowRecords.get(i).getZakatID());
+            ((EditText) v.findViewById(R.id.city)).setText(listShowRecords.get(i).getCity());
+            ((EditText) v.findViewById(R.id.town)).setText(listShowRecords.get(i).getTown());
+            ((EditText) v.findViewById(R.id.Name)).setText(listShowRecords.get(i).getName());
+            ((EditText) v.findViewById(R.id.program)).setText(listShowRecords.get(i).getProgram());
 
             switch (packageName) {
                 case "إضافة":
@@ -97,6 +106,25 @@ public class PackageView extends AppCompatActivity {
                     layout_list_Program.addView(v);
                     break;
             }
+
+            // if clicked on the record, then move to the form.
+            v.setTag(i);
+            ((EditText) v.findViewById(R.id.city)).setOnClickListener(view -> {
+
+                // Initialize form parameters
+                int index = Integer.parseInt(v.getTag().toString());
+                String _zakatID = listShowRecords.get(index).ZakatID;
+                Constants.ZakatID = _zakatID;
+                Constants.PackageID = listShowRecords.get(index).PackageID;
+                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(record -> Objects.equals(record.PackageID, Constants.PackageID)).findFirst();
+                packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
+
+                DBHelper.getfamilyFormFromSQLite(_zakatID);
+                Constants.PersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
+
+                Intent intent = new Intent(getApplicationContext(), MainTabs.class);
+                startActivity(intent);
+            });
         }
     }
 
@@ -133,11 +161,11 @@ public class PackageView extends AppCompatActivity {
 
 
                 //get packages info from server
-                lstPackages = DAL.getPackeges("SELECT packages.PackageID,ZakatID, PersonID, Program," +
+                lstPackages = DAL.getPackeges("SELECT packages.PackageID, ZakatID, PersonID, Program," +
                         " FromEmployeeCode, ToEmployeeCode, Package\n" +
                         "FROM zakatraising.packages \n" +
                         "INNER JOIN zakatraising.package_contents \n" +
-                        "on zakatraising.packages.packageID = zakatraising.package_contents.packageID\n" +
+                        "on zakatraising.packages.PackageID = zakatraising.package_contents.PackageID\n" +
                         " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
 
 
@@ -182,7 +210,7 @@ public class PackageView extends AppCompatActivity {
                                 && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
 
                         if (familyRecord.isPresent() && fatherRecord.isPresent())
-                            Constants.ShwoRecords.add(new ShowRecord(zakatId,
+                            Constants.ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                     Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
@@ -259,10 +287,10 @@ public class PackageView extends AppCompatActivity {
                     // add info to show
                     Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
                     Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-                            && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
+                            && Objects.requireNonNull(x.getRecord().get("WhoIs")).toString().equals("رب الأسرة")).findFirst(); //get the record of father
 
                     if (familyRecord.isPresent() && fatherRecord.isPresent())
-                        Constants.ShwoRecords.add(new ShowRecord(zakatId,
+                        Constants.ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                 Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
@@ -272,6 +300,8 @@ public class PackageView extends AppCompatActivity {
 
                 return "true";
             } catch (Exception ex) {
+                Constants.SQLITEDAL.ClearAllRecords();
+                Constants.ShwoRecords.clear();
                 return "false";
             }
         }
@@ -284,16 +314,6 @@ public class PackageView extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result.equalsIgnoreCase("true")) {
-
-                ArrayList<String> packagesIDs = new ArrayList<>();
-                for (PackageRecord packageRecord : lstPackages)
-                    packagesIDs.add(packageRecord.PackageID);
-                String packagesDoneQuery = "UPDATE 'package_contents' SET 'PackageStatus' = 'تم الانتهاء منها' " +
-                        " WHERE 'PackageID' in (" + String.join(",", packagesIDs) + ") ;";
-
-                if (!DAL.executeQueries(packagesDoneQuery))
-                    Constants.SQLITEDAL.addQuery(packagesDoneQuery);
-
 
                 runOnUiThread(() -> addView(Constants.ShwoRecords));
 

@@ -202,4 +202,7 @@ public class DBHelper {
         return value;
     }
 
+    public static void getPackagesFromSQLite(){
+        Constants.ShwoRecords =  Constants.SQLITEDAL.getAllPackages();
+    }
 }

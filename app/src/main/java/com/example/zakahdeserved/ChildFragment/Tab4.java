@@ -67,7 +67,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         Constants.view4 = view;
 
 
-        if (Constants.loadingData)
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
             DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;

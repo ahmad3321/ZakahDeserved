@@ -11,9 +11,12 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 
+import com.example.zakahdeserved.Utility.Constants;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SQLiteDAL extends SQLiteOpenHelper {
 
@@ -23,7 +26,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null,2);
     }
 
 
@@ -88,7 +91,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 " 'IfRented' TEXT , 'IfIncome' TEXT , 'IfKidsWorking' TEXT , 'IfAssets' TEXT , 'IfPoor' TEXT , 'Why' TEXT) ;";
 
 
-        String PackagesCreate = "CREATE TABLE 'Packages' ( 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
+        String PackagesCreate = "CREATE TABLE 'Packages' ('PackageID' TEXT, 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
                 " 'ToEmployeeCode' TEXT, 'Package' TEXT) ;";
 
         db.execSQL(spinnersCreate);
@@ -232,6 +235,21 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         } catch (Exception ex) {
             Log.d("SQLITEErr", ex.toString());
         }
+    }
+
+    public PackageRecord getPackageRecord(String PackageID) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Packages WHERE PackageID like '" + PackageID + "'; ", null);
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            return new PackageRecord(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                    cursor.getString(4), cursor.getString(5), cursor.getString(6));
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return null;
     }
 
     public ArrayList<SQLiteRecord> getFamilyInfo(String ZaktID) {
@@ -397,6 +415,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
             for (int i = 0; i < lstPackages.size(); i++) {
                 ContentValues contentValues = new ContentValues();
+                contentValues.put("PackageID", lstPackages.get(i).PackageID);
                 contentValues.put("ZakatID", lstPackages.get(i).ZakatID);
                 contentValues.put("PersonID", lstPackages.get(i).PersonID);
                 contentValues.put("Program", lstPackages.get(i).Program);
@@ -434,7 +453,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public void insertAllRecords(ArrayList<SQLiteRecord> AllFamilyRecords) {//String tableName, ArrayList<HashMap<String, Object>> Records) {
+    public void insertAllRecords(ArrayList<SQLiteRecord> AllFamilyRecords) {
 
         try {
             SQLiteDatabase db = getWritableDatabase();
@@ -443,14 +462,50 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 ContentValues contentValues = new ContentValues();
                 for (Map.Entry<String, Object> entry : sqLiteRecord.getRecord().entrySet()) {
 
-                    if (!(entry.getValue() instanceof String))//for bdf files
-                        contentValues.put(entry.getKey(), (byte[]) entry.getValue());
-                    else
-                        contentValues.put(entry.getKey(), (String) entry.getValue());
+//                    if (!(entry.getValue() instanceof String))//for bdf files
+//                        contentValues.put(entry.getKey(), (byte[]) entry.getValue());
+//                    else
+                    contentValues.put(entry.getKey(), (String) entry.getValue());
                 }
                 db.insert(sqLiteRecord.tableName, null, contentValues);
             }
         } catch (Exception ignored) {
         }
     }
+
+    public ArrayList<ShowRecord> getAllPackages() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<ShowRecord> sqliteRecords = new ArrayList<>();
+
+        // get all persons in this family
+        Cursor cursorPackage = db.rawQuery("SELECT * FROM Packages; ", null);
+
+        // Persons Info (person & Helth_statuses)
+        if (cursorPackage != null && cursorPackage.moveToNext()) {
+            cursorPackage.moveToFirst();
+            do {
+                String _zakatID = cursorPackage.getString(1);
+                Cursor cursorFamily = db.rawQuery("SELECT City,Town  FROM families where ZakatID = '" + _zakatID + "'; ", null);
+                Cursor cursorFather = db.rawQuery("SELECT Name FROM persons where ZakatID = '" + _zakatID + "' and  WhoIs = 'رب الأسرة'; ", null);
+
+                if (cursorFamily != null && cursorFamily.moveToNext() && cursorFather != null && cursorFather.moveToNext()) {
+                    cursorFather.moveToFirst();
+                    cursorFamily.moveToFirst();
+                    sqliteRecords.add(new ShowRecord(cursorPackage.getString(0), _zakatID, cursorFamily.getString(0), cursorFamily.getString(1),
+                            cursorFather.getString(0), cursorPackage.getString(6), cursorPackage.getString(3)));
+                }
+                if (cursorFamily != null) {
+                    cursorFamily.close();
+                }
+                if (cursorFather != null) {
+                    cursorFather.close();
+                }
+            } while (cursorPackage.moveToNext());
+            cursorPackage.close();
+
+        }
+        return sqliteRecords;
+    }
+
 }

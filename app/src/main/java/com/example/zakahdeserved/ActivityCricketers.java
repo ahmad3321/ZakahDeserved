@@ -28,6 +28,5 @@ public class ActivityCricketers extends AppCompatActivity {
         HealthStatusesList = (ArrayList<HealthStatuses>) getIntent().getExtras().getSerializable("list");
 
         recyclerHealthStatuses.setAdapter(new HealthStatusesAdapter(HealthStatusesList));
-
     }
 }

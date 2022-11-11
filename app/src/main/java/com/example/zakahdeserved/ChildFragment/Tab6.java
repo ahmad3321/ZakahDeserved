@@ -146,7 +146,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             }
         });
 
-        if (Constants.loadingData)
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
             DBHelper.loadDataToControls(view6, Constants.familyInfo);
         return view6;
     }

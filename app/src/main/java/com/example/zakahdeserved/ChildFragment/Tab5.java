@@ -203,7 +203,7 @@ public class Tab5 extends Fragment {
         Spinner lst_IdentityTypes = view5.findViewById(R.id.lst_IdentityTypes);
         //Constants.SQLITEDAL.fillSpinner(view5.getContext(), lst_IdentityTypes);
 
-        if (Constants.loadingData)
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
             DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
         return view5;
