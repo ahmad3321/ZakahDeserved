@@ -100,6 +100,8 @@
                         android:layout_marginStart="30dp"
                         android:backgroundTint="@color/purple_200"
                         android:inputType="number"
+                        android:enabled="false"
+                        android:textAlignment="center"
                         android:hint="0" />
                 </LinearLayout>
                 <LinearLayout
@@ -124,6 +126,8 @@
                         android:layout_marginStart="32dp"
                         android:backgroundTint="@color/purple_200"
                         android:inputType="number"
+                        android:enabled="false"
+                        android:textAlignment="center"
                         android:hint="0" />
                 </LinearLayout>
                 <LinearLayout
@@ -148,6 +152,8 @@
                         android:layout_marginStart="63dp"
                         android:backgroundTint="@color/purple_200"
                         android:inputType="number"
+                        android:enabled="false"
+                        android:textAlignment="center"
                         android:hint="0" />
                 </LinearLayout>
             </LinearLayout>

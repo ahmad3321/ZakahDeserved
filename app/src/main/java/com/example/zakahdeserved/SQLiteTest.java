@@ -33,26 +33,13 @@ public class SQLiteTest extends AppCompatActivity {
 
         DBHelper.initDatabaseTables();
 
-//        HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("name", "ahmad");
-//        familyInfo.add(new SQLiteRecord("testRecord", hashMap));
         EditText txtZakatID = findViewById(R.id.txtZakatID);
         Button btnLoadDataToFragments = findViewById(R.id.btnLoadDataFromSQLite);
         Spinner spinner = findViewById(R.id.spinner);
         btnLoadDataToFragments.setOnClickListener(view -> {
-//                familyInfo = Constants.SQLITEDAL.getFamilyInfo(txtZakatID.getText().toString());
-//                spinner.setSelection(((ArrayAdapter<String>) spinner.getAdapter()).getPosition("إعانة مالية"));
-//                txtZakatID.setText(getValueOfControl("name", true).toString());
 
 
-            //get data from localDB
-            DBHelper.getfamilyFormFromSQLite(txtZakatID.getText().toString());
 
-            // set to inquiry
-            Constants.loadingData = true;
-
-
-//            DBHelper.loadDataToControls(findViewById(R.id.mainLayout), );
         });
     }
 

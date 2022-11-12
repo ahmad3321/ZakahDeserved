@@ -39,11 +39,13 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     LinearLayout layoutWife, layout_list_Wifes_HealthStatus;
     Button buttonAdd, button_add_WifesHealthStatus;
     Button buttonSubmitList;
-    Button btn_Image_Document_Person, btn_Image_Document_Person_delete;
     private static final int pic_id = 1;
     ArrayList<byte[]> ImagesByte = new ArrayList<>();
     Document document;
     Calendar myCalendar;
+    EditText txtFenmaleCount, txtMaleCount, txtAllCount;
+
+    int femaleCount = 0, maleCount = 0, allMembersCount = 0;
 
     public Tab8() {
         // Required empty public constructor
@@ -64,8 +66,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
         Constants.view8 = view;
         document = new Document();
-        btn_Image_Document_Person = view.findViewById(R.id.btn_Image_Document_Person);
-        btn_Image_Document_Person_delete = view.findViewById(R.id.btn_Image_Document_Person_delete);
+
+        txtAllCount = view.findViewById(R.id.FinalCount);
+        txtFenmaleCount = view.findViewById(R.id.FeMaleCount);
+        txtMaleCount = view.findViewById(R.id.MaleCount);
 
         buttonAdd = view.findViewById(R.id.button_add_Wifes);
         buttonSubmitList = view.findViewById(R.id.button_submit_list_Wifes);
@@ -76,22 +80,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         buttonAdd.setOnClickListener(this);
         buttonSubmitList.setOnClickListener(this);
 
-        btn_Image_Document_Person.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(camera_intent, pic_id);
-            }
-        });
-        btn_Image_Document_Person_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImagesByte = new ArrayList<>();
-            }
-        });
 
-        if (Constants.loadingData)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
+        DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;
     }
@@ -122,26 +113,36 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     private void addView(int id, int imageID, LinearLayout linearLayout) {
 
         final View WifeView = getLayoutInflater().inflate(id, null, false);
+        allMembersCount++;
 
-        ImageView imageClose = (ImageView) WifeView.findViewById(imageID);
-        Button button_add_WifesHealthStatus = (Button) WifeView.findViewById(R.id.button_add_WifesHealthStatus);
-        layout_list_Wifes_HealthStatus = (LinearLayout) WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
+        ImageView imageClose = WifeView.findViewById(imageID);
+        Button button_add_WifesHealthStatus = WifeView.findViewById(R.id.button_add_WifesHealthStatus);
+        layout_list_Wifes_HealthStatus = WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
+        Button btn_Image_Document_Person = WifeView.findViewById(R.id.btn_Image_Document_Person);
+        Button btn_Image_Document_Person_delete = WifeView.findViewById(R.id.btn_Image_Document_Person_delete);
 
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(WifeView, linearLayout);
-            }
+        btn_Image_Document_Person.setOnClickListener(view1 -> {
+            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(camera_intent, pic_id);
+        });
+
+        btn_Image_Document_Person_delete.setOnClickListener(view -> ImagesByte.clear());
+
+
+        imageClose.setOnClickListener(v -> {
+            allMembersCount--;
+            if (((Spinner) WifeView.findViewById(R.id.Gender)).getSelectedItemId() == 0)  //أنثى
+                femaleCount--;
+            else
+                maleCount--;
+            removeView(WifeView, linearLayout);
+
+            refreshFamilyMembersCount();
         });
 
         linearLayout.addView(WifeView);
 
-        button_add_WifesHealthStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addView();
-            }
-        });
+        button_add_WifesHealthStatus.setOnClickListener(v -> addView());
 
         Spinner spnIsWorking = WifeView.findViewById(R.id.IsWorking);
         spnIsWorking.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -181,6 +182,27 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             }
         });
 
+        Spinner Gender = WifeView.findViewById(R.id.Gender);
+        Gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //أنثى
+                {
+                    if (allMembersCount == femaleCount + maleCount)
+                        maleCount--;
+                    femaleCount++;
+                } else {   //ذكر
+                    maleCount++;
+                    femaleCount--;
+                }
+                refreshFamilyMembersCount();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         EditText txtBirthDate = WifeView.findViewById(R.id.BirthDate);
 
@@ -193,15 +215,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             updateLabel(txtBirthDate);
         };
 
-        txtBirthDate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(getContext(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
+        txtBirthDate.setOnClickListener(v -> {
+            new DatePickerDialog(getContext(), date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });
 
 
@@ -210,10 +227,15 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     }
 
     private void removeView(View view, LinearLayout linear) {
-
         linear.removeView(view);
-
     }
+
+    void refreshFamilyMembersCount() {
+        txtFenmaleCount.setText(String.valueOf(femaleCount));
+        txtMaleCount.setText(String.valueOf(maleCount));
+        txtAllCount.setText(String.valueOf(allMembersCount));
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -233,11 +255,12 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
         }
     }
+
     private void addView() {
 
         final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
 
-        ImageView imageClose = (ImageView) healthstatusview.findViewById(R.id.image_remove);
+        ImageView imageClose = healthstatusview.findViewById(R.id.image_remove);
 
 
         imageClose.setOnClickListener(new View.OnClickListener() {
@@ -263,10 +286,11 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         txtDate.setText(sdf.format(myCalendar.getTime()));
     }
-    public String ConvertImagesToPdf(){
+
+    public String ConvertImagesToPdf() {
         Image image1;
         ByteArrayOutputStream baos = null;
-        String pdfString="";
+        String pdfString = "";
         try {
             for (int i = 0; i < ImagesByte.size(); i++) {
                 baos = new ByteArrayOutputStream();
@@ -279,8 +303,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                 byte[] pdfByteArray = baos.toByteArray();
                 pdfString = Base64.encodeToString(pdfByteArray, Base64.DEFAULT);
             }
-        }catch (Exception ex){
-            Toast.makeText(getContext(),ex.toString(),Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_LONG).show();
         }
         return pdfString;
     }

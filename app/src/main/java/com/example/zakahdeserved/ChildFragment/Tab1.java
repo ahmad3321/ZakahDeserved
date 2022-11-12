@@ -67,23 +67,17 @@ public class Tab1 extends Fragment {
         document = new Document();
 
 
-        Spinner spnGender = view.findViewById(R.id.Gender);
         btn_Image_Document = view.findViewById(R.id.btn_Image_Document);
         btn_Image_Document_delete = view.findViewById(R.id.btn_Image_Document_delete);
 
-        btn_Image_Document.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(camera_intent, pic_id);
-            }
+        btn_Image_Document.setOnClickListener(view12 -> {
+            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(camera_intent, pic_id);
         });
-        btn_Image_Document_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImagesByte = new ArrayList<>();
-            }
-        });
+
+        btn_Image_Document_delete.setOnClickListener(view13 -> ImagesByte.clear());
+
+        Spinner spnGender = view.findViewById(R.id.Gender);
         spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -145,8 +139,8 @@ public class Tab1 extends Fragment {
         });
 
 
-        if (Constants.loadingData)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
+        DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;
     }
@@ -177,10 +171,10 @@ public class Tab1 extends Fragment {
         txtDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    public String ConvertImagesToPdf(){
+    public String ConvertImagesToPdf() {
         Image image1;
         ByteArrayOutputStream baos = null;
-        String pdfString="";
+        String pdfString = "";
         try {
             for (int i = 0; i < ImagesByte.size(); i++) {
                 baos = new ByteArrayOutputStream();
@@ -193,8 +187,8 @@ public class Tab1 extends Fragment {
                 byte[] pdfByteArray = baos.toByteArray();
                 pdfString = Base64.encodeToString(pdfByteArray, Base64.DEFAULT);
             }
-        }catch (Exception ex){
-            Toast.makeText(getContext(),ex.toString(),Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_LONG).show();
         }
         return pdfString;
     }

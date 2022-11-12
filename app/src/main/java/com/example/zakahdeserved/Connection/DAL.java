@@ -353,7 +353,7 @@ public class DAL {
                     if (st != null) {
                         connection.close();
                     }
-                } catch (SQLException se) {
+                } catch (SQLException ignored) {
                 }// do nothing
                 try {
                     if (connection != null) {
@@ -413,12 +413,23 @@ public class DAL {
         try {
             st = connection.createStatement();
 
+            //begin transaction
+            connection.setAutoCommit(false);
+
             for (String s : queries.split(";"))
                 st.addBatch(s);
 
             st.executeBatch();
+            //success transaction
+            connection.commit();
             success = true;
         } catch (SQLException throwables) {
+            try {
+                //failed transaction
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             throwables.printStackTrace();
         } finally {
             //finally block used to close resources
@@ -426,7 +437,7 @@ public class DAL {
                 if (st != null) {
                     st.close();
                 }
-            } catch (SQLException se) {
+            } catch (SQLException ignored) {
             }// do nothing
             try {
                 if (connection != null) {
@@ -452,7 +463,7 @@ public class DAL {
 
             while (rs.next()) {
                 lstPackage.add(new PackageRecord(rs.getString(1), rs.getString(2),
-                        rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+                        rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
 
         } catch (SQLException throwables) {

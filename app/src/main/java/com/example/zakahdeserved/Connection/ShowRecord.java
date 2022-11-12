@@ -1,7 +1,7 @@
 package com.example.zakahdeserved.Connection;
 
 public class ShowRecord {
-    public String ZakatID, City, Town, Name, PackageType, Program;
+    public String PackageID, ZakatID, City, Town, Name, PackageType, Program;
 
     public String getZakatID() {
         return ZakatID;
@@ -27,7 +27,8 @@ public class ShowRecord {
         return Program;
     }
 
-    public ShowRecord(String zakatID, String city, String town, String name, String packageType, String program) {
+    public ShowRecord(String packageID, String zakatID, String city, String town, String name, String packageType, String program) {
+        PackageID = packageID;
         ZakatID = zakatID;
         City = city;
         Town = town;

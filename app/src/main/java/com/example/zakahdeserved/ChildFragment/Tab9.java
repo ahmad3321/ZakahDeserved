@@ -21,11 +21,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.PackageRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Tab9 extends Fragment implements View.OnClickListener {
@@ -37,8 +43,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     public Tab9() {
         // Required empty public constructor
     }
-
-    // TODO: Rename and change types and number of parameters
 
 
     @Override
@@ -65,8 +69,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         Constants.view9 = view;
 
-        if (Constants.loadingData)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
+        DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;
     }
@@ -100,14 +104,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         final View surveyconclusionsView = getLayoutInflater().inflate(id, null, false);
 
-        ImageView imageClose = (ImageView) surveyconclusionsView.findViewById(imageID);
+        ImageView imageClose = surveyconclusionsView.findViewById(imageID);
 
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(surveyconclusionsView, linearLayout);
-            }
-        });
+        imageClose.setOnClickListener(v -> removeView(surveyconclusionsView, linearLayout));
+
         if (linearLayout.getChildCount() % 2 != 0) {
             surveyconclusionsView.setBackgroundColor(Color.WHITE);
         } else
@@ -149,6 +149,28 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView8();
         getFromView9();
 
+        addToPackage();
+    }
+
+    // Packages and Package_Contents تحديث حالة الحزمة
+    void addToPackage() {
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String autoDate = df.format(c);
+
+        insertQuery.append("UPDATE package_contents SET PackageStatus = 'تم الانتهاء منها' , EndDate = '").append(autoDate)
+                .append("' WHERE PackageID = '").append(Constants.PackageID).append("';");
+
+        PackageRecord packageRecord = Constants.SQLITEDAL.getPackageRecord(Constants.PackageID);
+
+        insertQuery.append("INSERT INTO packages (Package, FromEmployeeCode, ToEmployeeCode, SendDate, Program)" + "VALUES ('")
+                .append(packageRecord.Package).append("', '").append(packageRecord.ToEmployeeCode).append("', '")
+                .append(packageRecord.FromEmployeeCode).append("', '").append(autoDate).append("', '")
+                .append(packageRecord.Program).append("');")
+                .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus, EndDate) ")
+                .append("VALUES ((select max(PackageID) from packages), '").append(packageRecord.PersonID).append("', '")
+                .append(packageRecord.ZakatID).append("', 'قيد العمل', '").append(autoDate).append("');");
 
     }
 
@@ -163,6 +185,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         allItemsTable.put(tablesNames[1], DBHelper.FamiliesTable);
 
         DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.PersonsTable.put("WhoIs", "رب الأسرة");
 
         getAllControlsNamesAndData(Constants.view1);
 
@@ -346,42 +369,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
         }
 
-    }
-
-    //حساب المؤشرات
-    void calculatePointers() {
-        int pointer = 0;
-
-        //view1
-        if (Constants.view1 != null) {
-            if (((Spinner) Constants.view1.findViewById(R.id.Gender)).getSelectedItemId() == 0)   //المستفيد أنثى
-                pointer += 2;
-
-            switch ((int) ((Spinner) Constants.view1.findViewById(R.id.Gender)).getSelectedItemId()) {    //المستوى الدراسي
-                case 0: //أمي
-                    pointer -= 4;
-                    break;
-                case 1: //ابتدائي
-                    pointer -= 4;
-                    break;
-                case 2: //إعدادي
-                    pointer += 1;
-                    break;
-                case 3: //ثانوي
-                    pointer += 2;
-                    break;
-                case 4: //جامعي
-                    pointer += 6;
-                    break;
-            }
-        }
-
-
-        //view2
-        if (Constants.view2 != null) {
-            if (((Spinner) Constants.view2.findViewById(R.id.ResidenceStatus)).getSelectedItemId() == 1)   //مهجر
-                pointer += 2;
-        }
     }
 
     private void getAllControlsNamesAndData(View view) {
