@@ -17,12 +17,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.example.zakahdeserved.Utility.*;
 
 public class DAL {
     static Connection connection;
     static String username = "root", password = "12!@abAB", ip = "10.0.2.2", port = "3306", database = "zakatraising";
     public static boolean isConnected = false;
     public static StringBuilder insert_query = null;
+
 
     private static void Connect() {
         connection = connectionClass();
@@ -42,6 +44,7 @@ public class DAL {
             connection = DriverManager.getConnection(
                     "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_contabo", "wRps04*60");
         } catch (Exception exc) {
+            ValidationController.GetException(exc.toString().replace("\"",""),"connectionClass in DAL","","");
             exc.printStackTrace();
             isConnected = false;
         }
@@ -174,11 +177,13 @@ public class DAL {
                     // connection.close();
                 } else {
                     ActiveUser = true;
-                    Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context , "تمممم", Toast.LENGTH_SHORT).show();
                 }
-            } catch (SQLException throwables) {
+            } catch (Exception ex) {
                 ActiveUser = false;
-                throwables.printStackTrace();
+                ValidationController.GetException(ex.toString().replace("\"",""),"pdrUsernameTest in DAL",context.toString(),strUsername);
+
+                ex.printStackTrace();
             } finally {
                 //finally block used to close resources
                 try {
@@ -345,6 +350,7 @@ public class DAL {
                     result = rs.getInt(1);
                 return result;
             } catch (SQLException throwables) {
+                ValidationController.GetException(throwables.toString().replace("\"",""),"query: "+query,"getDepartment in DAL","");
                 throwables.printStackTrace();
                 isConnected = false;
             } finally {
@@ -416,21 +422,23 @@ public class DAL {
             //begin transaction
             connection.setAutoCommit(false);
 
-            for (String s : queries.split(";"))
+            for (String s : queries.split(";")) {
+                if(s.length()>1)
                 st.addBatch(s);
+            }
 
             st.executeBatch();
             //success transaction
             connection.commit();
             success = true;
-        } catch (SQLException throwables) {
+        } catch (Exception ex) {
             try {
-                //failed transaction
+                ValidationController.GetException(ex.toString().replace("\"",""),"","executeQueries in DAL","queries");
                 connection.rollback();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            throwables.printStackTrace();
+            ex.printStackTrace();
         } finally {
             //finally block used to close resources
             try {
@@ -467,6 +475,7 @@ public class DAL {
             }
 
         } catch (SQLException throwables) {
+            ValidationController.GetException(throwables.toString().replace("\"",""),"","getPackeges in DAL","getPackeges");
             throwables.printStackTrace();
         } finally {
             //finally block used to close resources
@@ -502,6 +511,7 @@ public class DAL {
                 itemsArray.put(rs.getString(1), rs.getString(2));
             }
         } catch (SQLException throwables) {
+            ValidationController.GetException(throwables.toString().replace("\"",""),"","getSpinnerItems in DAL",spinnerName);
             throwables.printStackTrace();
             isConnected = false;
         } finally {
@@ -544,6 +554,7 @@ public class DAL {
                 itemsArray.add(new SQLiteRecord(tableName, dataTable));
             }
         } catch (SQLException throwables) {
+                ValidationController.GetException(throwables.toString().replace("\"",""),"","getTableData in DAL","getTableDatainDAL ,table: " + tableName);
             throwables.printStackTrace();
             isConnected = false;
         } finally {
