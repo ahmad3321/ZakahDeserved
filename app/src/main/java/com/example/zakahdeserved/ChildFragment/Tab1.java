@@ -153,7 +153,7 @@ public class Tab1 extends Fragment {
                 case pic_id:
                     if (data != null) {
                         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                       ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
                         byte[] byte_arr = stream.toByteArray();
                         ImagesByte.add(byte_arr);

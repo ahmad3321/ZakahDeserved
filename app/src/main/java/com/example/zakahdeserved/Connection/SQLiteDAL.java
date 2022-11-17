@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,24 +94,29 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         String PackagesCreate = "CREATE TABLE 'Packages' ('PackageID' TEXT, 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
                 " 'ToEmployeeCode' TEXT, 'Package' TEXT) ;";
+try {
+    db.execSQL(spinnersCreate);
+    db.execSQL(queriesCreate);
+    db.execSQL(PersonCreate);
+    db.execSQL(FamiliesCreate);
+    db.execSQL(HelthStatusCreate);
+    db.execSQL(HusbandCreate);
+    db.execSQL(HousingInformationsCreate);
+    db.execSQL(IncomesCreate);
+    db.execSQL(WaterTypesCreate);
+    db.execSQL(AidsCreate);
+    db.execSQL(AssetsCreate);
+    db.execSQL(SurveyConclusionCreate);
+    db.execSQL(PackagesCreate);
+}catch (Exception ex){
+    ValidationController.GetException(ex.toString().replace("\"",""),"","onCreate in SQLliteDAL", "" );
 
-        db.execSQL(spinnersCreate);
-        db.execSQL(queriesCreate);
-        db.execSQL(PersonCreate);
-        db.execSQL(FamiliesCreate);
-        db.execSQL(HelthStatusCreate);
-        db.execSQL(HusbandCreate);
-        db.execSQL(HousingInformationsCreate);
-        db.execSQL(IncomesCreate);
-        db.execSQL(WaterTypesCreate);
-        db.execSQL(AidsCreate);
-        db.execSQL(AssetsCreate);
-        db.execSQL(SurveyConclusionCreate);
-        db.execSQL(PackagesCreate);
+}
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        try {
         db.execSQL("Drop Table If Exists " + TABLE_SPINNERS);
         db.execSQL("Drop Table If Exists " + TABLE_QUERIES);
         db.execSQL("Drop Table If Exists " + "persons");
@@ -125,20 +131,26 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         db.execSQL("Drop Table If Exists " + "survey_conclusions");
         db.execSQL("Drop Table If Exists " + "Packages");
         onCreate(db);
+        }catch (Exception ex){
+            ValidationController.GetException(ex.toString().replace("\"",""),"","onUpgrade in SQLliteDAL", "" );
+        }
     }
 
     public void addSpinner(String spinnerName, HashMap<String, String> items) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
 
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+            for (Map.Entry<String, String> entry : items.entrySet()) {
+                contentValues.put("IncrementID", (String) null);
+                contentValues.put("SpinnerName", spinnerName);
+                contentValues.put("ItemID", entry.getKey());
+                contentValues.put("ItemName", entry.getValue());
 
-        for (Map.Entry<String, String> entry : items.entrySet()) {
-            contentValues.put("IncrementID", (String) null);
-            contentValues.put("SpinnerName", spinnerName);
-            contentValues.put("ItemID", entry.getKey());
-            contentValues.put("ItemName", entry.getValue());
-
-            db.insert(TABLE_SPINNERS, null, contentValues);
+                db.insert(TABLE_SPINNERS, null, contentValues);
+            }
+        }catch (Exception ex){
+            ValidationController.GetException(ex.toString().replace("\"",""),"","addSpinner in SQLliteDAL", "spinnerName "+spinnerName );
         }
     }
 
@@ -177,6 +189,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + TABLE_SPINNERS);
         } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"",""),"","clearSpinners in SQLliteDAL", "" );
             Log.d("SQLITEErr", ex.toString());
         }
     }
@@ -189,29 +202,34 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             contentValues.put("QueryContents", query);
             db.insert(TABLE_QUERIES, null, contentValues);
         } catch (Exception ignored) {
+            ValidationController.GetException(ignored.toString().replace("\"",""),"","addQuery in SQLliteDAL", "query" );
 
         }
     }
 
     public String getAllQueries() {
-        StringBuilder strQueries = new StringBuilder();
-        SQLiteDatabase db = getReadableDatabase();
+        try {
+            StringBuilder strQueries = new StringBuilder();
+            SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(false,
-                TABLE_QUERIES,
-                new String[]{"QueryContents"},
-                null, null, null, null, null, null);
+            Cursor cursor = db.query(false,
+                    TABLE_QUERIES,
+                    new String[]{"QueryContents"},
+                    null, null, null, null, null, null);
 
-        if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
-            cursor.moveToFirst();
-            do {
-                String value = cursor.getString(0);
-                strQueries.append(value).append("\n");
-            } while (cursor.moveToNext());
-            cursor.close();
+            if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
+                cursor.moveToFirst();
+                do {
+                    String value = cursor.getString(0);
+                    strQueries.append(value).append("\n");
+                } while (cursor.moveToNext());
+                cursor.close();
+            }
+            return strQueries.toString();
+        }catch (Exception ex){
+            ValidationController.GetException(ex.toString().replace("\"",""),"","getAllQueries in SQLliteDAL", "" );
+            return null;
         }
-
-        return strQueries.toString();
     }
 
     public String getFirstValue(String query) {
@@ -233,23 +251,29 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + TABLE_QUERIES);
         } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"",""),"","clearQueries in SQLliteDAL", "" );
             Log.d("SQLITEErr", ex.toString());
         }
     }
 
     public PackageRecord getPackageRecord(String PackageID) {
-        SQLiteDatabase db = getReadableDatabase();
+        try {
+            SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Packages WHERE PackageID like '" + PackageID + "'; ", null);
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            return new PackageRecord(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                    cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            Cursor cursor = db.rawQuery("SELECT * FROM Packages WHERE PackageID like '" + PackageID + "'; ", null);
+            if (cursor != null && cursor.moveToNext()) {
+                cursor.moveToFirst();
+                return new PackageRecord(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            }
+            if (cursor != null) {
+                cursor.close();
+            }
+            return null;
+        }catch (Exception ex){
+            ValidationController.GetException(ex.toString().replace("\"",""),"","getPackageRecord in SQLliteDAL", "PackageID "+PackageID );
+            return null;
         }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return null;
     }
 
     public ArrayList<SQLiteRecord> getFamilyInfo(String ZaktID) {
@@ -399,13 +423,17 @@ public class SQLiteDAL extends SQLiteOpenHelper {
     }
 
     private SQLiteRecord getSQLiteRecord(Cursor cursor, String table, String[] columns) {
+        try {
+            HashMap<String, Object> row = new HashMap<>();
 
-        HashMap<String, Object> row = new HashMap<>();
+            for (int i = 0; i < columns.length; i++)
+                row.put(columns[i], cursor.getString(i));
 
-        for (int i = 0; i < columns.length; i++)
-            row.put(columns[i], cursor.getString(i));
-
-        return new SQLiteRecord(table, row);
+            return new SQLiteRecord(table, row);
+        }catch (Exception ex){
+            ValidationController.GetException(ex.toString().replace("\"",""),"","getSQLiteRecord in SQLliteDAL", "table "+table );
+            return null;
+        }
     }
 
     public void StorePackages(ArrayList<PackageRecord> lstPackages) {
@@ -426,7 +454,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 db.insert("Packages", null, contentValues);
             }
         } catch (Exception ignored) {
-
+            ValidationController.GetException(ignored.toString().replace("\"",""),"","StorePackages in SQLliteDAL", "lstPackages "+lstPackages );
         }
     }
 
@@ -449,6 +477,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + tableName);
         } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"",""),"","ClearTable in SQLliteDAL", "tableName "+tableName );
             Log.d("SQLITEErr", ex.toString());
         }
     }
@@ -470,6 +499,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 db.insert(sqLiteRecord.tableName, null, contentValues);
             }
         } catch (Exception ignored) {
+            ValidationController.GetException(ignored.toString().replace("\"",""),"","insertAllRecords in SQLliteDAL", "AllFamilyRecords "+AllFamilyRecords );
         }
     }
 

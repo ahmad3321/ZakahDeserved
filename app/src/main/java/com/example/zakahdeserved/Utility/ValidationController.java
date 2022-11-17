@@ -13,12 +13,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import com.example.zakahdeserved.Connection.DAL;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class ValidationController {
     public static boolean ENABLE_FEMALE_TAB = true;
     public static boolean ENABLE_ALL_TABS = true;
+    public static String ExceptionQuery = "";
 
     public static void lockThePage(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
@@ -36,6 +40,7 @@ public class ValidationController {
 
             }
         } catch (Exception e) {
+            ValidationController.GetException(e.toString().replace("\"",""),"lockThePage()","",view.toString());
             e.printStackTrace();
         }
     }
@@ -54,6 +59,7 @@ public class ValidationController {
                     UnlockThePage(v);
             }
         } catch (Exception e) {
+            ValidationController.GetException(e.toString().replace("\"",""),"UnlockThePage()","",view.toString());
             e.printStackTrace();
         }
     }
@@ -74,10 +80,24 @@ public class ValidationController {
 
                 else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
                     ClearView(v);
-
             }
         } catch (Exception e) {
+            ValidationController.GetException(e.toString().replace("\"",""),"ClearView()","",view.toString());
             e.printStackTrace();
         }
     }
+    public static void GetException(String ExceptionDescrip,String ExceptionLine,String ExceptionContext,String Notes) {
+            try {
+                ExceptionQuery ="Insert into Exception Values(0,\""+ExceptionDescrip+"\",\""+ExceptionLine+"\"," +
+                        "\""+ExceptionContext+"\",\""+Notes+"\");";
+                if(ExceptionDescrip.toString().length()>10) {
+                    Boolean isSucces = DAL.executeQueries(ExceptionQuery);
+                    if (!isSucces) {
+                        Constants.SQLITEDAL.addQuery(ExceptionQuery);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 }

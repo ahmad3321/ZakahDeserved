@@ -20,24 +20,19 @@ import android.widget.Toast;
 import com.example.zakahdeserved.BroadCast.BroadCastClass;
 import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
-import com.example.zakahdeserved.Connection.PackageRecord;
 import com.example.zakahdeserved.Connection.SQLiteDAL;
-import com.example.zakahdeserved.Connection.SQLiteRecord;
-import com.example.zakahdeserved.Connection.ShowRecord;
+
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+
 
 public class MainActivity extends AppCompatActivity {
     TextView login;
     EditText username, password;
+    String ExceptionQuery ="";
     BroadCastClass broadCastClass = new BroadCastClass();
     int EmpDepartment;
 
@@ -60,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                     .build();
         } catch (GeneralSecurityException | IOException e) {
+            ValidationController.GetException(e.toString().replace("\"",""),"",getApplicationContext()!=null?getApplicationContext().toString():"", "Constants.SHAREDPREFERENCES_KEY" );
             e.printStackTrace();
         }
 
@@ -74,10 +70,8 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
         username = findViewById(R.id.edit_username);
         password = findViewById(R.id.edit_password);
-
+        Constants.SQLITEDAL.clearQueries();
         login.setOnClickListener(view -> {
-//            Intent intent = new Intent(getApplicationContext(), MainTabs.class);
-            //startActivity(intent);
             try {
                 Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
                 if (isSuccess) {
@@ -107,12 +101,14 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putString("empCode", username.getText().toString());
                         myEdit.apply();
                     } catch (GeneralSecurityException | IOException e) {
+
                         e.printStackTrace();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception ex) {
+                ValidationController.GetException(ex.toString().replace("\"",""),"",getApplicationContext().toString(),"");
                 Toast.makeText(getApplicationContext(), "خطأ..." + ex, Toast.LENGTH_SHORT).show();
             }
 
