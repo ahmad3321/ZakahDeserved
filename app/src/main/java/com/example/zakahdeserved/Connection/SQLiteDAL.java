@@ -16,6 +16,7 @@ import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null,2);
+        super(context, DATABASE_NAME, null, 3);
     }
 
 
@@ -41,7 +42,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 ");";
 
         String queriesCreate = "CREATE TABLE " + TABLE_QUERIES + " ('QueryID' INTEGER PRIMARY KEY," +
-                "'QueryContents' TEXT);";
+                "'QueryContents' TEXT, 'ZakatID' TEXT, 'QueryType' TEXT);";
 
 
         String PersonCreate = "CREATE TABLE 'persons' " +
@@ -94,45 +95,45 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         String PackagesCreate = "CREATE TABLE 'Packages' ('PackageID' TEXT, 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
                 " 'ToEmployeeCode' TEXT, 'Package' TEXT) ;";
-try {
-    db.execSQL(spinnersCreate);
-    db.execSQL(queriesCreate);
-    db.execSQL(PersonCreate);
-    db.execSQL(FamiliesCreate);
-    db.execSQL(HelthStatusCreate);
-    db.execSQL(HusbandCreate);
-    db.execSQL(HousingInformationsCreate);
-    db.execSQL(IncomesCreate);
-    db.execSQL(WaterTypesCreate);
-    db.execSQL(AidsCreate);
-    db.execSQL(AssetsCreate);
-    db.execSQL(SurveyConclusionCreate);
-    db.execSQL(PackagesCreate);
-}catch (Exception ex){
-    ValidationController.GetException(ex.toString().replace("\"",""),"","onCreate in SQLliteDAL", "" );
+        try {
+            db.execSQL(spinnersCreate);
+            db.execSQL(queriesCreate);
+            db.execSQL(PersonCreate);
+            db.execSQL(FamiliesCreate);
+            db.execSQL(HelthStatusCreate);
+            db.execSQL(HusbandCreate);
+            db.execSQL(HousingInformationsCreate);
+            db.execSQL(IncomesCreate);
+            db.execSQL(WaterTypesCreate);
+            db.execSQL(AidsCreate);
+            db.execSQL(AssetsCreate);
+            db.execSQL(SurveyConclusionCreate);
+            db.execSQL(PackagesCreate);
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "onCreate in SQLliteDAL", "");
 
-}
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
-        db.execSQL("Drop Table If Exists " + TABLE_SPINNERS);
-        db.execSQL("Drop Table If Exists " + TABLE_QUERIES);
-        db.execSQL("Drop Table If Exists " + "persons");
-        db.execSQL("Drop Table If Exists " + "families");
-        db.execSQL("Drop Table If Exists " + "health_statuses");
-        db.execSQL("Drop Table If Exists " + "husbands");
-        db.execSQL("Drop Table If Exists " + "housing_informations");
-        db.execSQL("Drop Table If Exists " + "incomes");
-        db.execSQL("Drop Table If Exists " + "water_types");
-        db.execSQL("Drop Table If Exists " + "aids");
-        db.execSQL("Drop Table If Exists " + "assets");
-        db.execSQL("Drop Table If Exists " + "survey_conclusions");
-        db.execSQL("Drop Table If Exists " + "Packages");
-        onCreate(db);
-        }catch (Exception ex){
-            ValidationController.GetException(ex.toString().replace("\"",""),"","onUpgrade in SQLliteDAL", "" );
+            db.execSQL("Drop Table If Exists " + TABLE_SPINNERS);
+            db.execSQL("Drop Table If Exists " + TABLE_QUERIES);
+            db.execSQL("Drop Table If Exists " + "persons");
+            db.execSQL("Drop Table If Exists " + "families");
+            db.execSQL("Drop Table If Exists " + "health_statuses");
+            db.execSQL("Drop Table If Exists " + "husbands");
+            db.execSQL("Drop Table If Exists " + "housing_informations");
+            db.execSQL("Drop Table If Exists " + "incomes");
+            db.execSQL("Drop Table If Exists " + "water_types");
+            db.execSQL("Drop Table If Exists " + "aids");
+            db.execSQL("Drop Table If Exists " + "assets");
+            db.execSQL("Drop Table If Exists " + "survey_conclusions");
+            db.execSQL("Drop Table If Exists " + "Packages");
+            onCreate(db);
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "onUpgrade in SQLliteDAL", "");
         }
     }
 
@@ -149,8 +150,8 @@ try {
 
                 db.insert(TABLE_SPINNERS, null, contentValues);
             }
-        }catch (Exception ex){
-            ValidationController.GetException(ex.toString().replace("\"",""),"","addSpinner in SQLliteDAL", "spinnerName "+spinnerName );
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "addSpinner in SQLliteDAL", "spinnerName " + spinnerName);
         }
     }
 
@@ -189,21 +190,22 @@ try {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + TABLE_SPINNERS);
         } catch (Exception ex) {
-            ValidationController.GetException(ex.toString().replace("\"",""),"","clearSpinners in SQLliteDAL", "" );
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearSpinners in SQLliteDAL", "");
             Log.d("SQLITEErr", ex.toString());
         }
     }
 
-    public void addQuery(String query) {
+    public void addQuery(String query, String zakatID, String queryType) {
 
         try {
             SQLiteDatabase db = getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put("QueryContents", query);
+            contentValues.put("ZakatID", zakatID);
+            contentValues.put("QueryType", queryType);
             db.insert(TABLE_QUERIES, null, contentValues);
         } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"",""),"","addQuery in SQLliteDAL", "query" );
-
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "addQuery in SQLliteDAL", "query");
         }
     }
 
@@ -226,8 +228,33 @@ try {
                 cursor.close();
             }
             return strQueries.toString();
-        }catch (Exception ex){
-            ValidationController.GetException(ex.toString().replace("\"",""),"","getAllQueries in SQLliteDAL", "" );
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "getAllQueries in SQLliteDAL", "");
+            return null;
+        }
+    }
+
+    public List<String> getAllZakatID() {
+        try {
+            ArrayList<String> zakatIDs = new ArrayList<>();
+            SQLiteDatabase db = getReadableDatabase();
+
+            Cursor cursor = db.query(false,
+                    "families",
+                    new String[]{"ZakatID"},
+                    null, null, null, null, null, null);
+
+            if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
+                cursor.moveToFirst();
+                do {
+                    String value = cursor.getString(0);
+                    zakatIDs.add(value);
+                } while (cursor.moveToNext());
+                cursor.close();
+            }
+            return zakatIDs;
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "getAllQueries in SQLliteDAL", "");
             return null;
         }
     }
@@ -246,12 +273,22 @@ try {
         return value;
     }
 
+    public void deleteQuery(String zakatID) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("Delete from " + TABLE_QUERIES + " where ZakatID = '" + zakatID + "';");
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
+            Log.d("SQLITEErr", ex.toString());
+        }
+    }
+
     public void clearQueries() {
         try {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + TABLE_QUERIES);
         } catch (Exception ex) {
-            ValidationController.GetException(ex.toString().replace("\"",""),"","clearQueries in SQLliteDAL", "" );
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
             Log.d("SQLITEErr", ex.toString());
         }
     }
@@ -270,8 +307,8 @@ try {
                 cursor.close();
             }
             return null;
-        }catch (Exception ex){
-            ValidationController.GetException(ex.toString().replace("\"",""),"","getPackageRecord in SQLliteDAL", "PackageID "+PackageID );
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "getPackageRecord in SQLliteDAL", "PackageID " + PackageID);
             return null;
         }
     }
@@ -430,13 +467,13 @@ try {
                 row.put(columns[i], cursor.getString(i));
 
             return new SQLiteRecord(table, row);
-        }catch (Exception ex){
-            ValidationController.GetException(ex.toString().replace("\"",""),"","getSQLiteRecord in SQLliteDAL", "table "+table );
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "getSQLiteRecord in SQLliteDAL", "table " + table);
             return null;
         }
     }
 
-    public void StorePackages(ArrayList<PackageRecord> lstPackages) {
+    public void StorePackages(List<PackageRecord> lstPackages) {
         try {
 
             SQLiteDatabase db = getWritableDatabase();
@@ -445,7 +482,7 @@ try {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("PackageID", lstPackages.get(i).PackageID);
                 contentValues.put("ZakatID", lstPackages.get(i).ZakatID);
-                contentValues.put("PersonID", lstPackages.get(i).PersonID);
+                contentValues.put("IncrementPersonID", lstPackages.get(i).PersonID);
                 contentValues.put("Program", lstPackages.get(i).Program);
                 contentValues.put("FromEmployeeCode", lstPackages.get(i).FromEmployeeCode);
                 contentValues.put("ToEmployeeCode", lstPackages.get(i).ToEmployeeCode);
@@ -454,7 +491,7 @@ try {
                 db.insert("Packages", null, contentValues);
             }
         } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"",""),"","StorePackages in SQLliteDAL", "lstPackages "+lstPackages );
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "StorePackages in SQLliteDAL", "lstPackages " + lstPackages);
         }
     }
 
@@ -477,30 +514,78 @@ try {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + tableName);
         } catch (Exception ex) {
-            ValidationController.GetException(ex.toString().replace("\"",""),"","ClearTable in SQLliteDAL", "tableName "+tableName );
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "ClearTable in SQLliteDAL", "tableName " + tableName);
             Log.d("SQLITEErr", ex.toString());
         }
     }
 
-    public void insertAllRecords(ArrayList<SQLiteRecord> AllFamilyRecords) {
+    public void removeForm(String zakatID) {
 
+        // remove fom health_statuses
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT PersonID FROM persons WHERE ZakatID like '" + zakatID + "'; ", null);
+
+        StringBuilder strPersonIDs = new StringBuilder();
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                strPersonIDs.append("'").append(cursor.getString(0)).append("',");
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        if (strPersonIDs.toString().endsWith(","))
+            strPersonIDs.deleteCharAt(strPersonIDs.lastIndexOf(","));
+
+        SQLiteDatabase writedb = getWritableDatabase();
+        writedb.execSQL("Delete from health_statuses where PersonID in (" + strPersonIDs + ");");
+
+
+        removeRcord("persons", zakatID);
+        removeRcord("families", zakatID);
+        removeRcord("husbands", zakatID);
+        removeRcord("housing_informations", zakatID);
+        removeRcord("incomes", zakatID);
+        removeRcord("water_types", zakatID);
+        removeRcord("aids", zakatID);
+        removeRcord("assets", zakatID);
+        removeRcord("survey_conclusions", zakatID);
+        removeRcord("Packages", zakatID);
+        removeRcord(TABLE_QUERIES, zakatID);
+    }
+
+    private void removeRcord(String tableName, String zakatID) {
         try {
             SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("Delete from " + tableName + " where ZakatID = '" + zakatID + "';");
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
+            Log.d("SQLITEErr", ex.toString());
+        }
+    }
+
+    public boolean insertAllRecords(ArrayList<SQLiteRecord> AllFamilyRecords) {
+        SQLiteDatabase db = getWritableDatabase();
+        boolean success = false;
+
+        try {
+            db.beginTransaction();
 
             for (SQLiteRecord sqLiteRecord : AllFamilyRecords) {
                 ContentValues contentValues = new ContentValues();
                 for (Map.Entry<String, Object> entry : sqLiteRecord.getRecord().entrySet()) {
 
-//                    if (!(entry.getValue() instanceof String))//for bdf files
-//                        contentValues.put(entry.getKey(), (byte[]) entry.getValue());
-//                    else
                     contentValues.put(entry.getKey(), (String) entry.getValue());
                 }
                 db.insert(sqLiteRecord.tableName, null, contentValues);
             }
+            db.setTransactionSuccessful();
+            success = true;
         } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"",""),"","insertAllRecords in SQLliteDAL", "AllFamilyRecords "+AllFamilyRecords );
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "insertAllRecords in SQLliteDAL", "AllFamilyRecords " + AllFamilyRecords);
+        } finally {
+            db.endTransaction();
         }
+        return success;
     }
 
     public ArrayList<ShowRecord> getAllPackages() {

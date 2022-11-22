@@ -27,18 +27,44 @@ import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
     TextView login;
     EditText username, password;
-    String ExceptionQuery ="";
+    String ExceptionQuery = "";
     BroadCastClass broadCastClass = new BroadCastClass();
-    int EmpDepartment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //check if user is already logged in
+        try {
+            Constants.SHAREDPREFERENCES_KEY = new MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
+                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                    .build();
+
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                    getApplicationContext(),
+                    "MySharedPref",
+                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+            if (sharedPreferences.getBoolean("login", false)) {
+                loginToActivity(sharedPreferences.getString("entered_date", ""), sharedPreferences.getInt("empDepartment", -1));
+            }
+        } catch (GeneralSecurityException | IOException e) {
+            ValidationController.GetException(e.toString().replace("\"", ""), "", getApplicationContext() != null ? getApplicationContext().toString() : "", "Constants.SHAREDPREFERENCES_KEY");
+            e.printStackTrace();
+        }
+
         setContentView(R.layout.activity_main);
 
         String[] perms = {"android.permission.INTERNET",
@@ -50,14 +76,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(perms, permsRequestCode);
         }
-        try {
-            Constants.SHAREDPREFERENCES_KEY = new MasterKey.Builder(this, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
-                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                    .build();
-        } catch (GeneralSecurityException | IOException e) {
-            ValidationController.GetException(e.toString().replace("\"",""),"",getApplicationContext()!=null?getApplicationContext().toString():"", "Constants.SHAREDPREFERENCES_KEY" );
-            e.printStackTrace();
-        }
+
 
         Constants.SQLITEDAL = new SQLiteDAL(getApplicationContext());
 
@@ -75,20 +94,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
                 if (isSuccess) {
-                    EmpDepartment = DAL.getDepartment(username.getText().toString());
-                    if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE) {
-                        Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
-                        intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع
-                        startActivity(intent1);
-                    } else if (EmpDepartment == Constants.DISTRIBUTION_JOcB_TITLE) {
-                        Intent intent1 = new Intent(getApplicationContext(), MainTabs.class);
-                        intent1.putExtra("JobTitle", "توزيع"); //احصاء أو توزيع
-                        startActivity(intent1);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
-                    }
+                    int empDepartment = DAL.getDepartment(username.getText().toString());
 
-                    // Encrypted Shared Preferences
                     try {
                         SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
                                 getApplicationContext(),
@@ -99,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         // Storing the key and its value as the data fetched from edittext
                         myEdit.putString("empCode", username.getText().toString());
+                        myEdit.putBoolean("login", true);
+                        myEdit.putInt("empDepartment", empDepartment);
                         myEdit.apply();
+
+                        loginToActivity(sharedPreferences.getString("entered_date", ""), empDepartment);
+
                     } catch (GeneralSecurityException | IOException e) {
 
                         e.printStackTrace();
@@ -108,12 +120,37 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "خطأ في اسم المستخدم أو كلمة المرور", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception ex) {
-                ValidationController.GetException(ex.toString().replace("\"",""),"",getApplicationContext().toString(),"");
+                ValidationController.GetException(ex.toString().replace("\"", ""), "", getApplicationContext().toString(), "");
                 Toast.makeText(getApplicationContext(), "خطأ..." + ex, Toast.LENGTH_SHORT).show();
             }
 
         });
 
+
+    }
+
+    void loginToActivity(String lastEnterDate, int EmpDepartment) {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String autoDate = df.format(c);
+        boolean isEntered = autoDate.equals(lastEnterDate);
+
+        Intent intent1;
+
+        if (isEntered)
+            intent1 = new Intent(getApplicationContext(), PackageView.class);
+        else
+            intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+
+        if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)
+            intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع
+        else if (EmpDepartment == Constants.DISTRIBUTION_JOcB_TITLE)
+            intent1.putExtra("JobTitle", "توزيع"); //احصاء أو توزيع
+        else {
+            Toast.makeText(getApplicationContext(), "المستخدم ليس له صلاحية في الدخول إلى التطبيق", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        startActivity(intent1);
     }
 
     private void registerNetworkBroadcastForNougat() {

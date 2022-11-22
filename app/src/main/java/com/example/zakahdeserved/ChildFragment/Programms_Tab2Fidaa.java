@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -117,7 +116,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
             case R.id.button_Insert_Fidaa:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID,"package");
 
                 break;
 
@@ -130,7 +129,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.FedaProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.FedaProgramTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"feda_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.FedaProgramTable);

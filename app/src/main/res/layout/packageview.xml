@@ -150,20 +150,6 @@
                 android:text="Download"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
-            <Button
-                android:id="@+id/btn_Refresh"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:background="@drawable/round_primary1"
-                android:onClick="onClick_UDR"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="Refresh"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
         </LinearLayout>
 
 </ScrollView>

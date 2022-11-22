@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -89,7 +88,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
             case R.id.button_Insert_Hayat:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID,"package");
 
                 break;
 
@@ -102,7 +101,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.HayatProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.HayatProgramTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"hayat_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.HayatProgramTable);

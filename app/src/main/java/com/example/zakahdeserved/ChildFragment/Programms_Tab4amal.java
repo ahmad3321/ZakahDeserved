@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -87,7 +86,7 @@ public class Programms_Tab4amal extends Fragment implements View.OnClickListener
             case R.id.button_Insert_Amal:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID,"package");
 
                 break;
 
@@ -99,8 +98,8 @@ public class Programms_Tab4amal extends Fragment implements View.OnClickListener
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.AmalProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
-        DBHelper.AmalProgramFormDataTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.AmalProgramTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+        DBHelper.AmalProgramFormDataTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
 
         tablesNames = new String[]{"amal_program", "amal_program_form_data"};
 

@@ -26,4 +26,5 @@ public class PackageRecord {
         ToEmployeeCode = toEmployeeCode;
         Package = aPackage;
     }
+
 }

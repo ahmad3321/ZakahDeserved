@@ -28,7 +28,7 @@ public class Constants {
             "lst_CampaignTypes", "lst_Directorates", "lst_IdentityTypes", "lst_JobTitles", "lst_Universities"));
 
     public static String ZakatID = "aa0";
-    public static int PersonID = 0;
+    public static int IncrementPersonID = 0;
     public static String PackageID = "";
     public static String PackagePersonID = "";
 
