@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -91,7 +90,7 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
             case R.id.button_Insert_Student:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID,"package");
 
                 break;
 
@@ -104,7 +103,7 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.StudentsProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.StudentsProgramTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"students_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.StudentsProgramTable);

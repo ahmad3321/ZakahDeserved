@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -23,7 +21,6 @@ import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
-import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -93,7 +90,7 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
             case R.id.button_Insert_Ktlal:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID, "package");
 
                 break;
 
@@ -106,7 +103,7 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.KtlalProgramsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.KtlalProgramsTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"ktlal_programes"};
 
         allItemsTable.put(tablesNames[0], DBHelper.KtlalProgramsTable);

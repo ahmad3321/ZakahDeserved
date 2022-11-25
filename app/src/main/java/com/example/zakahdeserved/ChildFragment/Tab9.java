@@ -2,7 +2,6 @@ package com.example.zakahdeserved.ChildFragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.Spinner;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
-import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.PackageRecord;
 import com.example.zakahdeserved.R;
@@ -27,7 +25,6 @@ import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +36,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     LinearLayout layoutSurveyConclusions;
     Button buttonAdd_SurveyConclusions;
     Button buttonSubmitList;
+    String autoDate;
 
     public Tab9() {
         // Required empty public constructor
@@ -88,14 +86,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 getData();
 //                if (!DAL.executeQueries(insertQuery.toString()))
 //                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
-                /*if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }*/
                 break;
         }
     }
@@ -128,7 +118,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
     void getData() {
-
         DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
         DBHelper.PersonsTable.put("ZakatID", Constants.ZakatID);
         DBHelper.HusbandsTable.put("ZakatID", Constants.ZakatID);
@@ -150,6 +139,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView9();
 
         addToPackage();
+        //calculate family pointers
+        insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
     }
 
     // Packages and Package_Contents تحديث حالة الحزمة
@@ -157,7 +148,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String autoDate = df.format(c);
+        autoDate = df.format(c);
 
         insertQuery.append("UPDATE package_contents SET PackageStatus = 'تم الانتهاء منها' , EndDate = '").append(autoDate)
                 .append("' WHERE PackageID = '").append(Constants.PackageID).append("';");
@@ -168,10 +159,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 .append(packageRecord.Package).append("', '").append(packageRecord.ToEmployeeCode).append("', '")
                 .append(packageRecord.FromEmployeeCode).append("', '").append(autoDate).append("', '")
                 .append(packageRecord.Program).append("');")
-                .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus, EndDate) ")
+                .append("INSERT INTO package_contents (PackageID, IncrementPersonID, ZakatID, PackageStatus, EndDate) ")
                 .append("VALUES ((select max(PackageID) from packages), '").append(packageRecord.PersonID).append("', '")
                 .append(packageRecord.ZakatID).append("', 'قيد العمل', '").append(autoDate).append("');");
-
     }
 
     //معلومات المرشح والعائلة  Person and Family
@@ -184,7 +174,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
         allItemsTable.put(tablesNames[1], DBHelper.FamiliesTable);
 
-        DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+        DBHelper.PersonsTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         DBHelper.PersonsTable.put("WhoIs", "رب الأسرة");
 
         getAllControlsNamesAndData(Constants.view1);
@@ -216,7 +206,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             return;
         tablesNames = new String[]{"health_statuses"};
 
-        DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++);
+        DBHelper.Helth_StatusesTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
 
         allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
 
@@ -318,7 +308,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         for (int i = 0; i < PersonsList.getChildCount(); i++) {
 
             tablesNames = new String[]{"persons"};
-            DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID);
+            DBHelper.PersonsTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
 
             allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
 
@@ -333,7 +323,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
             for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {
                 tablesNames = new String[]{"health_statuses"};
-                DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.PersonID++); //increase personId after insert helth status for current person
+                DBHelper.Helth_StatusesTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++); //increase personId after insert helth status for current person
 
                 allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
                 getAllControlsNamesAndData(PersonsHelthStatusesList.getChildAt(j));

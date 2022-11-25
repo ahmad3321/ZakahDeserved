@@ -29,11 +29,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PackageView extends AppCompatActivity {
 
-    Button btn_download, btn_upload, btn_refresh;
-    ArrayList<PackageRecord> lstPackages = new ArrayList<>();
+    Button btn_download, btn_upload;
+    List<PackageRecord> lstPackages = new ArrayList<>();
 
 
     @Override
@@ -43,9 +44,12 @@ public class PackageView extends AppCompatActivity {
         // btn_Sync = findViewById(R.id.btn_Sync);
         btn_download = findViewById(R.id.btn_download);
         btn_upload = findViewById(R.id.btn_upload);
-        btn_refresh = findViewById(R.id.btn_Refresh);
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 
     @Override
     protected void onResume() {
@@ -59,15 +63,18 @@ public class PackageView extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.btn_download:
                 try {
-                    (new TestAsync()).execute();
+                    (new DownloadTask()).execute();
                 } catch (Exception ignored) {
+                    Toast.makeText(PackageView.this, "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_upload:
-                break;
-            case R.id.btn_Refresh:
-                DBHelper.getPackagesFromSQLite();
-                runOnUiThread(() -> addView(Constants.ShwoRecords));
+                try {
+                    (new UploadTask()).execute();
+                }
+                catch (Exception ignored){
+                    Toast.makeText(getApplicationContext(),"فشلت عملية رفع السجلات",Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -120,7 +127,7 @@ public class PackageView extends AppCompatActivity {
                 packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
-                Constants.PersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
+                Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
 
                 Intent intent = new Intent(getApplicationContext(), MainTabs.class);
                 startActivity(intent);
@@ -128,12 +135,41 @@ public class PackageView extends AppCompatActivity {
         }
     }
 
-    class TestAsync extends AsyncTask<Void, Integer, String> {
+
+    class UploadTask extends AsyncTask<Void, Integer, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(), "بدأت عملية رفع البيانات .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            if( DAL.executeQueries(Constants.SQLITEDAL.getAllQueries()))
+            {
+                Constants.SQLITEDAL.clearQueries();
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean done) {
+            super.onPostExecute(done);
+            if(done)
+                Toast.makeText(getApplicationContext(),"تم رفع جميع السجلات بنجاح",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getApplicationContext(),"فشلت عملية رفع السجلات",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    class DownloadTask extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
 
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(PackageView.this, "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
             Log.d(TAG + " PreExceute", "On pre Exceute......");
         }
 
@@ -161,7 +197,7 @@ public class PackageView extends AppCompatActivity {
 
 
                 //get packages info from server
-                lstPackages = DAL.getPackeges("SELECT packages.PackageID, ZakatID, PersonID, Program," +
+                lstPackages = DAL.getPackeges("SELECT packages.PackageID, ZakatID, IncrementPersonID, Program," +
                         " FromEmployeeCode, ToEmployeeCode, Package\n" +
                         "FROM zakatraising.packages \n" +
                         "INNER JOIN zakatraising.package_contents \n" +
@@ -169,12 +205,25 @@ public class PackageView extends AppCompatActivity {
                         " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
 
 
-                // Clear all stored informations about families
-                Constants.SQLITEDAL.ClearAllRecords();
                 Constants.ShwoRecords.clear();
 
                 //store packages info locally
                 Constants.SQLITEDAL.StorePackages(lstPackages);
+
+                List<String> zakatIDsToDownload = lstPackages.stream().map(PackageRecord::getZakatID).collect(Collectors.toList());
+                List<String> zakatIDsAtLocal = Constants.SQLITEDAL.getAllZakatID();
+
+                // get zakatIDs for families should be removed from local
+                List<String> toRemove = zakatIDsAtLocal.stream()
+                        .filter(element -> !zakatIDsToDownload.contains(element))
+                        .collect(Collectors.toList());
+
+                // Clear from local all families not needed
+                for (String zakatID : toRemove)
+                    Constants.SQLITEDAL.removeForm(zakatID);
+
+                // get from server needed families not exist at local
+                lstPackages = lstPackages.stream().filter(record -> !zakatIDsAtLocal.contains(record.ZakatID)).collect(Collectors.toList());
 
 
                 // get families informations from server
@@ -190,7 +239,7 @@ public class PackageView extends AppCompatActivity {
 
                     // get how many persons in the family
                     for (int j = 0; j < AllFamilyRecords.size(); j++)
-                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(j).getRecord().get("PersonID")).toString());
+                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(j).getRecord().get("IncrementPersonID")).toString());
 
 
                     //get from families table
@@ -201,13 +250,13 @@ public class PackageView extends AppCompatActivity {
 
                     // if this Form is for collecting data
                     if (lstPackages.get(i).Package.equals("إضافة")) {
-                        Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords);
-
+                        if (!Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+                            return "false";
 
                         // add info to show
                         Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
                         Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-                                && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
+                                && Objects.requireNonNull(x.getRecord().get("IncrementPersonID")).toString().endsWith("0")).findFirst(); //get the record of father
 
                         if (familyRecord.isPresent() && fatherRecord.isPresent())
                             Constants.ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
@@ -225,7 +274,7 @@ public class PackageView extends AppCompatActivity {
                         List<String> health_statusesColumns = new LinkedList<>(Arrays.asList(DBHelper.Helth_StatusesColumns));
                         health_statusesColumns.add(0, "HealthStatusID");
                         AllFamilyRecords.addAll(DAL.getTableData("health_statuses", health_statusesColumns,
-                                "select " + String.join(",", health_statusesColumns) + " from health_statuses where PersonID like '" + personID + "';",
+                                "select " + String.join(",", health_statusesColumns) + " from health_statuses where IncrementPersonID like '" + personID + "';",
                                 List.of()));
                     }
 
@@ -282,7 +331,8 @@ public class PackageView extends AppCompatActivity {
 
 
                     // Insert all data on SQLite
-                    Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords);
+                    if (!Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+                        return "false";
 
                     // add info to show
                     Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
@@ -317,9 +367,9 @@ public class PackageView extends AppCompatActivity {
 
                 runOnUiThread(() -> addView(Constants.ShwoRecords));
 
-                Toast.makeText(PackageView.this, "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(PackageView.this, "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
         }

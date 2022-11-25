@@ -11,8 +11,6 @@ import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Utility.Constants;
 
 public class BroadCastClass extends BroadcastReceiver {
-    String[] allSpinners = new String[]{};
-
     @Override
     public void onReceive(Context context, Intent intent) {
         try {

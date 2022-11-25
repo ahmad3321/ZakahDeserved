@@ -7,16 +7,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.example.zakahdeserved.Utility.*;
 
 public class DAL {
@@ -44,7 +47,7 @@ public class DAL {
             connection = DriverManager.getConnection(
                     "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_contabo", "wRps04*60");
         } catch (Exception exc) {
-            ValidationController.GetException(exc.toString().replace("\"",""),"connectionClass in DAL","","");
+            ValidationController.GetException(exc.toString().replace("\"", ""), "connectionClass in DAL", "", "");
             exc.printStackTrace();
             isConnected = false;
         }
@@ -177,11 +180,11 @@ public class DAL {
                     // connection.close();
                 } else {
                     ActiveUser = true;
-                    Toast.makeText(context , "تمممم", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception ex) {
                 ActiveUser = false;
-                ValidationController.GetException(ex.toString().replace("\"",""),"pdrUsernameTest in DAL",context.toString(),strUsername);
+                ValidationController.GetException(ex.toString().replace("\"", ""), "pdrUsernameTest in DAL", context.toString(), strUsername);
 
                 ex.printStackTrace();
             } finally {
@@ -350,7 +353,7 @@ public class DAL {
                     result = rs.getInt(1);
                 return result;
             } catch (SQLException throwables) {
-                ValidationController.GetException(throwables.toString().replace("\"",""),"query: "+query,"getDepartment in DAL","");
+                ValidationController.GetException(throwables.toString().replace("\"", ""), "query: " + query, "getDepartment in DAL", "");
                 throwables.printStackTrace();
                 isConnected = false;
             } finally {
@@ -411,6 +414,36 @@ public class DAL {
         return success;
     }
 
+
+    public static void testStroredProcedure() {
+        Connect();
+        Statement st = null;
+        try {
+            st = connection.createStatement();
+            st.execute("call test('z1111222');");
+        } catch (Exception ex) {
+
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries");
+
+            ex.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ignored) {
+            }// do nothing
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+    }
+
     public static boolean executeQueries(String queries) {
         boolean success = false;
         Connect();
@@ -423,8 +456,8 @@ public class DAL {
             connection.setAutoCommit(false);
 
             for (String s : queries.split(";")) {
-                if(s.length()>1)
-                st.addBatch(s);
+                if (s.length() > 1)
+                    st.addBatch(s);
             }
 
             st.executeBatch();
@@ -433,7 +466,7 @@ public class DAL {
             success = true;
         } catch (Exception ex) {
             try {
-                ValidationController.GetException(ex.toString().replace("\"",""),"","executeQueries in DAL","queries");
+                ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries");
                 connection.rollback();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -475,7 +508,7 @@ public class DAL {
             }
 
         } catch (SQLException throwables) {
-            ValidationController.GetException(throwables.toString().replace("\"",""),"","getPackeges in DAL","getPackeges");
+            ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getPackeges in DAL", "getPackeges");
             throwables.printStackTrace();
         } finally {
             //finally block used to close resources
@@ -511,7 +544,7 @@ public class DAL {
                 itemsArray.put(rs.getString(1), rs.getString(2));
             }
         } catch (SQLException throwables) {
-            ValidationController.GetException(throwables.toString().replace("\"",""),"","getSpinnerItems in DAL",spinnerName);
+            ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getSpinnerItems in DAL", spinnerName);
             throwables.printStackTrace();
             isConnected = false;
         } finally {
@@ -554,7 +587,7 @@ public class DAL {
                 itemsArray.add(new SQLiteRecord(tableName, dataTable));
             }
         } catch (SQLException throwables) {
-                ValidationController.GetException(throwables.toString().replace("\"",""),"","getTableData in DAL","getTableDatainDAL ,table: " + tableName);
+            ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getTableData in DAL", "getTableDatainDAL ,table: " + tableName);
             throwables.printStackTrace();
             isConnected = false;
         } finally {
