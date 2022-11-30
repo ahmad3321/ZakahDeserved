@@ -1,18 +1,27 @@
 package com.example.zakahdeserved;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
 
 import com.example.zakahdeserved.Connection.DAL;
@@ -21,7 +30,10 @@ import com.example.zakahdeserved.Connection.PackageRecord;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.Connection.ShowRecord;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,7 +53,11 @@ public class PackageView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.packageview);
-        // btn_Sync = findViewById(R.id.btn_Sync);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+        }
         btn_download = findViewById(R.id.btn_download);
         btn_upload = findViewById(R.id.btn_upload);
     }
@@ -50,7 +66,88 @@ public class PackageView extends AppCompatActivity {
     public void onBackPressed() {
         finishAffinity();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        try {
+            switch (item.getItemId()) {
 
+                case R.id.action_LogOut:
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(PackageView.this);
+                    alert.setTitle("تسجيل الخروج");
+                    alert.setMessage("هل أنت متأكد من الخروج ؟");
+                    alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            SharedPreferences sharedPreferences = null;
+                            try {
+                                sharedPreferences = EncryptedSharedPreferences.create(
+                                        getApplicationContext(),
+                                        "MySharedPref",
+                                        Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                                        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                                        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                            // Storing the key and its value as the data fetched from edittext
+                            myEdit.putBoolean("login",false);
+                            myEdit.apply();
+
+                            moveTaskToBack(true);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            dialogInterface.dismiss();
+                    }
+            });
+                    alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    alert.show();
+            return false;
+
+                case R.id.action_about:
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.activity_about, null);
+
+                    // create the popup window
+                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    boolean focusable = true; // lets taps outside the popup also dismiss it
+                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                    // show the popup window
+                    // which view you pass in doesn't matter, it is only used for the window tolken
+                    popupWindow.showAtLocation(this.findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
+
+                    // dismiss the popup window when touched
+                    popupView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }catch (Exception e){
+            ValidationController.GetException(e.toString().replace("\"", ""), "connectionClass in PackageView onOptionsItemSelected", "", "");
+            return false;
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -116,7 +213,8 @@ public class PackageView extends AppCompatActivity {
 
             // if clicked on the record, then move to the form.
             v.setTag(i);
-            ((EditText) v.findViewById(R.id.city)).setOnClickListener(view -> {
+            //((EditText) v.findViewById(R.id.city)).setOnClickListener(view -> {
+                ((LinearLayout) v.findViewById(R.id.lin_Click)).setOnClickListener(view -> {
 
                 // Initialize form parameters
                 int index = Integer.parseInt(v.getTag().toString());

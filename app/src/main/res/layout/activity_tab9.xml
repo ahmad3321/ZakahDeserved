@@ -71,20 +71,21 @@
             android:inputType="textMultiLine"
             android:fontFamily="@font/jaz_bold"
             android:hint="السبب" />
+
         <Button
             android:id="@+id/button_submit_list"
-            android:background="@drawable/round_primary"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Submit List"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:paddingLeft="10dp"
+            android:background="@drawable/round_primary"
             android:onClick="onClick"
-            android:paddingRight="10dp" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Submit List"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
