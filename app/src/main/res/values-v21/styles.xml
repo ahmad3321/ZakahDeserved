@@ -12,7 +12,9 @@
         <item name="android:fontFamily">@font/jaz_bold</item>
         <item name="colorPrimary">#000000</item>
     </style>
-
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/jaz_bold</item>
+    </style>
     <style name="loginParent" parent="parent">
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/loginBkColor</item>

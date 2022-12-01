@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
         if (isEntered)
             intent1 = new Intent(getApplicationContext(), PackageView.class);
         else
-            intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+          //  intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+            intent1 = new Intent(getApplicationContext(), PackageView.class);
 
         if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)
             intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع

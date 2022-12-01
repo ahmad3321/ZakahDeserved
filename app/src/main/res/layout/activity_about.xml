@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/loginParent"
+    android:orientation="vertical">
+
+    <ScrollView style="@style/parent" android:id="@+id/s1">
+
+
+        <RelativeLayout style="@style/parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/login_shape_bk"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk"
+
+                        android:contentDescription="login background" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/watan"
+                    android:text="المطورون"
+                    android:textSize="35sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textt"
+        style="@style/headerText"
+        android:layout_below="@+id/s1"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/watan"
+        android:inputType="textMultiLine"
+        android:lineHeight="50dp"
+        android:text="@string/about_text"
+        android:textColor="@color/brouwn"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/LogoDo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/dologo"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textt"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text1"
+        style="@style/headerText"
+        android:layout_below="@+id/LogoDo"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/watan"
+        android:text="@string/about_hafez"
+        android:textColor="@color/brouwn"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/text2"
+        style="@style/headerText"
+        android:layout_below="@+id/text1"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/watan"
+        android:text="@string/about_Yaser"
+        android:textColor="@color/brouwn"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/text3"
+        style="@style/headerText"
+        android:layout_below="@+id/text2"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/watan"
+        android:text="@string/about_AHmad"
+
+        android:textColor="@color/brouwn"
+        android:textSize="25sp" />
+</RelativeLayout>

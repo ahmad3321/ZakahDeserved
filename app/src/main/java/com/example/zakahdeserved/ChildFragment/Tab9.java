@@ -1,5 +1,7 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.PackageRecord;
+import com.example.zakahdeserved.PackageView;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
@@ -78,12 +81,27 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.buttonAdd_SurveyConclusions:
-
                 addView(R.layout.row_add_surveyconclusions, R.id.image_remove_SurveyConclusions, layoutSurveyConclusions);
-
                 break;
             case R.id.button_submit_list:
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle("إدخال البيانات");
+                alert.setMessage("هل أنت متأكد من ادخال البيانات ؟");
+                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
                 getData();
+                        dialogInterface.dismiss();
+                    }
+                });
+                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                alert.show();
 //                if (!DAL.executeQueries(insertQuery.toString()))
 //                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
                 break;

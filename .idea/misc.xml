@@ -20,9 +20,10 @@
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/drawable-v24/selector_personal_drawable.xml" value="0.2995" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/drawable-v24/toolbar_gradient.xml" value="0.168" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/act_delay_entry_statistical.xml" value="0.67" />
+        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_about.xml" value="0.88" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_healthstatuses.xml" value="0.87" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_main_tabs.xml" value="0.67" />
+        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_main_tabs.xml" value="0.1" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_programms_tab1.xml" value="0.8452380952380952" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_programms_tab2Fidaa.xml" value="0.8452380952380952" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/activity_programms_tab2Hayat.xml" value="0.41217798594847777" />
@@ -50,7 +51,7 @@
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/layout_login.xml" value="0.33" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/music_page.xml" value="0.40749414519906324" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/news_page.xml" value="0.40749414519906324" />
-        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/packageview.xml" value="0.5069444444444444" />
+        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/packageview.xml" value="0.5555555555555556" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_add_Asset.xml" value="0.7896825396825397" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_add_SurveyConclusions.xml" value="0.8432539682539683" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_add_Wifes.xml" value="0.7513340448239061" />
@@ -70,6 +71,8 @@
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_add_wifes.xml" value="0.7945823927765236" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_add_ِAsset.xml" value="0.680921052631579" />
         <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/layout/row_healthstatus.xml" value="0.87" />
+        <entry key="..\:/Users/Yahya/AndroidStudioProjects/ZakahDeserved/app/src/main/res/menu/menu_main.xml" value="0.88" />
+        <entry key="..\:/Users/Yahya/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/auto_complete_list.xml" value="0.88" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/drawable-v24/abc.xml" value="0.1475" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/act_delay_entry_statistical.xml" value="0.264" />
         <entry key="..\:/workMe/Zakah Desrved/ZakahDeserved/app/src/main/res/layout/activity_healthstatuses.xml" value="0.2296875" />
