@@ -32,8 +32,6 @@ import com.example.zakahdeserved.Connection.ShowRecord;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -48,6 +46,7 @@ public class PackageView extends AppCompatActivity {
     Button btn_download, btn_upload;
     List<PackageRecord> lstPackages = new ArrayList<>();
 
+    ArrayList<ShowRecord> ShwoRecords = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,7 @@ public class PackageView extends AppCompatActivity {
         setContentView(R.layout.packageview);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
         }
         btn_download = findViewById(R.id.btn_download);
@@ -66,12 +65,14 @@ public class PackageView extends AppCompatActivity {
     public void onBackPressed() {
         finishAffinity();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         try {
@@ -94,18 +95,18 @@ public class PackageView extends AppCompatActivity {
                                         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                                         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
-                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                            // Storing the key and its value as the data fetched from edittext
-                            myEdit.putBoolean("login",false);
-                            myEdit.apply();
+                                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                                // Storing the key and its value as the data fetched from edittext
+                                myEdit.putBoolean("login", false);
+                                myEdit.apply();
 
-                            moveTaskToBack(true);
+                                moveTaskToBack(true);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                             dialogInterface.dismiss();
-                    }
-            });
+                        }
+                    });
                     alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -114,7 +115,7 @@ public class PackageView extends AppCompatActivity {
                     });
 
                     alert.show();
-            return false;
+                    return false;
 
                 case R.id.action_about:
                     LayoutInflater inflater = (LayoutInflater)
@@ -143,16 +144,18 @@ public class PackageView extends AppCompatActivity {
                 default:
                     return super.onOptionsItemSelected(item);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "connectionClass in PackageView onOptionsItemSelected", "", "");
             return false;
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        DBHelper.getPackagesFromSQLite();
-        runOnUiThread(() -> addView(Constants.ShwoRecords));
+        ShwoRecords =  Constants.SQLITEDAL.getShowRecords();
+        lstPackages = Constants.SQLITEDAL.getPackages();
+        runOnUiThread(() -> addView(ShwoRecords));
     }
 
     public void onClick_UDR(View view) {
@@ -168,9 +171,8 @@ public class PackageView extends AppCompatActivity {
             case R.id.btn_upload:
                 try {
                     (new UploadTask()).execute();
-                }
-                catch (Exception ignored){
-                    Toast.makeText(getApplicationContext(),"فشلت عملية رفع السجلات",Toast.LENGTH_LONG).show();
+                } catch (Exception ignored) {
+                    Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -214,13 +216,14 @@ public class PackageView extends AppCompatActivity {
             // if clicked on the record, then move to the form.
             v.setTag(i);
             //((EditText) v.findViewById(R.id.city)).setOnClickListener(view -> {
-                ((LinearLayout) v.findViewById(R.id.lin_Click)).setOnClickListener(view -> {
+            v.findViewById(R.id.lin_Click).setOnClickListener(view -> {
 
                 // Initialize form parameters
                 int index = Integer.parseInt(v.getTag().toString());
                 String _zakatID = listShowRecords.get(index).ZakatID;
                 Constants.ZakatID = _zakatID;
                 Constants.PackageID = listShowRecords.get(index).PackageID;
+
                 Optional<PackageRecord> packagerecord = lstPackages.stream().filter(record -> Objects.equals(record.PackageID, Constants.PackageID)).findFirst();
                 packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
 
@@ -239,13 +242,16 @@ public class PackageView extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            runOnUiThread(() -> {
+                btn_download.setEnabled(false);
+                btn_upload.setEnabled(false);
+            });
             Toast.makeText(getApplicationContext(), "بدأت عملية رفع البيانات .. انتظر قليلا", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            if( DAL.executeQueries(Constants.SQLITEDAL.getAllQueries()))
-            {
+            if (DAL.executeQueries(Constants.SQLITEDAL.getAllQueries())) {
                 Constants.SQLITEDAL.clearQueries();
                 return true;
             }
@@ -255,10 +261,14 @@ public class PackageView extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean done) {
             super.onPostExecute(done);
-            if(done)
-                Toast.makeText(getApplicationContext(),"تم رفع جميع السجلات بنجاح",Toast.LENGTH_LONG).show();
+            runOnUiThread(() -> {
+                btn_download.setEnabled(true);
+                btn_upload.setEnabled(true);
+            });
+            if (done)
+                Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(getApplicationContext(),"فشلت عملية رفع السجلات",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -266,9 +276,17 @@ public class PackageView extends AppCompatActivity {
         String TAG = getClass().getSimpleName();
 
         protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
-            Log.d(TAG + " PreExceute", "On pre Exceute......");
+            try{
+                super.onPreExecute();
+                Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+                Log.d(TAG + " PreExceute", "On pre Exceute......");
+                runOnUiThread(() -> {
+                    btn_download.setEnabled(false);
+                    btn_upload.setEnabled(false);
+                });
+            }catch (Exception ex){
+                Log.d(TAG ,ex.toString());
+            }
         }
 
         protected String doInBackground(Void... arg0) {
@@ -295,7 +313,7 @@ public class PackageView extends AppCompatActivity {
 
 
                 //get packages info from server
-                lstPackages = DAL.getPackeges("SELECT packages.PackageID, ZakatID, IncrementPersonID, Program," +
+                lstPackages = DAL.getPackeges("SELECT packages.PackageID, ZakatID, PersonID, Program," +
                         " FromEmployeeCode, ToEmployeeCode, Package\n" +
                         "FROM zakatraising.packages \n" +
                         "INNER JOIN zakatraising.package_contents \n" +
@@ -303,7 +321,7 @@ public class PackageView extends AppCompatActivity {
                         " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
 
 
-                Constants.ShwoRecords.clear();
+                ShwoRecords.clear();
 
                 //store packages info locally
                 Constants.SQLITEDAL.StorePackages(lstPackages);
@@ -337,7 +355,7 @@ public class PackageView extends AppCompatActivity {
 
                     // get how many persons in the family
                     for (int j = 0; j < AllFamilyRecords.size(); j++)
-                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(j).getRecord().get("IncrementPersonID")).toString());
+                        PersonsIDs.add(Objects.requireNonNull(AllFamilyRecords.get(j).getRecord().get("PersonID")).toString());
 
 
                     //get from families table
@@ -348,16 +366,16 @@ public class PackageView extends AppCompatActivity {
 
                     // if this Form is for collecting data
                     if (lstPackages.get(i).Package.equals("إضافة")) {
-                        if (!Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+                        if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
                             return "false";
 
                         // add info to show
                         Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
                         Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-                                && Objects.requireNonNull(x.getRecord().get("IncrementPersonID")).toString().endsWith("0")).findFirst(); //get the record of father
+                                && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
 
                         if (familyRecord.isPresent() && fatherRecord.isPresent())
-                            Constants.ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
+                            ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                     Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                     Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
@@ -372,7 +390,7 @@ public class PackageView extends AppCompatActivity {
                         List<String> health_statusesColumns = new LinkedList<>(Arrays.asList(DBHelper.Helth_StatusesColumns));
                         health_statusesColumns.add(0, "HealthStatusID");
                         AllFamilyRecords.addAll(DAL.getTableData("health_statuses", health_statusesColumns,
-                                "select " + String.join(",", health_statusesColumns) + " from health_statuses where IncrementPersonID like '" + personID + "';",
+                                "select " + String.join(",", health_statusesColumns) + " from health_statuses where PersonID like '" + personID + "';",
                                 List.of()));
                     }
 
@@ -429,7 +447,7 @@ public class PackageView extends AppCompatActivity {
 
 
                     // Insert all data on SQLite
-                    if (!Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+                    if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
                         return "false";
 
                     // add info to show
@@ -438,7 +456,7 @@ public class PackageView extends AppCompatActivity {
                             && Objects.requireNonNull(x.getRecord().get("WhoIs")).toString().equals("رب الأسرة")).findFirst(); //get the record of father
 
                     if (familyRecord.isPresent() && fatherRecord.isPresent())
-                        Constants.ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
+                        ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
                                 Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
                                 Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
@@ -449,7 +467,7 @@ public class PackageView extends AppCompatActivity {
                 return "true";
             } catch (Exception ex) {
                 Constants.SQLITEDAL.ClearAllRecords();
-                Constants.ShwoRecords.clear();
+                ShwoRecords.clear();
                 return "false";
             }
         }
@@ -461,9 +479,13 @@ public class PackageView extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            runOnUiThread(() -> {
+                btn_download.setEnabled(true);
+                btn_upload.setEnabled(true);
+            });
             if (result.equalsIgnoreCase("true")) {
 
-                runOnUiThread(() -> addView(Constants.ShwoRecords));
+                runOnUiThread(() -> addView(ShwoRecords));
 
                 Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {

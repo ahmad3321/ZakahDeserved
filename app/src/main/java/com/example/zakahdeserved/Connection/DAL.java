@@ -415,40 +415,14 @@ public class DAL {
     }
 
 
-    public static void testStroredProcedure() {
-        Connect();
-        Statement st = null;
-        try {
-            st = connection.createStatement();
-            st.execute("call test('z1111222');");
-        } catch (Exception ex) {
-
-            ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries");
-
-            ex.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException ignored) {
-            }// do nothing
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
-    }
-
     public static boolean executeQueries(String queries) {
         boolean success = false;
         Connect();
 
         Statement st = null;
+
+        if(!isConnected)
+            return false;
         try {
             st = connection.createStatement();
 
@@ -570,10 +544,8 @@ public class DAL {
         ArrayList<SQLiteRecord> itemsArray = new ArrayList<>();
 
         DAL.Connect();
-        Statement st = null;
 
-        try {
-            st = connection.createStatement();
+        try (Statement st = connection.createStatement()) {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -590,22 +562,10 @@ public class DAL {
             ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getTableData in DAL", "getTableDatainDAL ,table: " + tableName);
             throwables.printStackTrace();
             isConnected = false;
-        } finally {
-            //finally block used to close resources
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException ignored) {
-            }// do nothing
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+        }
+        //finally block used to close resources
+        // do nothing
+        //end finally try
         return itemsArray;
     }
 }

@@ -41,5 +41,4 @@ public class Constants {
 
     public static ArrayList<SQLiteRecord> familyInfo;
 
-    public static ArrayList<ShowRecord> ShwoRecords = new ArrayList<>();
 }

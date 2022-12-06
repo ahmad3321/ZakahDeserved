@@ -11,14 +11,12 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 
-import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class SQLiteDAL extends SQLiteOpenHelper {
 
@@ -28,7 +26,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 4);
     }
 
 
@@ -83,7 +81,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 " 'CoinType' TEXT , 'MonthlyValue' TEXT) ;";
 
         String AidsCreate = "CREATE TABLE 'aids' ( 'AidID' TEXT  , 'ZakatID' TEXT , 'AidType' TEXT , 'CoinType' TEXT ," +
-                " 'AidValue' TEXT , 'ReceivingTime' TEXT , 'From' TEXT ) ;";
+                " 'AidValue' TEXT , 'ReceivingTime' TEXT , 'AidsFrom' TEXT ) ;";
 
         String AssetsCreate = "CREATE TABLE 'assets' ( 'AssetID' TEXT  , 'ZakatID' TEXT , 'AssetType' TEXT , 'AssetAdress' TEXT ," +
                 " 'BenefitType' TEXT , 'BenefitValue' TEXT , 'GroundSpace' TEXT , 'ValueTime' TEXT , 'CoinType' TEXT ," +
@@ -482,7 +480,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("PackageID", lstPackages.get(i).PackageID);
                 contentValues.put("ZakatID", lstPackages.get(i).ZakatID);
-                contentValues.put("IncrementPersonID", lstPackages.get(i).PersonID);
+                contentValues.put("PersonID", lstPackages.get(i).PersonID);
                 contentValues.put("Program", lstPackages.get(i).Program);
                 contentValues.put("FromEmployeeCode", lstPackages.get(i).FromEmployeeCode);
                 contentValues.put("ToEmployeeCode", lstPackages.get(i).ToEmployeeCode);
@@ -585,10 +583,29 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         } finally {
             db.endTransaction();
         }
-        return success;
+        return !success;
     }
 
-    public ArrayList<ShowRecord> getAllPackages() {
+    public ArrayList<PackageRecord> getPackages() {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<PackageRecord> packageRecords = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Packages;", null);
+
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                packageRecords.add(new PackageRecord(cursor.getString(0), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return packageRecords;
+    }
+
+    public ArrayList<ShowRecord> getShowRecords() {
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<ShowRecord> sqliteRecords = new ArrayList<>();

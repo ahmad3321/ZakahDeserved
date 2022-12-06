@@ -17,7 +17,8 @@ public class PackageRecord {
     }
     public String PackageID,ZakatID, PersonID, Program, FromEmployeeCode, ToEmployeeCode, Package;
 
-    public PackageRecord(String packageID, String zakatID, String personID, String program, String fromEmployeeCode, String toEmployeeCode, String aPackage) {
+    public PackageRecord(String packageID, String zakatID, String personID, String program,
+                         String fromEmployeeCode, String toEmployeeCode, String aPackage) {
         PackageID = packageID;
         ZakatID = zakatID;
         PersonID = personID;

@@ -25,7 +25,7 @@ public class DBHelper {
 
     //لا نضمن AutoIncrement ID في الحقول حتى لا يظهر في تعليمة الإدخال فيعطي خطأ
 
-    public static String[] PersonsColumns = new String[]{"IncrementPersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName",
+    public static String[] PersonsColumns = new String[]{"PersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName",
             "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "Gender", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
             "WhoIs", "IsWorking", "Record", "MonthlyIncome", "CoinType"};
 
@@ -34,7 +34,7 @@ public class DBHelper {
             "OrginalJob", "WantedJob", "Nationality", "ResidenceStatus", "ContactNumber1", "ContactNumber2",
             "RelationWithContact2", "Deserved", "Reson", "ExisitStatus", "ExisitStatusAbout"};
 
-    public static String[] Helth_StatusesColumns = new String[]{"HealthStatusID", "IncrementPersonID", "HealthStatus",
+    public static String[] Helth_StatusesColumns = new String[]{"HealthStatusID", "PersonID", "HealthStatus",
             "HealthStatusEvaluation", "HealthStatusType", "HealthStatusDescription", "CoinType", "MonthlyCost"};
 
     public static String[] HusbandsColumns = new String[]{"ZakatID", "WifeSocialStatus", "HusbandName", "HusbandLastName", "HusbandFatherName",
@@ -51,29 +51,29 @@ public class DBHelper {
 
     public static String[] WaterTypesColumns = new String[]{"ZakatID", "WaterType", "CoinType", "MonthlyValue"};
 
-    public static String[] AidsColumns = new String[]{"ZakatID", "AidType", "CoinType", "AidValue", "ReceivingTime", "From"};
+    public static String[] AidsColumns = new String[]{"ZakatID", "AidType", "CoinType", "AidValue", "ReceivingTime", "AidsFrom"};
 
     public static String[] AssetsColumns = new String[]{"ZakatID", "AssetType", "AssetAdress", "BenefitType", "BenefitValue",
             "GroundSpace", "ValueTime", "CoinType", "GroundNature", "MachineType", "AnimalType", "AnimalCount"};
 
     public static String[] SurveyConclusionColumns = new String[]{"ZakatID", "NeighborName", "IfRented", "IfIncome", "IfKidsWorking", "IfAssets", "IfPoor", "Why"};
 
-    public static String[] FedaProgramColumns = new String[]{"IncrementPersonID", "ArrestPlace", "ArrestDate", "ArrestReson", "PrisonName",
+    public static String[] FedaProgramColumns = new String[]{"PersonID", "ArrestPlace", "ArrestDate", "ArrestReson", "PrisonName",
             "StockValue", "Mediator", "RecipientName", "IdentityNumber", "lst_IdentityTypes", "ReceivedDate", "ReleaseDate", "Files"};
 
-    public static String[] KtlalProgramesColumns = new String[]{"IncrementPersonID", "Program", "lst_CampaignTypes", "CoinType", "StockValue",
+    public static String[] KtlalProgramesColumns = new String[]{"PersonID", "Program", "lst_CampaignTypes", "CoinType", "StockValue",
             "StockCount", "IdentityNumber", "lst_IdentityTypes", "RecipientName", "DistributionPlace", "DistributionDate", "DistributionMember"};
 
-    public static String[] HayatProgramesColumns = new String[]{"IncrementPersonID", "BeneficiaryName", "StatusType", "DoctorOrInstitution",
+    public static String[] HayatProgramesColumns = new String[]{"PersonID", "BeneficiaryName", "StatusType", "DoctorOrInstitution",
             "MedicalService", "ServiceProvider", "ServiceProviderName", "CoinType", "StockValue", "ReceivedDate", "Result", "Files"};
 
     public static String[] AmalProgramesColumns = new String[]{"BeneficiaryName", "ServiceType", "Domain", "Description",
-            "ServiceProvider", "CoinType", "StockValue", "ReceivedDate", "Result", "IncrementPersonID"};
+            "ServiceProvider", "CoinType", "StockValue", "ReceivedDate", "Result", "PersonID"};
 
-    public static String[] AmalProgramesFormDataColumns = new String[]{"IncrementPersonID", "PreviousExperiences", "MonthlyDuration",
+    public static String[] AmalProgramesFormDataColumns = new String[]{"PersonID", "PreviousExperiences", "MonthlyDuration",
             "RequiredExperiences", "ExperiencesEffect", "BeneficiaryContribution"};
 
-    public static String[] StudentsProgramesColumns = new String[]{"IncrementPersonID", "BeneficiaryName", "lst_Universities", "College",
+    public static String[] StudentsProgramesColumns = new String[]{"PersonID", "BeneficiaryName", "lst_Universities", "College",
             "Department", "Specialization", "UniversityID", "UniversityYear", "PracticalCoursesCount", "EducationSystem", "UniversitySituation",
             "DistanceToFamily", "DistanceToCollege", "Transportation", "TransportationCoinType", "TransportationCost", "GrantType", "CoinType",
             "StockValue", "ReceivedDate", "GraduationExpectedYear", "Average", "CollegeTuition", "CollegeTuitionCoinType", "DiscountValue",
@@ -200,9 +200,5 @@ public class DBHelper {
             value = 0;
 
         return value;
-    }
-
-    public static void getPackagesFromSQLite(){
-        Constants.ShwoRecords =  Constants.SQLITEDAL.getAllPackages();
     }
 }

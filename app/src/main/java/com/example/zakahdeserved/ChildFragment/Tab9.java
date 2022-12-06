@@ -177,7 +177,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 .append(packageRecord.Package).append("', '").append(packageRecord.ToEmployeeCode).append("', '")
                 .append(packageRecord.FromEmployeeCode).append("', '").append(autoDate).append("', '")
                 .append(packageRecord.Program).append("');")
-                .append("INSERT INTO package_contents (PackageID, IncrementPersonID, ZakatID, PackageStatus, EndDate) ")
+                .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus, EndDate) ")
                 .append("VALUES ((select max(PackageID) from packages), '").append(packageRecord.PersonID).append("', '")
                 .append(packageRecord.ZakatID).append("', 'قيد العمل', '").append(autoDate).append("');");
     }
@@ -192,7 +192,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
         allItemsTable.put(tablesNames[1], DBHelper.FamiliesTable);
 
-        DBHelper.PersonsTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+        DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         DBHelper.PersonsTable.put("WhoIs", "رب الأسرة");
 
         getAllControlsNamesAndData(Constants.view1);
@@ -220,11 +220,14 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //الحالة الصحية لرب الأسرة Helth Status
     void getFromView4() {
+
+        // قم بزيادة عداد IncrementPersonID في كل الحالتين سواء هناك حالة صحية لرب الأسرة أو لا
+        DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
+
         if (Constants.view4 == null)
             return;
-        tablesNames = new String[]{"health_statuses"};
 
-        DBHelper.Helth_StatusesTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
+        tablesNames = new String[]{"health_statuses"};
 
         allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
 
@@ -319,14 +322,16 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     //أفراد الأسرة (زوجة, أولاد, معالين) persons
     void getFromView8() {
+
         if (Constants.view8 == null)
             return;
+
         LinearLayout PersonsList = Constants.view8.findViewById(R.id.layout_list_Wifes);
 
         for (int i = 0; i < PersonsList.getChildCount(); i++) {
 
             tablesNames = new String[]{"persons"};
-            DBHelper.PersonsTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+            DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
 
             allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
 
@@ -338,10 +343,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
             //الحالة الصحية للفرد HelthStatus Of person
+            // قم بزيادة عداد IncrementPersonID في كل الحالتين سواء هناك حالة صحية للفرد أو لا
+            DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
             LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
+
             for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {
                 tablesNames = new String[]{"health_statuses"};
-                DBHelper.Helth_StatusesTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++); //increase personId after insert helth status for current person
 
                 allItemsTable.put(tablesNames[0], DBHelper.Helth_StatusesTable);
                 getAllControlsNamesAndData(PersonsHelthStatusesList.getChildAt(j));

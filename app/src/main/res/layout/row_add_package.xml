@@ -36,9 +36,8 @@
             android:fontFamily="@font/jaz_bold"
             android:padding="5dp"
             android:textColor="@color/black"
-            android:enabled="true"
+            android:enabled="false"
             android:layout_width="wrap_content"
-            android:clickable="true"
             android:layout_height="40dp"
             android:focusable="true" />
         <EditText

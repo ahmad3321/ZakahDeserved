@@ -75,7 +75,7 @@
             android:fontFamily="@font/jaz_bold"
             android:layout_height="40dp" />
         <EditText
-            android:id="@+id/From"
+            android:id="@+id/AidsFrom"
             android:layout_marginStart="10dp"
             android:background="@drawable/round_grey"
             android:hint="الجهة المانحة"

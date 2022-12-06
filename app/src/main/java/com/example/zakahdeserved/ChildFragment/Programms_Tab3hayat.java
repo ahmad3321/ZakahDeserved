@@ -101,7 +101,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.HayatProgramTable.put("IncrementPersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+        DBHelper.HayatProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"hayat_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.HayatProgramTable);
