@@ -123,7 +123,7 @@ public class Tab5 extends Fragment {
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.VISIBLE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
 
-                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ((EditText) view5.findViewById(R.id.EventDate)).setText("");
                         ValidationController.ClearView(view5.findViewById(R.id.Linear_Travel));
                         break;
 
@@ -132,7 +132,7 @@ public class Tab5 extends Fragment {
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.VISIBLE);
 
-                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ((EditText) view5.findViewById(R.id.EventDate)).setText("");
                         ValidationController.ClearView(view5.findViewById(R.id.Linear_Lockup));
                         break;
 
@@ -141,7 +141,7 @@ public class Tab5 extends Fragment {
                         view5.findViewById(R.id.Linear_Lockup).setVisibility(View.GONE);
                         view5.findViewById(R.id.Linear_Travel).setVisibility(View.GONE);
 
-                        ((EditText)view5.findViewById(R.id.EventDate)).setText("");
+                        ((EditText) view5.findViewById(R.id.EventDate)).setText("");
                         ValidationController.ClearView(view5.findViewById(R.id.Linear_Lockup));
                         ValidationController.ClearView(view5.findViewById(R.id.Linear_Travel));
                         break;
@@ -183,14 +183,14 @@ public class Tab5 extends Fragment {
                     view5.findViewById(R.id.ArrestDate).setVisibility(View.GONE);
                     view5.findViewById(R.id.CondemnationDuration).setVisibility(View.VISIBLE);
 
-                    ((EditText)view5.findViewById(R.id.ArrestDate)).setText("");
+                    ((EditText) view5.findViewById(R.id.ArrestDate)).setText("");
                 }
                 //غير محكوم
                 else if (i == 1) {
                     view5.findViewById(R.id.ArrestDate).setVisibility(View.VISIBLE);
                     view5.findViewById(R.id.CondemnationDuration).setVisibility(View.GONE);
 
-                    ((EditText)view5.findViewById(R.id.CondemnationDuration)).setText("");
+                    ((EditText) view5.findViewById(R.id.CondemnationDuration)).setText("");
                 }
             }
 
@@ -203,7 +203,7 @@ public class Tab5 extends Fragment {
         Constants.SQLITEDAL.fillSpinner(view5.getContext(), view5.findViewById(R.id.lst_IdentityTypes));
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-            DBHelper.loadDataToControls(view5, Constants.familyInfo);
+        DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
         return view5;
     }

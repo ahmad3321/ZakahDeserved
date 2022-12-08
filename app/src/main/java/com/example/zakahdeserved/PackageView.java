@@ -153,6 +153,10 @@ public class PackageView extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        ((LinearLayout)findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
+        ((LinearLayout)findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
+        ((LinearLayout)findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
+        ((LinearLayout)findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
         ShwoRecords =  Constants.SQLITEDAL.getShowRecords();
         lstPackages = Constants.SQLITEDAL.getPackages();
         runOnUiThread(() -> addView(ShwoRecords));
