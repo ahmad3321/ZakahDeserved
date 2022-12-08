@@ -26,7 +26,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
     }
 
 
@@ -45,8 +45,8 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         String PersonCreate = "CREATE TABLE 'persons' " +
                 "('PersonID' TEXT, 'ZakatID' TEXT, 'Name' TEXT, 'LastName' TEXT, 'FatherName' TEXT, 'MotherFullName' TEXT," +
-                " 'Gender' TEXT, 'IdentityNumber' TEXT, 'lst_IdentityTypes' TEXT, 'IdentityFile' TEXT, 'BirthPlace' TEXT," +
-                " 'BirthDate' TEXT, 'AcademicQualification' TEXT, 'Relation' TEXT, 'WhoIs' TEXT, 'IsWorking' TEXT, 'Record' TEXT," +
+                " 'IdentityNumber' TEXT, 'lst_IdentityTypes' TEXT, 'IdentityFile' TEXT, 'Gender' TEXT, 'BirthPlace' TEXT," +
+                " 'BirthDate' TEXT, 'AcademicQualification' TEXT, 'Relation' TEXT, 'WhoIs' TEXT, 'Record' TEXT, 'IsWorking' TEXT," +
                 " 'MonthlyIncome' TEXT, 'CoinType' TEXT);";
 
         String FamiliesCreate = "CREATE TABLE 'families' ('ZakatID' TEXT , 'OrginalCity' TEXT , 'OrginalTown' TEXT ," +
@@ -323,7 +323,6 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
             do {
-
                 sqliteRecords.add(getSQLiteRecord(cursor, "persons", DBHelper.PersonsColumns));
 
                 String personID = cursor.getString(1);
