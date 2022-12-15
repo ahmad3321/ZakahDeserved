@@ -45,6 +45,7 @@ public class Tab5 extends Fragment {
         // Inflate the layout for this fragment
         View view5 = inflater.inflate(R.layout.activity_tab5, container, false);
         Constants.view5 = view5;
+        EditText txtEventDate = view5.findViewById(R.id.EventDate);
 
         if (!ValidationController.ENABLE_FEMALE_TAB)
             ValidationController.lockThePage(view5);
@@ -155,7 +156,6 @@ public class Tab5 extends Fragment {
         });
 
 
-        EditText txtEventDate = view5.findViewById(R.id.EventDate);
 
         myCalendar = Calendar.getInstance();
 
