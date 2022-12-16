@@ -99,8 +99,10 @@ public class PackageView extends AppCompatActivity {
                                 // Storing the key and its value as the data fetched from edittext
                                 myEdit.putBoolean("login", false);
                                 myEdit.apply();
+                                finishAffinity();
+                                System.exit(0);
 
-                                moveTaskToBack(true);
+                                // moveTaskToBack(true);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
