@@ -215,30 +215,22 @@ public class DAL {
         String max = "";
         Connect();
         if (isConnected) {
-            String strSQLTables = " SELECT MAX(" + Column + ") FROM " + tableName + " WHERE employeeCode = '" + EmployeeCode + "';";
+            String strSQLTables = " SELECT MAX(" + Column + ") FROM " + tableName + " WHERE AdminEmployeeCode = '" + EmployeeCode + "';";
             Statement st = null;
             try {
                 st = connection.createStatement();
                 rs = st.executeQuery(strSQLTables);
-                if (!rs.next()) {                    //connection.close();
-                    try {
-                        connection.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-
-                } else {
+                if (rs.next()) {
                     max = rs.getString(1);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } finally {
-                //finally block used to close resources
                 try {
                     if (st != null) {
                         connection.close();
                     }
-                } catch (SQLException se) {
+                } catch (SQLException ignored) {
                 }// do nothing
                 try {
                     if (connection != null) {
@@ -262,9 +254,7 @@ public class DAL {
             try {
                 st = connection.createStatement();
                 rs = st.executeQuery(strSQLTables);
-                if (!rs.next()) {
-                    //connection.close();
-                } else {
+                if (rs.next()) {
                     max = rs.getString(1);
                 }
             } catch (SQLException throwables) {
@@ -275,7 +265,7 @@ public class DAL {
                     if (st != null) {
                         connection.close();
                     }
-                } catch (SQLException se) {
+                } catch (SQLException ignored) {
                 }// do nothing
                 try {
                     if (connection != null) {
@@ -421,7 +411,7 @@ public class DAL {
 
         Statement st = null;
 
-        if(!isConnected)
+        if (!isConnected)
             return false;
         try {
             st = connection.createStatement();
