@@ -27,20 +27,35 @@
                 android:theme="@style/SpinnerTheme"
                 android:entries="@array/AssetType" />
         </FrameLayout>
-        <EditText
-            android:id="@+id/ReceivingTime"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_grey"
-            android:hint="العائد منه"
-            android:textSize="14sp"
-            android:fontFamily="@font/jaz_bold"
-            android:paddingStart="10dp"
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:layout_width="90dp"
-            android:textAlignment="center"
-            android:inputType="number"
-            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="start"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="العائد منه"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <EditText
+                android:id="@+id/ReceivingTime"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/purple_200"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:inputType="number"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="العائد منه"/>
+        </LinearLayout>
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,21 +68,36 @@
                 android:layout_height="40dp"
                 android:entries="@array/CoinType" />
         </FrameLayout>
-        <EditText
-            android:id="@+id/ValueTime"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_grey"
-            android:hint="وقت عائداتها"
-            android:textSize="14sp"
-            android:paddingStart="10dp"
-            android:padding="5dp"
-            android:fontFamily="@font/jaz_bold"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:layout_width="90dp"
-            android:textAlignment="center"
-            android:inputType="number"
-            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="start"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="وقت عائداتها"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <EditText
+                android:id="@+id/ValueTime"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="وقت عائداتها"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
         <ImageView
             android:id="@+id/image_remove_Asset"
             android:layout_width="25dp"
@@ -139,21 +169,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
-        <EditText
-            android:id="@+id/GroundSpace"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_grey"
-            android:hint="مساحة الأرض"
-            android:textSize="14sp"
-            android:paddingStart="10dp"
-            android:fontFamily="@font/jaz_bold"
-            android:padding="5dp"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:layout_width="90dp"
-            android:textAlignment="center"
-            android:inputType="number"
-            android:layout_height="40dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="start"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="مساحة الأرض"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <EditText
+                android:id="@+id/GroundSpace"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="مساحة الأرض"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,21 +228,36 @@
 
     </LinearLayout>
     </HorizontalScrollView>
-
-    <EditText
-        android:id="@+id/MachineType"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/round_grey"
-        android:fontFamily="@font/jaz_bold"
-        android:hint="نوع الالية"
-        android:padding="5dp"
-        android:paddingStart="10dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/jaz_reg"
+            android:text="نوع الالية"
+            android:textSize="18sp"
+            android:typeface="serif" />
+
+        <EditText
+            android:id="@+id/MachineType"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/purple_200"
+            android:fontFamily="@font/jaz_bold"
+            android:hint="نوع الالية"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -230,22 +291,39 @@
                 android:entries="@array/AnimalType"
                 android:theme="@style/SpinnerTheme"
                 android:layout_marginStart="10dp" />
-
-            <EditText
-                android:id="@+id/AnimalCount"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/round_grey"
-                android:hint="العدد"
-                android:textSize="14sp"
-                android:paddingStart="10dp"
-                android:padding="5dp"
-                android:fontFamily="@font/jaz_bold"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:layout_width="70dp"
-                android:textAlignment="center"
-                android:inputType="number"
-                android:layout_height="40dp" />
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="العدد"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/AnimalCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="العدد"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
     </HorizontalScrollView>

@@ -80,32 +80,88 @@
                     android:entries="@array/CoinType"
                     android:layout_marginStart="63dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/RentValue"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="قيمة الأجار" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <EditText
-                android:id="@+id/CoveredSpace"
-                android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="25dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="قيمة الأجار"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/RentValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="numberDecimal"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="قيمة الأجار"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="المساحة المسقوفة" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <EditText
-                android:id="@+id/RoomsCount"
-                android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المساحة المسقوفة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/CoveredSpace"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="numberDecimal"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="المساحة المسقوفة" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد الغرف" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد الغرف"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/RoomsCount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="numberDecimal"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد الغرف"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -200,62 +256,196 @@
                     android:layout_marginStart="55dp"
                     android:entries="@array/CookingGas" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/CookingGasOther"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:visibility="gone"
-                android:hint="نوعه" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <EditText
-                android:id="@+id/Mobiles"
-                android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="نوعه"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/CookingGasOther"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="نوعه" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد الموبايلات" />
-            <EditText
-                android:id="@+id/Routers"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد الموبايلات"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/Mobiles"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="number"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد الموبايلات" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد الراوترات" />
-            <EditText
-                android:id="@+id/TVs"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد الراوترات"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/Routers"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="number"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد الراوترات" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد التلفازات" />
-            <EditText
-                android:id="@+id/Fridges"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد التلفازات"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/TVs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="number"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد التلفازات" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد الثلاجات" />
-            <EditText
-                android:id="@+id/Cars"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد الثلاجات"
+                    android:inputType="number"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/Fridges"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد الثلاجات" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد السيارات" />
-            <EditText
-                android:id="@+id/Motorcycles"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد السيارات"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/Cars"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="number"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد السيارات" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد الموتورات" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد الموتورات"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/Motorcycles"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:inputType="number"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد الموتورات"/>
+            </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -315,14 +505,32 @@
                     android:entries="@array/Sanitation"
                     android:layout_marginStart="55dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/GeneralDescription"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="textMultiLine"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="وصف عام للسكن" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="وصف عام للسكن"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/GeneralDescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="وصف عام للسكن" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -347,46 +555,115 @@
                     android:entries="@array/Location"
                     android:layout_marginStart="70dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/SolarPanelsCount"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد ألواح الطاقة" />
-            <EditText
-                android:id="@+id/SolarPanelsAmpCount"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد ألواح الطاقة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/SolarPanelsCount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="number"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد ألواح الطاقة"  />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد أمبيرات الطاقة" />
-            <EditText
-                android:id="@+id/AmpCount"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد أمبيرات الطاقة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/SolarPanelsAmpCount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="number"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد أمبيرات الطاقة"  />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد أمبيرات مولدة" />
-            <EditText
-                android:id="@+id/OneAmpValue"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد أمبيرات مولدة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/AmpCount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="number"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد أمبيرات مولدة" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="قيمة أمبير مولدة" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="قيمة أمبير مولدة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/OneAmpValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="numberDecimal"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="قيمة أمبير مولدة" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -399,6 +676,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="60dp"
                     android:fontFamily="@font/jaz_reg"
                     android:text="نوع العملة"
                     android:textSize="18sp"
@@ -409,18 +687,35 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="60dp" />
+                    android:layout_marginStart="20dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/ConsumptionValue"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="قيمة استهلاك الشركة" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="قيمة استهلاك الشركة"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+                <EditText
+                    android:id="@+id/ConsumptionValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:inputType="numberDecimal"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="قيمة استهلاك الشركة" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -433,6 +728,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="60dp"
                     android:fontFamily="@font/jaz_reg"
                     android:text="نوع العملة"
                     android:textSize="18sp"
@@ -443,7 +739,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="60dp" />
+                    android:layout_marginStart="20dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
