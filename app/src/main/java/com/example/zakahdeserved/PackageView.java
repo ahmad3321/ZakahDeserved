@@ -240,7 +240,6 @@ public class PackageView extends AppCompatActivity {
         }
     }
 
-
     class UploadTask extends AsyncTask<Void, Integer, Boolean> {
 
         @Override
