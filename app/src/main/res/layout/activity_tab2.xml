@@ -55,20 +55,58 @@
                     android:entries="@array/City"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/OrginalTown"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="المدينة الأصلية" />
-            <EditText
-                android:id="@+id/OrginalVillage"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المدينة الأصلية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/OrginalTown"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jaz_bold"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:hint="المدينة الأصلية" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="القرية الأصلية" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="القرية الأصلية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/OrginalVillage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jaz_bold"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:hint="القرية الأصلية" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -89,97 +127,311 @@
 
                 <Spinner
                     android:id="@+id/City"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/City"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/Town"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="المدينة الحالية" />
-            <EditText
-                android:id="@+id/Village"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المدينة الحالية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/Town"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="38dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="المدينة الحالية" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="القرية الحالية" />
-            <EditText
-                android:id="@+id/Neighborhood"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="القرية الحالية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/Village"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="القرية الحالية" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الحي الحالي" />
-            <EditText
-                android:id="@+id/BuldingSymbol"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="الحي الحالي"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/Neighborhood"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="الحي الحالي" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="رمز البناء" />
-            <EditText
-                android:id="@+id/BuldingNumber"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="رمز البناء"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/BuldingSymbol"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="رمز البناء" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="رقم البناء" />
-            <EditText
-                android:id="@+id/AdressDetails"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="رقم البناء"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/BuldingNumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="رقم البناء" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:hint="تفاصيل العنوان" />
-            <EditText
-                android:id="@+id/KnownBy"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="تفاصيل العنوان"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/AdressDetails"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="تفاصيل العنوان" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="معروف من قبل" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="معروف من قبل"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/KnownBy"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="معروف من قبل" />
+            </LinearLayout>
             <CheckBox
                 android:id="@+id/IfSmokers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="هل يوجد مدخنين في الأسرة"
                 />
-            <EditText
-                android:id="@+id/SmokersCount"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="number"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="عدد المدخنين" />
-            <EditText
-                android:id="@+id/Job"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="25dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="عدد المدخنين"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/SmokersCount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="عدد المدخنين" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="العمل الحالي" />
-            <EditText
-                android:id="@+id/OrginalJob"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="35dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="العمل الحالي"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/Job"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="العمل الحالي" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="المهنة الأساسية" />
-            <EditText
-                android:id="@+id/WantedJob"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="المهنة الأساسية"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/OrginalJob"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="المهنة الأساسية" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="العمل الذي يطمح له" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="العمل الذي يطمح له"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/WantedJob"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="العمل الذي يطمح له" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,35 +479,87 @@
                     android:entries="@array/ResidenceStatus"
                     android:layout_marginStart="16dp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <EditText
-                android:id="@+id/ContactNumber1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_200"
-                android:inputType="phone"
-                android:textAlignment="viewStart"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="رقم التواصل 1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="35dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="رقم التواصل 1"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
 
-            <EditText
-                android:id="@+id/ContactNumber2"
-                android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/ContactNumber1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="رقم التواصل 1"  />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:textAlignment="viewStart"
-                android:backgroundTint="@color/purple_200"
-                android:fontFamily="@font/jaz_bold"
-                android:hint="رقم التواصل 2" />
-            <EditText
-                android:id="@+id/RelationWithContact2"
-                android:layout_width="fill_parent"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="35dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="رقم التواصل 2"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/ContactNumber2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="رقم التواصل 2" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/jaz_bold"
-                android:backgroundTint="@color/purple_200"
-                android:hint="الصلة بالمستفيد" />
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/jaz_reg"
+                    android:text="الصلة بالمستفيد"
+                    android:textSize="18sp"
+                    android:typeface="serif" />
+
+                <EditText
+                    android:id="@+id/RelationWithContact2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:fontFamily="@font/jaz_bold"
+                    android:hint="الصلة بالمستفيد" />
+            </LinearLayout>
 
         </LinearLayout>
         <Button

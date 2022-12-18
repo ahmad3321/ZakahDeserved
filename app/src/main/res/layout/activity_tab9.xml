@@ -63,14 +63,33 @@
                 android:entries="@array/Deserved"
                 android:layout_marginStart="40dp" />
         </LinearLayout>
-        <EditText
-            android:id="@+id/Reson"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_200"
-            android:inputType="textMultiLine"
-            android:fontFamily="@font/jaz_bold"
-            android:hint="السبب" />
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/jaz_reg"
+                android:text="السبب"
+                android:textSize="18sp"
+                android:typeface="serif" />
+            <EditText
+                android:id="@+id/Reson"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:inputType="textMultiLine"
+                android:backgroundTint="@color/purple_200"
+                android:fontFamily="@font/jaz_bold"
+                android:hint="السبب" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_submit_list"
