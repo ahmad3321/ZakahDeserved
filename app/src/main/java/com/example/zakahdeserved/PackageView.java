@@ -257,7 +257,6 @@ public class PackageView extends AppCompatActivity {
         }
     }
 
-
     class UploadTask extends AsyncTask<Void, Integer, Boolean> {
 
         @Override
@@ -505,7 +504,10 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(true);
             });
             if (result.equalsIgnoreCase("true")) {
-
+                ((LinearLayout)findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
+                ((LinearLayout)findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
+                ((LinearLayout)findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
+                ((LinearLayout)findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
                 runOnUiThread(() -> addView(ShwoRecords));
 
                 Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Locale;
 
 public class actdelayentrystatisticalActivity extends AppCompatActivity {
     EditText LastVisitDate, DollarExchangeRate;
+    Calendar myCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,21 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
         }
 
         Constants.SQLITEDAL.fillSpinner(this, findViewById(R.id.lst_Directorates));
+
+        EditText txtVisitDate = findViewById(R.id.ManualVisitDate);
+
+        myCalendar = Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener date = (view1, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel(txtVisitDate);
+        };
+
+        txtVisitDate.setOnClickListener(v -> new DatePickerDialog(actdelayentrystatisticalActivity.this, date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
         try {
             SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
@@ -81,7 +98,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         "'" + autoDate + "'," +
                         "'" + ((EditText) findViewById(R.id.ManualVisitDate)).getText().toString() + "'," +
                         "'" + ((EditText) findViewById(R.id.DollarExchangeRate)).getText().toString() + "'," +
-                        "'" + JobTitle.equals("احصائي") + "');");
+                        JobTitle.equals("احصائي") + ");");
 
                 if (!success) {
                     Toast.makeText(getApplicationContext(), "لم يتم تسجيل الدخول", Toast.LENGTH_LONG).show();
@@ -97,8 +114,15 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                 myEdit.apply();
             });
 
+
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateLabel(EditText txtDate) {
+        String myFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        txtDate.setText(sdf.format(myCalendar.getTime()));
     }
 }

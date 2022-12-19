@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Boolean isSuccess = DAL.pdrUsernameTest(MainActivity.this, username.getText().toString(), password.getText().toString());
                 if (isSuccess) {
                     int empDepartment = DAL.getDepartment(username.getText().toString());
+
                     try {
                         SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
                                 getApplicationContext(),
@@ -122,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 ValidationController.GetException(ex.toString().replace("\"", ""), "", getApplicationContext().toString(), "");
                 Toast.makeText(getApplicationContext(), "خطأ..." + ex, Toast.LENGTH_SHORT).show();
             }
+
         });
+
+
     }
 
     void loginToActivity(String lastEnterDate, int EmpDepartment) {
@@ -136,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
         if (isEntered)
             intent1 = new Intent(getApplicationContext(), PackageView.class);
         else
-           intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-            //intent1 = new Intent(getApplicationContext(), PackageView.class);
+            intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
 
         if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)
             intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع
