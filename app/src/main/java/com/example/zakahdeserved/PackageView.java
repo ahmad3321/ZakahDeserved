@@ -1,9 +1,11 @@
 package com.example.zakahdeserved;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -100,7 +102,7 @@ public class PackageView extends AppCompatActivity {
                                 myEdit.putBoolean("login", false);
                                 myEdit.apply();
                                 finishAffinity();
-                                System.exit(0);
+                               // System.exit(0);
 
                                 // moveTaskToBack(true);
                             } catch (Exception e) {
@@ -184,6 +186,7 @@ public class PackageView extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private void addView(ArrayList<ShowRecord> listShowRecords) {
 
         LayoutInflater linf = LayoutInflater.from(PackageView.this);
@@ -206,12 +209,24 @@ public class PackageView extends AppCompatActivity {
 
             switch (packageName) {
                 case "إضافة":
+                    if(layout_list_Refresh.getChildCount()%2!=0){
+                        v.setBackgroundColor(Color.rgb(22,129,27));
+                    }else
+                        v.setBackgroundColor(Color.rgb(22,110,27));
                     layout_list_Add.addView(v);
                     break;
                 case "تعديل":
+                    if(layout_list_Refresh.getChildCount()%2!=0){
+                        v.setBackgroundColor(Color.rgb(110,109,109));
+                    }else
+                        v.setBackgroundColor(Color.rgb(138,138,138));
                     layout_list_Update.addView(v);
                     break;
                 case "تحديث":
+                    if(layout_list_Refresh.getChildCount()%2!=0){
+                        v.setBackgroundColor(Color.rgb(23,65,14));
+                    }else
+                        v.setBackgroundColor(Color.rgb(47,109,39));
                     layout_list_Refresh.addView(v);
                     break;
                 case "توزيع":
