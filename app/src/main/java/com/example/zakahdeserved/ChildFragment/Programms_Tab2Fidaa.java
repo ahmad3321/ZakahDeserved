@@ -190,32 +190,40 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
         StringBuilder insert_query = new StringBuilder();
 
         for (String tableName : tablesName) {
-            if (tableName.equals("") || tableName == null)
+            if (tableName == null || tableName.equals(""))
                 continue;
             StringBuilder strKeys = new StringBuilder("(");
             StringBuilder strValues = new StringBuilder("(");
+            // update query used for on key duplicated, if so perform update instead of insert.
+            StringBuilder update_query = new StringBuilder();
             HashMap<String, Object> tableData = allTables.get(tableName);
 
             for (Map.Entry<String, Object> entry : tableData.entrySet()) {
                 strKeys.append(entry.getKey()).append(",");
+                update_query.append(entry.getKey()).append(" = ");
 
                 Object value = entry.getValue();
 
-                if (value.toString().equals("0") || value.toString().equals("1"))
+                if (value.toString().equals("0") || value.toString().equals("1")) {
                     strValues.append(value).append(",");
-                else
+                    update_query.append(value).append(",");
+                } else {
                     strValues.append('\'').append(value).append('\'').append(",");
-
+                    update_query.append('\'').append(value).append('\'').append(",");
+                }
             }
             strKeys.deleteCharAt(strKeys.length() - 1);
             strValues.deleteCharAt(strValues.length() - 1);
+            update_query.deleteCharAt(update_query.length() - 1);
             strKeys.append(")");
             strValues.append(")");
+
             insert_query.append("insert into ").append(tableName).append(" ")
-                    .append(strKeys).append(" values ").append(strValues).append(";");
+                    .append(strKeys).append(" values ").append(strValues).append("\n");
+            insert_query.append(" ON DUPLICATE KEY UPDATE ");
+            insert_query.append(update_query).append(";");
 
         }
         return insert_query.toString();
     }
-
 }
