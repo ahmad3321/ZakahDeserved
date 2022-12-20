@@ -1,0 +1,12 @@
+[33m23e0e48[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/master
+[33m23e0e48[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m23e0e48[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: reset: moving to origin/master
+[33m8f53dfa[m HEAD@{3}: commit (merge): Merge remote-tracking branch 'origin/master'
+[33m6d00b30[m HEAD@{4}: commit: tabs
+[33m7fabf59[m HEAD@{5}: commit (merge): Merge remote-tracking branch 'origin/master'
+[33m829f7ca[m HEAD@{6}: commit: test
+[33mcdeeace[m HEAD@{7}: merge origin/master: Merge made by the 'ort' strategy.
+[33m3dd2edb[m HEAD@{8}: commit: test
+[33mcd2897d[m HEAD@{9}: commit: test
+[33mb7e4fd1[m HEAD@{10}: commit: test
+[33mfaf2b44[m HEAD@{11}: clone: from https://github.com/ahmad3321/ZakahDeserved.git
