@@ -34,8 +34,8 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_delay_entry_statistical);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         LastVisitDate = this.findViewById(R.id.LastVisitDate);
         DollarExchangeRate = this.findViewById(R.id.DollarExchangeRate);
 
