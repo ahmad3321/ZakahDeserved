@@ -2,6 +2,7 @@ package com.example.zakahdeserved;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +49,7 @@ public class PackageView extends AppCompatActivity {
 
     Button btn_download, btn_upload;
     List<PackageRecord> lstPackages = new ArrayList<>();
+    private ProgressBar progressBar;
 
     ArrayList<ShowRecord> ShwoRecords = new ArrayList<>();
 
@@ -54,7 +57,6 @@ public class PackageView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.packageview);
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -294,10 +296,13 @@ public class PackageView extends AppCompatActivity {
 
     class DownloadTask extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
-
+        ProgressDialog progressDialog;
         protected void onPreExecute() {
             try{
                 super.onPreExecute();
+                progressDialog = ProgressDialog.show(PackageView.this,
+                        "ProgressDialog",
+                        "انتظر قليلا");
                 Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
                 Log.d(TAG + " PreExceute", "On pre Exceute......");
                 runOnUiThread(() -> {
@@ -311,15 +316,13 @@ public class PackageView extends AppCompatActivity {
 
         protected String doInBackground(Void... arg0) {
             try {
-
+                publishProgress(1); // Calls onProgressUpdate()
                 // Synchronize Spinners
                 Constants.SQLITEDAL.clearSpinners();
                 for (String spinner : Constants.dynamisLists) {
                     HashMap<String, String> spinnerItems = DAL.getSpinnerItems(spinner);
                     Constants.SQLITEDAL.addSpinner(spinner, spinnerItems);
                 }
-
-
                 //Synchronize packages
 
                 // get empCode
@@ -499,6 +502,7 @@ public class PackageView extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            progressDialog.dismiss();
             runOnUiThread(() -> {
                 btn_download.setEnabled(true);
                 btn_upload.setEnabled(true);
