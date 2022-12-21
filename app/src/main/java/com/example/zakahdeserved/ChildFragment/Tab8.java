@@ -38,7 +38,6 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutWife, layout_list_Wifes_HealthStatus;
     Button buttonAdd, button_add_WifesHealthStatus;
-    Button buttonSubmitList;
     private static final int pic_id = 1;
     ArrayList<byte[]> ImagesByte = new ArrayList<>();
     Document document;
@@ -72,13 +71,11 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         txtMaleCount = view.findViewById(R.id.MaleCount);
 
         buttonAdd = view.findViewById(R.id.button_add_Wifes);
-        buttonSubmitList = view.findViewById(R.id.button_submit_list_Wifes);
 
         layoutWife = view.findViewById(R.id.layout_list_Wifes);
 
 
         buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
 
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
@@ -95,17 +92,6 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
                 addView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
 
-                break;
-            case R.id.button_submit_list:
-
-                /*if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }*/
                 break;
         }
     }

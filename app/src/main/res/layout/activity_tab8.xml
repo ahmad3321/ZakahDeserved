@@ -63,21 +63,6 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/button_submit_list_Wifes"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/round_primary"
-                    android:onClick="onClick"
-                    android:paddingLeft="10dp"
-                    android:fontFamily="@font/jaz_bold"
-                    android:paddingRight="10dp"
-                    android:text="تم"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

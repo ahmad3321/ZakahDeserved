@@ -24,7 +24,6 @@ public class Tab7 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutAsset;
     Button buttonAdd,buttonAddIncome,buttonAddAids;
-    Button buttonSubmitList;
 
     public Tab7() {
         // Required empty public constructor
@@ -46,13 +45,11 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         Constants.view7 = view;
 
         buttonAdd = view.findViewById(R.id.button_add_Asset);
-        buttonSubmitList = view.findViewById(R.id.button_submit_list_Asset);
 
         layoutAsset = view.findViewById(R.id.layout_list_Asset);
 
 
         buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
 
 
 
@@ -70,17 +67,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                 addView(R.layout.row_add_asset,R.id.image_remove_Asset,layoutAsset);
 
                 break;
-                case R.id.button_submit_list:
 
-                /*if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }*/
-                break;
         }
     }
 

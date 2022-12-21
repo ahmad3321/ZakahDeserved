@@ -28,7 +28,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
     TextView FurnitureEvaluation;
     public LinearLayout layoutWaterTypeList, layoutListIncome, layoutListAids, Linear_CoinType;
     Button buttonAdd, buttonAddIncome, buttonAddAids;
-    Button buttonSubmitList;
     EditText RentValue;
 
     public Tab6() {
@@ -55,9 +54,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         FurnitureEvaluation = view6.findViewById(R.id.FurnitureEvaluation);
 
         buttonAdd = view6.findViewById(R.id.button_add_waterType);
-        buttonSubmitList = view6.findViewById(R.id.button_submit_list);
         buttonAddIncome = view6.findViewById(R.id.button_add_Incomes);
-        buttonSubmitList = view6.findViewById(R.id.button_submit_list_Incomes);
         buttonAddAids = view6.findViewById(R.id.button_add_Aids);
 
         RentValue = view6.findViewById(R.id.RentValue);
@@ -68,9 +65,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         Linear_CoinType = view6.findViewById(R.id.Linear_CoinType);
 
         buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
         buttonAddIncome.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
         buttonAddAids.setOnClickListener(this);
 
         FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
@@ -169,17 +164,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
                 addView(R.layout.row_add_aids, R.id.image_remove_Aids, layoutListAids);
 
-                break;
-            case R.id.button_submit_list:
-
-                /*if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }*/
                 break;
         }
     }

@@ -301,7 +301,7 @@ public class PackageView extends AppCompatActivity {
             try {
                 super.onPreExecute();
                 progressDialog = ProgressDialog.show(PackageView.this,
-                        "ProgressDialog",
+                        "جلب البيانات",
                         "انتظر قليلا");
                 Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
                 Log.d(TAG + " PreExceute", "On pre Exceute......");

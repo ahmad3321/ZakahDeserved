@@ -408,21 +408,6 @@
                         app:backgroundTint="#C50505" />
                 </LinearLayout>
             </LinearLayout>
-            <Button
-                android:id="@+id/btn_rec"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/cusom_button"
-                android:elevation="4dp"
-                android:fontFamily="@font/jaz_bold"
-                android:onClick="btninsert_Clicked"
-                android:paddingLeft="70dp"
-                android:paddingRight="70dp"
-                android:text="إدخال"
-                android:textColor="#fff"
-                android:textSize="15sp" />
 
         </LinearLayout>
 

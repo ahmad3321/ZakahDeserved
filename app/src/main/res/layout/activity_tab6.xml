@@ -778,20 +778,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/button_submit_list"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
+
 
             </LinearLayout>
             <LinearLayout
@@ -832,20 +819,6 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/button_submit_list_Incomes"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -886,39 +859,9 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/button_submit_list_Aids"
-                    android:background="@drawable/round_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Submit List"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:paddingLeft="10dp"
-                    android:onClick="onClick"
-                    android:paddingRight="10dp" />
-
             </LinearLayout>
 
         </LinearLayout>
-        <Button
-            android:id="@+id/btn_rec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/cusom_button"
-            android:elevation="4dp"
-            android:fontFamily="@font/jaz_bold"
-            android:onClick="btninsert_Clicked"
-            android:paddingLeft="70dp"
-            android:paddingRight="70dp"
-            android:text="الانتقال"
-            android:textColor="#fff"
-            android:textSize="15sp" />
 
     </LinearLayout>
 

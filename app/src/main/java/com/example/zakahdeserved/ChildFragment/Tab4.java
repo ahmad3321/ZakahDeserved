@@ -41,7 +41,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
     LinearLayout layoutList;
 
     Button buttonAdd;
-    Button buttonSubmitList;
 
     ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
 
@@ -60,10 +59,8 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.activity_tab4, container, false);
         layoutList = view.findViewById(R.id.layout_list);
         buttonAdd = view.findViewById(R.id.button_add);
-        buttonSubmitList = view.findViewById(R.id.button_submit_list);
 
         buttonAdd.setOnClickListener(this);
-        buttonSubmitList.setOnClickListener(this);
 
         Constants.view4 = view;
 
@@ -90,16 +87,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
                 break;
 
-            case R.id.button_submit_list:
-/*                if(checkIfValidAndRead()){
-
-                   /* Intent intent = new Intent(MainActivity.this,ActivityCricketers.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("list",cricketersList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
-                break;*/
         }
     }
     /*private boolean checkIfValidAndRead() {
