@@ -104,7 +104,7 @@ public class PackageView extends AppCompatActivity {
                                 myEdit.putBoolean("login", false);
                                 myEdit.apply();
                                 finishAffinity();
-                               // System.exit(0);
+                                // System.exit(0);
 
                                 // moveTaskToBack(true);
                             } catch (Exception e) {
@@ -159,11 +159,11 @@ public class PackageView extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((LinearLayout)findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
-        ((LinearLayout)findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
-        ((LinearLayout)findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
-        ((LinearLayout)findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
-        ShwoRecords =  Constants.SQLITEDAL.getShowRecords();
+        ((LinearLayout) findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
+        ((LinearLayout) findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
+        ((LinearLayout) findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
+        ((LinearLayout) findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
+        ShwoRecords = Constants.SQLITEDAL.getShowRecords();
         lstPackages = Constants.SQLITEDAL.getPackages();
         runOnUiThread(() -> addView(ShwoRecords));
     }
@@ -211,24 +211,24 @@ public class PackageView extends AppCompatActivity {
 
             switch (packageName) {
                 case "إضافة":
-                    if(layout_list_Refresh.getChildCount()%2!=0){
-                        v.setBackgroundColor(Color.rgb(22,129,27));
-                    }else
-                        v.setBackgroundColor(Color.rgb(22,110,27));
+                    if (layout_list_Refresh.getChildCount() % 2 != 0) {
+                        v.setBackgroundColor(Color.rgb(22, 129, 27));
+                    } else
+                        v.setBackgroundColor(Color.rgb(22, 110, 27));
                     layout_list_Add.addView(v);
                     break;
                 case "تعديل":
-                    if(layout_list_Refresh.getChildCount()%2!=0){
-                        v.setBackgroundColor(Color.rgb(110,109,109));
-                    }else
-                        v.setBackgroundColor(Color.rgb(138,138,138));
+                    if (layout_list_Refresh.getChildCount() % 2 != 0) {
+                        v.setBackgroundColor(Color.rgb(110, 109, 109));
+                    } else
+                        v.setBackgroundColor(Color.rgb(138, 138, 138));
                     layout_list_Update.addView(v);
                     break;
                 case "تحديث":
-                    if(layout_list_Refresh.getChildCount()%2!=0){
-                        v.setBackgroundColor(Color.rgb(23,65,14));
-                    }else
-                        v.setBackgroundColor(Color.rgb(47,109,39));
+                    if (layout_list_Refresh.getChildCount() % 2 != 0) {
+                        v.setBackgroundColor(Color.rgb(23, 65, 14));
+                    } else
+                        v.setBackgroundColor(Color.rgb(47, 109, 39));
                     layout_list_Refresh.addView(v);
                     break;
                 case "توزيع":
@@ -252,7 +252,7 @@ public class PackageView extends AppCompatActivity {
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
                 Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
-
+                ValidationController.ENABLE_FEMALE_TAB = Objects.equals(Constants.SQLITEDAL.getFirstValue("select gender from persons where zakatid = '" + _zakatID + "' and WhoIs = 'رب الأسرة'"), "أنثى");
                 Intent intent = new Intent(getApplicationContext(), MainTabs.class);
                 startActivity(intent);
             });
@@ -298,7 +298,7 @@ public class PackageView extends AppCompatActivity {
         String TAG = getClass().getSimpleName();
         ProgressDialog progressDialog;
         protected void onPreExecute() {
-            try{
+            try {
                 super.onPreExecute();
                 progressDialog = ProgressDialog.show(PackageView.this,
                         "ProgressDialog",
@@ -309,8 +309,8 @@ public class PackageView extends AppCompatActivity {
                     btn_download.setEnabled(false);
                     btn_upload.setEnabled(false);
                 });
-            }catch (Exception ex){
-                Log.d(TAG ,ex.toString());
+            } catch (Exception ex) {
+                Log.d(TAG, ex.toString());
             }
         }
 
@@ -347,6 +347,7 @@ public class PackageView extends AppCompatActivity {
                 ShwoRecords.clear();
 
                 //store packages info locally
+                Constants.SQLITEDAL.ClearPackages();
                 Constants.SQLITEDAL.StorePackages(lstPackages);
 
                 List<String> zakatIDsToDownload = lstPackages.stream().map(PackageRecord::getZakatID).collect(Collectors.toList());
@@ -388,24 +389,24 @@ public class PackageView extends AppCompatActivity {
 
 
                     // if this Form is for collecting data
-                    if (lstPackages.get(i).Package.equals("إضافة")) {
-                        if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
-                            return "false";
-
-                        // add info to show
-                        Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
-                        Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-                                && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
-
-                        if (familyRecord.isPresent() && fatherRecord.isPresent())
-                            ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
-                                    Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
-                                    Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
-                                    Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-                                    lstPackages.get(i).Package,
-                                    lstPackages.get(i).Program));
-                        continue;   //don't get more information
-                    }
+//                    if (lstPackages.get(i).Package.equals("إضافة")) {
+//                        if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+//                            return "false";
+//
+//                        // add info to show
+//                        Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
+//                        Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
+//                                && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
+//
+//                        if (familyRecord.isPresent() && fatherRecord.isPresent())
+//                            ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
+//                                    Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
+//                                    Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
+//                                    Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
+//                                    lstPackages.get(i).Package,
+//                                    lstPackages.get(i).Program));
+//                        continue;   //don't get more information
+//                    }
 
 
                     //get from health_statuses table
@@ -508,11 +509,7 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(true);
             });
             if (result.equalsIgnoreCase("true")) {
-                ((LinearLayout)findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
-                ((LinearLayout)findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
-                ((LinearLayout)findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
-                ((LinearLayout)findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
-                runOnUiThread(() -> addView(ShwoRecords));
+                onResume();
 
                 Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {

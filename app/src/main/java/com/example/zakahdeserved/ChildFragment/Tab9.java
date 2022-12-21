@@ -157,8 +157,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView9();
 
         addToPackage();
+
         //calculate family pointers
         insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
+
+        // remove the package from local after end work with it.
+        Constants.SQLITEDAL.deletePackage(Constants.PackageID);
     }
 
     // Packages and Package_Contents تحديث حالة الحزمة
@@ -169,7 +173,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         autoDate = df.format(c);
 
         insertQuery.append("UPDATE package_contents SET PackageStatus = 'تم الانتهاء منها' , EndDate = '").append(autoDate)
-                .append("' WHERE PackageID = '").append(Constants.PackageID).append("';");
+                .append("' WHERE PackageID = '").append(Constants.PackageID)
+                .append("'  and personid  = '").append(Constants.PackagePersonID).append("';");
 
         PackageRecord packageRecord = Constants.SQLITEDAL.getPackageRecord(Constants.PackageID);
 

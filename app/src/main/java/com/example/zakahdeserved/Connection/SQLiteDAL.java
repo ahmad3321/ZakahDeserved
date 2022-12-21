@@ -291,6 +291,16 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
+    public void deletePackage(String packageId) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("delete from packages where packageid = '" + packageId + "';");
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
+            Log.d("SQLITEErr", ex.toString());
+        }
+    }
+
     public PackageRecord getPackageRecord(String PackageID) {
         try {
             SQLiteDatabase db = getReadableDatabase();
@@ -309,6 +319,44 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "getPackageRecord in SQLliteDAL", "PackageID " + PackageID);
             return null;
         }
+    }
+
+
+    public ArrayList<SQLiteRecord> getHelthStatusForPaterFamilias() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<SQLiteRecord> Records = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("select * from health_statuses where personid = (select personid from persons where whois = 'رب الأسرة');", null);
+
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                Records.add(getSQLiteRecord(cursor, "health_statuses", DBHelper.Helth_StatusesColumns));
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return Records;
+    }
+
+
+    public ArrayList<SQLiteRecord> getRecords(String tableName, String[] Columns, String ColName, String ColValue) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<SQLiteRecord> Records = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + ColName + " like '" + ColValue + "'; ", null);
+
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                Records.add(getSQLiteRecord(cursor, tableName, Columns));
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return Records;
     }
 
     public ArrayList<SQLiteRecord> getFamilyInfo(String ZaktID) {
@@ -506,7 +554,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         ClearTable("Packages");
     }
 
-    private void ClearTable(String tableName) {
+    public void ClearTable(String tableName) {
         try {
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("Delete from " + tableName);
@@ -609,10 +657,8 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         ArrayList<ShowRecord> sqliteRecords = new ArrayList<>();
 
-        // get all persons in this family
         Cursor cursorPackage = db.rawQuery("SELECT * FROM Packages; ", null);
 
-        // Persons Info (person & Helth_statuses)
         if (cursorPackage != null && cursorPackage.moveToNext()) {
             cursorPackage.moveToFirst();
             do {
@@ -639,4 +685,13 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return sqliteRecords;
     }
 
+    public void ClearPackages() {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("Delete from Packages");
+        } catch (Exception ex) {
+            ValidationController.GetException(ex.toString().replace("\"", ""), "", "ClearTable in SQLliteDAL", "tableName Packages");
+            Log.d("SQLITEErr", ex.toString());
+        }
+    }
 }

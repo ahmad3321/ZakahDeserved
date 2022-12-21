@@ -24,6 +24,8 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.PackageRecord;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.Models.HealthStatuses;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
@@ -40,11 +42,10 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
     Button buttonAdd;
     Button buttonSubmitList;
-    Button buttonAdd1;
 
     ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
+
     public Tab4() {
-        // Required empty public constructor
     }
 
     @Override
@@ -68,13 +69,20 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForPaterFamilias();
+
+        for (SQLiteRecord record : records) {
+            View v = addView();
+            DBHelper.loadDataToControls(v, record);
+        }
+//        DBHelper.loadDataToControls(view, Constants.familyInfo);
 
         return view;
     }
+
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.button_add:
 
@@ -137,30 +145,24 @@ public class Tab4 extends Fragment implements View.OnClickListener {
     }*/
 
 
-    private void addView() {
+    private View addView() {
 
-        final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus,null,false);
+        final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
 
-        ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove);
+        ImageView imageClose = (ImageView) cricketerView.findViewById(R.id.image_remove);
 
 
-
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(cricketerView);
-            }
-        });
-        if(layoutList.getChildCount()%2!=0){
+        imageClose.setOnClickListener(v -> removeView(cricketerView));
+        if (layoutList.getChildCount() % 2 != 0) {
             cricketerView.setBackgroundColor(Color.WHITE);
-        }
-        else
+        } else
             cricketerView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         layoutList.addView(cricketerView);
 
+        return cricketerView;
     }
 
-    private void removeView(View view){
+    private void removeView(View view) {
 
         layoutList.removeView(view);
 
