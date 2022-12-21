@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             if (sharedPreferences.getBoolean("login", false)) {
-                loginToActivity(sharedPreferences.getString("entered_date", ""), sharedPreferences.getInt("empDepartment", -1));
+                String _lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
+                loginToActivity(_lastEnterDate, sharedPreferences.getInt("empDepartment", -1));
             }
         } catch (GeneralSecurityException | IOException e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "", getApplicationContext() != null ? getApplicationContext().toString() : "", "Constants.SHAREDPREFERENCES_KEY");
@@ -110,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putInt("empDepartment", empDepartment);
                         myEdit.apply();
 
-                        loginToActivity(sharedPreferences.getString("entered_date", ""), empDepartment);
+                        String _lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
+                        loginToActivity(_lastEnterDate, empDepartment);
 
                     } catch (GeneralSecurityException | IOException e) {
 

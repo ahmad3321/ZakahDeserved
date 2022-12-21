@@ -49,10 +49,8 @@ public class Tab5 extends Fragment {
 
         if (!ValidationController.ENABLE_FEMALE_TAB)
             ValidationController.lockThePage(view5);
-//            view5.findViewById(R.id.FemaleScrollView).setEnabled(false);
         else
             ValidationController.UnlockThePage(view5);
-        //view5.findViewById(R.id.FemaleScrollView).setEnabled(true);
 
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
@@ -207,7 +205,6 @@ public class Tab5 extends Fragment {
 
         return view5;
     }
-
 
     private void updateLabel(EditText txtDate) {
         String myFormat = "yyyy-MM-dd HH:mm";
