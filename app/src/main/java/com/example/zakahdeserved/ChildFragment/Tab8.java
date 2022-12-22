@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
-import com.example.zakahdeserved.Connection.SQLiteDAL;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.itextpdf.text.Document;
@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
@@ -79,7 +80,21 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-        DBHelper.loadDataToControls(view, Constants.familyInfo);
+//        DBHelper.loadDataToControls(view, Constants.familyInfo);
+        //load persons
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("persons", DBHelper.PersonsColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
+            DBHelper.loadDataToControls(v, record);
+
+            //load health_statuses
+            ArrayList<SQLiteRecord> health_statusesrecords = Constants.SQLITEDAL.getRecords("health_statuses", DBHelper.Helth_StatusesColumns, "PersonID", Objects.requireNonNull(record.getRecord().get("PersonID")).toString());
+            for (SQLiteRecord health_statusesrecord : health_statusesrecords) {
+                View health_statusesv = addHelthStatusView();
+                DBHelper.loadDataToControls(health_statusesv, health_statusesrecord);
+            }
+
+        }
 
         return view;
     }
@@ -90,13 +105,13 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             case R.id.button_add_Wifes:
 
-                addView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
+                addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
 
                 break;
         }
     }
 
-    private void addView(int id, int imageID, LinearLayout linearLayout) {
+    private View addPersonView(int id, int imageID, LinearLayout linearLayout) {
 
         final View WifeView = getLayoutInflater().inflate(id, null, false);
         allMembersCount++;
@@ -128,7 +143,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
         linearLayout.addView(WifeView);
 
-        button_add_WifesHealthStatus.setOnClickListener(v -> addView());
+        button_add_WifesHealthStatus.setOnClickListener(v -> addHelthStatusView());
 
         Spinner spnIsWorking = WifeView.findViewById(R.id.IsWorking);
         spnIsWorking.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -178,8 +193,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                         maleCount--;
                     femaleCount++;
                 } else {   //ذكر
+                    if (allMembersCount == femaleCount + maleCount)
+                        femaleCount--;
                     maleCount++;
-                    femaleCount--;
                 }
                 refreshFamilyMembersCount();
             }
@@ -209,6 +225,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
 
         Constants.SQLITEDAL.fillSpinner(getContext(), WifeView.findViewById(R.id.lst_IdentityTypes));
+
+        return WifeView;
     }
 
     private void removeView(View view, LinearLayout linear) {
@@ -241,23 +259,17 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void addView() {
+    private View addHelthStatusView() {
 
         final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
 
         ImageView imageClose = healthstatusview.findViewById(R.id.image_remove);
 
 
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                removeView(healthstatusview);
-            }
-        });
+        imageClose.setOnClickListener(v -> removeView(healthstatusview));
 
         layout_list_Wifes_HealthStatus.addView(healthstatusview);
-
+        return healthstatusview;
     }
 
     private void removeView(View view) {

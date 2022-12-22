@@ -65,9 +65,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         Constants.view4 = view;
 
 
-        //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForPaterFamilias();
-
         for (SQLiteRecord record : records) {
             View v = addView();
             DBHelper.loadDataToControls(v, record);

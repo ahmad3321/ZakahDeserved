@@ -2,8 +2,6 @@ package com.example.zakahdeserved.ChildFragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+
+import java.util.ArrayList;
 
 public class Tab6 extends Fragment implements View.OnClickListener {
 
@@ -109,7 +110,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                     view6.findViewById(R.id.Linear_CoinType).setVisibility(View.GONE);
                     view6.findViewById(R.id.RentValue).setVisibility(View.GONE);
 
-                    ((EditText)view6.findViewById(R.id.RentValue)).setText("");
+                    ((EditText) view6.findViewById(R.id.RentValue)).setText("");
                 }
             }
 
@@ -127,10 +128,10 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 //غاز
                 if (i == 0) {
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.GONE);
-                    ((EditText)view6.findViewById(R.id.CookingGasOther)).setText("");
+                    ((EditText) view6.findViewById(R.id.CookingGasOther)).setText("");
                 }
 
-                    //آخر
+                //آخر
                 else
                     view6.findViewById(R.id.CookingGasOther).setVisibility(View.VISIBLE);
             }
@@ -142,7 +143,27 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         });
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-            DBHelper.loadDataToControls(view6, Constants.familyInfo);
+        DBHelper.loadDataToControls(view6, Constants.familyInfo);
+
+        // load water_types
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("water_types", DBHelper.WaterTypesColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addWaterTypeView();
+            DBHelper.loadDataToControls(v, record);
+        }
+        //load incomes
+        records = Constants.SQLITEDAL.getRecords("incomes", DBHelper.IncomesColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addView(R.layout.row_add_incomes, R.id.image_remove_Income, layoutListIncome);
+            DBHelper.loadDataToControls(v, record);
+        }
+        //load aids
+        records = Constants.SQLITEDAL.getRecords("aids", DBHelper.AidsColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addView(R.layout.row_add_aids, R.id.image_remove_Aids, layoutListAids);
+            DBHelper.loadDataToControls(v, record);
+        }
+
         return view6;
     }
 
@@ -168,7 +189,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void addWaterTypeView() {
+    private View addWaterTypeView() {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_water_type, null, false);
 
@@ -183,20 +204,20 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 removeWaterTypeView(cricketerView);
             }
         });
-        if(layoutWaterTypeList.getChildCount()%2!=0){
+        if (layoutWaterTypeList.getChildCount() % 2 != 0) {
             cricketerView.setBackgroundColor(Color.WHITE);
-        }
-        else
+        } else
             cricketerView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         layoutWaterTypeList.addView(cricketerView);
 
+        return cricketerView;
     }
 
     private void removeWaterTypeView(View view) {
         layoutWaterTypeList.removeView(view);
     }
 
-    private void addView(int id, int imageID, LinearLayout linearLayout) {
+    private View addView(int id, int imageID, LinearLayout linearLayout) {
 
         final View IncomeView = getLayoutInflater().inflate(id, null, false);
 
@@ -213,10 +234,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 removeView(IncomeView, linearLayout);
             }
         });
-        if(linearLayout.getChildCount()%2!=0){
+        if (linearLayout.getChildCount() % 2 != 0) {
             IncomeView.setBackgroundColor(Color.WHITE);
-        }
-        else
+        } else
             IncomeView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(IncomeView);
 
@@ -229,12 +249,12 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                     if (i == 0) {
                         IncomeView.findViewById(R.id.IncomeType).setEnabled(true);
                         IncomeView.findViewById(R.id.IncomeTime).setEnabled(true);
-                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
+                        IncomeView.findViewById(R.id.AidValue).setEnabled(true);
                         IncomeView.findViewById(R.id.CoinType).setEnabled(true);
                     } else {
                         IncomeView.findViewById(R.id.IncomeType).setEnabled(false);
                         IncomeView.findViewById(R.id.IncomeTime).setEnabled(false);
-                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(false);
+                        IncomeView.findViewById(R.id.AidValue).setEnabled(false);
                         IncomeView.findViewById(R.id.CoinType).setEnabled(false);
                     }
                 }
@@ -245,7 +265,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                 }
             });
         }
-
+        return IncomeView;
     }
 
     private void removeViewIncome(View view) {

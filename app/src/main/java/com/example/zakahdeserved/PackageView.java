@@ -412,7 +412,7 @@ public class PackageView extends AppCompatActivity {
                     //get from health_statuses table
                     for (String personID : PersonsIDs) {
                         List<String> health_statusesColumns = new LinkedList<>(Arrays.asList(DBHelper.Helth_StatusesColumns));
-                        health_statusesColumns.add(0, "HealthStatusID");
+//                        health_statusesColumns.add(0, "HealthStatusID");
                         AllFamilyRecords.addAll(DAL.getTableData("health_statuses", health_statusesColumns,
                                 "select " + String.join(",", health_statusesColumns) + " from health_statuses where PersonID like '" + personID + "';",
                                 List.of()));

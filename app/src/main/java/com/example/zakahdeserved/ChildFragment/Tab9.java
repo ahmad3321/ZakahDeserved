@@ -22,12 +22,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.PackageRecord;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.PackageView;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -72,6 +74,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view, Constants.familyInfo);
+        // load survey_conclusions
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("survey_conclusions", DBHelper.SurveyConclusionColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addView(R.layout.row_add_surveyconclusions, R.id.image_remove_SurveyConclusions, layoutSurveyConclusions);
+            DBHelper.loadDataToControls(v, record);
+        }
 
         return view;
     }
@@ -108,7 +116,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void addView(int id, int imageID, LinearLayout linearLayout) {
+    private View addView(int id, int imageID, LinearLayout linearLayout) {
 
         final View surveyconclusionsView = getLayoutInflater().inflate(id, null, false);
 
@@ -122,6 +130,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             surveyconclusionsView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(surveyconclusionsView);
 
+        return surveyconclusionsView;
     }
 
     private void removeView(View view, LinearLayout linear) {

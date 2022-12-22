@@ -55,7 +55,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/IncomeValue"
+                android:id="@+id/AidValue"
                 android:layout_width="wrap_content"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/purple_200"

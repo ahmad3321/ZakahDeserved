@@ -16,14 +16,17 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
+import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.util.ArrayList;
+
 public class Tab7 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutAsset;
-    Button buttonAdd,buttonAddIncome,buttonAddAids;
+    Button buttonAdd, buttonAddIncome, buttonAddAids;
 
     public Tab7() {
         // Required empty public constructor
@@ -52,28 +55,34 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         buttonAdd.setOnClickListener(this);
 
 
-
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+//        DBHelper.loadDataToControls(view, Constants.familyInfo);
+        //load aids
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("assets", DBHelper.AssetsColumns, "ZakatID", Constants.ZakatID);
+        for (SQLiteRecord record : records) {
+            View v = addView(R.layout.row_add_asset, R.id.image_remove_Asset, layoutAsset);
+            DBHelper.loadDataToControls(v, record);
+        }
 
         return view;
     }
+
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.button_add_Asset:
 
-                addView(R.layout.row_add_asset,R.id.image_remove_Asset,layoutAsset);
+                addView(R.layout.row_add_asset, R.id.image_remove_Asset, layoutAsset);
 
                 break;
 
         }
     }
 
-    private void addView(int id,int imageID,LinearLayout linearLayout) {
+    private View addView(int id, int imageID, LinearLayout linearLayout) {
 
-        final View AssetView = getLayoutInflater().inflate(id,null,false);
+        final View AssetView = getLayoutInflater().inflate(id, null, false);
 
         // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
         //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
@@ -88,10 +97,10 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                 ValidationController.ClearView(AssetView.findViewById(R.id.LinearHousrAndStore));
                 ValidationController.ClearView(AssetView.findViewById(R.id.LinearFarm));
                 ValidationController.ClearView(AssetView.findViewById(R.id.LinearAnimals));
-               ((EditText)AssetView.findViewById(R.id.MachineType)).setText("");
-               ((EditText)AssetView.findViewById(R.id.ValueTime)).setText("");
+                ((EditText) AssetView.findViewById(R.id.MachineType)).setText("");
+                ((EditText) AssetView.findViewById(R.id.ValueTime)).setText("");
 
-                switch (i){
+                switch (i) {
                     case 0: //محل
                     case 1: //منزل
                         AssetView.findViewById(R.id.LinearHousrAndStore).setVisibility(View.VISIBLE);
@@ -133,24 +142,23 @@ public class Tab7 extends Fragment implements View.OnClickListener {
             }
         });
 
-        ImageView imageClose = (ImageView)AssetView.findViewById(imageID);
+        ImageView imageClose = (ImageView) AssetView.findViewById(imageID);
 
         imageClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeView(AssetView,linearLayout);
+                removeView(AssetView, linearLayout);
             }
         });
-        if(linearLayout.getChildCount()%2!=0){
+        if (linearLayout.getChildCount() % 2 != 0) {
             AssetView.setBackgroundColor(Color.WHITE);
-        }
-        else
+        } else
             AssetView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
         linearLayout.addView(AssetView);
-
+        return AssetView;
     }
 
-    private void removeView(View view,LinearLayout linear){
+    private void removeView(View view, LinearLayout linear) {
 
         linear.removeView(view);
 

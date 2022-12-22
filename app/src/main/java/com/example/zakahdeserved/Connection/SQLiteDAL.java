@@ -26,7 +26,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 5);
+        super(context, DATABASE_NAME, null, 6);
     }
 
 
@@ -56,7 +56,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 " 'ContactNumber2' TEXT , 'RelationWithContact2' TEXT , 'Deserved' TEXT , 'Reson' TEXT , 'ExisitStatus' TEXT , " +
                 "'ExisitStatusAbout' TEXT ) ;";
 
-        String HelthStatusCreate = "CREATE TABLE 'health_statuses' ('HealthStatusID' TEXT  , 'PersonID' TEXT , " +
+        String HelthStatusCreate = "CREATE TABLE 'health_statuses' ('PersonID' TEXT , " +
                 "'HealthStatus' TEXT , 'HealthStatusEvaluation' TEXT , 'HealthStatusType' TEXT , 'HealthStatusDescription' TEXT ," +
                 " 'CoinType' TEXT , 'MonthlyCost' TEXT ) ;";
 
@@ -345,14 +345,14 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<SQLiteRecord> Records = new ArrayList<>();
+        String columns = String.join(",", Columns);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + ColName + " like '" + ColValue + "'; ", null);
+        Cursor cursor = db.rawQuery("SELECT " + columns + " FROM " + tableName + " WHERE " + ColName + " like '" + ColValue + "'; ", null);
 
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
             do {
                 Records.add(getSQLiteRecord(cursor, tableName, Columns));
-
             } while (cursor.moveToNext());
             cursor.close();
         }
@@ -364,29 +364,27 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         ArrayList<SQLiteRecord> sqliteRecords = new ArrayList<>();
 
-        // get all persons in this family
-        Cursor cursor = db.rawQuery("SELECT * FROM persons WHERE ZakatID like '" + ZaktID + "'; ", null);
+        // get only رب الأسرة
+        Cursor cursor = db.rawQuery("SELECT * FROM persons WHERE ZakatID like '" + ZaktID + "' and whois = 'رب الأسرة'; ", null);
 
-        // Persons Info (person & Helth_statuses)
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
             do {
                 sqliteRecords.add(getSQLiteRecord(cursor, "persons", DBHelper.PersonsColumns));
-
-                String personID = cursor.getString(1);
-                //****** Get persons helth statuses *************
-                Cursor interiorCursor = db.rawQuery("SELECT * FROM health_statuses WHERE PersonID like '" + personID + "'; ", null);
-
-                if (interiorCursor != null && interiorCursor.moveToNext())/*if cursor has data*/ {
-                    interiorCursor.moveToFirst();
-
-                    do {
-                        sqliteRecords.add(getSQLiteRecord(interiorCursor, "health_statuses", DBHelper.Helth_StatusesColumns));
-
-                    } while (interiorCursor.moveToNext());
-                    interiorCursor.close();
-                }
-                // ***** End helth statuses************
+//                String personID = cursor.getString(1);
+//                //****** Get persons helth statuses *************
+//                Cursor interiorCursor = db.rawQuery("SELECT * FROM health_statuses WHERE PersonID like '" + personID + "'; ", null);
+//
+//                if (interiorCursor != null && interiorCursor.moveToNext())/*if cursor has data*/ {
+//                    interiorCursor.moveToFirst();
+//
+//                    do {
+//                        sqliteRecords.add(getSQLiteRecord(interiorCursor, "health_statuses", DBHelper.Helth_StatusesColumns));
+//
+//                    } while (interiorCursor.moveToNext());
+//                    interiorCursor.close();
+//                }
+//                // ***** End helth statuses************
 
             } while (cursor.moveToNext());
             cursor.close();
@@ -429,77 +427,66 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        //get housing informations Info (housing_informations table)
-        cursor = db.rawQuery("SELECT * FROM housing_informations WHERE ZakatID like '" + ZaktID + "'; ", null);
-
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "housing_informations", DBHelper.HousingInformationColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
-
         //get incomes Info (incomes table)
-        cursor = db.rawQuery("SELECT * FROM incomes WHERE ZakatID like '" + ZaktID + "'; ", null);
 
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "incomes", DBHelper.IncomesColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
+//        cursor = db.rawQuery("SELECT * FROM incomes WHERE ZakatID like '" + ZaktID + "'; ", null);
+//
+//        if (cursor != null && cursor.moveToNext()) {
+//            cursor.moveToFirst();
+//            do {
+//                sqliteRecords.add(getSQLiteRecord(cursor, "incomes", DBHelper.IncomesColumns));
+//
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//        }
 
         //get water types Info (water_types table)
-        cursor = db.rawQuery("SELECT * FROM water_types WHERE ZakatID like '" + ZaktID + "'; ", null);
-
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "water_types", DBHelper.WaterTypesColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
+//        cursor = db.rawQuery("SELECT * FROM water_types WHERE ZakatID like '" + ZaktID + "'; ", null);
+//
+//        if (cursor != null && cursor.moveToNext()) {
+//            cursor.moveToFirst();
+//            do {
+//                sqliteRecords.add(getSQLiteRecord(cursor, "water_types", DBHelper.WaterTypesColumns));
+//
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//        }
 
         //get aids Info (aids table)
-        cursor = db.rawQuery("SELECT * FROM aids WHERE ZakatID like '" + ZaktID + "'; ", null);
-
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "aids", DBHelper.AidsColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
+//        cursor = db.rawQuery("SELECT * FROM aids WHERE ZakatID like '" + ZaktID + "'; ", null);
+//
+//        if (cursor != null && cursor.moveToNext()) {
+//            cursor.moveToFirst();
+//            do {
+//                sqliteRecords.add(getSQLiteRecord(cursor, "aids", DBHelper.AidsColumns));
+//
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//        }
 
         //get assets Info (assets table)
-        cursor = db.rawQuery("SELECT * FROM assets WHERE ZakatID like '" + ZaktID + "'; ", null);
+//        cursor = db.rawQuery("SELECT * FROM assets WHERE ZakatID like '" + ZaktID + "'; ", null);
 
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "assets", DBHelper.AssetsColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
+//        if (cursor != null && cursor.moveToNext()) {
+//            cursor.moveToFirst();
+//            do {
+//                sqliteRecords.add(getSQLiteRecord(cursor, "assets", DBHelper.AssetsColumns));
+//
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//        }
 
         //get survey conclusions Info (survey_conclusions table)
-        cursor = db.rawQuery("SELECT * FROM survey_conclusions WHERE ZakatID like '" + ZaktID + "'; ", null);
+//        cursor = db.rawQuery("SELECT * FROM survey_conclusions WHERE ZakatID like '" + ZaktID + "'; ", null);
 
-        if (cursor != null && cursor.moveToNext()) {
-            cursor.moveToFirst();
-            do {
-                sqliteRecords.add(getSQLiteRecord(cursor, "survey_conclusions", DBHelper.AssetsColumns));
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
+//        if (cursor != null && cursor.moveToNext()) {
+//            cursor.moveToFirst();
+//            do {
+//                sqliteRecords.add(getSQLiteRecord(cursor, "survey_conclusions", DBHelper.AssetsColumns));
+//
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//        }
 
         return sqliteRecords;
     }
