@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 
+import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.PackageRecord;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
@@ -95,23 +96,15 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle("إدخال البيانات");
                 alert.setMessage("هل أنت متأكد من ادخال البيانات ؟");
-                alert.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        getData();
-                        dialogInterface.dismiss();
-                    }
+                alert.setPositiveButton("نعم", (dialogInterface, i) -> {
+                    getData();
+                    if (!DAL.executeQueries(insertQuery.toString()))
+                        Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID, "package");
+                    dialogInterface.dismiss();
                 });
-                alert.setNegativeButton("لا", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
 
                 alert.show();
-//                if (!DAL.executeQueries(insertQuery.toString()))
-//                    Constants.SQLITEDAL.addQuery(insertQuery.toString());
                 break;
         }
     }
@@ -171,7 +164,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
 
         // remove the package from local after end work with it.
-        Constants.SQLITEDAL.deletePackage(Constants.PackageID);
+        Constants.SQLITEDAL.deletePackage(Constants.ZakatID, Constants.PackagePersonID);
     }
 
     // Packages and Package_Contents تحديث حالة الحزمة
@@ -191,9 +184,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 .append(packageRecord.Package).append("', '").append(packageRecord.ToEmployeeCode).append("', '")
                 .append(packageRecord.FromEmployeeCode).append("', '").append(autoDate).append("', '")
                 .append(packageRecord.Program).append("');")
-                .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus, EndDate) ")
+                .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus) ")
                 .append("VALUES ((select max(PackageID) from packages), '").append(packageRecord.PersonID).append("', '")
-                .append(packageRecord.ZakatID).append("', 'قيد العمل', '").append(autoDate).append("');");
+                .append(packageRecord.ZakatID).append(" 'قيد العمل');");
     }
 
     //معلومات المرشح والعائلة  Person and Family

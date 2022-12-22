@@ -291,10 +291,10 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public void deletePackage(String packageId) {
+    public void deletePackage(String ZakatID, String PersonId) {
         try {
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("delete from packages where packageid = '" + packageId + "';");
+            db.execSQL("delete from packages where ZakatID = '" + ZakatID + "' and PersonID = '" + PersonId + "';");
         } catch (Exception ex) {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
             Log.d("SQLITEErr", ex.toString());
