@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     String ExceptionQuery = "";
     BroadCastClass broadCastClass = new BroadCastClass();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             if (sharedPreferences.getBoolean("login", false)) {
-                String _lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
-                loginToActivity(_lastEnterDate, sharedPreferences.getInt("empDepartment", -1));
+                loginToActivity(sharedPreferences.getString("entered_date", ""), sharedPreferences.getInt("empDepartment", -1));
             }
         } catch (GeneralSecurityException | IOException e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "", getApplicationContext() != null ? getApplicationContext().toString() : "", "Constants.SHAREDPREFERENCES_KEY");
@@ -111,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putInt("empDepartment", empDepartment);
                         myEdit.apply();
 
-                        String _lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
-                        loginToActivity(_lastEnterDate, empDepartment);
+                        loginToActivity(sharedPreferences.getString("entered_date", ""), empDepartment);
 
                     } catch (GeneralSecurityException | IOException e) {
 
@@ -142,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
         if (isEntered)
             intent1 = new Intent(getApplicationContext(), PackageView.class);
         else
-            //intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-            intent1 = new Intent(getApplicationContext(), PackageView.class);
+            intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
+//            intent1 = new Intent(getApplicationContext(), PackageView.class);
 
         if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)
             intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع

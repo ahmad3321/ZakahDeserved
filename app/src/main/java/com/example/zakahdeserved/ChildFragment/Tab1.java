@@ -1,14 +1,13 @@
 package com.example.zakahdeserved.ChildFragment;
 
-import static com.itextpdf.text.Annotation.FILE;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,20 +24,14 @@ import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
-import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 
@@ -53,6 +46,9 @@ public class Tab1 extends Fragment {
     private static final int pic_id = 1;
     ArrayList<byte[]> ImagesByte = new ArrayList<>();
     Document document;
+
+    // this variable for binding the identityFile with its Number to know for whose person this file
+    String identityNumber = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,8 +65,48 @@ public class Tab1 extends Fragment {
 
         btn_Image_Document = view.findViewById(R.id.btn_Image_Document);
         btn_Image_Document_delete = view.findViewById(R.id.btn_Image_Document_delete);
+        EditText txtIdentityNumber = view.findViewById(R.id.IdentityNumber);
 
+        txtIdentityNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (txtIdentityNumber.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
+                    txtIdentityNumber.setText(identityNumber);
+                    return;
+                }
+
+                //store the previous identity number
+                String oldidentityNumber = identityNumber;
+
+                //Update the key to new key
+                identityNumber = txtIdentityNumber.getText().toString();
+
+                //if pictures have taken
+                if (ImagesByte.size() > 0) {
+                    String value = Constants.imagesFiles.get(oldidentityNumber);
+                    Constants.imagesFiles.remove(oldidentityNumber);
+                    Constants.imagesFiles.put(identityNumber, value);
+                }
+            }
+        });
         btn_Image_Document.setOnClickListener(view12 -> {
+            identityNumber = txtIdentityNumber.getText().toString();
+            if (identityNumber.equals("")) {
+                Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(camera_intent, pic_id);
         });
@@ -115,7 +151,6 @@ public class Tab1 extends Fragment {
         Spinner lst_IdentityTypes = view.findViewById(R.id.lst_IdentityTypes);
         Constants.SQLITEDAL.fillSpinner(view.getContext(), lst_IdentityTypes);
 
-
         EditText txtBirthDate = view.findViewById(R.id.BirthDate);
 
         myCalendar = Calendar.getInstance();
@@ -127,15 +162,10 @@ public class Tab1 extends Fragment {
             updateLabel(txtBirthDate);
         };
 
-        txtBirthDate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(getContext(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
+        txtBirthDate.setOnClickListener(v -> {
+            new DatePickerDialog(getContext(), date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });
 
 
@@ -157,7 +187,7 @@ public class Tab1 extends Fragment {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
                         byte[] byte_arr = stream.toByteArray();
                         ImagesByte.add(byte_arr);
-                        Constants.imagesFiles.put("IdentityFile",ConvertImagesToPdf());
+                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
                     }
                     break;
             }

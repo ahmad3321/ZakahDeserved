@@ -45,13 +45,14 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     Calendar myCalendar;
     EditText txtFenmaleCount, txtMaleCount, txtAllCount;
 
+    // this variable for binding the identityFile with its Number to know for whose person this file
+    String identityNumber = "";
+
     int femaleCount = 0, maleCount = 0, allMembersCount = 0;
 
     public Tab8() {
         // Required empty public constructor
     }
-
-    // TODO: Rename and change types and number of parameters
 
 
     @Override
@@ -121,8 +122,15 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         layout_list_Wifes_HealthStatus = WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
         Button btn_Image_Document_Person = WifeView.findViewById(R.id.btn_Image_Document_Person);
         Button btn_Image_Document_Person_delete = WifeView.findViewById(R.id.btn_Image_Document_Person_delete);
+        EditText txtIdentityNumber = WifeView.findViewById(R.id.IdentityNumber);
 
         btn_Image_Document_Person.setOnClickListener(view1 -> {
+            identityNumber = txtIdentityNumber.getText().toString();
+            if (identityNumber.equals("")) {
+                Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(camera_intent, pic_id);
         });
@@ -251,6 +259,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
                         byte[] byte_arr = stream.toByteArray();
                         ImagesByte.add(byte_arr);
+                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
                     }
                     break;
             }

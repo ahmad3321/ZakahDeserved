@@ -105,13 +105,15 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                     return;
                 }
 
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString("entered_date", autoDate);
+                myEdit.apply();
+
                 Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
                 intent1.putExtra("JobTitle", JobTitle); //احصاء أو توزيع
                 startActivity(intent1);
 
-//                SharedPreferences.Editor myEdit = sharedPreferences.edit();
-//                myEdit.putString("entered_date", autoDate);
-//                myEdit.apply();
+
             });
 
 
