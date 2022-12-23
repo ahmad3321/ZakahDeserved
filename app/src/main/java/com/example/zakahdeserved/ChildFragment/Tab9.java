@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class Tab9 extends Fragment implements View.OnClickListener {
 
@@ -204,6 +205,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         getAllControlsNamesAndData(Constants.view1);
 
+        //get the identity number for the person
+        String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
+        //set the person pdfFile of his identity
+        DBHelper.PersonsTable.put("IdentityFile",Constants.imagesFiles.get(identityNumber));
 
         //لم أضع جدول families هنا لأن الجدول لم نكنمل كل بياناته
         // ستكتمل بياناته في الفراغمنت الأخيرة view9 وعندها سنأخذ البيانات منه
@@ -424,7 +429,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                     putColumnValue(ColumnName, ColumnValue);
                 } else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout) {
                     getAllControlsNamesAndData(v);
-//                    Log.d("LinearLayout", v.getResources().getResourceEntryName(v.getId()));
                 }
             }
         } catch (Exception e) {
