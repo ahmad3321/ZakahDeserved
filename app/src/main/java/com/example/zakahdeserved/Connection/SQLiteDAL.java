@@ -301,11 +301,11 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public PackageRecord getPackageRecord(String PackageID) {
+    public PackageRecord getPackageRecord(String PackageID, String ZakatID, String PersonID) {
         try {
             SQLiteDatabase db = getReadableDatabase();
 
-            Cursor cursor = db.rawQuery("SELECT * FROM Packages WHERE PackageID like '" + PackageID + "'; ", null);
+            Cursor cursor = db.rawQuery("SELECT * FROM Packages WHERE PackageID like '" + PackageID + "' and ZakatID = '" + ZakatID + "' and PersonID = '" + PersonID + "'; ", null);
             if (cursor != null && cursor.moveToNext()) {
                 cursor.moveToFirst();
                 return new PackageRecord(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
