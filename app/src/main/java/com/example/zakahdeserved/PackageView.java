@@ -211,14 +211,14 @@ public class PackageView extends AppCompatActivity {
 
             switch (packageName) {
                 case "إضافة":
-                    if (layout_list_Refresh.getChildCount() % 2 != 0) {
+                    if (layout_list_Add.getChildCount() % 2 != 0) {
                         v.setBackgroundColor(Color.rgb(22, 129, 27));
                     } else
-                        v.setBackgroundColor(Color.rgb(22, 110, 27));
+                        v.setBackgroundColor(Color.rgb(37, 163, 43));
                     layout_list_Add.addView(v);
                     break;
                 case "تعديل":
-                    if (layout_list_Refresh.getChildCount() % 2 != 0) {
+                    if (layout_list_Update.getChildCount() % 2 != 0) {
                         v.setBackgroundColor(Color.rgb(110, 109, 109));
                     } else
                         v.setBackgroundColor(Color.rgb(138, 138, 138));
@@ -235,10 +235,8 @@ public class PackageView extends AppCompatActivity {
                     layout_list_Program.addView(v);
                     break;
             }
-
             // if clicked on the record, then move to the form.
             v.setTag(i);
-            //((EditText) v.findViewById(R.id.city)).setOnClickListener(view -> {
             v.findViewById(R.id.lin_Click).setOnClickListener(view -> {
 
                 // Initialize form parameters

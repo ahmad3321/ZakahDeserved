@@ -180,7 +180,7 @@ public class DAL {
                     // connection.close();
                 } else {
                     ActiveUser = true;
-                    Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception ex) {
                 ActiveUser = false;
