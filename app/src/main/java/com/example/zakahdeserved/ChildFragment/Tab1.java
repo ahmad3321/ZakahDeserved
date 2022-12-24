@@ -92,7 +92,10 @@ public class Tab1 extends Fragment {
                 //Update the key to new key
                 identityNumber = txtIdentityNumber.getText().toString();
 
-                //if pictures have taken
+                if (Constants.imagesFiles.containsKey(identityNumber))
+                    Constants.imagesFiles.put(identityNumber, "");
+
+                //if pictures have taken and stored in hashmap
                 if (ImagesByte.size() > 0) {
                     String value = Constants.imagesFiles.get(oldidentityNumber);
                     Constants.imagesFiles.remove(oldidentityNumber);

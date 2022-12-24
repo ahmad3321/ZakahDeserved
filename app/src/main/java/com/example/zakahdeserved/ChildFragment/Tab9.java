@@ -179,7 +179,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 .append("' WHERE PackageID = '").append(Constants.PackageID)
                 .append("'  and personid  = '").append(Constants.PackagePersonID).append("';");
 
-        PackageRecord packageRecord = Constants.SQLITEDAL.getPackageRecord(Constants.PackageID);
+        PackageRecord packageRecord = Constants.SQLITEDAL.getPackageRecord(Constants.PackageID, Constants.ZakatID, Constants.PackagePersonID);
 
         insertQuery.append("INSERT INTO packages (Package, FromEmployeeCode, ToEmployeeCode, SendDate, Program)" + "VALUES ('")
                 .append(packageRecord.Package).append("', '").append(packageRecord.ToEmployeeCode).append("', '")
@@ -187,7 +187,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 .append(packageRecord.Program).append("');")
                 .append("INSERT INTO package_contents (PackageID, PersonID, ZakatID, PackageStatus) ")
                 .append("VALUES ((select max(PackageID) from packages), '").append(packageRecord.PersonID).append("', '")
-                .append(packageRecord.ZakatID).append(" 'قيد العمل');");
+                .append(packageRecord.ZakatID).append("', 'قيد العمل');");
     }
 
     //معلومات المرشح والعائلة  Person and Family
@@ -208,7 +208,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         //get the identity number for the person
         String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
         //set the person pdfFile of his identity
-        DBHelper.PersonsTable.put("IdentityFile",Constants.imagesFiles.get(identityNumber));
+        DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
 
         //لم أضع جدول families هنا لأن الجدول لم نكنمل كل بياناته
         // ستكتمل بياناته في الفراغمنت الأخيرة view9 وعندها سنأخذ البيانات منه
