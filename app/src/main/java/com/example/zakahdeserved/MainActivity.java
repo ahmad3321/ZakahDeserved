@@ -128,11 +128,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void loginToActivity(String lastEnterDate, int EmpDepartment) {
+    void loginToActivity(String lastEnterDate, int EmpDepartment) throws GeneralSecurityException, IOException {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String autoDate = df.format(c);
         boolean isEntered = autoDate.equals(lastEnterDate);
+
+        //if not entered check entry from server
+        //this could be done if employee entered from a device and tried to enter from another one
+        if (!isEntered) {
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                    getApplicationContext(),
+                    "MySharedPref",
+                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+            lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
+            isEntered = autoDate.equals(lastEnterDate);
+        }
 
         Intent intent1;
 

@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -84,6 +85,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 //        DBHelper.loadDataToControls(view, Constants.familyInfo);
         //load persons
         ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("persons", DBHelper.PersonsColumns, "ZakatID", Constants.ZakatID);
+        //لا نعرض رب الأسرة بين السجلات
+        records.removeIf(myObject -> Objects.requireNonNull(myObject.getRecord().get("PersonID")).toString().endsWith("0"));
+
         for (SQLiteRecord record : records) {
             View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
             DBHelper.loadDataToControls(v, record);
@@ -94,9 +98,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                 View health_statusesv = addHelthStatusView();
                 DBHelper.loadDataToControls(health_statusesv, health_statusesrecord);
             }
-
         }
-
         return view;
     }
 
