@@ -462,7 +462,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 update_query.append(entry.getKey()).append(" = ");
 
                 Object value = entry.getValue();
-
+                if (value == null) {
+                    strValues.append(value).append(",");
+                    update_query.append(value).append(",");
+                    continue;
+                }
                 if (value.toString().equals("0") || value.toString().equals("1")) {
                     strValues.append(value).append(",");
                     update_query.append(value).append(",");

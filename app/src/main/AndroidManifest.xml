@@ -20,6 +20,9 @@
             android:name=".SQLiteTest"
             android:exported="false" />
         <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainTabs"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

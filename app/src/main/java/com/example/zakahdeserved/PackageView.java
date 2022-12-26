@@ -124,7 +124,7 @@ public class PackageView extends AppCompatActivity {
                     return false;
 
                 case R.id.action_about:
-                    LayoutInflater inflater = (LayoutInflater)
+                    /*LayoutInflater inflater = (LayoutInflater)
                             getSystemService(LAYOUT_INFLATER_SERVICE);
                     View popupView = inflater.inflate(R.layout.activity_about, null);
 
@@ -145,7 +145,10 @@ public class PackageView extends AppCompatActivity {
                             popupWindow.dismiss();
                             return true;
                         }
-                    });
+                    });*/
+
+                    Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+                    startActivity(intent);
                     return true;
                 default:
                     return super.onOptionsItemSelected(item);
