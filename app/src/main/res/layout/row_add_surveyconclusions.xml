@@ -18,7 +18,13 @@
             android:layout_gravity="start"
             android:orientation="vertical"
             android:visibility="visible">
-
+            <EditText
+                android:id="@+id/ID"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/purple_200" />
             <EditText
                 android:id="@+id/NeighborName"
                 android:layout_width="fill_parent"

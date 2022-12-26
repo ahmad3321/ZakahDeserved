@@ -31,6 +31,13 @@
                 android:textSize="30sp"
                 android:fontFamily="@font/jaz_bold"
                 android:typeface="serif" />
+            <EditText
+                android:id="@+id/PersonID"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/purple_200" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
