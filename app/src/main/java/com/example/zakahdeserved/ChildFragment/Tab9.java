@@ -368,7 +368,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             // if person id is empty
             else {
                 Constants.IncrementPersonID++;
-                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(Constants.ZakatID + "-" + Constants.IncrementPersonID);
+                _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
+                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(_PersonID);
             }
 
             getAllControlsNamesAndData(PersonInfo);
@@ -378,7 +379,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             //الحالة الصحية للفرد HelthStatus Of person
             // قم بزيادة عداد IncrementPersonID في كل الحالتين سواء هناك حالة صحية للفرد أو لا
-//            DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "-" + Constants.IncrementPersonID++);
+            DBHelper.Helth_StatusesTable.put("PersonID", _PersonID);
             LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
 
             for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {
