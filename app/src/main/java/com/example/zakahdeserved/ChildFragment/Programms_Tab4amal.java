@@ -98,8 +98,8 @@ public class Programms_Tab4amal extends Fragment implements View.OnClickListener
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.AmalProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
-        DBHelper.AmalProgramFormDataTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+//        DBHelper.AmalProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+//        DBHelper.AmalProgramFormDataTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
 
         tablesNames = new String[]{"amal_program", "amal_program_form_data"};
 

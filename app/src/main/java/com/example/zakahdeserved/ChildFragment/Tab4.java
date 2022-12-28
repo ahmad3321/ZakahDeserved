@@ -65,7 +65,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         Constants.view4 = view;
 
 
-        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForPaterFamilias();
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForHeadFamily();
         for (SQLiteRecord record : records) {
             View v = addView();
             DBHelper.loadDataToControls(v, record);

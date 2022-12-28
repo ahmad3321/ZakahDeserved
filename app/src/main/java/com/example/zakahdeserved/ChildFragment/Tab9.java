@@ -149,6 +149,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         DBHelper.AssetsTable.put("ZakatID", Constants.ZakatID);
         DBHelper.SurveyConclusionTable.put("ZakatID", Constants.ZakatID);
 
+        removeRecordsFromSubTables();
+
         getFromView1();
         getFromView2();
         getFromView4();
@@ -166,6 +168,16 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
         // remove the package from local after end work with it.
         Constants.SQLITEDAL.deletePackage(Constants.ZakatID, Constants.PackagePersonID);
+    }
+
+    // إزالة السجلات الموجودة في الجداول الفرعية من أجل إضافة السجلات الجديدة
+    void removeRecordsFromSubTables() {
+        insertQuery.append("DELETE FROM incomes  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
+        insertQuery.append("DELETE FROM water_types  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
+        insertQuery.append("DELETE FROM survey_conclusions  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
+        insertQuery.append("DELETE FROM assets  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
+        insertQuery.append("DELETE FROM aids  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
+        insertQuery.append("DELETE FROM health_statuses  WHERE PersonID in (select PersonID from persons where ZakatID = '").append(Constants.ZakatID).append("');");
     }
 
     // Packages and Package_Contents تحديث حالة الحزمة
@@ -200,7 +212,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
         allItemsTable.put(tablesNames[1], DBHelper.FamiliesTable);
 
-        DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+        DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "-0");
         DBHelper.PersonsTable.put("WhoIs", "رب الأسرة");
 
         getAllControlsNamesAndData(Constants.view1);
@@ -234,7 +246,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     void getFromView4() {
 
         // قم بزيادة عداد IncrementPersonID في كل الحالتين سواء هناك حالة صحية لرب الأسرة أو لا
-        DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
+        DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "-0");
 
         if (Constants.view4 == null)
             return;
@@ -343,11 +355,21 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         for (int i = 0; i < PersonsList.getChildCount(); i++) {
 
             tablesNames = new String[]{"persons"};
-            DBHelper.PersonsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
 
             allItemsTable.put(tablesNames[0], DBHelper.PersonsTable);
 
             View PersonInfo = PersonsList.getChildAt(i);
+            String _PersonID = ((EditText) PersonInfo.findViewById(R.id.PersonID)).getText().toString();
+
+            // if personid not empty, take the max person id
+            if (!_PersonID.equals(""))
+                Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
+
+            // if person id is empty
+            else {
+                Constants.IncrementPersonID++;
+                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(Constants.ZakatID + "-" + Constants.IncrementPersonID);
+            }
 
             getAllControlsNamesAndData(PersonInfo);
 
@@ -356,7 +378,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             //الحالة الصحية للفرد HelthStatus Of person
             // قم بزيادة عداد IncrementPersonID في كل الحالتين سواء هناك حالة صحية للفرد أو لا
-            DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID++);
+//            DBHelper.Helth_StatusesTable.put("PersonID", Constants.ZakatID + "-" + Constants.IncrementPersonID++);
             LinearLayout PersonsHelthStatusesList = PersonInfo.findViewById(R.id.layout_list_Wifes_HealthStatus);
 
             for (int j = 0; j < PersonsHelthStatusesList.getChildCount(); j++) {

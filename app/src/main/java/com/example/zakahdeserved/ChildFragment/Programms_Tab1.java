@@ -103,7 +103,7 @@ public class Programms_Tab1 extends Fragment implements View.OnClickListener {
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.KtlalProgramsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+//        DBHelper.KtlalProgramsTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"ktlal_programes"};
 
         allItemsTable.put(tablesNames[0], DBHelper.KtlalProgramsTable);

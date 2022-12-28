@@ -56,7 +56,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 " 'ContactNumber2' TEXT , 'RelationWithContact2' TEXT , 'Deserved' TEXT , 'Reson' TEXT , 'ExisitStatus' TEXT , " +
                 "'ExisitStatusAbout' TEXT ) ;";
 
-        String HelthStatusCreate = "CREATE TABLE 'health_statuses' ('PersonID' TEXT , " +
+        String HelthStatusCreate = "CREATE TABLE 'health_statuses' ('HealthStatusID' TEXT, 'PersonID' TEXT , " +
                 "'HealthStatus' TEXT , 'HealthStatusEvaluation' TEXT , 'HealthStatusType' TEXT , 'HealthStatusDescription' TEXT ," +
                 " 'CoinType' TEXT , 'MonthlyCost' TEXT ) ;";
 
@@ -322,7 +322,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<SQLiteRecord> getHelthStatusForPaterFamilias() {
+    public ArrayList<SQLiteRecord> getHelthStatusForHeadFamily() {
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<SQLiteRecord> Records = new ArrayList<>();

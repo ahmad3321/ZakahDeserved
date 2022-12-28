@@ -103,7 +103,7 @@ public class Programms_Tab5Student extends Fragment implements View.OnClickListe
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.StudentsProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+//        DBHelper.StudentsProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"students_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.StudentsProgramTable);

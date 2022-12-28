@@ -129,7 +129,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
     StringBuilder insertQuery = new StringBuilder();
 
     void getData() {
-        DBHelper.FedaProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
+//        DBHelper.FedaProgramTable.put("PersonID", Constants.ZakatID + "_" + Constants.IncrementPersonID);
         tablesNames = new String[]{"feda_program"};
 
         allItemsTable.put(tablesNames[0], DBHelper.FedaProgramTable);
