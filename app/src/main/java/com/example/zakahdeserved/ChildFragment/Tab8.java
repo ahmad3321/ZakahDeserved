@@ -82,14 +82,13 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-//        DBHelper.loadDataToControls(view, Constants.familyInfo);
         //load persons
         ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getRecords("persons", DBHelper.PersonsColumns, "ZakatID", Constants.ZakatID);
         //لا نعرض رب الأسرة بين السجلات
         records.removeIf(myObject -> Objects.requireNonNull(myObject.getRecord().get("PersonID")).toString().endsWith("0"));
 
         for (SQLiteRecord record : records) {
-            View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
+            View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife,false);
             DBHelper.loadDataToControls(v, record);
 
             //load health_statuses
@@ -108,13 +107,13 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             case R.id.button_add_Wifes:
 
-                addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife);
+                addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife,true);
 
                 break;
         }
     }
 
-    private View addPersonView(int id, int imageID, LinearLayout linearLayout) {
+    private View addPersonView(int id, int imageID, LinearLayout linearLayout, boolean enableDeleteView) {
 
         final View WifeView = getLayoutInflater().inflate(id, null, false);
         allMembersCount++;
@@ -125,6 +124,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         Button btn_Image_Document_Person = WifeView.findViewById(R.id.btn_Image_Document_Person);
         Button btn_Image_Document_Person_delete = WifeView.findViewById(R.id.btn_Image_Document_Person_delete);
         EditText txtIdentityNumber = WifeView.findViewById(R.id.IdentityNumber);
+
+        // this for persons already added, can't delete them.
+        if(!enableDeleteView)
+            imageClose.setVisibility(View.GONE);
 
         btn_Image_Document_Person.setOnClickListener(view1 -> {
             identityNumber = txtIdentityNumber.getText().toString();
