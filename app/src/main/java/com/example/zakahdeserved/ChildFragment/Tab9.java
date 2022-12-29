@@ -365,7 +365,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             if (!_PersonID.equals(""))
                 Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
 
-            // if person id is empty
+                // if person id is empty
             else {
                 Constants.IncrementPersonID++;
                 _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
@@ -485,9 +485,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 update_query.append(entry.getKey()).append(" = ");
 
                 Object value = entry.getValue();
-                if (value == null) {
-                    strValues.append(value).append(",");
-                    update_query.append(value).append(",");
+                if (value == null || value == "") {
+                    strValues.append("null").append(",");
+                    update_query.append("null").append(",");
                     continue;
                 }
                 if (value.toString().equals("0") || value.toString().equals("1")) {
