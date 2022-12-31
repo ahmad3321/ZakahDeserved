@@ -427,67 +427,6 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             cursor.close();
         }
 
-        //get incomes Info (incomes table)
-
-//        cursor = db.rawQuery("SELECT * FROM incomes WHERE ZakatID like '" + ZaktID + "'; ", null);
-//
-//        if (cursor != null && cursor.moveToNext()) {
-//            cursor.moveToFirst();
-//            do {
-//                sqliteRecords.add(getSQLiteRecord(cursor, "incomes", DBHelper.IncomesColumns));
-//
-//            } while (cursor.moveToNext());
-//            cursor.close();
-//        }
-
-        //get water types Info (water_types table)
-//        cursor = db.rawQuery("SELECT * FROM water_types WHERE ZakatID like '" + ZaktID + "'; ", null);
-//
-//        if (cursor != null && cursor.moveToNext()) {
-//            cursor.moveToFirst();
-//            do {
-//                sqliteRecords.add(getSQLiteRecord(cursor, "water_types", DBHelper.WaterTypesColumns));
-//
-//            } while (cursor.moveToNext());
-//            cursor.close();
-//        }
-
-        //get aids Info (aids table)
-//        cursor = db.rawQuery("SELECT * FROM aids WHERE ZakatID like '" + ZaktID + "'; ", null);
-//
-//        if (cursor != null && cursor.moveToNext()) {
-//            cursor.moveToFirst();
-//            do {
-//                sqliteRecords.add(getSQLiteRecord(cursor, "aids", DBHelper.AidsColumns));
-//
-//            } while (cursor.moveToNext());
-//            cursor.close();
-//        }
-
-        //get assets Info (assets table)
-//        cursor = db.rawQuery("SELECT * FROM assets WHERE ZakatID like '" + ZaktID + "'; ", null);
-
-//        if (cursor != null && cursor.moveToNext()) {
-//            cursor.moveToFirst();
-//            do {
-//                sqliteRecords.add(getSQLiteRecord(cursor, "assets", DBHelper.AssetsColumns));
-//
-//            } while (cursor.moveToNext());
-//            cursor.close();
-//        }
-
-        //get survey conclusions Info (survey_conclusions table)
-//        cursor = db.rawQuery("SELECT * FROM survey_conclusions WHERE ZakatID like '" + ZaktID + "'; ", null);
-
-//        if (cursor != null && cursor.moveToNext()) {
-//            cursor.moveToFirst();
-//            do {
-//                sqliteRecords.add(getSQLiteRecord(cursor, "survey_conclusions", DBHelper.AssetsColumns));
-//
-//            } while (cursor.moveToNext());
-//            cursor.close();
-//        }
-
         return sqliteRecords;
     }
 
@@ -620,13 +559,13 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return !success;
     }
 
-    public ArrayList<PackageRecord> getPackages() {
+    public ArrayList<PackageRecord> getPackages(String empCode) {
 
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<PackageRecord> packageRecords = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Packages;", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Packages where ToEmployeeCode = '" + empCode + "';", null);
 
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
@@ -639,12 +578,12 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return packageRecords;
     }
 
-    public ArrayList<ShowRecord> getShowRecords() {
+    public ArrayList<ShowRecord> getShowRecords(String empCode) {
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<ShowRecord> sqliteRecords = new ArrayList<>();
 
-        Cursor cursorPackage = db.rawQuery("SELECT * FROM Packages; ", null);
+        Cursor cursorPackage = db.rawQuery("SELECT * FROM Packages where ToEmployeeCode = '" + empCode + "'; ", null);
 
         if (cursorPackage != null && cursorPackage.moveToNext()) {
             cursorPackage.moveToFirst();
