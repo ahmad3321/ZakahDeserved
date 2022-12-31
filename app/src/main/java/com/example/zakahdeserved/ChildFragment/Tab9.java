@@ -485,12 +485,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 update_query.append(entry.getKey()).append(" = ");
 
                 Object value = entry.getValue();
-                if (value == null || value == "") {
+                if (value == null || value.toString().isEmpty()) {
                     strValues.append("null").append(",");
                     update_query.append("null").append(",");
-                    continue;
                 }
-                if (value.toString().equals("0") || value.toString().equals("1")) {
+                else if (value.toString().equals("0") || value.toString().equals("1") ||
+                        value.toString().equals("true") || value.toString().equals("false")) {
                     strValues.append(value).append(",");
                     update_query.append(value).append(",");
                 } else {

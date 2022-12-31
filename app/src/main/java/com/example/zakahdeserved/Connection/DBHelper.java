@@ -28,7 +28,7 @@ public class DBHelper {
 
     public static String[] PersonsColumns = new String[]{"PersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName",
             "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "Gender", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
-            "WhoIs", "IsWorking", "Record", "MonthlyIncome", "CoinType"};
+            "WhoIs", "Record", "IsWorking", "MonthlyIncome", "CoinType"};
 
     public static String[] FamiliesColumns = new String[]{"ZakatID", "OrginalCity", "OrginalTown", "OrginalVillage", "City", "Town", "Village",
             "Neighborhood", "BuldingSymbol", "BuldingNumber", "AdressDetails", "KnownBy", "IfSmokers", "SmokersCount", "Job",
