@@ -36,6 +36,8 @@ import com.example.zakahdeserved.Connection.ShowRecord;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -166,8 +168,25 @@ public class PackageView extends AppCompatActivity {
         ((LinearLayout) findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
         ((LinearLayout) findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
         ((LinearLayout) findViewById(R.id.layout_list_Program)).removeAllViewsInLayout();
-        ShwoRecords = Constants.SQLITEDAL.getShowRecords();
-        lstPackages = Constants.SQLITEDAL.getPackages();
+
+        String empCode = "";
+
+        try {
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                    getApplicationContext(),
+                    "MySharedPref",
+                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+            empCode = sharedPreferences.getString("empCode", "");
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
+        lstPackages = Constants.SQLITEDAL.getPackages(empCode);
         runOnUiThread(() -> addView(ShwoRecords));
     }
 
@@ -298,6 +317,7 @@ public class PackageView extends AppCompatActivity {
     class DownloadTask extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
         ProgressDialog progressDialog;
+
         protected void onPreExecute() {
             try {
                 super.onPreExecute();
