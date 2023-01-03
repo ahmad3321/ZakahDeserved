@@ -1,9 +1,15 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
@@ -29,6 +36,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,10 +54,14 @@ public class Tab1 extends Fragment {
     private static final int pic_id = 1;
     ArrayList<byte[]> ImagesByte = new ArrayList<>();
     Document document;
-
+    Uri imageUri;
+    String mCurrentPhotoPath;
     // this variable for binding the identityFile with its Number to know for whose person this file
     String identityNumber = "";
 
+    //
+
+    //
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,9 +121,7 @@ public class Tab1 extends Fragment {
                 Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
                 return;
             }
-
-            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(camera_intent, pic_id);
+            AddImage(getContext());
         });
 
         btn_Image_Document_delete.setOnClickListener(view13 -> ImagesByte.clear());
@@ -177,22 +187,41 @@ public class Tab1 extends Fragment {
 
         return view;
     }
+    public void AddImage(Context context) {
+        try {
+            String filename = Constants.ZakatID;
+            File Dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
+            File Imagefile = File.createTempFile(filename, ".jpg", Dir);
+            mCurrentPhotoPath = Imagefile.getAbsolutePath();
+            Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            imageUri = FileProvider.getUriForFile(context, "com.example.zakahdeserved.FileProvider", Imagefile);
+            camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            startActivityForResult(camera_intent, pic_id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(context, ex.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             switch (requestCode) {
                 case pic_id:
-                    if (data != null) {
-                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
-                        byte[] byte_arr = stream.toByteArray();
-                        ImagesByte.add(byte_arr);
-                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
-                    }
-                    break;
+                if(requestCode==1 && resultCode==RESULT_OK){
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize=8; //4, 8, etc. the more value, the worst quality of image
+
+                    Bitmap photo=BitmapFactory.decodeFile(mCurrentPhotoPath, options);
+                    //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    photo.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                    byte[] byte_arr = stream.toByteArray();
+                    ImagesByte.add(byte_arr);
+                    Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
+                }
+                break;
             }
         } catch (Exception ex) {
             Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
