@@ -142,14 +142,29 @@ public class Tab7 extends Fragment implements View.OnClickListener {
             }
         });
 
-        ImageView imageClose = (ImageView) AssetView.findViewById(imageID);
-
-        imageClose.setOnClickListener(new View.OnClickListener() {
+        //coin conversion
+        EditText txtBenefitValue = AssetView.findViewById(R.id.BenefitValue);
+        ((Spinner) AssetView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                removeView(AssetView, linearLayout);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtBenefitValue.setText(String.valueOf(Integer.parseInt(txtBenefitValue.getText().toString()) * Constants.DollarPrise));
+                    txtBenefitValue.setEnabled(false);
+                } else
+                    txtBenefitValue.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+
+        ImageView imageClose = AssetView.findViewById(imageID);
+
+        imageClose.setOnClickListener(v -> removeView(AssetView, linearLayout));
+
         if (linearLayout.getChildCount() % 2 != 0) {
             AssetView.setBackgroundColor(Color.WHITE);
         } else

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -134,7 +135,27 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
 
-        ImageView imageClose = (ImageView) cricketerView.findViewById(R.id.image_remove);
+        ImageView imageClose = cricketerView.findViewById(R.id.image_remove);
+
+        //coin conversion
+        EditText txtMonthlyCost = cricketerView.findViewById(R.id.MonthlyCost);
+        ((Spinner) cricketerView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtMonthlyCost.setText(String.valueOf(Integer.parseInt(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyCost.setEnabled(false);
+                }
+                else
+                    txtMonthlyCost.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         imageClose.setOnClickListener(v -> removeView(cricketerView));

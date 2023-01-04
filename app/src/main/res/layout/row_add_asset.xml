@@ -43,7 +43,7 @@
                 android:textSize="18sp"
                 android:typeface="serif" />
             <EditText
-                android:id="@+id/ReceivingTime"
+                android:id="@+id/BenefitValue"
                 android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="20dp"

@@ -28,7 +28,7 @@ public class DBHelper {
 
     public static String[] PersonsColumns = new String[]{"PersonID", "ZakatID", "Name", "LastName", "FatherName", "MotherFullName",
             "IdentityNumber", "lst_IdentityTypes", "IdentityFile", "Gender", "BirthPlace", "BirthDate", "AcademicQualification", "Relation",
-            "WhoIs", "Record", "IsWorking", "MonthlyIncome", "CoinType"};
+            "WhoIs", "Record", "IsWorking", "MonthlyIncome"};
 
     public static String[] FamiliesColumns = new String[]{"ZakatID", "OrginalCity", "OrginalTown", "OrginalVillage", "City", "Town", "Village",
             "Neighborhood", "BuldingSymbol", "BuldingNumber", "AdressDetails", "KnownBy", "IfSmokers", "SmokersCount", "Job",
@@ -43,19 +43,19 @@ public class DBHelper {
             "BirthDate", "AcademicQualification", "Status", "EventDate", "Lockup", "TravelPlace", "TravelGoal", "Record",
             "Ifcondemnation", "CondemnationDuration", "ArrestDate"};
 
-    public static String[] HousingInformationColumns = new String[]{"ZakatID", "HousingNature", "RentValueCoinType", "RentValue",
+    public static String[] HousingInformationColumns = new String[]{"ZakatID", "HousingNature", "RentValue",
             "CoveredSpace", "RoomsCount", "FloorType", "RoofType", "WC", "CookingGas", "Mobiles", "Routers", "TVs", "Fridges", "Cars",
             "Motorcycles", "FurnitureEvaluation", "Sanitation", "Location", "GeneralDescription", "SolarPanelsCount", "SolarPanelsAmpCount",
-            "AmpCount", "AmpValueCoinType", "OneAmpValue", "ConsumptionValueCoinType", "ConsumptionValue", "CookingGasOther"};
+            "AmpCount", "OneAmpValue", "ConsumptionValue", "CookingGasOther"};
 
-    public static String[] IncomesColumns = new String[]{"ZakatID", "IfIncome", "IncomeType", "IncomeTime", "IncomeValue", "CoinType"};
+    public static String[] IncomesColumns = new String[]{"ZakatID", "IfIncome", "IncomeType", "IncomeTime", "IncomeValue"};
 
-    public static String[] WaterTypesColumns = new String[]{"ZakatID", "WaterType", "CoinType", "MonthlyValue"};
+    public static String[] WaterTypesColumns = new String[]{"ZakatID", "WaterType", "MonthlyValue"};
 
-    public static String[] AidsColumns = new String[]{"ZakatID", "AidType", "CoinType", "AidValue", "ReceivingTime", "AidsFrom"};
+    public static String[] AidsColumns = new String[]{"ZakatID", "AidType", "AidValue", "ReceivingTime", "AidsFrom"};
 
     public static String[] AssetsColumns = new String[]{"ZakatID", "AssetType", "AssetAdress", "BenefitType", "BenefitValue",
-            "GroundSpace", "ValueTime", "CoinType", "GroundNature", "MachineType", "AnimalType", "AnimalCount"};
+            "GroundSpace", "ValueTime", "GroundNature", "MachineType", "AnimalType", "AnimalCount"};
 
     public static String[] SurveyConclusionColumns = new String[]{"ZakatID", "NeighborName", "IfRented", "IfIncome", "IfKidsWorking", "IfAssets", "IfPoor", "Why"};
 

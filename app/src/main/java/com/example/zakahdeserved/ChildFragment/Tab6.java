@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,31 +70,25 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         buttonAddIncome.setOnClickListener(this);
         buttonAddAids.setOnClickListener(this);
 
-        FurnitureEvaluationIncrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    String currentvalue = FurnitureEvaluation.getText().toString();
-                    int value = Integer.parseInt(currentvalue);
-                    if (value < 5)
-                        value++;
-                    FurnitureEvaluation.setText(String.valueOf(value));
-                } catch (Exception ex) {
-                }
-
+        FurnitureEvaluationIncrease.setOnClickListener(view -> {
+            try {
+                String currentvalue = FurnitureEvaluation.getText().toString();
+                int value = Integer.parseInt(currentvalue);
+                if (value < 5)
+                    value++;
+                FurnitureEvaluation.setText(String.valueOf(value));
+            } catch (Exception ex) {
             }
+
         });
-        FurnitureEvaluationDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    String currentvalue = FurnitureEvaluation.getText().toString();
-                    int value = Integer.parseInt(currentvalue);
-                    if (value > -5)
-                        value--;
-                    FurnitureEvaluation.setText(String.valueOf(value));
-                } catch (Exception ex) {
-                }
+        FurnitureEvaluationDecrease.setOnClickListener(view -> {
+            try {
+                String currentvalue = FurnitureEvaluation.getText().toString();
+                int value = Integer.parseInt(currentvalue);
+                if (value > -5)
+                    value--;
+                FurnitureEvaluation.setText(String.valueOf(value));
+            } catch (Exception ex) {
             }
         });
 
@@ -142,6 +137,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             }
         });
 
+        //for coin type conversion
+        coinTypeConversion(view6);
+
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view6, Constants.familyInfo);
 
@@ -165,6 +163,60 @@ public class Tab6 extends Fragment implements View.OnClickListener {
         }
 
         return view6;
+    }
+
+    private void coinTypeConversion(View view) {
+        EditText txtOneAmpValue = view.findViewById(R.id.OneAmpValue);
+        EditText txtConsumptionValue = view.findViewById(R.id.ConsumptionValue);
+
+        ((Spinner) view.findViewById(R.id.RentValueCoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    RentValue.setText(String.valueOf(Integer.parseInt(RentValue.getText().toString()) * Constants.DollarPrise));
+                    RentValue.setEnabled(false);
+                } else
+                    RentValue.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ((Spinner) view.findViewById(R.id.AmpValueCoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtOneAmpValue.setText(String.valueOf(Integer.parseInt(txtOneAmpValue.getText().toString()) * Constants.DollarPrise));
+                    txtOneAmpValue.setEnabled(false);
+                } else
+                    txtOneAmpValue.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ((Spinner) view.findViewById(R.id.ConsumptionValueCoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtConsumptionValue.setText(String.valueOf(Integer.parseInt(txtConsumptionValue.getText().toString()) * Constants.DollarPrise));
+                    txtConsumptionValue.setEnabled(false);
+                } else
+                    txtConsumptionValue.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -195,7 +247,26 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
         // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
         //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
-        ImageView imageClose = (ImageView) cricketerView.findViewById(R.id.image_remove_waterType);
+        ImageView imageClose = cricketerView.findViewById(R.id.image_remove_waterType);
+
+        //coin conversion
+        EditText txtMonthlyValue = cricketerView.findViewById(R.id.MonthlyValue);
+        ((Spinner) cricketerView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtMonthlyValue.setText(String.valueOf(Integer.parseInt(txtMonthlyValue.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyValue.setEnabled(false);
+                } else
+                    txtMonthlyValue.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         imageClose.setOnClickListener(new View.OnClickListener() {
@@ -257,6 +328,45 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                         IncomeView.findViewById(R.id.AidValue).setEnabled(false);
                         IncomeView.findViewById(R.id.CoinType).setEnabled(false);
                     }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            //coin conversion
+            EditText txtIncomeValue = IncomeView.findViewById(R.id.IncomeValue);
+            ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (i == 0)    //tr
+                    {
+                        txtIncomeValue.setText(String.valueOf(Integer.parseInt(txtIncomeValue.getText().toString()) * Constants.DollarPrise));
+                        txtIncomeValue.setEnabled(false);
+                    } else
+                        txtIncomeValue.setEnabled(true);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+        } else if (id == R.id.button_add_Aids) {
+            //coin conversion
+            EditText txtAidValue = IncomeView.findViewById(R.id.AidValue);
+            ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (i == 0)    //tr
+                    {
+                        txtAidValue.setText(String.valueOf(Integer.parseInt(txtAidValue.getText().toString()) * Constants.DollarPrise));
+                        txtAidValue.setEnabled(false);
+                    } else
+                        txtAidValue.setEnabled(true);
                 }
 
                 @Override

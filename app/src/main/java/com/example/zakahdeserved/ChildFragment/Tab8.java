@@ -88,7 +88,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         records.removeIf(myObject -> Objects.requireNonNull(myObject.getRecord().get("PersonID")).toString().endsWith("0"));
 
         for (SQLiteRecord record : records) {
-            View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife,false);
+            View v = addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife, false);
             DBHelper.loadDataToControls(v, record);
 
             //load health_statuses
@@ -107,7 +107,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
             case R.id.button_add_Wifes:
 
-                addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife,true);
+                addPersonView(R.layout.row_add_wifes, R.id.image_remove_Wife, layoutWife, true);
 
                 break;
         }
@@ -125,8 +125,28 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         Button btn_Image_Document_Person_delete = WifeView.findViewById(R.id.btn_Image_Document_Person_delete);
         EditText txtIdentityNumber = WifeView.findViewById(R.id.IdentityNumber);
 
+        //coin conversion
+        EditText txtMonthlyIncome = WifeView.findViewById(R.id.MonthlyIncome);
+        ((Spinner) WifeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtMonthlyIncome.setText(String.valueOf(Integer.parseInt(txtMonthlyIncome.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyIncome.setEnabled(false);
+                } else
+                    txtMonthlyIncome.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
         // this for persons already added, can't delete them.
-        if(!enableDeleteView)
+        if (!enableDeleteView)
             imageClose.setVisibility(View.GONE);
 
         btn_Image_Document_Person.setOnClickListener(view1 -> {
@@ -279,6 +299,24 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
         ImageView imageClose = healthstatusview.findViewById(R.id.image_remove);
 
+        //coin conversion
+        EditText txtMonthlyCost = healthstatusview.findViewById(R.id.MonthlyCost);
+        ((Spinner) healthstatusview.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0)    //tr
+                {
+                    txtMonthlyCost.setText(String.valueOf(Integer.parseInt(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyCost.setEnabled(false);
+                } else
+                    txtMonthlyCost.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         imageClose.setOnClickListener(v -> removeView(healthstatusview));
 

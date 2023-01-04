@@ -26,7 +26,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 6);
+        super(context, DATABASE_NAME, null, 7);
     }
 
 
@@ -47,7 +47,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 "('PersonID' TEXT, 'ZakatID' TEXT, 'Name' TEXT, 'LastName' TEXT, 'FatherName' TEXT, 'MotherFullName' TEXT," +
                 " 'IdentityNumber' TEXT, 'lst_IdentityTypes' TEXT, 'IdentityFile' TEXT, 'Gender' TEXT, 'BirthPlace' TEXT," +
                 " 'BirthDate' TEXT, 'AcademicQualification' TEXT, 'Relation' TEXT, 'WhoIs' TEXT, 'Record' TEXT, 'IsWorking' TEXT," +
-                " 'MonthlyIncome' TEXT, 'CoinType' TEXT);";
+                " 'MonthlyIncome' TEXT);";
 
         String FamiliesCreate = "CREATE TABLE 'families' ('ZakatID' TEXT , 'OrginalCity' TEXT , 'OrginalTown' TEXT ," +
                 " 'OrginalVillage' TEXT , 'City' TEXT , 'Town' TEXT , 'Village' TEXT , 'Neighborhood' TEXT , 'BuldingSymbol' TEXT ," +
@@ -67,24 +67,24 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 " 'Record' TEXT , 'Ifcondemnation' TEXT , 'CondemnationDuration' TEXT , 'ArrestDate' TEXT) ;";
 
         String HousingInformationsCreate = "CREATE TABLE 'housing_informations' ('ZakatID' TEXT , 'HousingNature' TEXT , " +
-                "'RentValueCoinType' TEXT , 'RentValue' TEXT , 'CoveredSpace' TEXT , 'RoomsCount' TEXT , 'FloorType' TEXT ," +
+                "'RentValue' TEXT , 'CoveredSpace' TEXT , 'RoomsCount' TEXT , 'FloorType' TEXT ," +
                 " 'RoofType' TEXT , 'WC' TEXT , 'CookingGas' TEXT , 'Mobiles' TEXT , 'Routers' TEXT , 'TVs' TEXT , " +
                 "'Fridges' TEXT , 'Cars' TEXT , 'Motorcycles' TEXT , 'FurnitureEvaluation' TEXT , 'Sanitation' TEXT ," +
                 " 'Location' TEXT , 'GeneralDescription' TEXT, 'SolarPanelsCount' TEXT , 'SolarPanelsAmpCount' TEXT ," +
-                " 'AmpCount' TEXT , 'AmpValueCoinType' TEXT , 'OneAmpValue' TEXT , 'ConsumptionValueCoinType' TEXT ," +
+                " 'AmpCount' TEXT , 'OneAmpValue' TEXT ," +
                 " 'ConsumptionValue' TEXT , 'CookingGasOther' TEXT) ;";
 
         String IncomesCreate = "CREATE TABLE 'incomes' ('ID' TEXT  , 'ZakatID' TEXT , 'IfIncome' TEXT , 'IncomeType' TEXT ," +
-                " 'IncomeTime' TEXT , 'IncomeValue' TEXT , 'CoinType' TEXT) ;";
+                " 'IncomeTime' TEXT , 'IncomeValue' TEXT) ;";
 
         String WaterTypesCreate = "CREATE TABLE 'water_types' ( 'WaterTypeID' TEXT  , 'ZakatID' TEXT , 'WaterType' TEXT ," +
-                " 'CoinType' TEXT , 'MonthlyValue' TEXT) ;";
+                " 'MonthlyValue' TEXT) ;";
 
-        String AidsCreate = "CREATE TABLE 'aids' ( 'AidID' TEXT  , 'ZakatID' TEXT , 'AidType' TEXT , 'CoinType' TEXT ," +
+        String AidsCreate = "CREATE TABLE 'aids' ( 'AidID' TEXT  , 'ZakatID' TEXT , 'AidType' TEXT ," +
                 " 'AidValue' TEXT , 'ReceivingTime' TEXT , 'AidsFrom' TEXT ) ;";
 
         String AssetsCreate = "CREATE TABLE 'assets' ( 'AssetID' TEXT  , 'ZakatID' TEXT , 'AssetType' TEXT , 'AssetAdress' TEXT ," +
-                " 'BenefitType' TEXT , 'BenefitValue' TEXT , 'GroundSpace' TEXT , 'ValueTime' TEXT , 'CoinType' TEXT ," +
+                " 'BenefitType' TEXT , 'BenefitValue' TEXT , 'GroundSpace' TEXT , 'ValueTime' TEXT ," +
                 " 'GroundNature' TEXT , 'MachineType' TEXT , 'AnimalType' TEXT , 'AnimalCount' TEXT ) ;";
 
         String SurveyConclusionCreate = "CREATE TABLE 'survey_conclusions' ( 'ID' TEXT  , 'ZakatID' TEXT , 'NeighborName' TEXT ," +

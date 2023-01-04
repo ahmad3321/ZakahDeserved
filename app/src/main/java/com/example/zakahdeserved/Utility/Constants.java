@@ -30,6 +30,9 @@ public class Constants {
     public static List<String> dynamisLists = new ArrayList<>(List.of(
             "lst_CampaignTypes", "lst_Directorates", "lst_IdentityTypes", "lst_JobTitles", "lst_Universities"));
 
+
+    public static double DollarPrise = 18.8;
+
     public static String ZakatID = "aa0";
     public static int IncrementPersonID = 0;
     public static String PackageID = "";

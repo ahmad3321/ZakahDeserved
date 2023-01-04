@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
 
     void loginToActivity(String lastEnterDate, int EmpDepartment) throws GeneralSecurityException, IOException {
