@@ -62,6 +62,8 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/jaz_bold"
                 android:textColor="@color/black"
+                android:focusable="false"
+                android:clickable="false"
                 android:backgroundTint="@color/primaryTextColor" />
 
             <EditText
@@ -73,6 +75,8 @@
                 android:fontFamily="@font/jaz_bold"
                 android:hint="اسم مسؤول اللجنة الثلاثي"
                 android:textColor="@color/black"
+                android:focusable="false"
+                android:clickable="false"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -94,6 +98,9 @@
                     android:id="@+id/lst_Directorates"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:saveEnabled="false"
+                    android:clickable="false"
+
                     android:layout_marginStart="78dp" />
             </LinearLayout>
             <EditText
@@ -126,16 +133,6 @@
                 android:focusableInTouchMode="false"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="تاريخ اخر زيارة" />
-            <EditText
-                android:id="@+id/DollarExchangeRate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="سعر الدولار بالليرة التركية"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:inputType="numberDecimal"
-                android:backgroundTint="@color/primaryTextColor" />
 
             <Button
                 android:id="@+id/btnSend"

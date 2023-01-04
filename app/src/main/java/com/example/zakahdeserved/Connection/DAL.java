@@ -180,7 +180,7 @@ public class DAL {
                     // connection.close();
                 } else {
                     ActiveUser = true;
-                   // Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(context, "تمممم", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception ex) {
                 ActiveUser = false;
@@ -498,10 +498,8 @@ public class DAL {
         HashMap<String, String> itemsArray = new HashMap<>();
 
         DAL.Connect();
-        Statement st = null;
 
-        try {
-            st = connection.createStatement();
+        try (Statement st = connection.createStatement()) {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
@@ -511,22 +509,10 @@ public class DAL {
             ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getSpinnerItems in DAL", spinnerName);
             throwables.printStackTrace();
             isConnected = false;
-        } finally {
-            //finally block used to close resources
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException se) {
-            }// do nothing
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+        }
+        //finally block used to close resources
+        // do nothing
+        //end finally try
         return itemsArray;
     }
 
@@ -556,6 +542,27 @@ public class DAL {
         //finally block used to close resources
         // do nothing
         //end finally try
+        return itemsArray;
+    }
+
+    public static ArrayList<String> getEmployeeDate(String empCode) {
+        ArrayList<String> itemsArray = new ArrayList<>();
+
+        DAL.Connect();
+
+        try (Statement st = connection.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT EmployeeFullName, lst_Directorates FROM employees where EmployeeCode = '" + empCode + "';");
+
+            if (rs.next()) {
+                itemsArray.add(rs.getString(1));
+                itemsArray.add(rs.getString(2));
+            }
+        } catch (SQLException throwables) {
+            ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getTableData in DAL", "getTableDatainDAL ,table: employees");
+            throwables.printStackTrace();
+            isConnected = false;
+        }
+
         return itemsArray;
     }
 }

@@ -22,12 +22,13 @@ import com.example.zakahdeserved.Utility.ValidationController;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class actdelayentrystatisticalActivity extends AppCompatActivity {
-    EditText LastVisitDate, DollarExchangeRate;
+    EditText LastVisitDate;
     Calendar myCalendar;
 
     @Override
@@ -37,18 +38,15 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         LastVisitDate = this.findViewById(R.id.LastVisitDate);
-        DollarExchangeRate = this.findViewById(R.id.DollarExchangeRate);
 
         Intent intent = getIntent();
         String JobTitle = intent.getStringExtra("JobTitle");
         switch (JobTitle) {
             case "احصائي":
                 LastVisitDate.setVisibility(View.GONE);
-                DollarExchangeRate.setVisibility(View.VISIBLE);
                 break;
             case "توزيع":
                 LastVisitDate.setVisibility(View.VISIBLE);
-                DollarExchangeRate.setVisibility(View.GONE);
                 break;
         }
 
@@ -78,8 +76,12 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             String empCode = sharedPreferences.getString("empCode", "");
+            ArrayList<String> empData = DAL.getEmployeeDate(empCode);
             ((EditText) findViewById(R.id.AdminEmployeeCode)).setText(empCode);
             ((EditText) findViewById(R.id.LastVisitDate)).setText(DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", empCode));
+            ((EditText) findViewById(R.id.AdminEmployeeFullName)).setText(empData.get(0));
+            ((Spinner) findViewById(R.id.lst_Directorates)).setEnabled(false);
+            ((Spinner) findViewById(R.id.lst_Directorates)).setSelection(Integer.parseInt(empData.get(1)));
 
 
             findViewById(R.id.btnSend).setOnClickListener(view -> {
@@ -89,7 +91,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
 
                 boolean success = DAL.executeQueries("INSERT INTO daily_staff_entries\n" +
                         "(EmployeeCode, EmployeeFullName, AdminEmployeeCode, AdminEmployeeFullName, lst_Directorates," +
-                        "AutomaticVisitDate, ManualVisitDate, DollarExchangeRate, EntryType)" +
+                        "AutomaticVisitDate, ManualVisitDate, EntryType)" +
                         "VALUES ('" + ((EditText) findViewById(R.id.EmployeeCode)).getText().toString() + "'," +
                         "'" + ((EditText) findViewById(R.id.EmployeeFullName)).getText().toString() + "'," +
                         "'" + ((EditText) findViewById(R.id.AdminEmployeeCode)).getText().toString() + "'," +
@@ -97,7 +99,6 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + "'," +
                         "'" + autoDate + "'," +
                         "'" + ((EditText) findViewById(R.id.ManualVisitDate)).getText().toString() + "'," +
-                        "'" + ((EditText) findViewById(R.id.DollarExchangeRate)).getText().toString() + "'," +
                         JobTitle.equals("احصائي") + ");");
 
                 if (!success) {
