@@ -174,8 +174,8 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0)    //tr
                 {
-                    RentValue.setText(String.valueOf(Integer.parseInt(RentValue.getText().toString()) * Constants.DollarPrise));
-                    RentValue.setEnabled(false);
+                   // RentValue.setText(String.valueOf(Integer.parseInt(RentValue.getText().toString()) * Constants.DollarPrise));
+                   // RentValue.setEnabled(false);
                 } else
                     RentValue.setEnabled(true);
             }
