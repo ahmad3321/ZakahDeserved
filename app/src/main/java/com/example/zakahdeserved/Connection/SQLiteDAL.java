@@ -58,7 +58,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         String HelthStatusCreate = "CREATE TABLE 'health_statuses' ('HealthStatusID' TEXT, 'PersonID' TEXT , " +
                 "'HealthStatus' TEXT , 'HealthStatusEvaluation' TEXT , 'HealthStatusType' TEXT , 'HealthStatusDescription' TEXT ," +
-                " 'CoinType' TEXT , 'MonthlyCost' TEXT ) ;";
+                " 'MonthlyCost' TEXT ) ;";
 
         String HusbandCreate = "CREATE TABLE 'husbands' ('ZakatID' TEXT , 'WifeSocialStatus' TEXT , 'HusbandName' TEXT ," +
                 " 'HusbandLastName' TEXT , 'HusbandFatherName' TEXT , 'HusbandMotherFullName' TEXT , 'IdentityNumber' TEXT ," +

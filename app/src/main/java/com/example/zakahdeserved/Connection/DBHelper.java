@@ -36,7 +36,7 @@ public class DBHelper {
             "RelationWithContact2", "Deserved", "Reson", "ExisitStatus", "ExisitStatusAbout"};
 
     public static String[] Helth_StatusesColumns = new String[]{"PersonID", "HealthStatus",
-            "HealthStatusEvaluation", "HealthStatusType", "HealthStatusDescription", "CoinType", "MonthlyCost"};
+            "HealthStatusEvaluation", "HealthStatusType", "HealthStatusDescription", "MonthlyCost"};
 
     public static String[] HusbandsColumns = new String[]{"ZakatID", "WifeSocialStatus", "HusbandName", "HusbandLastName", "HusbandFatherName",
             "HusbandMotherFullName", "IdentityNumber", "lst_IdentityTypes", "City", "Town", "Village", "BirthPlace",
