@@ -190,7 +190,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0)    //tr
                 {
-                    txtOneAmpValue.setText(String.valueOf(Integer.parseInt(txtOneAmpValue.getText().toString()) * Constants.DollarPrise));
+                    txtOneAmpValue.setText(String.valueOf(Double.parseDouble(txtOneAmpValue.getText().toString()) * Constants.DollarPrise));
                     txtOneAmpValue.setEnabled(false);
                 } else
                     txtOneAmpValue.setEnabled(true);
@@ -206,7 +206,7 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0)    //tr
                 {
-                    txtConsumptionValue.setText(String.valueOf(Integer.parseInt(txtConsumptionValue.getText().toString()) * Constants.DollarPrise));
+                    txtConsumptionValue.setText(String.valueOf(Double.parseDouble(txtConsumptionValue.getText().toString()) * Constants.DollarPrise));
                     txtConsumptionValue.setEnabled(false);
                 } else
                     txtConsumptionValue.setEnabled(true);

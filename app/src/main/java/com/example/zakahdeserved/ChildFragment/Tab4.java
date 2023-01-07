@@ -144,7 +144,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0)    //tr
                 {
-                    txtMonthlyCost.setText(String.valueOf(Integer.parseInt(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
                     txtMonthlyCost.setEnabled(false);
                 }
                 else
