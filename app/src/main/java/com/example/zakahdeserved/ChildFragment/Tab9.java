@@ -441,7 +441,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
                     Object ColumnValue;
                     if (Constants.dynamisLists.contains(ColumnName))
-                        ColumnValue = ((Spinner) v).getSelectedItemId();
+                        ColumnValue = ((Spinner) v).getSelectedItemId() + 1;
                     else
                         ColumnValue = ((Spinner) v).getSelectedItem().toString();
                     putColumnValue(ColumnName, ColumnValue);
@@ -488,8 +488,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 if (value == null || value.toString().isEmpty()) {
                     strValues.append("null").append(",");
                     update_query.append("null").append(",");
-                }
-                else if (value.toString().equals("0") || value.toString().equals("1") ||
+                } else if (value.toString().equals("0") || value.toString().equals("1") ||
                         value.toString().equals("true") || value.toString().equals("false")) {
                     strValues.append(value).append(",");
                     update_query.append(value).append(",");

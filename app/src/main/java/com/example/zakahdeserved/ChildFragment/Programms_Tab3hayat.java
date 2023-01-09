@@ -88,7 +88,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
             case R.id.button_Insert_Hayat:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID,"package");
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID, "package");
 
                 break;
 
@@ -132,7 +132,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
 
                     Object ColumnValue;
                     if (Constants.dynamisLists.contains(ColumnName))
-                        ColumnValue = ((Spinner) v).getSelectedItemId();
+                        ColumnValue = ((Spinner) v).getSelectedItemId() + 1;
                     else
                         ColumnValue = ((Spinner) v).getSelectedItem().toString();
                     putColumnValue(ColumnName, ColumnValue);

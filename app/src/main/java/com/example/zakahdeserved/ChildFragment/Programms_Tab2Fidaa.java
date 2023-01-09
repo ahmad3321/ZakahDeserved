@@ -55,7 +55,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
 
         ((EditText) view.findViewById(R.id.ZakatID)).setText(Constants.ZakatID);
 
-       // Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes1));
+        // Constants.SQLITEDAL.fillSpinner(getContext(), view.findViewById(R.id.lst_IdentityTypes1));
 
         myCalendar = Calendar.getInstance();
 
@@ -116,7 +116,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
             case R.id.button_Insert_Fidaa:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString(),Constants.ZakatID,"package");
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID, "package");
 
                 break;
 
@@ -159,7 +159,7 @@ public class Programms_Tab2Fidaa extends Fragment implements View.OnClickListene
 
                     Object ColumnValue;
                     if (Constants.dynamisLists.contains(ColumnName))
-                        ColumnValue = ((Spinner) v).getSelectedItemId();
+                        ColumnValue = ((Spinner) v).getSelectedItemId() + 1;
                     else
                         ColumnValue = ((Spinner) v).getSelectedItem().toString();
                     putColumnValue(ColumnName, ColumnValue);

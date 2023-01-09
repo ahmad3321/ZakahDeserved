@@ -81,7 +81,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
             ((EditText) findViewById(R.id.LastVisitDate)).setText(DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", empCode));
             ((EditText) findViewById(R.id.AdminEmployeeFullName)).setText(empData.get(0));
             ((Spinner) findViewById(R.id.lst_Directorates)).setEnabled(false);
-            ((Spinner) findViewById(R.id.lst_Directorates)).setSelection(Integer.parseInt(empData.get(1)));
+            ((Spinner) findViewById(R.id.lst_Directorates)).setSelection(Integer.parseInt(empData.get(1)) - 1);
 
 
             findViewById(R.id.btnSend).setOnClickListener(view -> {
@@ -96,7 +96,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         "'" + ((EditText) findViewById(R.id.EmployeeFullName)).getText().toString() + "'," +
                         "'" + ((EditText) findViewById(R.id.AdminEmployeeCode)).getText().toString() + "'," +
                         "'" + ((EditText) findViewById(R.id.AdminEmployeeFullName)).getText().toString() + "'," +
-                        "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + "'," +
+                        "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + 1 + "'," +
                         "'" + autoDate + "'," +
                         "'" + ((EditText) findViewById(R.id.ManualVisitDate)).getText().toString() + "'," +
                         JobTitle.equals("احصائي") + ");");

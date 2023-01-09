@@ -130,9 +130,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         ((Spinner) WifeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0)    //tr
+                if (i == 0 && txtMonthlyIncome.getText().toString().length() > 0)    //tr
                 {
-                    txtMonthlyIncome.setText(String.valueOf(Integer.parseInt(txtMonthlyIncome.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyIncome.setText(String.valueOf(Double.parseDouble(txtMonthlyIncome.getText().toString()) * Constants.DollarPrise));
                     txtMonthlyIncome.setEnabled(false);
                 } else
                     txtMonthlyIncome.setEnabled(true);
@@ -304,9 +304,9 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         ((Spinner) healthstatusview.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0)    //tr
+                if (i == 0 && txtMonthlyCost.getText().toString().length() > 0)    //tr
                 {
-                    txtMonthlyCost.setText(String.valueOf(Integer.parseInt(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                    txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
                     txtMonthlyCost.setEnabled(false);
                 } else
                     txtMonthlyCost.setEnabled(true);

@@ -168,7 +168,7 @@ public class DBHelper {
                     Object value = sqLiteRecord.getRecord().get(name);//getValueOfControl(name, familyInfo, false);
 
                     if (Constants.dynamisLists.contains(name))
-                        ((Spinner) v).setSelection(Integer.parseInt(value.toString()));
+                        ((Spinner) v).setSelection(Integer.parseInt(value.toString()) - 1);
                     else
                         ((Spinner) v).setSelection(((ArrayAdapter<String>) ((Spinner) v).getAdapter()).getPosition(value.toString()));
 
@@ -220,7 +220,7 @@ public class DBHelper {
                     Object value = getValueOfControl(name, familyInfo, false);
 
                     if (Constants.dynamisLists.contains(name))
-                        ((Spinner) v).setSelection(Integer.parseInt(value.toString()));
+                        ((Spinner) v).setSelection(Integer.parseInt(value.toString()) - 1);
                     else
                         ((Spinner) v).setSelection(((ArrayAdapter<String>) ((Spinner) v).getAdapter()).getPosition(value.toString()));
 
