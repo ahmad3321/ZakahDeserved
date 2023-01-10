@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,6 +150,43 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         // this for persons already added, can't delete them.
         if (!enableDeleteView)
             imageClose.setVisibility(View.GONE);
+
+        txtIdentityNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (txtIdentityNumber.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
+                    txtIdentityNumber.setText(identityNumber);
+                    return;
+                }
+
+                //store the previous identity number
+                String oldidentityNumber = identityNumber;
+
+                //Update the key to new key
+                identityNumber = txtIdentityNumber.getText().toString();
+
+                if (Constants.imagesFiles.containsKey(identityNumber))
+                    Constants.imagesFiles.put(identityNumber, "");
+
+                //if pictures have taken and stored in hashmap
+                if (ImagesByte.size() > 0) {
+                    String value = Constants.imagesFiles.get(oldidentityNumber);
+                    Constants.imagesFiles.remove(oldidentityNumber);
+                    Constants.imagesFiles.put(identityNumber, value);
+                }
+            }
+        });
 
         btn_Image_Document_Person.setOnClickListener(view1 -> {
             identityNumber = txtIdentityNumber.getText().toString();
