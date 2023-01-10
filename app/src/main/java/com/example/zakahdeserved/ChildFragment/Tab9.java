@@ -374,6 +374,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             getAllControlsNamesAndData(PersonInfo);
 
+            //get the identity number for the person
+            String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
+            //set the person pdfFile of his identity
+            DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
+
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
 
 
@@ -418,7 +423,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
         }
-
     }
 
     private void getAllControlsNamesAndData(View view) {
