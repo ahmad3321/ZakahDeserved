@@ -21,6 +21,7 @@ import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,8 +87,16 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
 
             findViewById(R.id.btnSend).setOnClickListener(view -> {
                 Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
                 String autoDate = df.format(c);
+                Date ManualDate = null;
+                String ManualDateStr="";
+                try {
+                    ManualDate = df.parse(((EditText) findViewById(R.id.ManualVisitDate)).getText().toString());
+                    ManualDateStr = df.format(ManualDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 boolean success = DAL.executeQueries("INSERT INTO daily_staff_entries\n" +
                         "(EmployeeCode, EmployeeFullName, AdminEmployeeCode, AdminEmployeeFullName, lst_Directorates," +
@@ -98,7 +107,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         "'" + ((EditText) findViewById(R.id.AdminEmployeeFullName)).getText().toString() + "'," +
                         "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + 1 + "'," +
                         "'" + autoDate + "'," +
-                        "'" + ((EditText) findViewById(R.id.ManualVisitDate)).getText().toString() + "'," +
+                        "'" + ManualDateStr + "'," +
                         JobTitle.equals("احصائي") + ");");
 
                 if (!success) {
