@@ -2,6 +2,7 @@ package com.example.zakahdeserved.ChildFragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
+import androidx.security.crypto.EncryptedSharedPreferences;
 
 import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
@@ -29,6 +31,8 @@ import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -162,12 +166,32 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getFromView9();
 
         addToPackage();
-
+        linkRecordToEntry();
         //calculate family pointers
         insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
 
         // remove the package from local after end work with it.
         Constants.SQLITEDAL.deletePackage(Constants.ZakatID, Constants.PackagePersonID);
+    }
+
+    private void linkRecordToEntry() {
+        try {
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                    getContext(),
+                    "MySharedPref",
+                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+
+            insertQuery.append("INSERT INTO link_entries_to_records (EntryID, ZakatID, PersonID, Program, Event, EntryType) VALUES (")
+                    .append(sharedPreferences.getString("entry_id", "")).append(", ").append(Constants.ZakatID).append(", ")
+                    .append(Constants.PackagePersonID).append(", ").append(Constants.PackageProgram).append(", ")
+                    .append(Constants.PackageType).append(", ").append(sharedPreferences.getInt("empDepartment", -1) == Constants.DISTRIBUTION_JOcB_TITLE).append(");");
+
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // إزالة السجلات الموجودة في الجداول الفرعية من أجل إضافة السجلات الجديدة
@@ -377,7 +401,8 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             //get the identity number for the person
             String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
             //set the person pdfFile of his identity
-            DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
+            if (Constants.imagesFiles.containsKey(identityNumber))
+                DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
 
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
 

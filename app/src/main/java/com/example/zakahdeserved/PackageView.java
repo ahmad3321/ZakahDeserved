@@ -266,13 +266,30 @@ public class PackageView extends AppCompatActivity {
                 String _zakatID = listShowRecords.get(index).ZakatID;
                 Constants.ZakatID = _zakatID;
                 Constants.PackageID = listShowRecords.get(index).PackageID;
+                Constants.PackageType = listShowRecords.get(index).getPackageType();
+                Constants.PackagePersonID = listShowRecords.get(index).getPersonID();
+                Constants.PackageProgram = listShowRecords.get(index).getProgram();
 
-                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(record -> Objects.equals(record.PackageID, Constants.PackageID)).findFirst();
-                packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
+//                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(
+//                        record -> Objects.equals(record.PackageID, listShowRecords.get(index).PackageID)
+//                                && Objects.equals(record.ZakatID, listShowRecords.get(index).ZakatID)
+//                                && Objects.equals(record.PersonID, listShowRecords.get(index).getPersonID())).findFirst();
+//                packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
                 Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
                 ValidationController.ENABLE_FEMALE_TAB = Objects.equals(Constants.SQLITEDAL.getFirstValue("select gender from persons where zakatid = '" + _zakatID + "' and WhoIs = 'رب الأسرة'"), "أنثى");
+
+                //load pdfFiles
+                for (SQLiteRecord sqLiteRecord : Constants.familyInfo) {
+                    if (Objects.equals(sqLiteRecord.getTableName(), "persons")
+                            && sqLiteRecord.getRecord().get("IdentityNumber") != null &&
+                            !Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityNumber")).toString().isEmpty()) {
+                        Constants.imagesFiles.put(Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityNumber")).toString(),
+                                Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityFile")).toString());
+                    }
+                }
+
                 Intent intent = new Intent(getApplicationContext(), MainTabs.class);
                 startActivity(intent);
             });
@@ -496,19 +513,19 @@ public class PackageView extends AppCompatActivity {
                         return "false";
 
                     // add info to show
-                    Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
-                    Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-                            && Objects.requireNonNull(x.getRecord().get("WhoIs")).toString().equals("رب الأسرة")).findFirst(); //get the record of father
-
-                    if (familyRecord.isPresent() && fatherRecord.isPresent())
-                        ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
-                                Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
-                                Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
-                                Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-                                lstPackages.get(i).Package,
-                                lstPackages.get(i).Program));
+//                    Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
+//                    Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
+//                            && Objects.requireNonNull(x.getRecord().get("WhoIs")).toString().equals("رب الأسرة")).findFirst(); //get the record of father
+//
+//                    if (familyRecord.isPresent() && fatherRecord.isPresent())
+//                        ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
+//                                Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
+//                                Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
+//                                Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
+//                                lstPackages.get(i).Package,
+//                                lstPackages.get(i).Program));
                 }
-
+                ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
                 return "true";
             } catch (Exception ex) {
                 Constants.SQLITEDAL.ClearAllRecords();

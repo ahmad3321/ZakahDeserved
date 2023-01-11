@@ -24,7 +24,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
-import com.example.zakahdeserved.Models.PdfRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.itextpdf.text.Document;
@@ -36,7 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Objects;
 

@@ -87,10 +87,10 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
 
             findViewById(R.id.btnSend).setOnClickListener(view -> {
                 Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 String autoDate = df.format(c);
                 Date ManualDate = null;
-                String ManualDateStr="";
+                String ManualDateStr = "";
                 try {
                     ManualDate = df.parse(((EditText) findViewById(R.id.ManualVisitDate)).getText().toString());
                     ManualDateStr = df.format(ManualDate);
@@ -98,7 +98,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                boolean success = DAL.executeQueries("INSERT INTO daily_staff_entries\n" +
+                String entryID = DAL.executeAndGetID("INSERT INTO daily_staff_entries\n" +
                         "(EmployeeCode, EmployeeFullName, AdminEmployeeCode, AdminEmployeeFullName, lst_Directorates," +
                         "AutomaticVisitDate, ManualVisitDate, EntryType)" +
                         "VALUES ('" + ((EditText) findViewById(R.id.EmployeeCode)).getText().toString() + "'," +
@@ -108,15 +108,17 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + 1 + "'," +
                         "'" + autoDate + "'," +
                         "'" + ManualDateStr + "'," +
-                        JobTitle.equals("احصائي") + ");");
+                        JobTitle.equals("احصائي") + ");" +
+                        "select max(EntryID) from link_entries_to_records;");
 
-                if (!success) {
+                if (entryID == null) {
                     Toast.makeText(getApplicationContext(), "لم يتم تسجيل الدخول", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
                 myEdit.putString("entered_date", autoDate);
+                myEdit.putString("entry_id", entryID);
                 myEdit.apply();
 
                 Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
