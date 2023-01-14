@@ -16,8 +16,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class Constants {
-    public static final int STATISTICAL_JOB_TITLE = 0;
-    public static final int DISTRIBUTION_JOcB_TITLE = 1;
+    public static final int STATISTICAL_JOB_TITLE = 1;
+    public static final int DISTRIBUTION_JOcB_TITLE = 2;
 
     public static SQLiteDAL SQLITEDAL;
     public static MasterKey SHAREDPREFERENCES_KEY;
@@ -37,6 +37,8 @@ public class Constants {
     public static int IncrementPersonID = 0;
     public static String PackageID = "";
     public static String PackagePersonID = "";
+    public static String PackageType = "";
+    public static String PackageProgram = "";
 
 
     // this boolean indicates if we are loading the data from SQLite to fragments

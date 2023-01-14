@@ -45,7 +45,7 @@ public class DAL {
         try {
             Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
             connection = DriverManager.getConnection(
-                    "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_contabo", "wRps04*60");
+                    "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_raising", "6nYgYb8H7_");
         } catch (Exception exc) {
             ValidationController.GetException(exc.toString().replace("\"", ""), "connectionClass in DAL", "", "");
             exc.printStackTrace();
@@ -389,7 +389,7 @@ public class DAL {
                     if (st != null) {
                         connection.close();
                     }
-                } catch (SQLException se) {
+                } catch (SQLException ignored) {
                 }// do nothing
                 try {
                     if (connection != null) {
@@ -409,22 +409,19 @@ public class DAL {
         boolean success = false;
         Connect();
 
-        Statement st = null;
-
         if (!isConnected)
             return false;
-        try {
-            st = connection.createStatement();
+        try (Statement st = connection.createStatement()) {
 
             //begin transaction
             connection.setAutoCommit(false);
 
             for (String s : queries.split(";")) {
                 if (s.length() > 1)
-                    st.addBatch(s);
+                    st.executeQuery(s);
             }
 
-            st.executeBatch();
+//            st.executeBatch();
             //success transaction
             connection.commit();
             success = true;
@@ -436,23 +433,44 @@ public class DAL {
                 e.printStackTrace();
             }
             ex.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException ignored) {
-            }// do nothing
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+        }
+        //finally block used to close resources
+        // do nothing
+        //end finally try
         return success;
+    }
+
+    public static String executeAndGetID(String queries) {
+        String result = null;
+        Connect();
+
+        if (!isConnected)
+            return result;
+        try (Statement st = connection.createStatement()) {
+
+            //begin transaction
+            connection.setAutoCommit(false);
+
+            ResultSet rs = st.executeQuery(queries);
+            if (rs.next())
+                result = rs.getString(1);
+
+//            st.executeBatch();
+            //success transaction
+            connection.commit();
+        } catch (Exception ex) {
+            try {
+                ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries");
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            ex.printStackTrace();
+        }
+        //finally block used to close resources
+        // do nothing
+        //end finally try
+        return result;
     }
 
     public static ArrayList<PackageRecord> getPackeges(String query) {
@@ -460,9 +478,7 @@ public class DAL {
 
         ArrayList<PackageRecord> lstPackage = new ArrayList<>();
 
-        Statement st = null;
-        try {
-            st = connection.createStatement();
+        try (Statement st = connection.createStatement()) {
 
             ResultSet rs = st.executeQuery(query);
 
@@ -474,22 +490,10 @@ public class DAL {
         } catch (SQLException throwables) {
             ValidationController.GetException(throwables.toString().replace("\"", ""), "", "getPackeges in DAL", "getPackeges");
             throwables.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException ignored) {
-            }// do nothing
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+        }
+        //finally block used to close resources
+        // do nothing
+        //end finally try
         return lstPackage;
     }
 

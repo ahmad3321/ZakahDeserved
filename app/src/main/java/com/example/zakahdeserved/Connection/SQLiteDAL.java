@@ -596,7 +596,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                     cursorFather.moveToFirst();
                     cursorFamily.moveToFirst();
                     sqliteRecords.add(new ShowRecord(cursorPackage.getString(0), _zakatID, cursorFamily.getString(0), cursorFamily.getString(1),
-                            cursorFather.getString(0), cursorPackage.getString(6), cursorPackage.getString(3)));
+                            cursorFather.getString(0), cursorPackage.getString(6), cursorPackage.getString(3), cursorPackage.getString(2)));
                 }
                 if (cursorFamily != null) {
                     cursorFamily.close();

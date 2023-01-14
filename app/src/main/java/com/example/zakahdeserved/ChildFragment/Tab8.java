@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,27 +34,30 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
 public class Tab8 extends Fragment implements View.OnClickListener {
 
     LinearLayout layoutWife, layout_list_Wifes_HealthStatus;
-    Button buttonAdd, button_add_WifesHealthStatus;
+    Button buttonAdd;
     private static final int pic_id = 1;
-    ArrayList<byte[]> ImagesByte = new ArrayList<>();
+
     Document document;
     Calendar myCalendar;
     EditText txtFenmaleCount, txtMaleCount, txtAllCount;
 
     // this variable for binding the identityFile with its Number to know for whose person this file
-    String identityNumber = "";
-
+    // and store the images data wile taking photos
+    HashMap<String, ArrayList<byte[]>> identityNumber_ImagesByte = new HashMap<>();
+    String tempIdentityNumber = "";
+    //    ArrayList<String> lst_identityNumber = new ArrayList<>();
+//    ArrayList<ArrayList<byte[]>> lst_ImagesByte = new ArrayList<>();
+//    int tagForperson = 0;
     int femaleCount = 0, maleCount = 0, allMembersCount = 0;
 
     public Tab8() {
-        // Required empty public constructor
     }
 
 
@@ -149,9 +154,48 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         if (!enableDeleteView)
             imageClose.setVisibility(View.GONE);
 
+        txtIdentityNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tempIdentityNumber = txtIdentityNumber.getText().toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (txtIdentityNumber.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
+                    txtIdentityNumber.setText(tempIdentityNumber);
+                    return;
+                }
+
+                //store the previous identity number
+                String oldidentityNumber = tempIdentityNumber;
+
+                //Update the key to new key
+                String newidentityNumber = txtIdentityNumber.getText().toString();
+                //swap between old and new
+                identityNumber_ImagesByte.put(newidentityNumber, identityNumber_ImagesByte.get(oldidentityNumber));
+                identityNumber_ImagesByte.remove(oldidentityNumber);
+//                if (Constants.imagesFiles.containsKey(identityNumber))
+//                    Constants.imagesFiles.put(identityNumber, "");
+
+                //if pictures have taken and stored in hashmap, swap between old and new idintityNumber
+                if (identityNumber_ImagesByte.get(newidentityNumber).size() > 0) {
+                    String value = Constants.imagesFiles.get(oldidentityNumber);
+                    Constants.imagesFiles.remove(oldidentityNumber);
+                    Constants.imagesFiles.put(newidentityNumber, value);
+                }
+            }
+        });
+
         btn_Image_Document_Person.setOnClickListener(view1 -> {
-            identityNumber = txtIdentityNumber.getText().toString();
-            if (identityNumber.equals("")) {
+            tempIdentityNumber = txtIdentityNumber.getText().toString();
+            if (tempIdentityNumber.equals("")) {
                 Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -160,11 +204,16 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             startActivityForResult(camera_intent, pic_id);
         });
 
-        btn_Image_Document_Person_delete.setOnClickListener(view -> ImagesByte.clear());
+        btn_Image_Document_Person_delete.setOnClickListener(view -> identityNumber_ImagesByte.get(txtIdentityNumber.getText().toString()).clear());
 
 
         imageClose.setOnClickListener(v -> {
             allMembersCount--;
+
+            //remove the pdf and the images associated to this person
+            identityNumber_ImagesByte.remove(txtIdentityNumber.getText().toString());
+            Constants.imagesFiles.remove(txtIdentityNumber.getText().toString());
+
             if (((Spinner) WifeView.findViewById(R.id.Gender)).getSelectedItemId() == 0)  //أنثى
                 femaleCount--;
             else
@@ -283,8 +332,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
                         byte[] byte_arr = stream.toByteArray();
-                        ImagesByte.add(byte_arr);
-                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
+                        identityNumber_ImagesByte.get(tempIdentityNumber).add(byte_arr);
+                        Constants.imagesFiles.put(tempIdentityNumber, ConvertImagesToPdf());
                     }
                     break;
             }
@@ -341,10 +390,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         ByteArrayOutputStream baos = null;
         String pdfString = "";
         try {
-            for (int i = 0; i < ImagesByte.size(); i++) {
+            for (int i = 0; i < identityNumber_ImagesByte.get(tempIdentityNumber).size(); i++) {
                 baos = new ByteArrayOutputStream();
                 PdfWriter pdfWriter = PdfWriter.getInstance(document, baos);
-                image1 = Image.getInstance(ImagesByte.get(i));
+                image1 = Image.getInstance(identityNumber_ImagesByte.get(tempIdentityNumber).get(i));
                 document.open();
                 document.add(image1);
                 document.close();
