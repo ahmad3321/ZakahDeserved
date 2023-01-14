@@ -42,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class Tab1 extends Fragment {
@@ -60,7 +61,7 @@ public class Tab1 extends Fragment {
     // this variable for binding the identityFile with its Number to know for whose person this file
     String identityNumber = "";
 
-    //
+    String[] tablesInView = new String[]{"families", "persons"};
 
     //
     @Override
@@ -186,6 +187,13 @@ public class Tab1 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view, Constants.familyInfo);
 
+        //Disable Controls On تعديل packages
+        //تعديل
+//        if (Objects.equals(Constants.PackageType, "تعديل")) {
+//            for (String tableName : tablesInView) {
+//                ValidationController.EnableToEditFields(view, tableName);
+//            }
+//        }
         return view;
     }
 
@@ -205,25 +213,26 @@ public class Tab1 extends Fragment {
             Toast.makeText(context, ex.toString(), Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             switch (requestCode) {
                 case pic_id:
-                if(requestCode==1 && resultCode==RESULT_OK){
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize=8; //4, 8, etc. the more value, the worst quality of image
+                    if (requestCode == 1 && resultCode == RESULT_OK) {
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inSampleSize = 8; //4, 8, etc. the more value, the worst quality of image
 
-                    Bitmap photo=BitmapFactory.decodeFile(mCurrentPhotoPath, options);
-                    //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    photo.compress(Bitmap.CompressFormat.PNG, 90, stream);
-                    byte[] byte_arr = stream.toByteArray();
-                    ImagesByte.add(byte_arr);
-                    Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
-                }
-                break;
+                        Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
+                        //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        photo.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                        byte[] byte_arr = stream.toByteArray();
+                        ImagesByte.add(byte_arr);
+                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
+                    }
+                    break;
             }
         } catch (Exception ex) {
             Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();

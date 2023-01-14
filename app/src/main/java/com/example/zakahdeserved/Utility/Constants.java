@@ -49,6 +49,8 @@ public class Constants {
 
     public static ArrayList<SQLiteRecord> familyInfo;
 
+    public static HashMap<String, ArrayList<String>> toEditFields = new HashMap<>();
+
     public static HashMap<String, String> imagesFiles = new HashMap<>();
 
 }

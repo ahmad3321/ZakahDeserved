@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 7);
+        super(context, DATABASE_NAME, null, 8);
     }
 
 
@@ -93,6 +94,8 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
         String PackagesCreate = "CREATE TABLE 'Packages' ('PackageID' TEXT, 'ZakatID' TEXT, 'PersonID' TEXT, 'Program' TEXT, 'FromEmployeeCode' TEXT," +
                 " 'ToEmployeeCode' TEXT, 'Package' TEXT) ;";
+
+        String EditPackageFieldsTablesCreate = "CREATE TABLE 'edit_package_fields_tables' ('PackageID' TEXT, 'Fields' TEXT, 'Tabels' TEXT) ;";
         try {
             db.execSQL(spinnersCreate);
             db.execSQL(queriesCreate);
@@ -107,6 +110,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             db.execSQL(AssetsCreate);
             db.execSQL(SurveyConclusionCreate);
             db.execSQL(PackagesCreate);
+            db.execSQL(EditPackageFieldsTablesCreate);
         } catch (Exception ex) {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "onCreate in SQLliteDAL", "");
 
@@ -129,6 +133,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             db.execSQL("Drop Table If Exists " + "assets");
             db.execSQL("Drop Table If Exists " + "survey_conclusions");
             db.execSQL("Drop Table If Exists " + "Packages");
+            db.execSQL("Drop Table If Exists " + "edit_package_fields_tables");
             onCreate(db);
         } catch (Exception ex) {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "onUpgrade in SQLliteDAL", "");
@@ -321,7 +326,6 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-
     public ArrayList<SQLiteRecord> getHelthStatusForHeadFamily() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -339,7 +343,6 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
         return Records;
     }
-
 
     public ArrayList<SQLiteRecord> getRecords(String tableName, String[] Columns, String ColName, String ColValue) {
         SQLiteDatabase db = getReadableDatabase();
@@ -620,4 +623,23 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             Log.d("SQLITEErr", ex.toString());
         }
     }
+
+    public void RefreshWithData(String tableName, ArrayList<SQLiteRecord> newTableData) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("Delete from " + tableName + ";");
+
+        db.beginTransaction();
+
+        for (SQLiteRecord sqLiteRecord : newTableData) {
+            ContentValues contentValues = new ContentValues();
+            for (Map.Entry<String, Object> entry : sqLiteRecord.getRecord().entrySet()) {
+
+                contentValues.put(entry.getKey(), (String) entry.getValue());
+            }
+            db.insert(sqLiteRecord.tableName, null, contentValues);
+        }
+        db.setTransactionSuccessful();
+    }
+
+
 }
