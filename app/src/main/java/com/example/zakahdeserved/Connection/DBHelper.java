@@ -80,6 +80,8 @@ public class DBHelper {
             "StockValue", "ReceivedDate", "GraduationExpectedYear", "Average", "CollegeTuition", "CollegeTuitionCoinType", "DiscountValue",
             "DiscountValueCoinType"};
 
+    public static String[] EditPackageFieldsTablesColumns = new String[]{"PackageID", "Fields", "Tabels"};
+
     public static HashMap<String, Object> PersonsTable = new HashMap<>();
     public static HashMap<String, Object> FamiliesTable = new HashMap<>();
     public static HashMap<String, Object> Helth_StatusesTable = new HashMap<>();

@@ -17,6 +17,7 @@ import com.example.zakahdeserved.Connection.DAL;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ValidationController {
@@ -94,11 +95,34 @@ public class ValidationController {
             if (ExceptionDescrip.length() > 10) {
                 boolean isSucces = DAL.executeQueries(ExceptionQuery);
                 if (!isSucces) {
-                    Constants.SQLITEDAL.addQuery(ExceptionQuery,"","exception");
+                    Constants.SQLITEDAL.addQuery(ExceptionQuery, "", "exception");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    //تعديل
+
+//    public static void EnableToEditFields(View view, String tableName) {
+//        if (!Constants.toEditFields.containsKey(tableName))
+//            return;
+//
+//        final ViewGroup viewGroup = (ViewGroup) view;
+//        try {
+//            int count = viewGroup.getChildCount();
+//            for (int i = 0; i < count; i++) {
+//                View v = viewGroup.getChildAt(i);
+//
+//                if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
+//                    EnableToEditFields(v, tableName);
+//
+//                else
+//                    v.setEnabled(Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId())));
+//            }
+//        } catch (Exception e) {
+//            ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());
+//            e.printStackTrace();
+//        }
+//    }
 }

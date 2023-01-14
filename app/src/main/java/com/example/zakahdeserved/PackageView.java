@@ -10,17 +10,14 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -269,6 +266,14 @@ public class PackageView extends AppCompatActivity {
                 Constants.PackageType = listShowRecords.get(index).getPackageType();
                 Constants.PackagePersonID = listShowRecords.get(index).getPersonID();
                 Constants.PackageProgram = listShowRecords.get(index).getProgram();
+                //تعديل
+//                if (Objects.equals(Constants.PackageType, "تعديل")) {
+//                    ArrayList<SQLiteRecord> toEditFieads = Constants.SQLITEDAL.getRecords("edit_package_fields_tables", DBHelper.EditPackageFieldsTablesColumns, "PackageID", Constants.PackageID);
+//                    for (SQLiteRecord record : toEditFieads) {
+//                        ArrayList<String> tables
+//                        Constants.toEditFields.put(record.getTableName(),record.getRecord().values().stream().collect(String::toString));
+//                    }
+//                }
 
 //                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(
 //                        record -> Objects.equals(record.PackageID, listShowRecords.get(index).PackageID)
@@ -387,6 +392,11 @@ public class PackageView extends AppCompatActivity {
                 //store packages info locally
                 Constants.SQLITEDAL.ClearPackages();
                 Constants.SQLITEDAL.StorePackages(lstPackages);
+
+                //get to edit packages
+                List<String> _toEditPackageIDs = lstPackages.stream().filter(packageRecord -> Objects.equals(packageRecord.Package, "تعديل"))
+                        .map(PackageRecord::getPackageID).collect(Collectors.toList());
+
 
                 List<String> zakatIDsToDownload = lstPackages.stream().map(PackageRecord::getZakatID).collect(Collectors.toList());
                 List<String> zakatIDsAtLocal = Constants.SQLITEDAL.getAllZakatID();
@@ -507,7 +517,6 @@ public class PackageView extends AppCompatActivity {
                             "select " + String.join(",", survey_conclusionsColumns) + " from survey_conclusions where ZakatID like '" + zakatId + "';",
                             List.of()));
 
-
                     // Insert all data on SQLite
                     if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
                         return "false";
@@ -525,6 +534,15 @@ public class PackageView extends AppCompatActivity {
 //                                lstPackages.get(i).Package,
 //                                lstPackages.get(i).Program));
                 }
+
+                // get to edit columns
+                List<String> edit_package_fields_tablesColumns = new LinkedList<>(Arrays.asList(DBHelper.EditPackageFieldsTablesColumns));
+                ArrayList<SQLiteRecord> toEditRecords = DAL.getTableData("assets", edit_package_fields_tablesColumns,
+                        "select " + String.join(",", edit_package_fields_tablesColumns) + " from edit_package_fields_tables where PackageID in( " + String.join(",", _toEditPackageIDs) + ");",
+                        List.of());
+                Constants.SQLITEDAL.RefreshWithData("edit_package_fields_tables", toEditRecords);
+
+
                 ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
                 return "true";
             } catch (Exception ex) {
