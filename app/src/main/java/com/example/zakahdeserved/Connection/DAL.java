@@ -46,8 +46,9 @@ public class DAL {
             Class.forName("org.mariadb.jdbc.Driver"); // Initialize it
             connection = DriverManager.getConnection(
                     "jdbc:mariadb://38.242.131.232:3306/zakatraising?characterEncoding=utf8mb4", "zakat_raising", "6nYgYb8H7_");
+
         } catch (Exception exc) {
-            ValidationController.GetException(exc.toString().replace("\"", ""), "connectionClass in DAL", "", "");
+            //ValidationController.GetException(exc.toString().replace("\"", ""), "connectionClass in DAL", "", "");
             exc.printStackTrace();
             isConnected = false;
         }

@@ -350,6 +350,7 @@
                     android:layout_marginStart="30dp"
                     android:backgroundTint="@color/purple_200"
                     android:fontFamily="@font/jaz_bold"
+                    android:visibility="gone"
                     android:hint="عدد المدخنين" />
             </LinearLayout>
             <LinearLayout
