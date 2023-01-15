@@ -419,10 +419,9 @@ public class DAL {
 
             for (String s : queries.split(";")) {
                 if (s.length() > 1)
-                    st.executeQuery(s);
+                    st.executeUpdate(s);
             }
 
-//            st.executeBatch();
             //success transaction
             connection.commit();
             success = true;
@@ -451,12 +450,15 @@ public class DAL {
 
             //begin transaction
             connection.setAutoCommit(false);
+            String[] _queries = queries.split(",");
 
-            ResultSet rs = st.executeQuery(queries);
+            //insert
+            st.executeUpdate(_queries[0]);
+            //select
+            ResultSet rs = st.executeQuery(_queries[1]);
             if (rs.next())
                 result = rs.getString(1);
 
-//            st.executeBatch();
             //success transaction
             connection.commit();
         } catch (Exception ex) {
