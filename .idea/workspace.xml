@@ -8,35 +8,60 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-    <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44adda1b-bb10-4ee3-85c3-3a84f420ed6a" name="Changes" comment="done add record for table link_entries_to_records">
+    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="1">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\PC\.android\avd\Pixel_4_API_32_1.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Yahya\.android\avd\Pixel_5_Edited_API_32.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ZakahDeserved" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="final/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,49 +74,28 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProjectId" id="2DfA5WSWi1Xtt8yL70zfPNQkei4" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectId" id="2JdL1nQfFQsa38aJGk8w6S2u6yD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_7a-acdb2a160406" />
+    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_j610f-aca807d3" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.zakahdeserved" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.2/a0a6b931c735952c318e94c90b0239966c500c52/appcompat-1.4.2-sources.jar!/androidx/appcompat/widget/AppCompatEditText.java_AppCompatEditText_DIMENSIONS" value="1080&#10;1920" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.2/a0a6b931c735952c318e94c90b0239966c500c52/appcompat-1.4.2-sources.jar!/androidx/appcompat/widget/AppCompatEditText.java_SELECTED" value="AppCompatEditText" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.2/a0a6b931c735952c318e94c90b0239966c500c52/appcompat-1.4.2-sources.jar!/androidx/appcompat/widget/ContentFrameLayout.java_ContentFrameLayout_DIMENSIONS" value="1080&#10;1920" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.2/a0a6b931c735952c318e94c90b0239966c500c52/appcompat-1.4.2-sources.jar!/androidx/appcompat/widget/ContentFrameLayout.java_SELECTED" value="ContentFrameLayout" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.coordinatorlayout/coordinatorlayout/1.1.0/a15529ac349d76a872ae5ef42b84c320c456cd7f/coordinatorlayout-1.1.0-sources.jar!/androidx/coordinatorlayout/widget/CoordinatorLayout.java_CoordinatorLayout_DIMENSIONS" value="1080&#10;1920" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.coordinatorlayout/coordinatorlayout/1.1.0/a15529ac349d76a872ae5ef42b84c320c456cd7f/coordinatorlayout-1.1.0-sources.jar!/androidx/coordinatorlayout/widget/CoordinatorLayout.java_SELECTED" value="CoordinatorLayout" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_SELECTED" value="ViewPager" />
-    <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_ViewPager_DIMENSIONS" value="1080&#10;1920" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
-    <property name="project.structure.last.edited" value="Build Variants" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java/com/DoCompany/zakahdeserved" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.16751269" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
-  </component>
-  <component name="PsdUISettings">
-    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workMe\Zakah Desrved\ZakahDeserved" />
-      <recent name="D:\workMe\Zakah Desrved\ZakahDeserved\app\libs" />
-    </key>
-    <key name="android.template.-1726277604">
-      <recent name="com.example.zakahdeserved" />
-    </key>
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -103,6 +107,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -142,6 +147,7 @@
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+        <option name="PROFILING_MODE" value="NOT_SET" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -155,356 +161,81 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="44adda1b-bb10-4ee3-85c3-3a84f420ed6a" name="Changes" comment="" />
-      <created>1661079581524</created>
+      <changelist id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="" />
+      <created>1672402803982</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1661079581524</updated>
+      <updated>1672402803982</updated>
     </task>
-    <task id="LOCAL-00011" summary="Enter Data 2">
-      <created>1662214610785</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+    <task id="LOCAL؜٠٠٠٠١" summary="1">
+      <created>1672472535828</created>
+      <option name="number" value="LOCAL؜٠٠٠٠١" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠١" />
+      <updated>1672472535828</updated>
+    </task>
+    <task id="LOCAL؜٠٠٠٠٢" summary="1">
+      <created>1672567169131</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٢" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٢" />
+      <updated>1672567169131</updated>
+    </task>
+    <task id="LOCAL؜٠٠٠٠٣" summary="1">
+      <created>1672767763645</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٣" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٣" />
+      <updated>1672767763645</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1">
+      <created>1673028987633</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1662214610785</updated>
+      <updated>1673028987633</updated>
     </task>
-    <task id="LOCAL-00012" summary="Enter Data 2">
-      <created>1662306067731</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+    <task id="LOCAL-00005" summary="1">
+      <created>1673099735288</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1662306067731</updated>
+      <updated>1673099735289</updated>
     </task>
-    <task id="LOCAL-00013" summary="Enter Data 2">
-      <created>1662461972856</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1662461972856</updated>
+    <task id="LOCAL؜٠٠٠٠٦" summary="1">
+      <created>1673350610397</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٦" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٦" />
+      <updated>1673350610397</updated>
     </task>
-    <task id="LOCAL-00014" summary="Enter Data 2">
-      <created>1662548106769</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1662548106769</updated>
+    <task id="LOCAL؜٠٠٠٠٧" summary="1">
+      <created>1673694643285</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٧" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٧" />
+      <updated>1673694643285</updated>
     </task>
-    <task id="LOCAL-00015" summary="get family data from SQLite">
-      <created>1663425257570</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1663425257570</updated>
+    <task id="LOCAL؜٠٠٠٠٨" summary="1">
+      <created>1673700179143</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٨" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٨" />
+      <updated>1673700179143</updated>
     </task>
-    <task id="LOCAL-00016" summary="get family data from SQLite&#10;and load them to fragments">
-      <created>1663487246941</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1663487246941</updated>
+    <task id="LOCAL؜٠٠٠٠٩" summary="1">
+      <created>1673775816858</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٩" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٩" />
+      <updated>1673775816858</updated>
     </task>
-    <task id="LOCAL-00017" summary="test Insertion">
-      <created>1664188859939</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1664188859940</updated>
+    <task id="LOCAL؜٠٠٠١٠" summary="1">
+      <created>1673776511941</created>
+      <option name="number" value="LOCAL؜٠٠٠١٠" />
+      <option name="presentableId" value="LOCAL؜٠٠٠١٠" />
+      <updated>1673776511941</updated>
     </task>
-    <task id="LOCAL-00018" summary="after test insertion 2&#10;and configure most validations">
-      <created>1664392279767</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1664392279767</updated>
+    <task id="LOCAL؜٠٠٠١١" summary="1">
+      <created>1673776708335</created>
+      <option name="number" value="LOCAL؜٠٠٠١١" />
+      <option name="presentableId" value="LOCAL؜٠٠٠١١" />
+      <updated>1673776708335</updated>
     </task>
-    <task id="LOCAL-00019" summary="after test insertion 2&#10;and configure most validations">
-      <created>1664452118672</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1664452118672</updated>
-    </task>
-    <task id="LOCAL-00020" summary="after test insertion 2&#10;and configure most validations">
-      <created>1664477190414</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1664477190414</updated>
-    </task>
-    <task id="LOCAL-00021" summary="after test insertion 2&#10;and configure most validations">
-      <created>1664528357696</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1664528357696</updated>
-    </task>
-    <task id="LOCAL-00022" summary="after test insertion 2&#10;and configure most validations">
-      <created>1664690721348</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1664690721349</updated>
-    </task>
-    <task id="LOCAL-00023" summary="programs insertion Done&#10;test insertion done">
-      <created>1664802901713</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1664802901713</updated>
-    </task>
-    <task id="LOCAL-00024" summary="programs insertion Done&#10;test insertion done">
-      <created>1664872807050</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1664872807050</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Validation clear fieklds if Gone">
-      <created>1664899462910</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1664899462910</updated>
-    </task>
-    <task id="LOCAL-00026" summary="get packages from server to local">
-      <created>1665667410206</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1665667410206</updated>
-    </task>
-    <task id="LOCAL-00027" summary="get packages from server to local&#10;first modify and test&#10;Success">
-      <created>1666117829828</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1666117829828</updated>
-    </task>
-    <task id="LOCAL-00028" summary="get packages from server to local&#10;first modify and test&#10;Success">
-      <created>1666706314078</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1666706314078</updated>
-    </task>
-    <task id="LOCAL-00029" summary="refresh packages&#10;doing package view layout, show records">
-      <created>1668156277044</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1668156277044</updated>
-    </task>
-    <task id="LOCAL-00030" summary="refresh packages&#10;doing package view layout, show records">
-      <created>1668684093418</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1668684093418</updated>
-    </task>
-    <task id="LOCAL-00031" summary="upload data&#10;solve don't back to entry activity, don't back to login activity.">
-      <created>1669125066813</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1669125066813</updated>
-    </task>
-    <task id="LOCAL-00032" summary="upload data&#10;solve don't back to entry activity, don't back to login activity.">
-      <created>1669917877862</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1669917877862</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Package OK&#10;error on loading the form">
-      <created>1670312570002</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1670312570002</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Package OK&#10;after solve error on SLite Design">
-      <created>1670491918472</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1670491918472</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Package OK&#10;after solve error on SLite Design">
-      <created>1671107500705</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1671107500705</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Package OK&#10;after solve error on SLite Design">
-      <created>1671186826548</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1671186826548</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Package OK&#10;after solve error on SLite Design">
-      <created>1671360519541</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1671360519541</updated>
-    </task>
-    <task id="LOCAL-00038" summary="modify insert query to satisfy for insert and update">
-      <created>1671482229792</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1671482229792</updated>
-    </task>
-    <task id="LOCAL-00039" summary="modify insert query to satisfy for insert and update">
-      <created>1671523231747</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1671523231747</updated>
-    </task>
-    <task id="LOCAL-00040" summary="modify insert query to satisfy for insert and update">
-      <created>1671523290607</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1671523290607</updated>
-    </task>
-    <task id="LOCAL-00041" summary="modify insert query to satisfy for insert and update">
-      <created>1671611268372</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1671611268372</updated>
-    </task>
-    <task id="LOCAL-00042" summary="solving  problems for upload from SQLite to form">
-      <created>1671727448692</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1671727448692</updated>
-    </task>
-    <task id="LOCAL-00043" summary="solving  problems for delete packages after insert">
-      <created>1671740727335</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1671740727335</updated>
-    </task>
-    <task id="LOCAL-00044" summary="add pdffiles for only the first person &quot;رب الأسرة&quot;, waiting for test.">
-      <created>1671793626379</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1671793626380</updated>
-    </task>
-    <task id="LOCAL-00045" summary="add pdffiles for only the first person &quot;رب الأسرة&quot;, waiting for test, fix problems bout package insert.">
-      <created>1671803142978</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1671803142978</updated>
-    </task>
-    <task id="LOCAL-00046" summary="solving entry from multi devices, not shwo رب الأسرة in the persons view, and other problems.&#10;waiting to solve primary keys for each table.">
-      <created>1672055502015</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1672055502015</updated>
-    </task>
-    <task id="LOCAL-00047" summary="solving subtables update by delete then insert.&#10;solving personid calculation.">
-      <created>1672216711432</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1672216711432</updated>
-    </task>
-    <task id="LOCAL-00048" summary="solving subtables update by delete then insert.&#10;solving personid calculation.&#10;solving personid for helthstatus.">
-      <created>1672216881472</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1672216881472</updated>
-    </task>
-    <task id="LOCAL-00049" summary="solving subtables update by delete then insert.&#10;solving personid calculation.&#10;solving personid for helthstatus.">
-      <created>1672216890972</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1672216890972</updated>
-    </task>
-    <task id="LOCAL-00050" summary="values with server default make them null at query.">
-      <created>1672341435762</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1672341435762</updated>
-    </task>
-    <task id="LOCAL-00051" summary="replace '' values with null and 'false' with false.&#10;waiting for images.">
-      <created>1672415202831</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1672415202831</updated>
-    </task>
-    <task id="LOCAL-00052" summary="replace '' values with null and 'false' with false.&#10;waiting for images.">
-      <created>1672510750983</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1672510750983</updated>
-    </task>
-    <task id="LOCAL-00053" summary="replace '' values with null and 'false' with false.&#10;waiting for images.">
-      <created>1672774062418</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1672774062418</updated>
-    </task>
-    <task id="LOCAL-00054" summary="configure delay entry page">
-      <created>1672832433382</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1672832433383</updated>
-    </task>
-    <task id="LOCAL-00055" summary="delete coin type from helth status">
-      <created>1673094294123</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1673094294123</updated>
-    </task>
-    <task id="LOCAL-00056" summary="modify dynamic list to start from 1 and modify spinners for that.">
-      <created>1673248560278</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1673248560278</updated>
-    </task>
-    <task id="LOCAL-00057" summary="working on pdf for persons">
-      <created>1673350694818</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1673350694818</updated>
-    </task>
-    <task id="LOCAL-00058" summary="done works on pdf for persons images">
-      <created>1673360728477</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1673360728477</updated>
-    </task>
-    <task id="LOCAL-00059" summary="done add record for table link_entries_to_records">
-      <created>1673466427189</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1673466427193</updated>
-    </task>
-    <option name="localTasksCounter" value="60" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,64 +248,45 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="after test insertion 2&#10;and configure most validations" />
-    <MESSAGE value="programs insertion Done&#10;test insertion done" />
-    <MESSAGE value="Validation clear fieklds if Gone" />
-    <MESSAGE value="get packages from server to local" />
-    <MESSAGE value="get packages from server to local&#10;first modify and test&#10;Success" />
-    <MESSAGE value="refresh packages&#10;doing package view layout, show records" />
-    <MESSAGE value="upload data&#10;solve don't back to entry activity, don't back to login activity." />
-    <MESSAGE value="Package OK&#10;error on loading the form" />
-    <MESSAGE value="Package OK&#10;after solve error on SLite Design" />
-    <MESSAGE value="modify insert query to satisfy for insert and update" />
-    <MESSAGE value="solving  problems for upload from SQLite to form" />
-    <MESSAGE value="solving  problems for delete packages after insert" />
-    <MESSAGE value="add pdffiles for only the first person &quot;رب الأسرة&quot;, waiting for test." />
-    <MESSAGE value="add pdffiles for only the first person &quot;رب الأسرة&quot;, waiting for test, fix problems bout package insert." />
-    <MESSAGE value="solving entry from multi devices, not shwo رب الأسرة in the persons view, and other problems.&#10;waiting to solve primary keys for each table." />
-    <MESSAGE value="solving subtables update by delete then insert.&#10;solving personid calculation." />
-    <MESSAGE value="solving subtables update by delete then insert.&#10;solving personid calculation.&#10;solving personid for helthstatus." />
-    <MESSAGE value="values with server default make them null at query." />
-    <MESSAGE value="replace '' values with null and 'false' with false.&#10;waiting for images." />
-    <MESSAGE value="configure delay entry page" />
-    <MESSAGE value="delete coin type from helth status" />
-    <MESSAGE value="modify dynamic list to start from 1 and modify spinners for that." />
-    <MESSAGE value="working on pdf for persons" />
-    <MESSAGE value="done works on pdf for persons images" />
-    <MESSAGE value="done add record for table link_entries_to_records" />
-    <option name="LAST_COMMIT_MESSAGE" value="done add record for table link_entries_to_records" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java</url>
-          <line>40</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
+          <line>201</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-field">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/Constants.java</url>
-          <line>35</line>
-          <properties field="ZakatID" class="com.example.zakahdeserved.Utility.Constants" />
-          <option name="timeStamp" value="6" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
+          <line>220</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
+          <line>444</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="com.example.zakahdeserved.Connection.SQLiteRecord" memberName="record" />
-      </pinned-members>
-    </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="app">
-        <watch expression="sharedPreferences.getBoolean(&quot;login&quot;, false)" />
-        <watch expression="sharedPreferences.getBoolean(&quot;login&quot;, false)" />
-        <watch expression="sharedPreferences.getString(&quot;empCode&quot;, &quot;&quot;)" />
-        <watch expression="autoDate.equals(lastEnterDate)" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
