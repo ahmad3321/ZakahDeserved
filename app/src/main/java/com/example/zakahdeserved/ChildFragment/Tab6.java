@@ -20,6 +20,7 @@ import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 
@@ -162,6 +163,8 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
+        if(!ValidationController.ENABLE_ALL_TABS)
+            ValidationController.lockThePage(view6);
         return view6;
     }
 

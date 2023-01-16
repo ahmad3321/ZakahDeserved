@@ -87,6 +87,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
+        if(!ValidationController.ENABLE_ALL_TABS) {
+            ValidationController.lockThePage(view);
+
+        }
         return view;
     }
 

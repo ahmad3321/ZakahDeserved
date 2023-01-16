@@ -203,6 +203,8 @@ public class Tab5 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
+        if(!ValidationController.ENABLE_ALL_TABS)
+            ValidationController.lockThePage(view5);
         return view5;
     }
 

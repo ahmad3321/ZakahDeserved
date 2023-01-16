@@ -30,6 +30,7 @@ import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.Models.HealthStatuses;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,6 +73,8 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 //        DBHelper.loadDataToControls(view, Constants.familyInfo);
+        if(!ValidationController.ENABLE_ALL_TABS)
+            ValidationController.lockThePage(view);
 
         return view;
     }

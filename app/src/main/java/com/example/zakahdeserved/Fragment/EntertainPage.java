@@ -24,6 +24,7 @@ import com.example.zakahdeserved.ChildFragment.Tab8;
 import com.example.zakahdeserved.ChildFragment.Tab9;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -73,6 +74,49 @@ public class EntertainPage extends Fragment {
         adapter.addFragment(new Tab9(), "الجوار");
         viewPager.setOffscreenPageLimit(8);
         viewPager.setAdapter(adapter);
+
+        //Enable and disable controls in views as required
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d("TABSELECT", "pos = " + position);
+                if (!ValidationController.ENABLE_ALL_TABS) {
+                    if (position == 1) ValidationController.lockThePage(Constants.view2);
+                    else if (position == 2) ValidationController.lockThePage(Constants.view4);
+                    else if (position == 3) ValidationController.lockThePage(Constants.view5);
+                    else if (position == 4) ValidationController.lockThePage(Constants.view6);
+                    else if (position == 5) ValidationController.lockThePage(Constants.view7);
+                    else if (position == 6) ValidationController.lockThePage(Constants.view8);
+                    else if (position == 7) ValidationController.lockThePage(Constants.view9);
+
+                    //enable submit button after disable all controls
+                    ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                } else {
+                    if (position == 1) ValidationController.UnlockThePage(Constants.view2);
+                    else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
+                    else if (position == 3) ValidationController.UnlockThePage(Constants.view5);
+                    else if (position == 4) ValidationController.UnlockThePage(Constants.view6);
+                    else if (position == 5) ValidationController.UnlockThePage(Constants.view7);
+                    else if (position == 6) ValidationController.UnlockThePage(Constants.view8);
+                    else if (position == 7) ValidationController.UnlockThePage(Constants.view9);
+                }
+
+                if (!ValidationController.ENABLE_FEMALE_TAB)
+                    ValidationController.lockThePage(Constants.view5);
+                else if (ValidationController.ENABLE_ALL_TABS)
+                    ValidationController.UnlockThePage(Constants.view5);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

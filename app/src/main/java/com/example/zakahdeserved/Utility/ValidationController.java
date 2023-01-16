@@ -2,6 +2,7 @@ package com.example.zakahdeserved.Utility;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -31,7 +32,6 @@ public class ValidationController {
             int count = viewGroup.getChildCount();
             for (int i = 0; i < count; i++) {
                 View v = viewGroup.getChildAt(i);
-
                 if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner
                         || v instanceof CheckBox || v instanceof TextView)
                     v.setEnabled(false);
