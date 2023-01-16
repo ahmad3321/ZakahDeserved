@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper.initDatabaseTables();
 
-        BroadCastClass broadCastClass = new BroadCastClass();
+        //BroadCastClass broadCastClass = new BroadCastClass();
 
-        registerNetworkBroadcastForNougat();
+        //registerNetworkBroadcastForNougat();
 
         login = findViewById(R.id.btn_login);
         username = findViewById(R.id.edit_username);

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -86,49 +87,52 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
 
 
             findViewById(R.id.btnSend).setOnClickListener(view -> {
-                Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                String autoDate = df.format(c);
-                Date ManualDate = null;
-                String ManualDateStr = "";
-                try {
-                    ManualDate = df.parse(((EditText) findViewById(R.id.ManualVisitDate)).getText().toString());
-                    ManualDateStr = df.format(ManualDate);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("إدخال البيانات");
+                alert.setMessage("هل أنت متأكد من ادخال البيانات ؟");
+                alert.setPositiveButton("نعم", (dialogInterface, i) -> {
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    String autoDate = df.format(c);
+                    Date ManualDate = null;
+                    String ManualDateStr = "";
+                    try {
+                        ManualDate = df.parse(((EditText) findViewById(R.id.ManualVisitDate)).getText().toString());
+                        ManualDateStr = df.format(ManualDate);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
-                String entryID = DAL.executeAndGetID("INSERT INTO daily_staff_entries\n" +
-                        "(EmployeeCode, EmployeeFullName, AdminEmployeeCode, AdminEmployeeFullName, lst_Directorates," +
-                        "AutomaticVisitDate, ManualVisitDate, EntryType)" +
-                        "VALUES ('" + ((EditText) findViewById(R.id.EmployeeCode)).getText().toString() + "'," +
-                        "'" + ((EditText) findViewById(R.id.EmployeeFullName)).getText().toString() + "'," +
-                        "'" + ((EditText) findViewById(R.id.AdminEmployeeCode)).getText().toString() + "'," +
-                        "'" + ((EditText) findViewById(R.id.AdminEmployeeFullName)).getText().toString() + "'," +
-                        "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + 1 + "'," +
-                        "'" + autoDate + "'," +
-                        "'" + ManualDateStr + "'," +
-                        JobTitle.equals("احصائي") + ");" +
-                        "select max(EntryID) from link_entries_to_records;");
+                    String entryID = DAL.executeAndGetID("INSERT INTO daily_staff_entries\n" +
+                            "(EmployeeCode, EmployeeFullName, AdminEmployeeCode, AdminEmployeeFullName, lst_Directorates," +
+                            "AutomaticVisitDate, ManualVisitDate, EntryType)" +
+                            "VALUES ('" + ((EditText) findViewById(R.id.EmployeeCode)).getText().toString() + "'," +
+                            "'" + ((EditText) findViewById(R.id.EmployeeFullName)).getText().toString() + "'," +
+                            "'" + ((EditText) findViewById(R.id.AdminEmployeeCode)).getText().toString() + "'," +
+                            "'" + ((EditText) findViewById(R.id.AdminEmployeeFullName)).getText().toString() + "'," +
+                            "'" + ((Spinner) findViewById(R.id.lst_Directorates)).getSelectedItemId() + 1 + "'," +
+                            "'" + autoDate + "'," +
+                            "'" + ManualDateStr + "'," +
+                            JobTitle.equals("احصائي") + ");" +
+                            "select max(EntryID) from daily_staff_entries;");
 
-                if (entryID == null) {
-                    Toast.makeText(getApplicationContext(), "لم يتم تسجيل الدخول", Toast.LENGTH_LONG).show();
-                    return;
-                }
+                    if (entryID == null) {
+                        Toast.makeText(getApplicationContext(), "لم يتم تسجيل الدخول", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
-                SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                myEdit.putString("entered_date", autoDate);
-                myEdit.putString("entry_id", entryID);
-                myEdit.apply();
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("entered_date", autoDate);
+                    myEdit.putString("entry_id", entryID);
+                    myEdit.apply();
 
-                Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
-                intent1.putExtra("JobTitle", JobTitle); //احصاء أو توزيع
-                startActivity(intent1);
-
-
-            });
-
-
+                    Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
+                    intent1.putExtra("JobTitle", JobTitle); //احصاء أو توزيع
+                    startActivity(intent1);
+                });
+                     alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
+                     alert.show();
+                });
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }

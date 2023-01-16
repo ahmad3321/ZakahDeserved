@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,8 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -310,7 +313,9 @@ public class PackageView extends AppCompatActivity {
                 btn_download.setEnabled(false);
                 btn_upload.setEnabled(false);
             });
-            Toast.makeText(getApplicationContext(), "بدأت عملية رفع البيانات .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "بدأت عملية رفع البيانات .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+            CustomToast("بدأت عملية رفع البيانات .. انتظر قليلا",R.drawable.ic_baseline_publish_24);
+
         }
 
         @Override
@@ -330,23 +335,38 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(true);
             });
             if (done)
-                Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
+            CustomToast("تم رفع جميع السجلات بنجاح",R.drawable.ic_baseline_true);
             else
-                Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
+                CustomToast("فشلت عملية رفع السجلات",R.drawable.ic_baseline_cancel);
+            //Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
         }
     }
-
+    private void CustomToast(String text,int imageID) {
+        // Inflate customToast layout here
+        LayoutInflater inflater=getLayoutInflater();
+        View view=inflater.inflate(R.layout.custometoastlayout,this.findViewById(R.id.CustomToast));
+        TextView textView =(TextView)view.findViewById(R.id.text_toast);
+        ImageView image_toast =(ImageView)view.findViewById(R.id.image_toast1);
+        image_toast.setImageResource(imageID);
+        textView.setText(text);
+        // now the actual toast generated here
+        Toast toast=new Toast(this);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(view);
+        toast.show();
+    }
     class DownloadTask extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
         ProgressDialog progressDialog;
-
         protected void onPreExecute() {
             try {
                 super.onPreExecute();
                 progressDialog = ProgressDialog.show(PackageView.this,
                         "جلب البيانات",
                         "انتظر قليلا");
-                Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
+                CustomToast("بدأت عملية تنزيل الحزم .. انتظر قليلا",R.drawable.ic_baseline_archive_24);
                 Log.d(TAG + " PreExceute", "On pre Exceute......");
                 runOnUiThread(() -> {
                     btn_download.setEnabled(false);
@@ -356,7 +376,6 @@ public class PackageView extends AppCompatActivity {
                 Log.d(TAG, ex.toString());
             }
         }
-
         protected String doInBackground(Void... arg0) {
             try {
                 publishProgress(1); // Calls onProgressUpdate()
@@ -385,7 +404,6 @@ public class PackageView extends AppCompatActivity {
                         "INNER JOIN zakatraising.package_contents \n" +
                         "on zakatraising.packages.PackageID = zakatraising.package_contents.PackageID\n" +
                         " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
-
 
                 ShwoRecords.clear();
 
@@ -566,10 +584,11 @@ public class PackageView extends AppCompatActivity {
             });
             if (result.equalsIgnoreCase("true")) {
                 onResume();
-
-                Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
+                CustomToast("تمت عملية تنزيل الحزم بنجاح",R.drawable.ic_baseline_true);
+                //Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
+                CustomToast("فشلت عملية التنزيل",R.drawable.ic_baseline_cancel);
+                //Toast.makeText(getApplicationContext(), "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
         }
