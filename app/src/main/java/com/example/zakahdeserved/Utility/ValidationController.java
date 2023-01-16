@@ -102,6 +102,7 @@ public class ValidationController {
             e.printStackTrace();
         }
     }
+
     //تعديل
 
 //    public static void EnableToEditFields(View view, String tableName) {

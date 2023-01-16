@@ -450,7 +450,7 @@ public class DAL {
 
             //begin transaction
             connection.setAutoCommit(false);
-            String[] _queries = queries.split(",");
+            String[] _queries = queries.split(";");
 
             //insert
             st.executeUpdate(_queries[0]);
