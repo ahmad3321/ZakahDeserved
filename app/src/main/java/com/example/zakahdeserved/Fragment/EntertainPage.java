@@ -84,7 +84,7 @@ public class EntertainPage extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("TABSELECT", "pos = " + position);
+//                Log.d("TABSELECT", "pos = " + position);
                 if (!ValidationController.ENABLE_ALL_TABS) {
                     if (position == 1) ValidationController.lockThePage(Constants.view2);
                     else if (position == 2) ValidationController.lockThePage(Constants.view4);

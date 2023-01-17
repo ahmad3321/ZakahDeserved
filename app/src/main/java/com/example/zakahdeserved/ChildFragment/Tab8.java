@@ -105,8 +105,6 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             }
         }
 
-        if(!ValidationController.ENABLE_ALL_TABS)
-            ValidationController.lockThePage(view);
         return view;
     }
 

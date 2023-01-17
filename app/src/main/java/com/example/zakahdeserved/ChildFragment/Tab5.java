@@ -47,11 +47,6 @@ public class Tab5 extends Fragment {
         Constants.view5 = view5;
         EditText txtEventDate = view5.findViewById(R.id.EventDate);
 
-        if (!ValidationController.ENABLE_FEMALE_TAB)
-            ValidationController.lockThePage(view5);
-        else
-            ValidationController.UnlockThePage(view5);
-
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
 
@@ -203,8 +198,6 @@ public class Tab5 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
-        if(!ValidationController.ENABLE_ALL_TABS)
-            ValidationController.lockThePage(view5);
         return view5;
     }
 

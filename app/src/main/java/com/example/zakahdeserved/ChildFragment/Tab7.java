@@ -63,9 +63,6 @@ public class Tab7 extends Fragment implements View.OnClickListener {
             View v = addView(R.layout.row_add_asset, R.id.image_remove_Asset, layoutAsset);
             DBHelper.loadDataToControls(v, record);
         }
-
-        if(!ValidationController.ENABLE_ALL_TABS)
-            ValidationController.lockThePage(view);
         return view;
     }
 

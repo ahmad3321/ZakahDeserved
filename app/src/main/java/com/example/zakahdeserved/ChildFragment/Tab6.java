@@ -162,9 +162,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             View v = addView(R.layout.row_add_aids, R.id.image_remove_Aids, layoutListAids);
             DBHelper.loadDataToControls(v, record);
         }
-
-        if(!ValidationController.ENABLE_ALL_TABS)
-            ValidationController.lockThePage(view6);
         return view6;
     }
 

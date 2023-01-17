@@ -73,8 +73,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 //        DBHelper.loadDataToControls(view, Constants.familyInfo);
-        if(!ValidationController.ENABLE_ALL_TABS)
-            ValidationController.lockThePage(view);
 
         return view;
     }
