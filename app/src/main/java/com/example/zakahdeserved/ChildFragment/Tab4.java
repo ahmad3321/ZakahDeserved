@@ -30,6 +30,7 @@ import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.Models.HealthStatuses;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 import java.util.HashMap;

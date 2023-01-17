@@ -47,11 +47,6 @@ public class Tab5 extends Fragment {
         Constants.view5 = view5;
         EditText txtEventDate = view5.findViewById(R.id.EventDate);
 
-        if (!ValidationController.ENABLE_FEMALE_TAB)
-            ValidationController.lockThePage(view5);
-        else
-            ValidationController.UnlockThePage(view5);
-
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
 

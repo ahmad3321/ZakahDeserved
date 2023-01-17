@@ -164,6 +164,10 @@ public class PackageView extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        refreshShow();
+    }
+
+    void refreshShow() {
         ((LinearLayout) findViewById(R.id.layout_list_Add)).removeAllViewsInLayout();
         ((LinearLayout) findViewById(R.id.layout_list_Update)).removeAllViewsInLayout();
         ((LinearLayout) findViewById(R.id.layout_list_Refresh)).removeAllViewsInLayout();
@@ -180,13 +184,11 @@ public class PackageView extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             empCode = sharedPreferences.getString("empCode", "");
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
-        ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
         lstPackages = Constants.SQLITEDAL.getPackages(empCode);
+        ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
         runOnUiThread(() -> addView(ShwoRecords));
     }
 
@@ -294,7 +296,7 @@ public class PackageView extends AppCompatActivity {
                             && sqLiteRecord.getRecord().get("IdentityNumber") != null &&
                             !Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityNumber")).toString().isEmpty()) {
                         Constants.imagesFiles.put(Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityNumber")).toString(),
-                                Objects.requireNonNull(sqLiteRecord.getRecord().get("IdentityFile")).toString());
+                                String.valueOf(sqLiteRecord.getRecord().get("IdentityFile")));
                     }
                 }
 
@@ -314,7 +316,7 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(false);
             });
             //Toast.makeText(getApplicationContext(), "بدأت عملية رفع البيانات .. انتظر قليلا", Toast.LENGTH_SHORT).show();
-            CustomToast("بدأت عملية رفع البيانات .. انتظر قليلا",R.drawable.ic_baseline_publish_24);
+            CustomToast("بدأت عملية رفع البيانات .. انتظر قليلا", R.drawable.ic_baseline_publish_24);
 
         }
 
@@ -335,30 +337,33 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(true);
             });
             if (done)
-               // Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
-            CustomToast("تم رفع جميع السجلات بنجاح",R.drawable.ic_baseline_true);
+                // Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
+                CustomToast("تم رفع جميع السجلات بنجاح", R.drawable.ic_baseline_true);
             else
-                CustomToast("فشلت عملية رفع السجلات",R.drawable.ic_baseline_cancel);
+                CustomToast("فشلت عملية رفع السجلات", R.drawable.ic_baseline_cancel);
             //Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
         }
     }
-    private void CustomToast(String text,int imageID) {
+
+    private void CustomToast(String text, int imageID) {
         // Inflate customToast layout here
-        LayoutInflater inflater=getLayoutInflater();
-        View view=inflater.inflate(R.layout.custometoastlayout,this.findViewById(R.id.CustomToast));
-        TextView textView =(TextView)view.findViewById(R.id.text_toast);
-        ImageView image_toast =(ImageView)view.findViewById(R.id.image_toast1);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.custometoastlayout, this.findViewById(R.id.CustomToast));
+        TextView textView = (TextView) view.findViewById(R.id.text_toast);
+        ImageView image_toast = (ImageView) view.findViewById(R.id.image_toast1);
         image_toast.setImageResource(imageID);
         textView.setText(text);
         // now the actual toast generated here
-        Toast toast=new Toast(this);
+        Toast toast = new Toast(this);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         toast.show();
     }
+
     class DownloadTask extends AsyncTask<Void, Integer, String> {
         String TAG = getClass().getSimpleName();
         ProgressDialog progressDialog;
+
         protected void onPreExecute() {
             try {
                 super.onPreExecute();
@@ -366,7 +371,7 @@ public class PackageView extends AppCompatActivity {
                         "جلب البيانات",
                         "انتظر قليلا");
                 //Toast.makeText(getApplicationContext(), "بدأت عملية تنزيل الحزم .. انتظر قليلا", Toast.LENGTH_SHORT).show();
-                CustomToast("بدأت عملية تنزيل الحزم .. انتظر قليلا",R.drawable.ic_baseline_archive_24);
+                CustomToast("بدأت عملية تنزيل الحزم .. انتظر قليلا", R.drawable.ic_baseline_archive_24);
                 Log.d(TAG + " PreExceute", "On pre Exceute......");
                 runOnUiThread(() -> {
                     btn_download.setEnabled(false);
@@ -376,6 +381,7 @@ public class PackageView extends AppCompatActivity {
                 Log.d(TAG, ex.toString());
             }
         }
+
         protected String doInBackground(Void... arg0) {
             try {
                 publishProgress(1); // Calls onProgressUpdate()
@@ -554,14 +560,17 @@ public class PackageView extends AppCompatActivity {
                 }
 
                 // get to edit columns
+                ArrayList<SQLiteRecord> toEditRecords = new ArrayList<>();
                 List<String> edit_package_fields_tablesColumns = new LinkedList<>(Arrays.asList(DBHelper.EditPackageFieldsTablesColumns));
-                ArrayList<SQLiteRecord> toEditRecords = DAL.getTableData("assets", edit_package_fields_tablesColumns,
-                        "select " + String.join(",", edit_package_fields_tablesColumns) + " from edit_package_fields_tables where PackageID in( " + String.join(",", _toEditPackageIDs) + ");",
-                        List.of());
+                if (_toEditPackageIDs.size() > 0)
+                    toEditRecords = DAL.getTableData("assets", edit_package_fields_tablesColumns,
+                            "select " + String.join(",", edit_package_fields_tablesColumns) + " from edit_package_fields_tables where PackageID in( " + String.join(",", _toEditPackageIDs) + ");",
+                            List.of());
                 Constants.SQLITEDAL.RefreshWithData("edit_package_fields_tables", toEditRecords);
 
-
-                ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
+                //do it after end progress
+//                ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
+                refreshShow();
                 return "true";
             } catch (Exception ex) {
                 Constants.SQLITEDAL.ClearAllRecords();
@@ -583,15 +592,13 @@ public class PackageView extends AppCompatActivity {
                 btn_upload.setEnabled(true);
             });
             if (result.equalsIgnoreCase("true")) {
-                onResume();
-                CustomToast("تمت عملية تنزيل الحزم بنجاح",R.drawable.ic_baseline_true);
+                CustomToast("تمت عملية تنزيل الحزم بنجاح", R.drawable.ic_baseline_true);
                 //Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
-                CustomToast("فشلت عملية التنزيل",R.drawable.ic_baseline_cancel);
+                CustomToast("فشلت عملية التنزيل", R.drawable.ic_baseline_cancel);
                 //Toast.makeText(getApplicationContext(), "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
         }
     }
-
 }

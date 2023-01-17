@@ -20,6 +20,7 @@ import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
 
@@ -161,7 +162,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             View v = addView(R.layout.row_add_aids, R.id.image_remove_Aids, layoutListAids);
             DBHelper.loadDataToControls(v, record);
         }
-
         return view6;
     }
 

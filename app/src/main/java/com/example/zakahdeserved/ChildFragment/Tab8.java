@@ -26,6 +26,7 @@ import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.SQLiteRecord;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -103,6 +104,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                 DBHelper.loadDataToControls(health_statusesv, health_statusesrecord);
             }
         }
+
         return view;
     }
 

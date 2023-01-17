@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment;
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 public class Tab2 extends Fragment {
 
     public Tab2() {
-        // Required empty public constructor
     }
 
     @Override
@@ -39,13 +39,14 @@ public class Tab2 extends Fragment {
                 view.findViewById(R.id.SmokersCount).setVisibility(View.VISIBLE);
             else {
                 view.findViewById(R.id.SmokersCount).setVisibility(View.GONE);
-                ((EditText)view.findViewById(R.id.SmokersCount)).setText("");
+                ((EditText) view.findViewById(R.id.SmokersCount)).setText("");
             }
         });
 
 
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
-            DBHelper.loadDataToControls(view, Constants.familyInfo);
+        DBHelper.loadDataToControls(view, Constants.familyInfo);
+
         return view;
     }
 
