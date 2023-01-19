@@ -271,20 +271,33 @@ public class PackageView extends AppCompatActivity {
                 Constants.PackageType = listShowRecords.get(index).getPackageType();
                 Constants.PackagePersonID = listShowRecords.get(index).getPersonID();
                 Constants.PackageProgram = listShowRecords.get(index).getProgram();
-                //تعديل
-//                if (Objects.equals(Constants.PackageType, "تعديل")) {
-//                    ArrayList<SQLiteRecord> toEditFieads = Constants.SQLITEDAL.getRecords("edit_package_fields_tables", DBHelper.EditPackageFieldsTablesColumns, "PackageID", Constants.PackageID);
-//                    for (SQLiteRecord record : toEditFieads) {
-//                        ArrayList<String> tables
-//                        Constants.toEditFields.put(record.getTableName(),record.getRecord().values().stream().collect(String::toString));
-//                    }
-//                }
 
-//                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(
-//                        record -> Objects.equals(record.PackageID, listShowRecords.get(index).PackageID)
-//                                && Objects.equals(record.ZakatID, listShowRecords.get(index).ZakatID)
-//                                && Objects.equals(record.PersonID, listShowRecords.get(index).getPersonID())).findFirst();
-//                packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
+                //تعديل
+                if (Objects.equals(Constants.PackageType, "تعديل")) {
+                    ArrayList<SQLiteRecord> toEditFieads = Constants.SQLITEDAL.getRecords("edit_package_fields_tables", DBHelper.EditPackageFieldsTablesColumns, "PackageID", Constants.PackageID);
+
+                    if (toEditFieads.size() > 0) {
+                        // get the first record (only one record must be exists)
+                        String[] tablesNames = toEditFieads.get(0).getRecord().get(2).toString().split(",");
+                        String[] tablesColumns = toEditFieads.get(0).getRecord().get(1).toString().split("$");
+
+                        for (int j = 0; j < tablesColumns.length; j++) {
+                            // if current table no a subtable
+                            if (!ValidationController.subTables.contains(tablesNames[j]))
+                                Constants.toEditFields.put(tablesNames[j], new ArrayList<>(Arrays.asList(tablesColumns[j].split(","))));
+                            else
+                                Constants.toEditFields.put(tablesNames[j], new ArrayList<>());
+                        }
+                    } else {
+                        Constants.toEditFields.clear();
+                    }
+                }
+
+                Optional<PackageRecord> packagerecord = lstPackages.stream().filter(
+                        record -> Objects.equals(record.PackageID, listShowRecords.get(index).PackageID)
+                                && Objects.equals(record.ZakatID, listShowRecords.get(index).ZakatID)
+                                && Objects.equals(record.PersonID, listShowRecords.get(index).getPersonID())).findFirst();
+                packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
                 Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();

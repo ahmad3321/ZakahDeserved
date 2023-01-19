@@ -15,9 +15,11 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.example.zakahdeserved.Connection.DAL;
+import com.example.zakahdeserved.Connection.DBHelper;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -25,6 +27,18 @@ public class ValidationController {
     public static boolean ENABLE_FEMALE_TAB = true;
     public static boolean ENABLE_ALL_TABS = true;
     public static String ExceptionQuery = "";
+
+    //تعديل
+    public static ArrayList<String> subTables = new ArrayList<>() {
+        {
+            add("aids");
+            add("assets");
+            add("health_statuses");
+            add("incomes");
+            add("water_types");
+            add("survey_conclusions");
+        }
+    };
 
     public static void lockThePage(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
@@ -104,26 +118,51 @@ public class ValidationController {
     }
 
     //تعديل
+    public static void EnableOnlyToEditFields(View view, String tableName) {
+        // check if the table has fields to be edit
+        if (!Constants.toEditFields.containsKey(tableName))
+            return;
 
-//    public static void EnableToEditFields(View view, String tableName) {
-//        if (!Constants.toEditFields.containsKey(tableName))
-//            return;
-//
-//        final ViewGroup viewGroup = (ViewGroup) view;
-//        try {
-//            int count = viewGroup.getChildCount();
-//            for (int i = 0; i < count; i++) {
-//                View v = viewGroup.getChildAt(i);
-//
-//                if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
-//                    EnableToEditFields(v, tableName);
-//
-//                else
-//                    v.setEnabled(Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId())));
-//            }
-//        } catch (Exception e) {
-//            ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());
-//            e.printStackTrace();
-//        }
-//    }
+        //for subtables enable
+        //insert all columns of this table in toEditFields to be enabled
+        if (subTables.contains(tableName) && Constants.toEditFields.get(tableName).size() == 0) {
+            switch (tableName) {
+                case "aids":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.AidsColumns)));
+                    break;
+                case "assets":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.AssetsColumns)));
+                    break;
+                case "health_statuses":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.Helth_StatusesColumns)));
+                    break;
+                case "incomes":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.IncomesColumns)));
+                    break;
+                case "water_types":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.WaterTypesColumns)));
+                    break;
+                case "survey_conclusions":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.SurveyConclusionColumns)));
+                    break;
+            }
+        }
+
+        final ViewGroup viewGroup = (ViewGroup) view;
+        try {
+            int count = viewGroup.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = viewGroup.getChildAt(i);
+
+                if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
+                    EnableOnlyToEditFields(v, tableName);
+
+                else
+                    v.setEnabled(Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId())));
+            }
+        } catch (Exception e) {
+            ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());
+            e.printStackTrace();
+        }
+    }
 }

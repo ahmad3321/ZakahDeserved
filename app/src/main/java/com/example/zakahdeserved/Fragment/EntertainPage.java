@@ -29,6 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class EntertainPage extends Fragment {
@@ -85,31 +86,67 @@ public class EntertainPage extends Fragment {
             @Override
             public void onPageSelected(int position) {
 //                Log.d("TABSELECT", "pos = " + position);
-                if (!ValidationController.ENABLE_ALL_TABS) {
-                    if (position == 1) ValidationController.lockThePage(Constants.view2);
-                    else if (position == 2) ValidationController.lockThePage(Constants.view4);
-                    else if (position == 3) ValidationController.lockThePage(Constants.view5);
-                    else if (position == 4) ValidationController.lockThePage(Constants.view6);
-                    else if (position == 5) ValidationController.lockThePage(Constants.view7);
-                    else if (position == 6) ValidationController.lockThePage(Constants.view8);
-                    else if (position == 7) ValidationController.lockThePage(Constants.view9);
-
-                    //enable submit button after disable all controls
-                    ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                if (Objects.equals(Constants.PackageType, "تعديل")) {
+                    switch (position) {
+                        case 0:
+                            ValidationController.EnableOnlyToEditFields(Constants.view1, "persons");
+                            ValidationController.EnableOnlyToEditFields(Constants.view1, "families");
+                            break;
+                        case 1:
+                            ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
+                            break;
+                        case 2:
+                            ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
+                            break;
+                        case 3:
+                            ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
+                            break;
+                        case 4:
+                            ValidationController.EnableOnlyToEditFields(Constants.view6, "housing_informations");
+                            ValidationController.EnableOnlyToEditFields(Constants.view6, "water_types");
+                            ValidationController.EnableOnlyToEditFields(Constants.view6, "incomes");
+                            ValidationController.EnableOnlyToEditFields(Constants.view6, "aids");
+                            break;
+                        case 5:
+                            ValidationController.EnableOnlyToEditFields(Constants.view7, "assets");
+                            break;
+                        case 6:
+                            ValidationController.EnableOnlyToEditFields(Constants.view8, "persons");
+                            ValidationController.EnableOnlyToEditFields(Constants.view8, "health_statuses");
+                            break;
+                        case 7:
+                            ValidationController.EnableOnlyToEditFields(Constants.view9, "families");
+                            ValidationController.EnableOnlyToEditFields(Constants.view9, "survey_conclusions");
+                            break;
+                    }
                 } else {
-                    if (position == 1) ValidationController.UnlockThePage(Constants.view2);
-                    else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
-                    else if (position == 3) ValidationController.UnlockThePage(Constants.view5);
-                    else if (position == 4) ValidationController.UnlockThePage(Constants.view6);
-                    else if (position == 5) ValidationController.UnlockThePage(Constants.view7);
-                    else if (position == 6) ValidationController.UnlockThePage(Constants.view8);
-                    else if (position == 7) ValidationController.UnlockThePage(Constants.view9);
-                }
+                    if (!ValidationController.ENABLE_ALL_TABS) {
+                        if (position == 1) ValidationController.lockThePage(Constants.view2);
+                        else if (position == 2) ValidationController.lockThePage(Constants.view4);
+                        else if (position == 3) ValidationController.lockThePage(Constants.view5);
+                        else if (position == 4) ValidationController.lockThePage(Constants.view6);
+                        else if (position == 5) ValidationController.lockThePage(Constants.view7);
+                        else if (position == 6) ValidationController.lockThePage(Constants.view8);
+                        else if (position == 7) ValidationController.lockThePage(Constants.view9);
 
-                if (!ValidationController.ENABLE_FEMALE_TAB)
-                    ValidationController.lockThePage(Constants.view5);
-                else if (ValidationController.ENABLE_ALL_TABS)
-                    ValidationController.UnlockThePage(Constants.view5);
+                        //enable submit button after disable all controls
+                        ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                    } else {
+                        if (position == 1) ValidationController.UnlockThePage(Constants.view2);
+                        else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
+                        else if (position == 3) ValidationController.UnlockThePage(Constants.view5);
+                        else if (position == 4) ValidationController.UnlockThePage(Constants.view6);
+                        else if (position == 5) ValidationController.UnlockThePage(Constants.view7);
+                        else if (position == 6) ValidationController.UnlockThePage(Constants.view8);
+                        else if (position == 7) ValidationController.UnlockThePage(Constants.view9);
+                    }
+
+
+                    if (!ValidationController.ENABLE_FEMALE_TAB)
+                        ValidationController.lockThePage(Constants.view5);
+                    else if (ValidationController.ENABLE_ALL_TABS)
+                        ValidationController.UnlockThePage(Constants.view5);
+                }
             }
 
             @Override
