@@ -37,6 +37,8 @@ public class ValidationController {
             add("incomes");
             add("water_types");
             add("survey_conclusions");
+            add("husbands");
+            add("housing_informations");
         }
     };
 
@@ -119,13 +121,15 @@ public class ValidationController {
 
     //تعديل
     public static void EnableOnlyToEditFields(View view, String tableName) {
-        // check if the table has fields to be edit
+
+        // check if table exists in to edit tables
         if (!Constants.toEditFields.containsKey(tableName))
             return;
 
         //for subtables enable
         //insert all columns of this table in toEditFields to be enabled
-        if (subTables.contains(tableName) && Constants.toEditFields.get(tableName).size() == 0) {
+        if (subTables.contains(tableName) && Constants.toEditFields.containsKey(tableName)
+                && Constants.toEditFields.get(tableName).size() == 0) {
             switch (tableName) {
                 case "aids":
                     Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.AidsColumns)));
@@ -145,6 +149,12 @@ public class ValidationController {
                 case "survey_conclusions":
                     Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.SurveyConclusionColumns)));
                     break;
+                case "husbands":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.HusbandsColumns)));
+                    break;
+                case "housing_informations":
+                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.HousingInformationColumns)));
+                    break;
             }
         }
 
@@ -156,9 +166,30 @@ public class ValidationController {
 
                 if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
                     EnableOnlyToEditFields(v, tableName);
+                else if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner || v instanceof CheckBox)
+                    if (Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId())))
+                        v.setEnabled(true);
+            }
+        } catch (Exception e) {
+            ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());
+            e.printStackTrace();
+        }
+    }
 
-                else
-                    v.setEnabled(Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId())));
+
+    public static void EnableFieledInView(View view, String fieledName) {
+
+        final ViewGroup viewGroup = (ViewGroup) view;
+        try {
+            int count = viewGroup.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View v = viewGroup.getChildAt(i);
+
+                if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout)
+                    EnableFieledInView(v, fieledName);
+                else if (v instanceof EditText || v instanceof Spinner || v instanceof AppCompatSpinner || v instanceof CheckBox || v instanceof Button)
+                    if (Objects.equals(v.getResources().getResourceEntryName(v.getId()), fieledName))
+                        v.setEnabled(true);
             }
         } catch (Exception e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());

@@ -105,6 +105,21 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             }
         }
 
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view8);
+            ValidationController.EnableOnlyToEditFields(Constants.view8, "persons");
+            ValidationController.EnableOnlyToEditFields(Constants.view8, "health_statuses");
+
+            // enable images buttons
+            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
+                ValidationController.EnableFieledInView(Constants.view8, "btn_Image_Document_Person");
+                ValidationController.EnableFieledInView(Constants.view8, "btn_Image_Document_Person_delete");
+                ValidationController.EnableFieledInView(Constants.view8, "CoinType");
+            }
+
+            buttonAdd.setEnabled(true);
+        }
         return view;
     }
 

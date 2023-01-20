@@ -89,34 +89,37 @@ public class EntertainPage extends Fragment {
                 if (Objects.equals(Constants.PackageType, "تعديل")) {
                     switch (position) {
                         case 0:
+                            // lock all the controls
+                            ValidationController.lockThePage(Constants.view1);
+                            // enables to_edit controls
                             ValidationController.EnableOnlyToEditFields(Constants.view1, "persons");
                             ValidationController.EnableOnlyToEditFields(Constants.view1, "families");
+                            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
+                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(true);
+                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(true);
+                            }
+                            else{
+                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(false);
+                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(false);
+                            }
                             break;
                         case 1:
+                            ValidationController.lockThePage(Constants.view2);
                             ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
                             break;
                         case 2:
+                            ValidationController.lockThePage(Constants.view4);
                             ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
                             break;
                         case 3:
-                            ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
                             break;
                         case 4:
-                            ValidationController.EnableOnlyToEditFields(Constants.view6, "housing_informations");
-                            ValidationController.EnableOnlyToEditFields(Constants.view6, "water_types");
-                            ValidationController.EnableOnlyToEditFields(Constants.view6, "incomes");
-                            ValidationController.EnableOnlyToEditFields(Constants.view6, "aids");
                             break;
                         case 5:
-                            ValidationController.EnableOnlyToEditFields(Constants.view7, "assets");
                             break;
                         case 6:
-                            ValidationController.EnableOnlyToEditFields(Constants.view8, "persons");
-                            ValidationController.EnableOnlyToEditFields(Constants.view8, "health_statuses");
                             break;
                         case 7:
-                            ValidationController.EnableOnlyToEditFields(Constants.view9, "families");
-                            ValidationController.EnableOnlyToEditFields(Constants.view9, "survey_conclusions");
                             break;
                     }
                 } else {

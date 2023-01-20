@@ -22,6 +22,7 @@ import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Tab7 extends Fragment implements View.OnClickListener {
 
@@ -62,6 +63,13 @@ public class Tab7 extends Fragment implements View.OnClickListener {
         for (SQLiteRecord record : records) {
             View v = addView(R.layout.row_add_asset, R.id.image_remove_Asset, layoutAsset);
             DBHelper.loadDataToControls(v, record);
+        }
+
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view7);
+            ValidationController.EnableOnlyToEditFields(Constants.view7, "assets");
+            buttonAdd.setEnabled(true);
         }
         return view;
     }

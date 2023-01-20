@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class Tab4 extends Fragment implements View.OnClickListener {
@@ -72,7 +73,13 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             View v = addView();
             DBHelper.loadDataToControls(v, record);
         }
-//        DBHelper.loadDataToControls(view, Constants.familyInfo);
+
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view4);
+            ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
+            buttonAdd.setEnabled(true);
+        }
 
         return view;
     }

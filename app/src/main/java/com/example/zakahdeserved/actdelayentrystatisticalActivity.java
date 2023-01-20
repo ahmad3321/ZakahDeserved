@@ -122,7 +122,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                     }
 
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                    myEdit.putString("entered_date", autoDate);
+                    myEdit.putString("entered_date:" + sharedPreferences.getString("empCode", ""), autoDate);
                     myEdit.putString("entry_id", entryID);
                     myEdit.apply();
 
@@ -130,9 +130,9 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                     intent1.putExtra("JobTitle", JobTitle); //احصاء أو توزيع
                     startActivity(intent1);
                 });
-                     alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
-                     alert.show();
-                });
+                alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
+                alert.show();
+            });
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }

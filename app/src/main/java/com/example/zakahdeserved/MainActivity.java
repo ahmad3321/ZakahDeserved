@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             if (sharedPreferences.getBoolean("login", false)) {
-                loginToActivity(sharedPreferences.getString("entered_date", ""), sharedPreferences.getInt("empDepartment", -1));
+                loginToActivity(sharedPreferences.getString("entered_date:" + sharedPreferences.getString("empCode", ""), ""), sharedPreferences.getInt("empDepartment", -1));
             }
         } catch (GeneralSecurityException | IOException e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "", getApplicationContext() != null ? getApplicationContext().toString() : "", "Constants.SHAREDPREFERENCES_KEY");
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putInt("empDepartment", empDepartment);
                         myEdit.apply();
 
-                        loginToActivity(sharedPreferences.getString("entered_date", ""), empDepartment);
+                        loginToActivity(sharedPreferences.getString("entered_date:" + sharedPreferences.getString("empCode", ""), ""), empDepartment);
 
                     } catch (GeneralSecurityException | IOException e) {
 
@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
             intent1 = new Intent(getApplicationContext(), PackageView.class);
         else
             intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
-//            intent1 = new Intent(getApplicationContext(), PackageView.class);
 
         if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)
             intent1.putExtra("JobTitle", "احصائي"); //احصاء أو توزيع

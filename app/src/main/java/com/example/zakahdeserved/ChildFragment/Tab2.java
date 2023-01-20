@@ -16,6 +16,8 @@ import com.example.zakahdeserved.R;
 import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
+import java.util.Objects;
+
 public class Tab2 extends Fragment {
 
     public Tab2() {
@@ -47,6 +49,11 @@ public class Tab2 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view, Constants.familyInfo);
 
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view2);
+            ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
+        }
         return view;
     }
 

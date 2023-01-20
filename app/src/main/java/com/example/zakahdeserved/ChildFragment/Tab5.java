@@ -21,6 +21,7 @@ import com.example.zakahdeserved.Utility.ValidationController;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Tab5 extends Fragment {
 
@@ -149,7 +150,6 @@ public class Tab5 extends Fragment {
         });
 
 
-
         myCalendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
@@ -198,6 +198,11 @@ public class Tab5 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view5);
+            ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
+        }
         return view5;
     }
 

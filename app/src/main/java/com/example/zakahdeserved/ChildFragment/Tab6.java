@@ -23,6 +23,7 @@ import com.example.zakahdeserved.Utility.Constants;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Tab6 extends Fragment implements View.OnClickListener {
 
@@ -162,6 +163,24 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             View v = addView(R.layout.row_add_aids, R.id.image_remove_Aids, layoutListAids);
             DBHelper.loadDataToControls(v, record);
         }
+
+        //تعديل
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            ValidationController.lockThePage(Constants.view6);
+            ValidationController.EnableOnlyToEditFields(Constants.view6, "housing_informations");
+            ValidationController.EnableOnlyToEditFields(Constants.view6, "water_types");
+            ValidationController.EnableOnlyToEditFields(Constants.view6, "incomes");
+            ValidationController.EnableOnlyToEditFields(Constants.view6, "aids");
+
+            buttonAdd.setEnabled(true);
+            buttonAddIncome.setEnabled(true);
+            buttonAddAids.setEnabled(true);
+
+            view6.findViewById(R.id.RentValueCoinType).setEnabled(RentValue.isEnabled());
+            view6.findViewById(R.id.AmpValueCoinType).setEnabled(view6.findViewById(R.id.OneAmpValue).isEnabled());
+            view6.findViewById(R.id.ConsumptionValueCoinType).setEnabled(view6.findViewById(R.id.ConsumptionValue).isEnabled());
+        }
+
         return view6;
     }
 

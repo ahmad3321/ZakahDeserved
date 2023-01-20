@@ -278,10 +278,10 @@ public class PackageView extends AppCompatActivity {
 
                     if (toEditFieads.size() > 0) {
                         // get the first record (only one record must be exists)
-                        String[] tablesNames = toEditFieads.get(0).getRecord().get(2).toString().split(",");
-                        String[] tablesColumns = toEditFieads.get(0).getRecord().get(1).toString().split("$");
+                        String[] tablesNames = toEditFieads.get(0).getRecord().get(DBHelper.EditPackageFieldsTablesColumns[2]).toString().split(",");
+                        String[] tablesColumns = toEditFieads.get(0).getRecord().get(DBHelper.EditPackageFieldsTablesColumns[1]).toString().split("\\$");
 
-                        for (int j = 0; j < tablesColumns.length; j++) {
+                        for (int j = 0; j < tablesNames.length; j++) {
                             // if current table no a subtable
                             if (!ValidationController.subTables.contains(tablesNames[j]))
                                 Constants.toEditFields.put(tablesNames[j], new ArrayList<>(Arrays.asList(tablesColumns[j].split(","))));
@@ -362,8 +362,8 @@ public class PackageView extends AppCompatActivity {
         // Inflate customToast layout here
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.custometoastlayout, this.findViewById(R.id.CustomToast));
-        TextView textView = (TextView) view.findViewById(R.id.text_toast);
-        ImageView image_toast = (ImageView) view.findViewById(R.id.image_toast1);
+        TextView textView = view.findViewById(R.id.text_toast);
+        ImageView image_toast = view.findViewById(R.id.image_toast1);
         image_toast.setImageResource(imageID);
         textView.setText(text);
         // now the actual toast generated here
@@ -404,6 +404,7 @@ public class PackageView extends AppCompatActivity {
                     HashMap<String, String> spinnerItems = DAL.getSpinnerItems(spinner);
                     Constants.SQLITEDAL.addSpinner(spinner, spinnerItems);
                 }
+
                 //Synchronize packages
 
                 // get empCode
@@ -473,27 +474,6 @@ public class PackageView extends AppCompatActivity {
                             List.of()));
 
 
-                    // if this Form is for collecting data
-//                    if (lstPackages.get(i).Package.equals("إضافة")) {
-//                        if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
-//                            return "false";
-//
-//                        // add info to show
-//                        Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
-//                        Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-//                                && Objects.requireNonNull(x.getRecord().get("PersonID")).toString().endsWith("0")).findFirst(); //get the record of father
-//
-//                        if (familyRecord.isPresent() && fatherRecord.isPresent())
-//                            ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
-//                                    Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
-//                                    Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
-//                                    Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-//                                    lstPackages.get(i).Package,
-//                                    lstPackages.get(i).Program));
-//                        continue;   //don't get more information
-//                    }
-
-
                     //get from health_statuses table
                     for (String personID : PersonsIDs) {
                         List<String> health_statusesColumns = new LinkedList<>(Arrays.asList(DBHelper.Helth_StatusesColumns));
@@ -555,34 +535,19 @@ public class PackageView extends AppCompatActivity {
                             List.of()));
 
                     // Insert all data on SQLite
-                    if (Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
+                    if (!Constants.SQLITEDAL.insertAllRecords(AllFamilyRecords))
                         return "false";
-
-                    // add info to show
-//                    Optional<SQLiteRecord> familyRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("families")).findFirst();
-//                    Optional<SQLiteRecord> fatherRecord = AllFamilyRecords.stream().filter(x -> x.getTableName().equals("persons")
-//                            && Objects.requireNonNull(x.getRecord().get("WhoIs")).toString().equals("رب الأسرة")).findFirst(); //get the record of father
-//
-//                    if (familyRecord.isPresent() && fatherRecord.isPresent())
-//                        ShwoRecords.add(new ShowRecord(lstPackages.get(i).PackageID, zakatId,
-//                                Objects.requireNonNull(familyRecord.get().getRecord().get("City")).toString(),
-//                                Objects.requireNonNull(familyRecord.get().getRecord().get("Town")).toString(),
-//                                Objects.requireNonNull(fatherRecord.get().getRecord().get("Name")).toString(),
-//                                lstPackages.get(i).Package,
-//                                lstPackages.get(i).Program));
                 }
 
                 // get to edit columns
                 ArrayList<SQLiteRecord> toEditRecords = new ArrayList<>();
                 List<String> edit_package_fields_tablesColumns = new LinkedList<>(Arrays.asList(DBHelper.EditPackageFieldsTablesColumns));
                 if (_toEditPackageIDs.size() > 0)
-                    toEditRecords = DAL.getTableData("assets", edit_package_fields_tablesColumns,
+                    toEditRecords = DAL.getTableData("edit_package_fields_tables", edit_package_fields_tablesColumns,
                             "select " + String.join(",", edit_package_fields_tablesColumns) + " from edit_package_fields_tables where PackageID in( " + String.join(",", _toEditPackageIDs) + ");",
                             List.of());
                 Constants.SQLITEDAL.RefreshWithData("edit_package_fields_tables", toEditRecords);
 
-                //do it after end progress
-//                ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
                 refreshShow();
                 return "true";
             } catch (Exception ex) {
@@ -594,7 +559,7 @@ public class PackageView extends AppCompatActivity {
 
         protected void onProgressUpdate(Integer... a) {
             super.onProgressUpdate(a);
-            Log.d(TAG + " onProgressUpdate", "You are in progress update ... " + a[0]);
+//            Log.d(TAG + " onProgressUpdate", "You are in progress update ... " + a[0]);
         }
 
         protected void onPostExecute(String result) {
@@ -609,6 +574,8 @@ public class PackageView extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "تمت عملية تنزيل الحزم بنجاح", Toast.LENGTH_SHORT).show();
             } else {
                 CustomToast("فشلت عملية التنزيل", R.drawable.ic_baseline_cancel);
+                Constants.SQLITEDAL.ClearAllRecords();
+                ShwoRecords.clear();
                 //Toast.makeText(getApplicationContext(), "فشلت عملية التنزيل", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG + " onPostExecute", "" + result);
