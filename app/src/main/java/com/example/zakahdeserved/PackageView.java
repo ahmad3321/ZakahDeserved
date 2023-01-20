@@ -65,6 +65,20 @@ public class PackageView extends AppCompatActivity {
         }
         btn_download = findViewById(R.id.btn_download);
         btn_upload = findViewById(R.id.btn_upload);
+
+        try {
+            SharedPreferences sharedPreferences = null;
+            sharedPreferences = EncryptedSharedPreferences.create(
+                    getApplicationContext(),
+                    "MySharedPref",
+                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
+            Constants.DollarPrise = Double.parseDouble(sharedPreferences.getString("", "1"));
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -547,6 +561,13 @@ public class PackageView extends AppCompatActivity {
                             "select " + String.join(",", edit_package_fields_tablesColumns) + " from edit_package_fields_tables where PackageID in( " + String.join(",", _toEditPackageIDs) + ");",
                             List.of());
                 Constants.SQLITEDAL.RefreshWithData("edit_package_fields_tables", toEditRecords);
+
+                //get dollar price
+                String _dollarPrise = DAL.executeAndGetID(";SELECT sale_price FROM zakatraising.exchange_rate where id = (select max(id) from zakatraising.exchange_rate);");
+                Constants.DollarPrise = Double.parseDouble(_dollarPrise);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString("dollar_prise", _dollarPrise);
+                myEdit.apply();
 
                 refreshShow();
                 return "true";

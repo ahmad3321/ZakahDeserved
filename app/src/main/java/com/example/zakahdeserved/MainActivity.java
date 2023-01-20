@@ -95,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 if (isSuccess) {
                     int empDepartment = DAL.getDepartment(username.getText().toString());
 
+                    String _dollarPrise = DAL.executeAndGetID(";SELECT sale_price FROM zakatraising.exchange_rate where id = (select max(id) from zakatraising.exchange_rate);");
+                    Constants.DollarPrise = Double.parseDouble(_dollarPrise);
+
                     try {
                         SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
                                 getApplicationContext(),
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         myEdit.putString("empCode", username.getText().toString());
                         myEdit.putBoolean("login", true);
                         myEdit.putInt("empDepartment", empDepartment);
+                        myEdit.putString("dollar_prise", _dollarPrise);
                         myEdit.apply();
 
                         loginToActivity(sharedPreferences.getString("entered_date:" + sharedPreferences.getString("empCode", ""), ""), empDepartment);

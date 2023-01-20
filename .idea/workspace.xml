@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="Doing validation controller for edit fields&#10;finished">
+    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished">
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,19 +22,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab5.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab6.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab7.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab8.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab8.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/SQLiteDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/SQLiteDAL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +32,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\PC\.android\avd\Pixel_4_API_32_1.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[acdb2a160406]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -279,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674121980603</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished">
+      <created>1674239543211</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674239543211</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,7 +295,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="Doing validation controller" />
     <MESSAGE value="Doing validation controller for edit fields&#10;finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doing validation controller for edit fields&#10;finished" />
+    <MESSAGE value="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -307,6 +305,21 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
           <line>230</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java</url>
+          <line>452</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/SQLiteDAL.java</url>
+          <line>556</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
+          <line>452</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -326,14 +339,7 @@
         <watch expression="v.isEnabled()" language="JAVA" />
       </configuration>
       <configuration name="Remote">
-        <watch expression="v.getResources().getResourceEntryName(v.getId())" />
-        <watch expression="Constants.toEditFields.containsKey(tableName) &amp;&amp; Objects.requireNonNull(Constants.toEditFields.get(tableName)).contains(v.getResources().getResourceEntryName(v.getId()))" language="JAVA" />
-        <watch expression="v instanceof EditText " />
-        <watch expression="v instanceof Spinner" />
-        <watch expression="Constants.toEditFields.containsKey(&quot;persons&quot;) &amp;&amp; Constants.toEditFields.get(&quot;persons&quot;).contains(&quot;IdentityFile&quot;)" />
-        <watch expression="Constants.PackageID" language="JAVA" />
-        <watch expression="Constants.toEditFields.containsKey(&quot;persons&quot;) &amp;&amp; Constants.toEditFields.get(&quot;persons&quot;).contains(&quot;IdentityFile&quot;)" />
-        <watch expression="Objects.equals(v.getResources().getResourceEntryName(v.getId()), fieledName)" />
+        <watch expression="sqLiteRecord.tableName" />
       </configuration>
     </watches-manager>
   </component>
