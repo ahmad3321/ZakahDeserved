@@ -187,13 +187,23 @@ public class Tab1 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view, Constants.familyInfo);
 
-        //Disable Controls On تعديل packages
         //تعديل
-//        if (Objects.equals(Constants.PackageType, "تعديل")) {
-//            for (String tableName : tablesInView) {
-//                ValidationController.EnableToEditFields(view, tableName);
-//            }
-//        }
+        if (Objects.equals(Constants.PackageType, "تعديل")) {
+            // lock all the controls
+            ValidationController.lockThePage(Constants.view1);
+            // enables to_edit controls
+            ValidationController.EnableOnlyToEditFields(Constants.view1, "persons");
+            ValidationController.EnableOnlyToEditFields(Constants.view1, "families");
+
+            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
+                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(true);
+                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(true);
+            } else {
+                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(false);
+                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(false);
+            }
+        }
+
         return view;
     }
 

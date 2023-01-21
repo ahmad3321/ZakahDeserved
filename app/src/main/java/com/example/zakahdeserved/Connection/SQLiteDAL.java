@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 
 import com.example.zakahdeserved.Utility.ValidationController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -554,12 +553,12 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             }
             db.setTransactionSuccessful();
             success = true;
-        } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "insertAllRecords in SQLliteDAL", "AllFamilyRecords " + AllFamilyRecords);
+        } catch (Exception exception) {
+            ValidationController.GetException(exception.toString().replace("\"", ""), "", "insertAllRecords in SQLliteDAL", "AllFamilyRecords " + AllFamilyRecords);
         } finally {
             db.endTransaction();
         }
-        return !success;
+        return success;
     }
 
     public ArrayList<PackageRecord> getPackages(String empCode) {
@@ -639,6 +638,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             db.insert(sqLiteRecord.tableName, null, contentValues);
         }
         db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
 

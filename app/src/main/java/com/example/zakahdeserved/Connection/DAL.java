@@ -453,7 +453,9 @@ public class DAL {
             String[] _queries = queries.split(";");
 
             //insert
-            st.executeUpdate(_queries[0]);
+            if (_queries[0].length() > 0)
+                st.executeUpdate(_queries[0]);
+
             //select
             ResultSet rs = st.executeQuery(_queries[1]);
             if (rs.next())

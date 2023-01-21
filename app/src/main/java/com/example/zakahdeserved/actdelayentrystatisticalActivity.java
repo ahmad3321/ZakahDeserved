@@ -1,9 +1,7 @@
 package com.example.zakahdeserved;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKey;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -11,14 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Utility.Constants;
-import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -121,18 +117,22 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                         return;
                     }
 
+                    String _dollarPrise = DAL.executeAndGetID(";SELECT sale_price FROM zakatraising.exchange_rate where id = (select max(id) from zakatraising.exchange_rate);");
+                    Constants.DollarPrise = Double.parseDouble(_dollarPrise);
+
                     SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                    myEdit.putString("entered_date", autoDate);
+                    myEdit.putString("entered_date:" + sharedPreferences.getString("empCode", ""), autoDate);
                     myEdit.putString("entry_id", entryID);
+                    myEdit.putString("dollar_prise", _dollarPrise);
                     myEdit.apply();
 
                     Intent intent1 = new Intent(getApplicationContext(), PackageView.class);
                     intent1.putExtra("JobTitle", JobTitle); //احصاء أو توزيع
                     startActivity(intent1);
                 });
-                     alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
-                     alert.show();
-                });
+                alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
+                alert.show();
+            });
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
