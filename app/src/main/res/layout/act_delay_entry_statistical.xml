@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/centre_background"
+
+
     tools:context="com.example.zakahdeserved.actdelayentrystatisticalActivity">
 <ScrollView style="@style/parent">
     <RelativeLayout style="@style/parent">

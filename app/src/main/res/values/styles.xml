@@ -91,4 +91,11 @@
         <item name="android:layout_marginRight">25dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
+    <style name="CustomSpinnerTheme">
+        <item name="android:textColor">@color/black1</item>
+        <item name="android:gravity">end</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:fontFamily">@font/jaz_reg</item>
+
+    </style>
 </resources>

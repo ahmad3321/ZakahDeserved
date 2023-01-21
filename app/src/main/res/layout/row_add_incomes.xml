@@ -30,9 +30,10 @@
                 android:id="@+id/IfIncome"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:entries="@array/YesNo"
-                android:theme="@style/SpinnerTheme"
-                android:layout_marginStart="10dp" />
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"/>
         </LinearLayout>
 
 
@@ -58,7 +59,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/IncomeType"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:layout_marginStart="10dp" />
         </LinearLayout>
         <LinearLayout
@@ -83,7 +85,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:entries="@array/IncomeTime" />
         </LinearLayout>
         <LinearLayout

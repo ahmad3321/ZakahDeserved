@@ -47,7 +47,8 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/WhoIsWifeChildren"
-                    android:theme="@style/SpinnerTheme"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
                     android:layout_marginStart="40dp" />
             </LinearLayout>
             <LinearLayout
@@ -347,7 +348,8 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:entries="@array/Gender"
-                    android:theme="@style/SpinnerTheme"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
                     android:layout_marginStart="70dp" />
             </LinearLayout>
 
@@ -372,7 +374,8 @@
                     android:id="@+id/AcademicQualification"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:theme="@style/SpinnerTheme"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
                     android:layout_marginStart="15dp"
                     android:entries="@array/AcademicQualification"/>
             </LinearLayout>
@@ -398,7 +401,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/YesNo"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:layout_marginStart="55dp" />
         </LinearLayout>
             <LinearLayout

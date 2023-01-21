@@ -163,7 +163,36 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
             }
         });
+        Spinner spnHealthStatus = cricketerView.findViewById(R.id.HealthStatus);
+        spnHealthStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0 ) {   // good
+                    //spnHealthStatus.findViewById(R.id.Relation).setVisibility(View.GONE);
+                    cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+                    cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
+                    cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+                    cricketerView.findViewById(R.id.MonthlyCost).setEnabled(false);
+                    ValidationController.ClearView(cricketerView);
+                } else if(i == 1 )   {
+                    cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
+                    cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
+                    cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
+                    cricketerView.findViewById(R.id.MonthlyCost).setEnabled(true);
+                }
+                else if(i == 2 )   {
+                    cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
+                    cricketerView.findViewById(R.id.HealthStatusType).setEnabled(true);
+                    cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
+                    cricketerView.findViewById(R.id.MonthlyCost).setEnabled(true);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         imageClose.setOnClickListener(v -> removeView(cricketerView));
         if (layoutList.getChildCount() % 2 != 0) {
