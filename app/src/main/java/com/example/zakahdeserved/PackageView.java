@@ -294,14 +294,11 @@ public class PackageView extends AppCompatActivity {
                         // get the first record (only one record must be exists)
                         String[] tablesNames = toEditFieads.get(0).getRecord().get(DBHelper.EditPackageFieldsTablesColumns[2]).toString().split(",");
                         String[] tablesColumns = toEditFieads.get(0).getRecord().get(DBHelper.EditPackageFieldsTablesColumns[1]).toString().split("\\$");
+                        int _length = Math.min(tablesNames.length, tablesColumns.length);
 
-                        for (int j = 0; j < tablesNames.length; j++) {
-                            // if current table no a subtable
-                            if (!ValidationController.subTables.contains(tablesNames[j]))
-                                Constants.toEditFields.put(tablesNames[j], new ArrayList<>(Arrays.asList(tablesColumns[j].split(","))));
-                            else
-                                Constants.toEditFields.put(tablesNames[j], new ArrayList<>());
-                        }
+                        for (int j = 0; j < _length; j++)
+                            Constants.toEditFields.put(tablesNames[j], new ArrayList<>(Arrays.asList(tablesColumns[j].split(","))));
+
                     } else {
                         Constants.toEditFields.clear();
                     }

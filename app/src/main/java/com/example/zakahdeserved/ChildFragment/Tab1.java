@@ -62,8 +62,6 @@ public class Tab1 extends Fragment {
     // this variable for binding the identityFile with its Number to know for whose person this file
     String identityNumber = "";
 
-    String[] tablesInView = new String[]{"families", "persons"};
-
     //
     @Override
     public void onCreate(Bundle savedInstanceState) {

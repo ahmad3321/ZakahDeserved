@@ -108,17 +108,29 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         //تعديل
         if (Objects.equals(Constants.PackageType, "تعديل")) {
             ValidationController.lockThePage(Constants.view8);
-            ValidationController.EnableOnlyToEditFields(Constants.view8, "persons");
-            ValidationController.EnableOnlyToEditFields(Constants.view8, "health_statuses");
+            // من أجل التمييز بين الحقول الخاصة ب رب الأسرة والحقول الخاصة بأفراد الأسرة
+            // الجدول الذي يجوي الجقول الخاصة بأفراد الأسرة تم زيادة ! له فأصبح person! وكذلك جدول الحالات الصحية أصبحhealth_statuses!
+            ValidationController.EnableOnlyToEditFields(Constants.view8, "persons!");
+            ValidationController.EnableOnlyToEditFields(Constants.view8, "health_statuses!");
 
             // enable images buttons
-            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
+            if (Constants.toEditFields.containsKey("persons!") && Constants.toEditFields.get("persons!").contains("IdentityFile")) {
                 ValidationController.EnableFieledInView(Constants.view8, "btn_Image_Document_Person");
                 ValidationController.EnableFieledInView(Constants.view8, "btn_Image_Document_Person_delete");
                 ValidationController.EnableFieledInView(Constants.view8, "CoinType");
             }
 
             buttonAdd.setEnabled(true);
+
+            //enable cointypes for helth status of each person
+            if (Constants.toEditFields.containsKey("health_statuses!") && Constants.toEditFields.get("health_statuses!").contains("MonthlyCost")) {
+                final ViewGroup viewGroup = (ViewGroup) layoutWife;
+                int count = viewGroup.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    ValidationController.EnableFieledInView(v.findViewById(R.id.layout_list_Wifes_HealthStatus), "CoinType");
+                }
+            }
         }
         return view;
     }
@@ -269,18 +281,17 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         spnWhoIs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0 ) {   //زوجة
+                if (i == 0) {   //زوجة
                     WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
                     ((EditText) WifeView.findViewById(R.id.Relation)).setText("");
                     ((Spinner) WifeView.findViewById(R.id.Gender)).setSelection(0);
                     WifeView.findViewById(R.id.Gender).setEnabled(false);
 
-                } else if(i == 1){ //ابن
+                } else if (i == 1) { //ابن
                     WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
                     ((EditText) WifeView.findViewById(R.id.Relation)).setText("");
                     WifeView.findViewById(R.id.Gender).setEnabled(true);
-                }
-                else {
+                } else {
                     WifeView.findViewById(R.id.Relation).setVisibility(View.VISIBLE);
                     WifeView.findViewById(R.id.Gender).setEnabled(true);
                 }

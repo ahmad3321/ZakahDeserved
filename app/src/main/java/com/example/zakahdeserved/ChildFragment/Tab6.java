@@ -179,6 +179,13 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             view6.findViewById(R.id.RentValueCoinType).setEnabled(RentValue.isEnabled());
             view6.findViewById(R.id.AmpValueCoinType).setEnabled(view6.findViewById(R.id.OneAmpValue).isEnabled());
             view6.findViewById(R.id.ConsumptionValueCoinType).setEnabled(view6.findViewById(R.id.ConsumptionValue).isEnabled());
+
+            if (Constants.toEditFields.containsKey("water_types") && Constants.toEditFields.get("water_types").contains("MonthlyValue"))
+                ValidationController.EnableFieledInView(layoutWaterTypeList, "CoinType");
+            if (Constants.toEditFields.containsKey("incomes") && Constants.toEditFields.get("incomes").contains("IncomeValue"))
+                ValidationController.EnableFieledInView(layoutListIncome, "CoinType");
+            if (Constants.toEditFields.containsKey("aids") && Constants.toEditFields.get("aids").contains("AidValue"))
+                ValidationController.EnableFieledInView(layoutListAids, "CoinType");
         }
 
         return view6;
@@ -310,91 +317,92 @@ public class Tab6 extends Fragment implements View.OnClickListener {
     private View addView(int id, int imageID, LinearLayout linearLayout) {
 
         final View IncomeView = getLayoutInflater().inflate(id, null, false);
-        try{
+        try {
 
             // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
-        //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
-        //ImageView imageCloseIncome = (ImageView)IncomeView.findViewById(R.id.image_remove_Income);
-        //ImageView imageCloseAids = (ImageView)IncomeView.findViewById(R.id.image_remove_Aids);
-        ImageView imageClose = (ImageView) IncomeView.findViewById(imageID);
+            //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
+            //ImageView imageCloseIncome = (ImageView)IncomeView.findViewById(R.id.image_remove_Income);
+            //ImageView imageCloseAids = (ImageView)IncomeView.findViewById(R.id.image_remove_Aids);
+            ImageView imageClose = (ImageView) IncomeView.findViewById(imageID);
 
 
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(IncomeView, linearLayout);
-            }
-        });
-        if (linearLayout.getChildCount() % 2 != 0) {
-            IncomeView.setBackgroundColor(Color.WHITE);
-        } else
-            IncomeView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
-        linearLayout.addView(IncomeView);
-
-
-        if (id == R.layout.row_add_incomes) {
-            Spinner spnIfIncome = IncomeView.findViewById(R.id.IfIncome);
-            spnIfIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            imageClose.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i == 0) {
-                        IncomeView.findViewById(R.id.IncomeType).setEnabled(true);
-                        IncomeView.findViewById(R.id.IncomeTime).setEnabled(true);
-                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
-                        IncomeView.findViewById(R.id.CoinType).setEnabled(true);
-                    } else {
-                        IncomeView.findViewById(R.id.IncomeType).setEnabled(false);
-                        IncomeView.findViewById(R.id.IncomeTime).setEnabled(false);
-                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
-                        IncomeView.findViewById(R.id.CoinType).setEnabled(false);
+                public void onClick(View v) {
+                    removeView(IncomeView, linearLayout);
+                }
+            });
+            if (linearLayout.getChildCount() % 2 != 0) {
+                IncomeView.setBackgroundColor(Color.WHITE);
+            } else
+                IncomeView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
+            linearLayout.addView(IncomeView);
+
+
+            if (id == R.layout.row_add_incomes) {
+                Spinner spnIfIncome = IncomeView.findViewById(R.id.IfIncome);
+                spnIfIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        if (i == 0) {
+                            IncomeView.findViewById(R.id.IncomeType).setEnabled(true);
+                            IncomeView.findViewById(R.id.IncomeTime).setEnabled(true);
+                            IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
+                            IncomeView.findViewById(R.id.CoinType).setEnabled(true);
+                        } else {
+                            IncomeView.findViewById(R.id.IncomeType).setEnabled(false);
+                            IncomeView.findViewById(R.id.IncomeTime).setEnabled(false);
+                            IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
+                            IncomeView.findViewById(R.id.CoinType).setEnabled(false);
+                        }
                     }
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
 
-                }
-            });
-            //coin conversion
-            EditText txtIncomeValue = IncomeView.findViewById(R.id.IncomeValue);
-            ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i == 0 && txtIncomeValue.getText().toString().length() > 0)    //tr
-                    {
-                        txtIncomeValue.setText(String.valueOf(Double.parseDouble(txtIncomeValue.getText().toString()) * Constants.DollarPrise));
-                        txtIncomeValue.setEnabled(false);
-                    } else
-                        txtIncomeValue.setEnabled(true);
-                }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+                    }
+                });
+                //coin conversion
+                EditText txtIncomeValue = IncomeView.findViewById(R.id.IncomeValue);
+                ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        if (i == 0 && txtIncomeValue.getText().toString().length() > 0)    //tr
+                        {
+                            txtIncomeValue.setText(String.valueOf(Double.parseDouble(txtIncomeValue.getText().toString()) * Constants.DollarPrise));
+                            txtIncomeValue.setEnabled(false);
+                        } else
+                            txtIncomeValue.setEnabled(true);
+                    }
 
-                }
-            });
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
 
-        } else if (id == R.id.button_add_Aids) {
-            //coin conversion
-            EditText txtAidValue = IncomeView.findViewById(R.id.AidValue);
-            ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i == 0 && txtAidValue.getText().toString().length() > 0)    //tr
-                    {
-                        txtAidValue.setText(String.valueOf(Double.parseDouble(txtAidValue.getText().toString()) * Constants.DollarPrise));
-                        txtAidValue.setEnabled(false);
-                    } else
-                        txtAidValue.setEnabled(true);
-                }
+                    }
+                });
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+            } else if (id == R.id.button_add_Aids) {
+                //coin conversion
+                EditText txtAidValue = IncomeView.findViewById(R.id.AidValue);
+                ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        if (i == 0 && txtAidValue.getText().toString().length() > 0)    //tr
+                        {
+                            txtAidValue.setText(String.valueOf(Double.parseDouble(txtAidValue.getText().toString()) * Constants.DollarPrise));
+                            txtAidValue.setEnabled(false);
+                        } else
+                            txtAidValue.setEnabled(true);
+                    }
 
-                }
-            });
-        }
-        return IncomeView;
-    }catch (Exception ex){
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+            return IncomeView;
+        } catch (Exception ex) {
             return null;
         }
     }
