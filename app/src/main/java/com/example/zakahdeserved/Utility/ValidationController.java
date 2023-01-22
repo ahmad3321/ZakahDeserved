@@ -29,18 +29,18 @@ public class ValidationController {
     public static String ExceptionQuery = "";
 
     //تعديل
-    public static ArrayList<String> subTables = new ArrayList<>() {
-        {
-            add("aids");
-            add("assets");
-            add("health_statuses");
-            add("incomes");
-            add("water_types");
-            add("survey_conclusions");
-            add("husbands");
-            add("housing_informations");
-        }
-    };
+//    public static ArrayList<String> subTables = new ArrayList<>() {
+//        {
+//            add("aids");
+//            add("assets");
+//            add("health_statuses");
+//            add("incomes");
+//            add("water_types");
+//            add("survey_conclusions");
+//            add("husbands");
+//            add("housing_informations");
+//        }
+//    };
 
     public static void lockThePage(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
@@ -125,38 +125,6 @@ public class ValidationController {
         // check if table exists in to edit tables
         if (!Constants.toEditFields.containsKey(tableName))
             return;
-
-        //for subtables enable
-        //insert all columns of this table in toEditFields to be enabled
-        if (subTables.contains(tableName) && Constants.toEditFields.containsKey(tableName)
-                && Constants.toEditFields.get(tableName).size() == 0) {
-            switch (tableName) {
-                case "aids":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.AidsColumns)));
-                    break;
-                case "assets":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.AssetsColumns)));
-                    break;
-                case "health_statuses":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.Helth_StatusesColumns)));
-                    break;
-                case "incomes":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.IncomesColumns)));
-                    break;
-                case "water_types":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.WaterTypesColumns)));
-                    break;
-                case "survey_conclusions":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.SurveyConclusionColumns)));
-                    break;
-                case "husbands":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.HusbandsColumns)));
-                    break;
-                case "housing_informations":
-                    Constants.toEditFields.put(tableName, new ArrayList<>(Arrays.asList(DBHelper.HousingInformationColumns)));
-                    break;
-            }
-        }
 
         final ViewGroup viewGroup = (ViewGroup) view;
         try {

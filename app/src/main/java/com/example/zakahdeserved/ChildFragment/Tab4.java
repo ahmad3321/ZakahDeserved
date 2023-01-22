@@ -79,6 +79,10 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             ValidationController.lockThePage(Constants.view4);
             ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
             buttonAdd.setEnabled(true);
+
+
+            if (Constants.toEditFields.containsKey("health_statuses") && Constants.toEditFields.get("health_statuses").contains("MonthlyCost"))
+                ValidationController.EnableFieledInView(Constants.view4, "CoinType");
         }
 
         return view;
@@ -167,20 +171,19 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         spnHealthStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0 ) {   // good
+                if (i == 0) {   // good
                     //spnHealthStatus.findViewById(R.id.Relation).setVisibility(View.GONE);
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(false);
                     cricketerView.findViewById(R.id.MonthlyCost).setEnabled(false);
                     ValidationController.ClearView(cricketerView);
-                } else if(i == 1 )   {
+                } else if (i == 1) {
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
                     cricketerView.findViewById(R.id.MonthlyCost).setEnabled(true);
-                }
-                else if(i == 2 )   {
+                } else if (i == 2) {
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(true);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
