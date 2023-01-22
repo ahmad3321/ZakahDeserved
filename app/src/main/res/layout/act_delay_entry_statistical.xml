@@ -7,28 +7,22 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/centre_background"
+
+
     tools:context="com.example.zakahdeserved.actdelayentrystatisticalActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/form_app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@drawable/centre_background">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+<ScrollView style="@style/parent">
+    <RelativeLayout style="@style/parent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_alignParentTop="true"
+            android:weightSum="12">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/centre_background">
+            <LinearLayout
+                style="@style/parent"
+                android:layout_weight="3"
+                android:background="@drawable/centre_background"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -37,19 +31,25 @@
                     android:layout_alignParentBottom="true"
                     android:adjustViewBounds="true"
                     android:src="@drawable/logo" />
+            </LinearLayout>
 
-            </RelativeLayout>
+        </LinearLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_main" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <include layout="@layout/content_main"/>
+            </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

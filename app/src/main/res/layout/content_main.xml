@@ -100,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:saveEnabled="false"
                     android:clickable="false"
-
                     android:layout_marginStart="78dp" />
             </LinearLayout>
             <EditText

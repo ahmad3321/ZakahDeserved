@@ -24,7 +24,8 @@
                 android:id="@+id/AssetType"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:entries="@array/AssetType" />
         </FrameLayout>
         <LinearLayout
@@ -66,6 +67,7 @@
                 android:id="@+id/CoinType"
                 android:layout_width="85dp"
                 android:layout_height="40dp"
+
                 android:entries="@array/CoinType" />
         </FrameLayout>
         <LinearLayout
@@ -139,9 +141,10 @@
                 android:id="@+id/AssetAdress"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:entries="@array/AssetAdress"
-                android:theme="@style/SpinnerTheme"
-                android:layout_marginStart="10dp" />
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme" />
         </LinearLayout>
         <FrameLayout
             android:layout_width="wrap_content"
@@ -152,10 +155,11 @@
 
             <Spinner
                 android:id="@+id/BenefitType"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:theme="@style/SpinnerTheme"
-                android:entries="@array/BenefitType" />
+                android:entries="@array/BenefitType"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme" />
         </FrameLayout>
 
     </LinearLayout>
@@ -221,7 +225,8 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:entries="@array/GroundNature" />
         </LinearLayout>
 
@@ -289,7 +294,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/AnimalType"
-                android:theme="@style/SpinnerTheme"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
                 android:layout_marginStart="10dp" />
             <LinearLayout
                 android:layout_width="wrap_content"

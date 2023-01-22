@@ -310,8 +310,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
     private View addView(int id, int imageID, LinearLayout linearLayout) {
 
         final View IncomeView = getLayoutInflater().inflate(id, null, false);
+        try{
 
-        // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
+            // EditText editText = (EditText)cricketerView.findViewById(R.id.HealthStatusType);
         //Spinner HealthStatus = (Spinner)cricketerView.findViewById(R.id.WaterType);
         //ImageView imageCloseIncome = (ImageView)IncomeView.findViewById(R.id.image_remove_Income);
         //ImageView imageCloseAids = (ImageView)IncomeView.findViewById(R.id.image_remove_Aids);
@@ -339,22 +340,20 @@ public class Tab6 extends Fragment implements View.OnClickListener {
                     if (i == 0) {
                         IncomeView.findViewById(R.id.IncomeType).setEnabled(true);
                         IncomeView.findViewById(R.id.IncomeTime).setEnabled(true);
-                        IncomeView.findViewById(R.id.AidValue).setEnabled(true);
+                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
                         IncomeView.findViewById(R.id.CoinType).setEnabled(true);
                     } else {
                         IncomeView.findViewById(R.id.IncomeType).setEnabled(false);
                         IncomeView.findViewById(R.id.IncomeTime).setEnabled(false);
-                        IncomeView.findViewById(R.id.AidValue).setEnabled(false);
+                        IncomeView.findViewById(R.id.IncomeValue).setEnabled(true);
                         IncomeView.findViewById(R.id.CoinType).setEnabled(false);
                     }
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
             });
-
             //coin conversion
             EditText txtIncomeValue = IncomeView.findViewById(R.id.IncomeValue);
             ((Spinner) IncomeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -395,6 +394,9 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             });
         }
         return IncomeView;
+    }catch (Exception ex){
+            return null;
+        }
     }
 
     private void removeViewIncome(View view) {

@@ -60,8 +60,10 @@
                 android:id="@+id/Deserved"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:entries="@array/Deserved"
-                android:layout_marginStart="40dp" />
+                android:layout_marginStart="40dp"
+                android:background="@drawable/spinner_back"
+                android:theme="@style/CustomSpinnerTheme"
+                android:entries="@array/Deserved" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

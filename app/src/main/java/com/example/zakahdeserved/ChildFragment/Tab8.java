@@ -269,11 +269,22 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         spnWhoIs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0 || i == 1) {   //زوجة أو ابن
+                if (i == 0 ) {   //زوجة
                     WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
                     ((EditText) WifeView.findViewById(R.id.Relation)).setText("");
-                } else
+                    ((Spinner) WifeView.findViewById(R.id.Gender)).setSelection(0);
+                    WifeView.findViewById(R.id.Gender).setEnabled(false);
+
+                } else if(i == 1){ //ابن
+                    WifeView.findViewById(R.id.Relation).setVisibility(View.GONE);
+                    ((EditText) WifeView.findViewById(R.id.Relation)).setText("");
+                    WifeView.findViewById(R.id.Gender).setEnabled(true);
+                }
+                else {
                     WifeView.findViewById(R.id.Relation).setVisibility(View.VISIBLE);
+                    WifeView.findViewById(R.id.Gender).setEnabled(true);
+                }
+
             }
 
             @Override
