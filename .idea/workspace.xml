@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished">
+    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="get dollarPrise from server and store in sharedPreferences">
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,17 +22,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab6.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab6.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[acdb2a160406]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -101,7 +98,7 @@
     <property name="android-custom-viewC:/Users/PC/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.6.1/d4d703885d24c61bc0ec39a9a705969e41d773ef/material-1.6.1-sources.jar!/com/google/android/material/tabs/TabLayout.java_TabLayout_DIMENSIONS" value="1080&#10;1920" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java/com/DoCompany/zakahdeserved" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/test2git2/Scorpion" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -276,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674239543211</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="get dollarPrise from server and store in sharedPreferences">
+      <created>1674241533726</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1674241533726</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,7 +300,8 @@
     <MESSAGE value="Doing validation controller" />
     <MESSAGE value="Doing validation controller for edit fields&#10;finished" />
     <MESSAGE value="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doing validation controller for buttons controllers on edit packages.&#10;modifying entry page to b shown for every employee depend on last enter date of employee code.&#10;finished" />
+    <MESSAGE value="get dollarPrise from server and store in sharedPreferences" />
+    <option name="LAST_COMMIT_MESSAGE" value="get dollarPrise from server and store in sharedPreferences" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,6 +345,7 @@
       </configuration>
       <configuration name="Remote">
         <watch expression="sqLiteRecord.tableName" />
+        <watch expression="IncomeView.findViewById(R.id.AidValue)" />
       </configuration>
     </watches-manager>
   </component>
