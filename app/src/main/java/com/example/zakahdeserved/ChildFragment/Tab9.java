@@ -193,10 +193,10 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
 
-            insertQuery.append("INSERT INTO link_entries_to_records (EntryID, ZakatID, PersonID, Program, Event, EntryType) VALUES (")
-                    .append(sharedPreferences.getString("entry_id", "")).append(", ").append(Constants.ZakatID).append(", ")
-                    .append(Constants.PackagePersonID).append(", ").append(Constants.PackageProgram).append(", ")
-                    .append(Constants.PackageType).append(", ").append(sharedPreferences.getInt("empDepartment", -1) == Constants.DISTRIBUTION_JOcB_TITLE).append(");");
+            insertQuery.append("INSERT INTO link_entries_to_records (EntryID, ZakatID, PersonID, Program, Event, EntryType) VALUES ('")
+                    .append(sharedPreferences.getString("entry_id", "")).append("', '").append(Constants.ZakatID).append("', '")
+                    .append(Constants.PackagePersonID).append("', '").append(Constants.PackageProgram).append("', '")
+                    .append(Constants.PackageType).append("', ").append(sharedPreferences.getInt("empDepartment", -1) == Constants.DISTRIBUTION_JOcB_TITLE).append(");");
 
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
