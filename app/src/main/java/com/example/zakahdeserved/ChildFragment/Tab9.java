@@ -205,12 +205,12 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
     // إزالة السجلات الموجودة في الجداول الفرعية من أجل إضافة السجلات الجديدة
     void removeRecordsFromSubTables() {
-        insertQuery.append("DELETE FROM incomes  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
-        insertQuery.append("DELETE FROM water_types  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
-        insertQuery.append("DELETE FROM survey_conclusions  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
-        insertQuery.append("DELETE FROM assets  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
-        insertQuery.append("DELETE FROM aids  WHERE ZakatID = '").append(Constants.ZakatID).append("';");
-        insertQuery.append("DELETE FROM health_statuses  WHERE PersonID in (select PersonID from persons where ZakatID = '").append(Constants.ZakatID).append("');");
+        insertQuery.append("DELETE FROM incomes  WHERE ZakatID = '").append(Constants.ZakatID).append("' and ID > -1;");
+        insertQuery.append("DELETE FROM water_types  WHERE ZakatID = '").append(Constants.ZakatID).append("' and WaterTypeID > -1;");
+        insertQuery.append("DELETE FROM survey_conclusions  WHERE ZakatID = '").append(Constants.ZakatID).append("' and ID > -1;");
+        insertQuery.append("DELETE FROM assets  WHERE ZakatID = '").append(Constants.ZakatID).append("' and AssetID > -1;");
+        insertQuery.append("DELETE FROM aids  WHERE ZakatID = '").append(Constants.ZakatID).append("' and AidID > -1;");
+        insertQuery.append("DELETE FROM health_statuses  WHERE PersonID in (select PersonID from persons where ZakatID = '").append(Constants.ZakatID).append("') and HealthStatusID > -1;");
     }
 
     // Packages and Package_Contents تحديث حالة الحزمة
