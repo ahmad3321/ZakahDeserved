@@ -207,14 +207,17 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
                 //Update the key to new key
                 String newidentityNumber = txtIdentityNumber.getText().toString();
+
                 //swap between old and new
                 identityNumber_ImagesByte.put(newidentityNumber, identityNumber_ImagesByte.get(oldidentityNumber));
                 identityNumber_ImagesByte.remove(oldidentityNumber);
+
 //                if (Constants.imagesFiles.containsKey(identityNumber))
 //                    Constants.imagesFiles.put(identityNumber, "");
 
                 //if pictures have taken and stored in hashmap, swap between old and new idintityNumber
-                if (identityNumber_ImagesByte.get(newidentityNumber).size() > 0) {
+                if (identityNumber_ImagesByte.get(newidentityNumber) != null) {
+                    //swap between old and new
                     String value = Constants.imagesFiles.get(oldidentityNumber);
                     Constants.imagesFiles.remove(oldidentityNumber);
                     Constants.imagesFiles.put(newidentityNumber, value);
@@ -233,7 +236,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
             startActivityForResult(camera_intent, pic_id);
         });
 
-        btn_Image_Document_Person_delete.setOnClickListener(view -> identityNumber_ImagesByte.get(txtIdentityNumber.getText().toString()).clear());
+        btn_Image_Document_Person_delete.setOnClickListener(view -> Objects.requireNonNull(identityNumber_ImagesByte.get(txtIdentityNumber.getText().toString())).clear());
 
 
         imageClose.setOnClickListener(v -> {
@@ -371,7 +374,14 @@ public class Tab8 extends Fragment implements View.OnClickListener {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
                         byte[] byte_arr = stream.toByteArray();
-                        identityNumber_ImagesByte.get(tempIdentityNumber).add(byte_arr);
+
+                        if (identityNumber_ImagesByte.get(tempIdentityNumber) != null)
+                            identityNumber_ImagesByte.get(tempIdentityNumber).add(byte_arr);
+                        else    // set a new arraylist if no arraylist founded
+                            identityNumber_ImagesByte.put(tempIdentityNumber, new ArrayList<>() {{
+                                add(byte_arr);
+                            }});
+
                         Constants.imagesFiles.put(tempIdentityNumber, ConvertImagesToPdf());
                     }
                     break;
