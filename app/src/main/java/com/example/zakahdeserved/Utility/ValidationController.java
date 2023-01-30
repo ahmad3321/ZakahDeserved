@@ -83,13 +83,15 @@ public class ValidationController {
             e.printStackTrace();
         }
     }
+
     public static String updateLabel(Date Date) {
-        String date="";
+        String date = "";
         String myFormat = "yyyy-MM-dd HH:mm";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         date = sdf.format(Date.getTime());
         return date;
     }
+
     public static void ClearView(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
         try {
@@ -120,7 +122,7 @@ public class ValidationController {
             if (ExceptionDescrip.length() > 10) {
                 boolean isSucces = DAL.executeQueries(ExceptionQuery);
                 if (!isSucces) {
-                    Constants.SQLITEDAL.addQuery(ExceptionQuery, "", "exception");
+                    Constants.SQLITEDAL.addQuery(ExceptionQuery, Constants.PackageID, Constants.ZakatID, Constants.PackagePersonID, "exception");
                 }
             }
         } catch (Exception e) {

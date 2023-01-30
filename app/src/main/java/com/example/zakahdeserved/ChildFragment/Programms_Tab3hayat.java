@@ -88,7 +88,7 @@ public class Programms_Tab3hayat extends Fragment implements View.OnClickListene
             case R.id.button_Insert_Hayat:
                 getData();
                 if (!DAL.executeQueries(insertQuery.toString()))
-                    Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID, "package");
+                    Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.PackageID, Constants.ZakatID,Constants.PackagePersonID, "package");
 
                 break;
 
