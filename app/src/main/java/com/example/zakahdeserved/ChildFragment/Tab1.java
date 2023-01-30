@@ -231,7 +231,7 @@ public class Tab1 extends Fragment {
                 case pic_id:
                     if (requestCode == 1 && resultCode == RESULT_OK) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inSampleSize = 8; //4, 8, etc. the more value, the worst quality of image
+                        options.inSampleSize =2; //4, 8, etc. the more value, the worst quality of image
 
                         Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
                         //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);
