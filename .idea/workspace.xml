@@ -21,17 +21,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ZakahDeserved.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ZakahDeserved.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.androidTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab2Fidaa.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab2Fidaa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab3hayat.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab3hayat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab4amal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab4amal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab5Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Programms_Tab5Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/SQLiteDAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/SQLiteDAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/actdelayentrystatisticalActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/packageview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/packageview.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +40,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Yahya\.android\avd\Pixel_5_Edited_API_32.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -67,11 +68,12 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="final/master" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,7 +98,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="Pixel_5_Edited_API_32 [emulator-5554]" />
+    <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_7a-acdb2a160406" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.zakahdeserved" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -126,7 +128,6 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
-      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -166,7 +167,6 @@
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -316,6 +316,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
@@ -342,14 +343,19 @@
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
-          <line>528</line>
-          <option name="timeStamp" value="58" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/PackageView.java</url>
-          <line>477</line>
-          <option name="timeStamp" value="59" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
+          <line>218</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -359,8 +365,14 @@
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
+      <configuration name="app">
+        <watch expression="sharedPreferences.getBoolean(&quot;login&quot;, false)" />
+      </configuration>
       <configuration name="Android Debugger (pid: 10531, debug port: 63735)">
         <watch expression="Base64.encodeToString(pdfByteArray, Base64.DEFAULT)" language="JAVA" />
+      </configuration>
+      <configuration name="Remote">
+        <watch expression=" rs.getBlob(i + 1)" />
       </configuration>
       <configuration name="Android Debugger (pid: 6243, debug port: 63798)">
         <watch expression="entry.getValue()" language="JAVA" />

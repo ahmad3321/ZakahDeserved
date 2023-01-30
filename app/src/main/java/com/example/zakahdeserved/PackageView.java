@@ -41,6 +41,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -203,7 +204,11 @@ public class PackageView extends AppCompatActivity {
         }
         lstPackages = Constants.SQLITEDAL.getPackages(empCode);
         ShwoRecords = Constants.SQLITEDAL.getShowRecords(empCode);
-        runOnUiThread(() -> addView(ShwoRecords));
+        String queriesCount = Constants.SQLITEDAL.getFirstValue("SELECT COUNT(*) FROM Queries where QueryType = 'package';");
+        runOnUiThread(() -> {
+            addView(ShwoRecords);
+            ((TextView) findViewById(R.id.count)).setText(queriesCount);
+        });
     }
 
     public void onClick_UDR(View view) {
@@ -437,6 +442,24 @@ public class PackageView extends AppCompatActivity {
                         " where packages.ToEmployeeCode = '" + empCode + "' and package_contents.PackageStatus = 'قيد العمل';");
 
                 ShwoRecords.clear();
+
+                //get packages into local queries which have to upload
+                ArrayList<String> _lstPackageIds = Constants.SQLITEDAL.getColumn("Select PackageID From Queries Where QueryType = 'package'");
+                ArrayList<String> _lstZakatIds = Constants.SQLITEDAL.getColumn("Select ZakatID From Queries Where QueryType = 'package'");
+                ArrayList<String> _lstPersonIds = Constants.SQLITEDAL.getColumn("Select PersonID From Queries Where QueryType = 'package'");
+
+                //don't store the packages that already processed and filled by data
+                //but didn't uploaded yet. They still in localDB as TO_UPLOAD queries.
+                Iterator<PackageRecord> _iterator = lstPackages.iterator();
+                while (_iterator.hasNext()) {
+                    PackageRecord _package = _iterator.next();
+                    for (int i = 0; i < _lstPackageIds.size(); i++) {
+                        if (Objects.equals(_package.PackageID, _lstPackageIds.get(i))
+                                && Objects.equals(_package.ZakatID, _lstZakatIds.get(i))
+                                && Objects.equals(_package.PersonID, _lstPersonIds.get(i)))
+                            _iterator.remove();
+                    }
+                }
 
                 //store packages info locally
                 Constants.SQLITEDAL.ClearPackages();

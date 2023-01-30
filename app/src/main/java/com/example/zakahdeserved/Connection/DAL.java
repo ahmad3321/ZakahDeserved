@@ -536,9 +536,6 @@ public class DAL {
             while (rs.next()) {
                 HashMap<String, Object> dataTable = new HashMap<>();
                 for (int i = 0; i < Columns.size(); i++) {
-                    if (filePositions.contains(i + 1))  //if pdf file
-                        dataTable.put(Columns.get(i), rs.getBlob(i + 1));
-                    else
                         dataTable.put(Columns.get(i), rs.getString(i + 1));
                 }
                 itemsArray.add(new SQLiteRecord(tableName, dataTable));

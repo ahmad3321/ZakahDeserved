@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.example.zakahdeserved.Utility.ValidationController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
 
 
     public SQLiteDAL(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 9);
+        super(context, DATABASE_NAME, null, 10);
     }
 
 
@@ -43,7 +44,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
                 ");";
 
         String queriesCreate = "CREATE TABLE " + TABLE_QUERIES + " ('QueryID' INTEGER PRIMARY KEY," +
-                "'QueryContents' TEXT, 'ZakatID' TEXT, 'QueryType' TEXT);";
+                "'QueryContents' TEXT,'PackageID' TEXT, 'ZakatID' TEXT, 'PersonID'TEXT, 'QueryType' TEXT);";
 
 
         String PersonCreate = "CREATE TABLE 'persons' " +
@@ -201,13 +202,15 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public void addQuery(String query, String zakatID, String queryType) {
+    public void addQuery(String query, String packageID, String zakatID, String personID, String queryType) {
 
         try {
             SQLiteDatabase db = getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put("QueryContents", query);
+            contentValues.put("PackageID", packageID);
             contentValues.put("ZakatID", zakatID);
+            contentValues.put("PersonID", personID);
             contentValues.put("QueryType", queryType);
             db.insert(TABLE_QUERIES, null, contentValues);
         } catch (Exception ignored) {
@@ -298,6 +301,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             Log.d("SQLITEErr", ex.toString());
         }
     }
+
 
     public void deletePackage(String ZakatID, String PersonId) {
         try {
@@ -646,4 +650,35 @@ public class SQLiteDAL extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<String> getColumn(String tableName, String columnName) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<String> lstResult = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT " + columnName + " FROM " + tableName + " ;", null);
+
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                lstResult.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return lstResult;
+    }
+
+    public ArrayList<String> getColumn(String query) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<String> lstResult = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToNext()) {
+            cursor.moveToFirst();
+            do {
+                lstResult.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return lstResult;
+    }
 }

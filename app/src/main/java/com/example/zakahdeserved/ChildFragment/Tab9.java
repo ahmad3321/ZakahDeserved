@@ -113,7 +113,7 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 alert.setPositiveButton("نعم", (dialogInterface, i) -> {
                     getData();
                     if (!DAL.executeQueries(insertQuery.toString()))
-                        Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.ZakatID, "package");
+                        Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.PackageID, Constants.ZakatID,Constants.PackagePersonID, "package");
                     dialogInterface.dismiss();
                 });
                 alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
