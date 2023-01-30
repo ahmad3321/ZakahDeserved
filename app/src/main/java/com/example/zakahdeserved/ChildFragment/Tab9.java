@@ -216,9 +216,11 @@ public class Tab9 extends Fragment implements View.OnClickListener {
     // Packages and Package_Contents تحديث حالة الحزمة
     void addToPackage() {
 
-        Date c = Calendar.getInstance().getTime();
+        /*Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        autoDate = df.format(c);
+        autoDate = df.format(c);*/
+        autoDate = ValidationController.updateLabel(Calendar.getInstance().getTime());
+
 
         insertQuery.append("UPDATE package_contents SET PackageStatus = 'تم الانتهاء منها' , EndDate = '").append(autoDate)
                 .append("' WHERE PackageID = '").append(Constants.PackageID)

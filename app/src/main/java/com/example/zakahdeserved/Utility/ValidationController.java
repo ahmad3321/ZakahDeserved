@@ -18,8 +18,11 @@ import com.example.zakahdeserved.Connection.DAL;
 import com.example.zakahdeserved.Connection.DBHelper;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -80,7 +83,13 @@ public class ValidationController {
             e.printStackTrace();
         }
     }
-
+    public static String updateLabel(Date Date) {
+        String date="";
+        String myFormat = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        date = sdf.format(Date.getTime());
+        return date;
+    }
     public static void ClearView(View view) {
         final ViewGroup viewGroup = (ViewGroup) view;
         try {

@@ -24,10 +24,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import com.example.zakahdeserved.Utility.ValidationController;
 
 public class actdelayentrystatisticalActivity extends AppCompatActivity {
     EditText LastVisitDate;
     Calendar myCalendar;
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +89,7 @@ public class actdelayentrystatisticalActivity extends AppCompatActivity {
                 alert.setTitle("إدخال البيانات");
                 alert.setMessage("هل أنت متأكد من ادخال البيانات ؟");
                 alert.setPositiveButton("نعم", (dialogInterface, i) -> {
-                    Date c = Calendar.getInstance().getTime();
-                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                    String autoDate = df.format(c);
+                    String autoDate = ValidationController.updateLabel(Calendar.getInstance().getTime());
                     Date ManualDate = null;
                     String ManualDateStr = "";
                     try {

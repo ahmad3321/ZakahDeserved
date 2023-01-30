@@ -131,9 +131,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void loginToActivity(String lastEnterDate, int EmpDepartment) throws GeneralSecurityException, IOException {
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String autoDate = df.format(c);
+        String autoDate = ValidationController.updateLabel(Calendar.getInstance().getTime());
+
         boolean isEntered = autoDate.equals(lastEnterDate);
 
         //if not entered check entry from server
