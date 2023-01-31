@@ -66,7 +66,13 @@ public class ValidationController {
     }
 
     public static void UnlockThePage(View view) {
-        final ViewGroup viewGroup = (ViewGroup) view;
+        final ViewGroup viewGroup;
+        try {
+            viewGroup = (ViewGroup) view;
+        } catch (Exception ex) {
+            view.setEnabled(true);
+            return;
+        }
         try {
             int count = viewGroup.getChildCount();
             for (int i = 0; i < count; i++) {
