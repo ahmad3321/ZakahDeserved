@@ -13,13 +13,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="delete blob using,&#10;don't download packages which are waiting to upload in queries table." />
+    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="1">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/packageview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/packageview.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Yahya\.android\avd\Pixel_5_Edited_API_32.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -47,12 +63,17 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="C:\Users\Yahya\AndroidStudioProjects\key_zakah.jks" />
+    <option name="KEY_ALIAS" value="key_do" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="final/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,19 +98,22 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_7a-acdb2a160406" />
+    <property name="ApkExportedModule" value="ZakahDeserved.app" />
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_5_Edited_API_32 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.zakahdeserved" />
     <property name="DEBUGGER_ID" value="Auto" />
+    <property name="ExportApk.ApkPath" value="C:\Users\Yahya\Desktop" />
+    <property name="ExportApk.BuildVariants" value="release" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java/com/DoCompany/zakahdeserved" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
@@ -107,6 +131,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -146,6 +171,7 @@
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+        <option name="PROFILING_MODE" value="NOT_SET" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -282,19 +308,19 @@
       <option name="project" value="LOCAL" />
       <updated>1674476570679</updated>
     </task>
-    <task id="LOCAL-00019" summary="delete blob using,&#10;don't download packages which are waiting to upload in queries table.">
-      <created>1675101180411</created>
+    <task id="LOCAL-00019" summary="1">
+      <created>1675083097164</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1675101180411</updated>
+      <updated>1675083097164</updated>
     </task>
-    <task id="LOCAL-00020" summary="delete blob using,&#10;don't download packages which are waiting to upload in queries table.">
-      <created>1675193730530</created>
+    <task id="LOCAL-00020" summary="1">
+      <created>1675106585168</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1675193730530</updated>
+      <updated>1675106585168</updated>
     </task>
     <option name="localTasksCounter" value="21" />
     <servers />
@@ -309,14 +335,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1" />
     <MESSAGE value="edit fields customise for all fields and tables." />
     <MESSAGE value="solving problems" />
-    <MESSAGE value="delete blob using,&#10;don't download packages which are waiting to upload in queries table." />
-    <option name="LAST_COMMIT_MESSAGE" value="delete blob using,&#10;don't download packages which are waiting to upload in queries table." />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -337,19 +361,19 @@
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="62" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
+          <line>528</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="63" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="64" />
+          <line>421</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -359,14 +383,8 @@
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
-      <configuration name="app">
-        <watch expression="sharedPreferences.getBoolean(&quot;login&quot;, false)" />
-      </configuration>
       <configuration name="Android Debugger (pid: 10531, debug port: 63735)">
         <watch expression="Base64.encodeToString(pdfByteArray, Base64.DEFAULT)" language="JAVA" />
-      </configuration>
-      <configuration name="Remote">
-        <watch expression=" rs.getBlob(i + 1)" />
       </configuration>
       <configuration name="Android Debugger (pid: 6243, debug port: 63798)">
         <watch expression="entry.getValue()" language="JAVA" />
