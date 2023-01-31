@@ -1,0 +1,1 @@
+-keep class org.mariadb.jdbc.** { *; }
