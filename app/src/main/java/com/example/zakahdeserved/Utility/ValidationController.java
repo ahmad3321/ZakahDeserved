@@ -86,7 +86,8 @@ public class ValidationController {
 
     public static String updateLabel(Date Date) {
         String date = "";
-        String myFormat = "yyyy-MM-dd HH:mm";
+        String myFormat = "yyyy-MM-dd";
+        //String myFormat = "yyyy-MM-dd HH:mm";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         date = sdf.format(Date.getTime());
         return date;

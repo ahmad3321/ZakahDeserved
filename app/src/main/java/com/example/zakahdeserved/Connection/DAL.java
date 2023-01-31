@@ -427,7 +427,7 @@ public class DAL {
             success = true;
         } catch (Exception ex) {
             try {
-                ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries");
+                ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries: "+queries);
                 connection.rollback();
             } catch (SQLException e) {
                 e.printStackTrace();
