@@ -97,8 +97,7 @@ public class EntertainPage extends Fragment {
                             if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
                                 Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(true);
                                 Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(true);
-                            }
-                            else{
+                            } else {
                                 Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(false);
                                 Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(false);
                             }
@@ -130,10 +129,12 @@ public class EntertainPage extends Fragment {
                         else if (position == 4) ValidationController.lockThePage(Constants.view6);
                         else if (position == 5) ValidationController.lockThePage(Constants.view7);
                         else if (position == 6) ValidationController.lockThePage(Constants.view8);
-                        else if (position == 7) ValidationController.lockThePage(Constants.view9);
+                        else if (position == 7) {
+                            ValidationController.lockThePage(Constants.view9);
 
-                        //enable submit button after disable all controls
-                        ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                            //enable submit button after disable all controls
+                            ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                        }
                     } else {
                         if (position == 1) ValidationController.UnlockThePage(Constants.view2);
                         else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
