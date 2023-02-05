@@ -86,71 +86,71 @@ public class EntertainPage extends Fragment {
             @Override
             public void onPageSelected(int position) {
 //                Log.d("TABSELECT", "pos = " + position);
-                if (Objects.equals(Constants.PackageType, "تعديل")) {
-                    switch (position) {
-                        case 0:
-                            // lock all the controls
-                            ValidationController.lockThePage(Constants.view1);
-                            // enables to_edit controls
-                            ValidationController.EnableOnlyToEditFields(Constants.view1, "persons");
-                            ValidationController.EnableOnlyToEditFields(Constants.view1, "families");
-                            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
-                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(true);
-                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(true);
-                            } else {
-                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(false);
-                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(false);
-                            }
-                            break;
-                        case 1:
-                            ValidationController.lockThePage(Constants.view2);
-                            ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
-                            break;
-                        case 2:
-                            ValidationController.lockThePage(Constants.view4);
-                            ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
-                        case 6:
-                            break;
-                        case 7:
-                            break;
-                    }
-                } else {
-                    if (!ValidationController.ENABLE_ALL_TABS) {
-                        if (position == 1) ValidationController.lockThePage(Constants.view2);
-                        else if (position == 2) ValidationController.lockThePage(Constants.view4);
-                        else if (position == 3) ValidationController.lockThePage(Constants.view5);
-                        else if (position == 4) ValidationController.lockThePage(Constants.view6);
-                        else if (position == 5) ValidationController.lockThePage(Constants.view7);
-                        else if (position == 6) ValidationController.lockThePage(Constants.view8);
-                        else if (position == 7) {
-                            ValidationController.lockThePage(Constants.view9);
-
-                            //enable submit button after disable all controls
-                            ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
-                        }
-                    } else {
-                        if (position == 1) ValidationController.UnlockThePage(Constants.view2);
-                        else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
-                        else if (position == 3) ValidationController.UnlockThePage(Constants.view5);
-                        else if (position == 4) ValidationController.UnlockThePage(Constants.view6);
-                        else if (position == 5) ValidationController.UnlockThePage(Constants.view7);
-                        else if (position == 6) ValidationController.UnlockThePage(Constants.view8);
-                        else if (position == 7) ValidationController.UnlockThePage(Constants.view9);
-                    }
-
-
-                    if (!ValidationController.ENABLE_FEMALE_TAB)
-                        ValidationController.lockThePage(Constants.view5);
-                    else if (ValidationController.ENABLE_ALL_TABS)
-                        ValidationController.UnlockThePage(Constants.view5);
-                }
+//                if (Objects.equals(Constants.PackageType, "تعديل")) {
+//                    switch (position) {
+//                        case 0:
+//                            // lock all the controls
+//                            ValidationController.lockThePage(Constants.view1);
+//                            // enables to_edit controls
+//                            ValidationController.EnableOnlyToEditFields(Constants.view1, "persons");
+//                            ValidationController.EnableOnlyToEditFields(Constants.view1, "families");
+//                            if (Constants.toEditFields.containsKey("persons") && Constants.toEditFields.get("persons").contains("IdentityFile")) {
+//                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(true);
+//                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(true);
+//                            } else {
+//                                Constants.view1.findViewById(R.id.btn_Image_Document_delete).setEnabled(false);
+//                                Constants.view1.findViewById(R.id.btn_Image_Document).setEnabled(false);
+//                            }
+//                            break;
+//                        case 1:
+//                            ValidationController.lockThePage(Constants.view2);
+//                            ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
+//                            break;
+//                        case 2:
+//                            ValidationController.lockThePage(Constants.view4);
+//                            ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
+//                            break;
+//                        case 3:
+//                            break;
+//                        case 4:
+//                            break;
+//                        case 5:
+//                            break;
+//                        case 6:
+//                            break;
+//                        case 7:
+//                            break;
+//                    }
+//                } else {
+//                    if (!ValidationController.ENABLE_ALL_TABS) {
+//                        if (position == 1) ValidationController.lockThePage(Constants.view2);
+//                        else if (position == 2) ValidationController.lockThePage(Constants.view4);
+//                        else if (position == 3) ValidationController.lockThePage(Constants.view5);
+//                        else if (position == 4) ValidationController.lockThePage(Constants.view6);
+//                        else if (position == 5) ValidationController.lockThePage(Constants.view7);
+//                        else if (position == 6) ValidationController.lockThePage(Constants.view8);
+//                        else if (position == 7) {
+//                            ValidationController.lockThePage(Constants.view9);
+//
+//                            //enable submit button after disable all controls
+//                            ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+//                        }
+//                    } else {
+//                        if (position == 1) ValidationController.UnlockThePage(Constants.view2);
+//                        else if (position == 2) ValidationController.UnlockThePage(Constants.view4);
+//                        else if (position == 3) ValidationController.UnlockThePage(Constants.view5);
+//                        else if (position == 4) ValidationController.UnlockThePage(Constants.view6);
+//                        else if (position == 5) ValidationController.UnlockThePage(Constants.view7);
+//                        else if (position == 6) ValidationController.UnlockThePage(Constants.view8);
+//                        else if (position == 7) ValidationController.UnlockThePage(Constants.view9);
+//                    }
+//
+//
+//                    if (!ValidationController.ENABLE_FEMALE_TAB)
+//                        ValidationController.lockThePage(Constants.view5);
+//                    else if (ValidationController.ENABLE_ALL_TABS)
+//                        ValidationController.UnlockThePage(Constants.view5);
+//                }
             }
 
             @Override

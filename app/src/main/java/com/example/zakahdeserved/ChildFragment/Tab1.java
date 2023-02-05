@@ -132,6 +132,11 @@ public class Tab1 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
+                if (i == 0) {
+                    ValidationController.UnlockThePage(Constants.view5);
+                } else {
+                    ValidationController.lockThePage(Constants.view5);
+                }
             }
 
             @Override
@@ -146,13 +151,38 @@ public class Tab1 extends Fragment {
         spnExisitStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {   //في حالة موجود
-                    ValidationController.ENABLE_ALL_TABS = true;
-                    txtExisitStatusAbout.setVisibility(View.GONE);
-                    txtExisitStatusAbout.setText("");
-                } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
-                    ValidationController.ENABLE_ALL_TABS = false;
-                    txtExisitStatusAbout.setVisibility(View.VISIBLE);
+                // في غير حالة التعديل
+                if (!Objects.equals(Constants.PackageType, "تعديل")) {
+                    if (i == 0) {   //في حالة موجود
+//                        ValidationController.ENABLE_ALL_TABS = true;
+                        ValidationController.UnlockThePage(Constants.view2);
+                        ValidationController.UnlockThePage(Constants.view4);
+
+                        if (ValidationController.ENABLE_FEMALE_TAB)
+                            ValidationController.UnlockThePage(Constants.view5);
+
+                        ValidationController.UnlockThePage(Constants.view6);
+                        ValidationController.UnlockThePage(Constants.view7);
+                        ValidationController.UnlockThePage(Constants.view8);
+                        ValidationController.UnlockThePage(Constants.view9);
+
+                        txtExisitStatusAbout.setVisibility(View.GONE);
+                        txtExisitStatusAbout.setText("");
+
+                    } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+//                        ValidationController.ENABLE_ALL_TABS = false;
+                        ValidationController.lockThePage(Constants.view2);
+                        ValidationController.lockThePage(Constants.view4);
+                        ValidationController.lockThePage(Constants.view5);
+                        ValidationController.lockThePage(Constants.view6);
+                        ValidationController.lockThePage(Constants.view7);
+                        ValidationController.lockThePage(Constants.view8);
+                        ValidationController.lockThePage(Constants.view9);
+                        //enable submit button after disable all controls
+                        ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+
+                        txtExisitStatusAbout.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
@@ -176,7 +206,9 @@ public class Tab1 extends Fragment {
             updateLabel(txtBirthDate);
         };
 
-        txtBirthDate.setOnClickListener(v -> {
+        txtBirthDate.setOnClickListener(v ->
+
+        {
             new DatePickerDialog(getContext(), date, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -231,7 +263,7 @@ public class Tab1 extends Fragment {
                 case pic_id:
                     if (requestCode == 1 && resultCode == RESULT_OK) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inSampleSize =2; //4, 8, etc. the more value, the worst quality of image
+                        options.inSampleSize = 2; //4, 8, etc. the more value, the worst quality of image
 
                         Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
                         //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);

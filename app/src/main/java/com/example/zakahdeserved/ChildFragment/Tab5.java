@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class Tab5 extends Fragment {
 
-    boolean pageLocked = false;
+    //    boolean pageLocked = false;
     Calendar myCalendar;
 
     public Tab5() {
@@ -51,6 +51,8 @@ public class Tab5 extends Fragment {
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
 
+        spnWifeSocialStatus.setEnabled(false);
+        txtEventDate.setEnabled(false);
         spnWifeSocialStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -61,28 +63,19 @@ public class Tab5 extends Fragment {
                 //متزوجة
                 if (i == 0) {
                     listHusbandStatuses = new String[]{"سليم", "معاق", "معتقل", "مفقود", "مسافر"};
-                    if (pageLocked) {
-                        ValidationController.UnlockThePage(view5);
-                        pageLocked = false;
-                    }
+                    ValidationController.UnlockThePage(view5);
                 }
 
                 //,مهجورة, مطلقة, عزباء
                 else if (i == 1 || i == 3 || i == 4) {
-                    if (!pageLocked) {
-                        ValidationController.lockThePage(view5);
-                        spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
-                        pageLocked = true;
-                    }
+                    ValidationController.lockThePage(view5);
+                    spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
                 }
 
                 //أرملة
                 else if (i == 2) {
                     listHusbandStatuses = new String[]{"متوفى"};
-                    if (pageLocked) {
-                        ValidationController.UnlockThePage(view5);
-                        pageLocked = false;
-                    }
+                    ValidationController.UnlockThePage(view5);
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(view5.getContext(),
@@ -202,8 +195,13 @@ public class Tab5 extends Fragment {
         if (Objects.equals(Constants.PackageType, "تعديل")) {
             ValidationController.lockThePage(Constants.view5);
             ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
-
         }
+
+        if (ValidationController.ENABLE_FEMALE_TAB)
+            ValidationController.UnlockThePage(view5);
+        else
+            ValidationController.lockThePage(view5);
+
         return view5;
     }
 
