@@ -84,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="63dp"
                     android:entries="@array/CoinType"
+                    android:paddingStart="30dp"
                     android:background="@drawable/spinner_back"
                     android:theme="@style/CustomSpinnerTheme"
                     />

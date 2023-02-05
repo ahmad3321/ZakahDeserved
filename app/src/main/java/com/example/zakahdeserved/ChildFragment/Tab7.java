@@ -119,6 +119,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                         AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
                         AssetView.findViewById(R.id.ValueTime).setVisibility(View.GONE);
                         AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.textview_MachineType).setVisibility(View.GONE);
                         break;
 
                     case 2: //أرض زراعية
@@ -127,6 +128,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                         AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
                         AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
                         AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.textview_MachineType).setVisibility(View.GONE);
                         break;
 
                     case 3: //آليات
@@ -135,6 +137,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                         AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.GONE);
                         AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
                         AssetView.findViewById(R.id.MachineType).setVisibility(View.VISIBLE);
+                        AssetView.findViewById(R.id.textview_MachineType).setVisibility(View.VISIBLE);
                         break;
 
                     case 4: //ثروة حيوانية
@@ -143,6 +146,7 @@ public class Tab7 extends Fragment implements View.OnClickListener {
                         AssetView.findViewById(R.id.LinearAnimals).setVisibility(View.VISIBLE);
                         AssetView.findViewById(R.id.ValueTime).setVisibility(View.VISIBLE);
                         AssetView.findViewById(R.id.MachineType).setVisibility(View.GONE);
+                        AssetView.findViewById(R.id.textview_MachineType).setVisibility(View.GONE);
                         break;
                 }
             }

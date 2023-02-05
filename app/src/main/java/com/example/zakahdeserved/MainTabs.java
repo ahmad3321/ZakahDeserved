@@ -74,7 +74,7 @@ public class MainTabs extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new EntertainPage(), "Enertain");
+        adapter.addFrag(new EntertainPage(), "الاستمارة الشخصية");
         //adapter.addFrag(new MusicPage(), "Music");
         //adapter.addFrag(new NewsPage(), "News");
         viewPager.setOffscreenPageLimit(1);

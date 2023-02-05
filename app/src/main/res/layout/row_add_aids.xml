@@ -34,20 +34,20 @@
                 android:theme="@style/SpinnerTheme"
                 android:layout_marginStart="10dp" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="start"
-            android:paddingStart="10dp"
-            android:padding="5dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/jaz_reg"
                 android:text="قيمة المساعدة"
                 android:textSize="18sp"
@@ -56,14 +56,16 @@
             <EditText
                 android:id="@+id/AidValue"
                 android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/purple_200"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="قيمة المساعدة"
-                android:textSize="14sp"
-                android:inputType="number"
-                android:layout_height="40dp"
-                android:textColor="@color/black" />
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
         <FrameLayout
             android:layout_width="wrap_content"
@@ -78,65 +80,68 @@
                 android:entries="@array/CoinType" />
         </FrameLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="start"
-            android:paddingStart="10dp"
-            android:padding="5dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/jaz_reg"
-                android:text="دورة الاستلام"
+                android:hint="دورة الاستلام"
                 android:textSize="18sp"
                 android:typeface="serif" />
 
             <EditText
                 android:id="@+id/ReceivingTime"
                 android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/purple_200"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="دورة الاستلام"
-                android:textSize="14sp"
                 android:inputType="numberDecimal"
-                android:layout_height="40dp"
-                android:textColor="@color/black" />
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="start"
-            android:paddingStart="10dp"
-            android:padding="5dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/jaz_reg"
-                android:text="الجهة المانحة"
+                android:hint="الجهة المانحة"
                 android:textSize="18sp"
                 android:typeface="serif" />
 
             <EditText
                 android:id="@+id/AidsFrom"
                 android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/purple_200"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="الجهة المانحة"
-                android:textSize="14sp"
-                android:layout_height="40dp"
-                android:textColor="@color/black" />
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
         <ImageView
             android:id="@+id/image_remove_Aids"

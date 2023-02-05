@@ -45,7 +45,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
     Button buttonAdd;
 
-    ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
+    //ArrayList<HealthStatuses> HealthStatusesList = new ArrayList<>();
 
     public Tab4() {
     }
@@ -142,11 +142,13 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         return result;
     }*/
 
-
     private View addView() {
-
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
-
+        cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+        cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
+        cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+        cricketerView.findViewById(R.id.MonthlyCost).setEnabled(false);
+        cricketerView.findViewById(R.id.CoinType).setEnabled(false);
         ImageView imageClose = cricketerView.findViewById(R.id.image_remove);
 
         //coin conversion
