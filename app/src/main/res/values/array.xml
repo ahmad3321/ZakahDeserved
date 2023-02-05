@@ -136,7 +136,7 @@
         <item>محل</item>
         <item>منزل</item>
         <item>أرض زراعية</item>
-        <item>آاليات</item>
+        <item>آليات</item>
         <item>ثروة حيوانية</item>
     </string-array>BenefitType
     <string-array name="AssetAdress">

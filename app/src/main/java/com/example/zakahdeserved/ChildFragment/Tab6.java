@@ -2,6 +2,7 @@ package com.example.zakahdeserved.ChildFragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -138,7 +139,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
 
             }
         });
-
         //for coin type conversion
         coinTypeConversion(view6);
 
@@ -337,7 +337,8 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             } else
                 IncomeView.setBackgroundColor(Color.parseColor("#FFA5D3A6"));
             linearLayout.addView(IncomeView);
-
+            EditText et = (EditText) IncomeView.findViewById(R.id.ReceivingTime);
+            et.setFilters(new InputFilter[]{ new ValidationController.InputFilterMinMax("1", "12")});
 
             if (id == R.layout.row_add_incomes) {
                 Spinner spnIfIncome = IncomeView.findViewById(R.id.IfIncome);

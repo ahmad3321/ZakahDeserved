@@ -1,5 +1,7 @@
 package com.example.zakahdeserved.Utility;
 
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -93,7 +95,6 @@ public class ValidationController {
     public static String updateLabel(Date Date) {
         String date = "";
         String myFormat = "yyyy-MM-dd";
-        //String myFormat = "yyyy-MM-dd HH:mm";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         date = sdf.format(Date.getTime());
         return date;
@@ -180,6 +181,35 @@ public class ValidationController {
         } catch (Exception e) {
             ValidationController.GetException(e.toString().replace("\"", ""), "UnlockThePage()", "", view.toString());
             e.printStackTrace();
+        }
+    }
+    public static class InputFilterMinMax implements InputFilter {
+
+        private int min, max;
+
+        public InputFilterMinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        public InputFilterMinMax(String min, String max) {
+            this.min = Integer.parseInt(min);
+            this.max = Integer.parseInt(max);
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
+
+        @Override
+        public CharSequence filter(CharSequence charSequence, int start, int end, Spanned spanned, int dstart, int dend) {
+            try {
+                int input = Integer.parseInt(spanned.toString() + charSequence.toString());
+                if (isInRange(min, max, input))
+                    return null;
+            } catch (NumberFormatException nfe) {
+            }
+            return "";
         }
     }
 }

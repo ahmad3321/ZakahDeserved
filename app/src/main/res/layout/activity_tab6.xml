@@ -48,13 +48,18 @@
                     android:textSize="18sp"
                     android:typeface="serif" />
 
+
                 <Spinner
                     android:id="@+id/HousingNature"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
                     android:entries="@array/HousingNature"
-                    android:layout_marginStart="40dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/Linear_CoinType"
                 android:layout_width="wrap_content"
@@ -77,8 +82,12 @@
                     android:id="@+id/RentValueCoinType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="63dp"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="63dp" />
+                    android:paddingStart="30dp"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,12 +187,16 @@
                     android:text="نوع الأرضية"
                     android:textSize="18sp"
                     android:typeface="serif" />
+
                 <Spinner
                     android:id="@+id/FloorType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
                     android:entries="@array/FloorType"
-                    android:layout_marginStart="60dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -201,12 +214,16 @@
                     android:text="نوع السقف"
                     android:textSize="18sp"
                     android:typeface="serif" />
+
                 <Spinner
                     android:id="@+id/RoofType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
                     android:entries="@array/RoofType"
-                    android:layout_marginStart="60dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -224,12 +241,16 @@
                     android:text="الخلاء"
                     android:textSize="18sp"
                     android:typeface="serif" />
+
                 <Spinner
                     android:id="@+id/WC"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="99dp"
                     android:entries="@array/WC"
-                    android:layout_marginStart="99dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -248,13 +269,15 @@
                     android:text="وقود الطبخ"
                     android:textSize="18sp"
                     android:typeface="serif" />
-
                 <Spinner
                     android:id="@+id/CookingGas"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
-                    android:entries="@array/CookingGas" />
+                    android:entries="@array/CookingGas"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -521,8 +544,11 @@
                     android:id="@+id/Sanitation"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="55dp"
                     android:entries="@array/Sanitation"
-                    android:layout_marginStart="55dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -571,8 +597,11 @@
                     android:id="@+id/Location"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
                     android:entries="@array/Location"
-                    android:layout_marginStart="70dp" />
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -705,8 +734,10 @@
                     android:id="@+id/AmpValueCoinType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/spinner_back"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="20dp" />
+                    android:theme="@style/CustomSpinnerTheme" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -753,12 +784,15 @@
                     android:textSize="18sp"
                     android:typeface="serif" />
 
+
                 <Spinner
                     android:id="@+id/ConsumptionValueCoinType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/spinner_back"
                     android:entries="@array/CoinType"
-                    android:layout_marginStart="20dp" />
+                    android:theme="@style/CustomSpinnerTheme" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
