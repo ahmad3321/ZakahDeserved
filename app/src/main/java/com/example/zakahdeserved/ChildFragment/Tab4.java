@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.zakahdeserved.Connection.DBHelper;
 import com.example.zakahdeserved.Connection.PackageRecord;
@@ -74,19 +76,9 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view4);
-            ValidationController.EnableOnlyToEditFields(Constants.view4, "health_statuses");
-            buttonAdd.setEnabled(true);
-
-
-            if (Constants.toEditFields.containsKey("health_statuses") && Constants.toEditFields.get("health_statuses").contains("MonthlyCost"))
-                ValidationController.EnableFieledInView(Constants.view4, "CoinType");
-        }
-
         return view;
     }
+
 
     public void onClick(View v) {
 

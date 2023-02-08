@@ -3,6 +3,8 @@ package com.example.zakahdeserved.ChildFragment;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -51,8 +53,6 @@ public class Tab5 extends Fragment {
         Spinner spnWifeSocialStatus = view5.findViewById(R.id.WifeSocialStatus);
         Spinner spnHusbandStatuses = view5.findViewById(R.id.Status);
 
-        spnWifeSocialStatus.setEnabled(false);
-        txtEventDate.setEnabled(false);
         spnWifeSocialStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -142,7 +142,6 @@ public class Tab5 extends Fragment {
             }
         });
 
-
         myCalendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
@@ -158,7 +157,6 @@ public class Tab5 extends Fragment {
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
         });
-
 
         Spinner spnIfCondemnation = view5.findViewById(R.id.Ifcondemnation);
         spnIfCondemnation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -191,19 +189,9 @@ public class Tab5 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view5);
-            ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
-        }
-
-        if (ValidationController.ENABLE_FEMALE_TAB)
-            ValidationController.UnlockThePage(view5);
-        else
-            ValidationController.lockThePage(view5);
-
         return view5;
     }
+
 
     private void updateLabel(EditText txtDate) {
         String myFormat = "yyyy-MM-dd HH:mm";

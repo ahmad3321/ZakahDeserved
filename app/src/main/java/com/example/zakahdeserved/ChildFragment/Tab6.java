@@ -164,30 +164,6 @@ public class Tab6 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view6);
-            ValidationController.EnableOnlyToEditFields(Constants.view6, "housing_informations");
-            ValidationController.EnableOnlyToEditFields(Constants.view6, "water_types");
-            ValidationController.EnableOnlyToEditFields(Constants.view6, "incomes");
-            ValidationController.EnableOnlyToEditFields(Constants.view6, "aids");
-
-            buttonAdd.setEnabled(true);
-            buttonAddIncome.setEnabled(true);
-            buttonAddAids.setEnabled(true);
-
-            view6.findViewById(R.id.RentValueCoinType).setEnabled(RentValue.isEnabled());
-            view6.findViewById(R.id.AmpValueCoinType).setEnabled(view6.findViewById(R.id.OneAmpValue).isEnabled());
-            view6.findViewById(R.id.ConsumptionValueCoinType).setEnabled(view6.findViewById(R.id.ConsumptionValue).isEnabled());
-
-            if (Constants.toEditFields.containsKey("water_types") && Constants.toEditFields.get("water_types").contains("MonthlyValue"))
-                ValidationController.EnableFieledInView(layoutWaterTypeList, "CoinType");
-            if (Constants.toEditFields.containsKey("incomes") && Constants.toEditFields.get("incomes").contains("IncomeValue"))
-                ValidationController.EnableFieledInView(layoutListIncome, "CoinType");
-            if (Constants.toEditFields.containsKey("aids") && Constants.toEditFields.get("aids").contains("AidValue"))
-                ValidationController.EnableFieledInView(layoutListAids, "CoinType");
-        }
-
         return view6;
     }
 

@@ -65,16 +65,6 @@ public class Tab7 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view7);
-            ValidationController.EnableOnlyToEditFields(Constants.view7, "assets");
-            buttonAdd.setEnabled(true);
-
-
-            if (Constants.toEditFields.containsKey("assets") && Constants.toEditFields.get("assets").contains("BenefitValue"))
-                ValidationController.EnableFieledInView(Constants.view7, "CoinType");
-        }
         return view;
     }
 

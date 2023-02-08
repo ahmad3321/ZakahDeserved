@@ -41,6 +41,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
@@ -128,14 +129,16 @@ public class Tab1 extends Fragment {
         btn_Image_Document_delete.setOnClickListener(view13 -> ImagesByte.clear());
 
         Spinner spnGender = view.findViewById(R.id.Gender);
+        Spinner spnExisitStatus = view.findViewById(R.id.ExisitStatus);
+
         spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
-                if (i == 0) {
-                    ValidationController.UnlockThePage(Constants.view5);
-                } else {
-                    ValidationController.lockThePage(Constants.view5);
+                if (i == 1 ) {  //المستفيد ذكر
+                    ValidationController.needToEnable[2] = 0;
+                } else if(spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/ {
+                    ValidationController.needToEnable[2] = 1;
                 }
             }
 
@@ -147,39 +150,22 @@ public class Tab1 extends Fragment {
 
         EditText txtExisitStatusAbout = view.findViewById(R.id.ExisitStatusAbout);
 
-        Spinner spnExisitStatus = view.findViewById(R.id.ExisitStatus);
         spnExisitStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // في غير حالة التعديل
                 if (!Objects.equals(Constants.PackageType, "تعديل")) {
                     if (i == 0) {   //في حالة موجود
-//                        ValidationController.ENABLE_ALL_TABS = true;
-                        ValidationController.UnlockThePage(Constants.view2);
-                        ValidationController.UnlockThePage(Constants.view4);
+                        Arrays.fill(ValidationController.needToEnable, 1);
 
-                        if (ValidationController.ENABLE_FEMALE_TAB)
-                            ValidationController.UnlockThePage(Constants.view5);
-
-                        ValidationController.UnlockThePage(Constants.view6);
-                        ValidationController.UnlockThePage(Constants.view7);
-                        ValidationController.UnlockThePage(Constants.view8);
-                        ValidationController.UnlockThePage(Constants.view9);
+                        if (spnGender.getSelectedItemId() == 1) //الجنس ذكر
+                            ValidationController.needToEnable[2] = 0;   //disable hasband view
 
                         txtExisitStatusAbout.setVisibility(View.GONE);
                         txtExisitStatusAbout.setText("");
 
                     } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
-//                        ValidationController.ENABLE_ALL_TABS = false;
-                        ValidationController.lockThePage(Constants.view2);
-                        ValidationController.lockThePage(Constants.view4);
-                        ValidationController.lockThePage(Constants.view5);
-                        ValidationController.lockThePage(Constants.view6);
-                        ValidationController.lockThePage(Constants.view7);
-                        ValidationController.lockThePage(Constants.view8);
-                        ValidationController.lockThePage(Constants.view9);
-                        //enable submit button after disable all controls
-                        ValidationController.UnlockThePage(Constants.view9.findViewById(R.id.button_submit_list));
+                        Arrays.fill(ValidationController.needToEnable, 0);
 
                         txtExisitStatusAbout.setVisibility(View.VISIBLE);
                     }

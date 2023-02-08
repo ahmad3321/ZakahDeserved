@@ -30,25 +30,22 @@ import java.util.Objects;
 
 public class ValidationController {
     public static boolean ENABLE_FEMALE_TAB = true;
-//    public static boolean ENABLE_ALL_TABS = true;
+    //    public static boolean ENABLE_ALL_TABS = true;
     public static String ExceptionQuery = "";
 
-    //تعديل
-//    public static ArrayList<String> subTables = new ArrayList<>() {
-//        {
-//            add("aids");
-//            add("assets");
-//            add("health_statuses");
-//            add("incomes");
-//            add("water_types");
-//            add("survey_conclusions");
-//            add("husbands");
-//            add("housing_informations");
-//        }
-//    };
+
+    // 0:Disable the view, 1:Enable the view, 2:do nothing
+    // only 7 views need to enable/disable, view1 always enabled
+    public static int[] needToEnable = {2, 2, 2, 2, 2, 2, 2};
 
     public static void lockThePage(View view) {
-        final ViewGroup viewGroup = (ViewGroup) view;
+        final ViewGroup viewGroup;
+        try {
+            viewGroup = (ViewGroup) view;
+        } catch (Exception ex) {
+            view.setEnabled(false);
+            return;
+        }
         try {
             int count = viewGroup.getChildCount();
             for (int i = 0; i < count; i++) {
@@ -183,6 +180,7 @@ public class ValidationController {
             e.printStackTrace();
         }
     }
+
     public static class InputFilterMinMax implements InputFilter {
 
         private int min, max;

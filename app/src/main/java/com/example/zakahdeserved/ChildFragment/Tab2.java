@@ -49,11 +49,6 @@ public class Tab2 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view, Constants.familyInfo);
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view2);
-            ValidationController.EnableOnlyToEditFields(Constants.view2, "families");
-        }
         return view;
     }
 
