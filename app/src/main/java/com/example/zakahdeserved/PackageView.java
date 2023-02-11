@@ -317,7 +317,6 @@ public class PackageView extends AppCompatActivity {
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
                 Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
-                ValidationController.ENABLE_FEMALE_TAB = Objects.equals(Constants.SQLITEDAL.getFirstValue("select gender from persons where zakatid = '" + _zakatID + "' and WhoIs = 'رب الأسرة'"), "أنثى");
 
                 //load pdfFiles
                 for (SQLiteRecord sqLiteRecord : Constants.familyInfo) {

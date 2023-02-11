@@ -87,15 +87,6 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             DBHelper.loadDataToControls(v, record);
         }
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view9);
-            ValidationController.EnableOnlyToEditFields(Constants.view9, "families");
-            ValidationController.EnableOnlyToEditFields(Constants.view9, "survey_conclusions");
-            buttonSubmitList.setEnabled(true);
-            buttonAdd_SurveyConclusions.setEnabled(true);
-        }
-
         return view;
     }
 

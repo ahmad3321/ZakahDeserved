@@ -41,6 +41,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
@@ -128,10 +129,17 @@ public class Tab1 extends Fragment {
         btn_Image_Document_delete.setOnClickListener(view13 -> ImagesByte.clear());
 
         Spinner spnGender = view.findViewById(R.id.Gender);
+        Spinner spnExisitStatus = view.findViewById(R.id.ExisitStatus);
+
         spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
+                if (i == 1 ) {  //المستفيد ذكر
+                    ValidationController.needToEnable[2] = 0;
+                } else if(spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/ {
+                    ValidationController.needToEnable[2] = 1;
+                }
             }
 
             @Override
@@ -142,17 +150,25 @@ public class Tab1 extends Fragment {
 
         EditText txtExisitStatusAbout = view.findViewById(R.id.ExisitStatusAbout);
 
-        Spinner spnExisitStatus = view.findViewById(R.id.ExisitStatus);
         spnExisitStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {   //في حالة موجود
-                    ValidationController.ENABLE_ALL_TABS = true;
-                    txtExisitStatusAbout.setVisibility(View.GONE);
-                    txtExisitStatusAbout.setText("");
-                } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
-                    ValidationController.ENABLE_ALL_TABS = false;
-                    txtExisitStatusAbout.setVisibility(View.VISIBLE);
+                // في غير حالة التعديل
+                if (!Objects.equals(Constants.PackageType, "تعديل")) {
+                    if (i == 0) {   //في حالة موجود
+                        Arrays.fill(ValidationController.needToEnable, 1);
+
+                        if (spnGender.getSelectedItemId() == 1) //الجنس ذكر
+                            ValidationController.needToEnable[2] = 0;   //disable hasband view
+
+                        txtExisitStatusAbout.setVisibility(View.GONE);
+                        txtExisitStatusAbout.setText("");
+
+                    } else {    //في حالة غير موجود, غير معروف, عنوان خاطئ .....
+                        Arrays.fill(ValidationController.needToEnable, 0);
+
+                        txtExisitStatusAbout.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
@@ -176,7 +192,9 @@ public class Tab1 extends Fragment {
             updateLabel(txtBirthDate);
         };
 
-        txtBirthDate.setOnClickListener(v -> {
+        txtBirthDate.setOnClickListener(v ->
+
+        {
             new DatePickerDialog(getContext(), date, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -231,7 +249,7 @@ public class Tab1 extends Fragment {
                 case pic_id:
                     if (requestCode == 1 && resultCode == RESULT_OK) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inSampleSize =2; //4, 8, etc. the more value, the worst quality of image
+                        options.inSampleSize = 2; //4, 8, etc. the more value, the worst quality of image
 
                         Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
                         //Bitmap photo = BitmapFactory.decodeFile(mCurrentPhotoPath);

@@ -3,6 +3,8 @@ package com.example.zakahdeserved.ChildFragment;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -25,7 +27,7 @@ import java.util.Objects;
 
 public class Tab5 extends Fragment {
 
-    boolean pageLocked = false;
+    //    boolean pageLocked = false;
     Calendar myCalendar;
 
     public Tab5() {
@@ -61,28 +63,19 @@ public class Tab5 extends Fragment {
                 //متزوجة
                 if (i == 0) {
                     listHusbandStatuses = new String[]{"سليم", "معاق", "معتقل", "مفقود", "مسافر"};
-                    if (pageLocked) {
-                        ValidationController.UnlockThePage(view5);
-                        pageLocked = false;
-                    }
+                    ValidationController.UnlockThePage(view5);
                 }
 
                 //,مهجورة, مطلقة, عزباء
                 else if (i == 1 || i == 3 || i == 4) {
-                    if (!pageLocked) {
-                        ValidationController.lockThePage(view5);
-                        spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
-                        pageLocked = true;
-                    }
+                    ValidationController.lockThePage(view5);
+                    spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
                 }
 
                 //أرملة
                 else if (i == 2) {
                     listHusbandStatuses = new String[]{"متوفى"};
-                    if (pageLocked) {
-                        ValidationController.UnlockThePage(view5);
-                        pageLocked = false;
-                    }
+                    ValidationController.UnlockThePage(view5);
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(view5.getContext(),
@@ -149,7 +142,6 @@ public class Tab5 extends Fragment {
             }
         });
 
-
         myCalendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
@@ -165,7 +157,6 @@ public class Tab5 extends Fragment {
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
         });
-
 
         Spinner spnIfCondemnation = view5.findViewById(R.id.Ifcondemnation);
         spnIfCondemnation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -198,14 +189,9 @@ public class Tab5 extends Fragment {
         //Load data from family info (في حالة حزمة إضافة لن يكون هناك إلا بيانات أولية)
         DBHelper.loadDataToControls(view5, Constants.familyInfo);
 
-        //تعديل
-        if (Objects.equals(Constants.PackageType, "تعديل")) {
-            ValidationController.lockThePage(Constants.view5);
-            ValidationController.EnableOnlyToEditFields(Constants.view5, "husbands");
-
-        }
         return view5;
     }
+
 
     private void updateLabel(EditText txtDate) {
         String myFormat = "yyyy-MM-dd HH:mm";
