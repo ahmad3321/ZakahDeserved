@@ -26,13 +26,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_aids.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_aids.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_incomes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_incomes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_water_type.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_water_type.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -419,13 +412,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java</url>
-          <line>198</line>
-          <option name="timeStamp" value="97" />
+          <line>125</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -437,9 +425,6 @@
     <watches-manager>
       <configuration name="Android Debugger (pid: 10531, debug port: 63735)">
         <watch expression="Base64.encodeToString(pdfByteArray, Base64.DEFAULT)" language="JAVA" />
-      </configuration>
-      <configuration name="AndroidRunConfigurationType">
-        <watch expression="layoutList.getChildCount()" language="JAVA" />
       </configuration>
       <configuration name="Android Debugger (pid: 6243, debug port: 63798)">
         <watch expression="entry.getValue()" language="JAVA" />
