@@ -13,7 +13,28 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="1" />
+    <list default="true" id="0b0456c5-73a0-4405-ade4-3f28d7413ff0" name="Changes" comment="1">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ZakahDeserved.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ZakahDeserved.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.androidTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ZakahDeserved.app.unitTest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Utility/ValidationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tab6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_aids.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_aids.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_incomes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_incomes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_add_water_type.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_add_water_type.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -336,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675605255603</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="1">
+      <created>1676115098324</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1676115098324</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -361,17 +389,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
-          <line>210</line>
+          <line>228</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
-          <line>238</line>
+          <line>256</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab1.java</url>
-          <line>270</line>
+          <line>288</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -381,13 +409,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/ChildFragment/Tab9.java</url>
-          <line>114</line>
+          <line>105</line>
           <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Connection/DAL.java</url>
-          <line>421</line>
-          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/MainActivity.java</url>
@@ -396,8 +419,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="86" />
+          <line>83</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/zakahdeserved/Fragment/EntertainPage.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -409,6 +437,9 @@
     <watches-manager>
       <configuration name="Android Debugger (pid: 10531, debug port: 63735)">
         <watch expression="Base64.encodeToString(pdfByteArray, Base64.DEFAULT)" language="JAVA" />
+      </configuration>
+      <configuration name="AndroidRunConfigurationType">
+        <watch expression="layoutList.getChildCount()" language="JAVA" />
       </configuration>
       <configuration name="Android Debugger (pid: 6243, debug port: 63798)">
         <watch expression="entry.getValue()" language="JAVA" />

@@ -166,7 +166,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {   // good
-                    //spnHealthStatus.findViewById(R.id.Relation).setVisibility(View.GONE);
+                    //spnHealthStatus.findViewById(R.id.Relation).setV isibility(View.GONE);
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(false);
