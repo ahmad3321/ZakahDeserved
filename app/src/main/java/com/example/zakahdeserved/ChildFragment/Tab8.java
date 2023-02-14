@@ -367,7 +367,11 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     private View addHelthStatusView() {
 
         final View healthstatusview = getLayoutInflater().inflate(R.layout.row_add_healthstatus, null, false);
-
+        healthstatusview.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+        healthstatusview.findViewById(R.id.HealthStatusType).setEnabled(false);
+        healthstatusview.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+        healthstatusview.findViewById(R.id.MonthlyCost).setEnabled(false);
+        healthstatusview.findViewById(R.id.CoinType).setEnabled(false);
         ImageView imageClose = healthstatusview.findViewById(R.id.image_remove);
 
         //coin conversion
@@ -375,12 +379,44 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         ((Spinner) healthstatusview.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0 && txtMonthlyCost.getText().toString().length() > 0)    //tr
-                {
-                    txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
-                    txtMonthlyCost.setEnabled(false);
-                } else
-                    txtMonthlyCost.setEnabled(true);
+                if (!((Spinner) healthstatusview.findViewById(R.id.HealthStatus)).getSelectedItem().equals("جيد")) {
+                    if (i == 0 && txtMonthlyCost.getText().toString().length() > 0)    //tr
+                    {
+                        txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                        txtMonthlyCost.setEnabled(false);
+                    } else
+                        txtMonthlyCost.setEnabled(true);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        Spinner spnHealthStatus = healthstatusview.findViewById(R.id.HealthStatus);
+        spnHealthStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {   // good
+                    //spnHealthStatus.findViewById(R.id.Relation).setV isibility(View.GONE);
+                    healthstatusview.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+                    healthstatusview.findViewById(R.id.HealthStatusType).setEnabled(false);
+                    healthstatusview.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+                    healthstatusview.findViewById(R.id.MonthlyCost).setEnabled(false);
+                    ValidationController.ClearView(healthstatusview);
+                } else if (i == 1) {
+                    healthstatusview.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
+                    healthstatusview.findViewById(R.id.HealthStatusType).setEnabled(false);
+                    healthstatusview.findViewById(R.id.HealthStatusDescription).setEnabled(true);
+                    healthstatusview.findViewById(R.id.MonthlyCost).setEnabled(true);
+                    healthstatusview.findViewById(R.id.CoinType).setEnabled(true);
+                } else if (i == 2) {
+                    healthstatusview.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
+                    healthstatusview.findViewById(R.id.HealthStatusType).setEnabled(true);
+                    healthstatusview.findViewById(R.id.HealthStatusDescription).setEnabled(true);
+                    healthstatusview.findViewById(R.id.MonthlyCost).setEnabled(true);
+                    healthstatusview.findViewById(R.id.CoinType).setEnabled(true);
+                }
             }
 
             @Override

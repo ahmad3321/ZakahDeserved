@@ -142,7 +142,6 @@
                 android:backgroundTint="@color/purple_200"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="الجهة المانحة"
-                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
