@@ -135,11 +135,25 @@ public class Tab1 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
-                if (i == 1 ) {  //المستفيد ذكر
+                if (i == 1) {  //المستفيد ذكر
                     ValidationController.needToEnable[2] = 0;
-                } else if(spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/ {
-                    ValidationController.needToEnable[2] = 1;
+
+                    if (Constants.allMembersCount == Constants.femaleCount + Constants.maleCount)
+                        Constants.femaleCount--;
+                    Constants.maleCount++;
+                } else {
+                    if (spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/
+                        ValidationController.needToEnable[2] = 1;
+
+                    if (Constants.allMembersCount == Constants.femaleCount + Constants.maleCount)
+                        Constants.maleCount--;
+                    Constants.femaleCount++;
                 }
+
+                //refresh the show
+                ((EditText) Constants.view8.findViewById(R.id.FeMaleCount)).setText(String.valueOf(Constants.femaleCount));
+                ((EditText) Constants.view8.findViewById(R.id.MaleCount)).setText(String.valueOf(Constants.maleCount));
+                ((EditText) Constants.view8.findViewById(R.id.FinalCount)).setText(String.valueOf(Constants.allMembersCount));
             }
 
             @Override

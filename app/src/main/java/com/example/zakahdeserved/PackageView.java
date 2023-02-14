@@ -290,6 +290,9 @@ public class PackageView extends AppCompatActivity {
                 Constants.PackageType = listShowRecords.get(index).getPackageType();
                 Constants.PackagePersonID = listShowRecords.get(index).getPersonID();
                 Constants.PackageProgram = listShowRecords.get(index).getProgram();
+                Constants.maleCount = 0;
+                Constants.femaleCount = 0;
+                Constants.allMembersCount = 1;
 
                 //تعديل
                 if (Objects.equals(Constants.PackageType, "تعديل")) {
