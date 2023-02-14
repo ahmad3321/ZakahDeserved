@@ -120,20 +120,19 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-        </LinearLayout>
-        <FrameLayout
-            android:id="@+id/spnIncomeCoinType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_grey">
 
             <Spinner
                 android:id="@+id/CoinType"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:entries="@array/CoinType" />
-        </FrameLayout>
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/spinner_back"
+                android:entries="@array/CoinType"
+                android:paddingStart="15dp"
+                android:paddingEnd="20dp"
+                android:theme="@style/CustomSpinnerTheme" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/image_remove_Income"

@@ -85,6 +85,7 @@
                     android:layout_marginStart="63dp"
                     android:entries="@array/CoinType"
                     android:paddingStart="30dp"
+                    android:paddingEnd="20dp"
                     android:background="@drawable/spinner_back"
                     android:theme="@style/CustomSpinnerTheme"
                     />
@@ -729,15 +730,17 @@
                     android:text="نوع العملة"
                     android:textSize="18sp"
                     android:typeface="serif" />
-
                 <Spinner
                     android:id="@+id/AmpValueCoinType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:background="@drawable/spinner_back"
                     android:entries="@array/CoinType"
-                    android:theme="@style/CustomSpinnerTheme" />
+                    android:paddingStart="30dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -765,6 +768,7 @@
                     android:backgroundTint="@color/purple_200"
                     android:fontFamily="@font/jaz_bold"
                     android:hint="قيمة استهلاك الشركة" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -784,15 +788,17 @@
                     android:textSize="18sp"
                     android:typeface="serif" />
 
-
                 <Spinner
                     android:id="@+id/ConsumptionValueCoinType"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:background="@drawable/spinner_back"
                     android:entries="@array/CoinType"
-                    android:theme="@style/CustomSpinnerTheme" />
+                    android:paddingStart="30dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/spinner_back"
+                    android:theme="@style/CustomSpinnerTheme"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

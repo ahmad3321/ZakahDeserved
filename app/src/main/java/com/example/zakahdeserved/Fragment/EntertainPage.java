@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -57,11 +58,8 @@ public class EntertainPage extends Fragment {
 
         Constants.tabLayout = v.findViewById(R.id.tabs);
         Constants.tabLayout.setupWithViewPager(viewPager);
-
         return v;
     }
-
-
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Tab1(), "التقييم الأولي");
@@ -81,7 +79,6 @@ public class EntertainPage extends Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 if (Objects.equals(Constants.PackageType, "تعديل")) {
@@ -198,6 +195,17 @@ public class EntertainPage extends Fragment {
                                 else
                                     ValidationController.UnlockThePage(Constants.view4);
                                 ValidationController.needToEnable[1] = 2;
+                                LinearLayout layoutList = Constants.view4.findViewById(R.id.layout_list);
+                                for(int i=0;i<layoutList.getChildCount();i++){
+                                    View view = layoutList.getChildAt(i);
+                                    if(((Spinner)view.findViewById(R.id.HealthStatus)).getSelectedItem().equals("جيد")){ //good
+                                        view.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+                                        view.findViewById(R.id.HealthStatusType).setEnabled(false);
+                                        view.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+                                        view.findViewById(R.id.MonthlyCost).setEnabled(false);
+                                        view.findViewById(R.id.CoinType).setEnabled(false);
+                                    }
+                                }
                             }
                             break;
                         case 3:
@@ -235,12 +243,29 @@ public class EntertainPage extends Fragment {
                                 else
                                     ValidationController.UnlockThePage(Constants.view8);
                                 ValidationController.needToEnable[5] = 2;
+                                LinearLayout layout_list_Wifes = Constants.view8.findViewById(R.id.layout_list_Wifes);
+                                for(int i=0;i<layout_list_Wifes.getChildCount();i++){
+                                    View view_health = layout_list_Wifes.getChildAt(i);
+                                    LinearLayout layout_list_health = view_health.findViewById(R.id.layout_list_Wifes_HealthStatus);
+                                    for(int j=0;j<layout_list_health.getChildCount();j++){
+                                        View view = layout_list_health.getChildAt(j);
+                                        if(((Spinner)view_health.findViewById(R.id.HealthStatus)).getSelectedItem().equals("جيد")){ //good
+                                            view.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
+                                            view.findViewById(R.id.HealthStatusType).setEnabled(false);
+                                            view.findViewById(R.id.HealthStatusDescription).setEnabled(false);
+                                            view.findViewById(R.id.MonthlyCost).setEnabled(false);
+                                            view.findViewById(R.id.CoinType).setEnabled(false);
+                                        }
+                                    }
+                                }
                             }
                             break;
                         case 7:
                             if (ValidationController.needToEnable[6] != 2) {
-                                if (ValidationController.needToEnable[6] == 0)
+                                if (ValidationController.needToEnable[6] == 0) {
                                     ValidationController.lockThePage(Constants.view9);
+                                    Constants.view9.findViewById(R.id.button_submit_list).setEnabled(true);
+                                }
                                 else
                                     ValidationController.UnlockThePage(Constants.view9);
                                 ValidationController.needToEnable[6] = 2;

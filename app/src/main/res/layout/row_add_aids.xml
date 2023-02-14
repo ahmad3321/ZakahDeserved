@@ -70,14 +70,19 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/round_grey">
+            android:layout_marginStart="10dp">
 
             <Spinner
                 android:id="@+id/CoinType"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:entries="@array/CoinType" />
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_back"
+                android:entries="@array/CoinType"
+                android:paddingStart="15dp"
+                android:paddingEnd="20dp"
+                android:theme="@style/CustomSpinnerTheme" />
         </FrameLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -137,7 +142,6 @@
                 android:backgroundTint="@color/purple_200"
                 android:fontFamily="@font/jaz_bold"
                 android:hint="الجهة المانحة"
-                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"

@@ -106,6 +106,7 @@
             android:paddingRight="10dp"
             android:text="إدخال البيانات"
             android:textAllCaps="false"
+            android:fontFamily="@font/jaz_reg"
             android:textColor="@color/white" />
 
     </LinearLayout>

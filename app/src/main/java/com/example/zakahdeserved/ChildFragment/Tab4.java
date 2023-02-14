@@ -148,14 +148,15 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         ((Spinner) cricketerView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0 && txtMonthlyCost.getText().toString().length() > 0)    //tr
-                {
-                    txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
-                    txtMonthlyCost.setEnabled(false);
-                } else
-                    txtMonthlyCost.setEnabled(true);
+                if (!((Spinner) cricketerView.findViewById(R.id.HealthStatus)).getSelectedItem().equals("جيد")) {
+                    if (i == 0 && txtMonthlyCost.getText().toString().length() > 0 )  //tr
+                    {
+                        txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
+                        txtMonthlyCost.setEnabled(false);
+                    } else
+                        txtMonthlyCost.setEnabled(true);
+                }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -166,7 +167,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {   // good
-                    //spnHealthStatus.findViewById(R.id.Relation).setVisibility(View.GONE);
+                    //spnHealthStatus.findViewById(R.id.Relation).setV isibility(View.GONE);
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(false);
@@ -177,11 +178,14 @@ public class Tab4 extends Fragment implements View.OnClickListener {
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(false);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
                     cricketerView.findViewById(R.id.MonthlyCost).setEnabled(true);
+                    cricketerView.findViewById(R.id.CoinType).setEnabled(true);
                 } else if (i == 2) {
                     cricketerView.findViewById(R.id.HealthStatusEvaluation).setEnabled(true);
                     cricketerView.findViewById(R.id.HealthStatusType).setEnabled(true);
                     cricketerView.findViewById(R.id.HealthStatusDescription).setEnabled(true);
                     cricketerView.findViewById(R.id.MonthlyCost).setEnabled(true);
+                    cricketerView.findViewById(R.id.CoinType).setEnabled(true);
+
                 }
             }
 
@@ -190,7 +194,6 @@ public class Tab4 extends Fragment implements View.OnClickListener {
 
             }
         });
-
         imageClose.setOnClickListener(v -> removeView(cricketerView));
         if (layoutList.getChildCount() % 2 != 0) {
             cricketerView.setBackgroundColor(Color.WHITE);

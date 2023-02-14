@@ -435,6 +435,7 @@
                     android:id="@+id/Status"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
                     android:background="@drawable/spinner_back"
                     android:theme="@style/CustomSpinnerTheme"
                     android:layout_marginStart="45dp" />
