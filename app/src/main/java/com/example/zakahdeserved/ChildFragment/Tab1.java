@@ -61,7 +61,7 @@ public class Tab1 extends Fragment {
     Uri imageUri;
     String mCurrentPhotoPath;
     // this variable for binding the identityFile with its Number to know for whose person this file
-    String identityNumber = "";
+//    String identityNumber = "";
 
     //
     @Override
@@ -94,35 +94,31 @@ public class Tab1 extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (txtIdentityNumber.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
-                    txtIdentityNumber.setText(identityNumber);
-                    return;
-                }
-
-                //store the previous identity number
-                String oldidentityNumber = identityNumber;
-
-                //Update the key to new key
-                identityNumber = txtIdentityNumber.getText().toString();
-
-//                if (Constants.imagesFiles.containsKey(identityNumber))
-//                    Constants.imagesFiles.put(identityNumber, "");
-
-                //if pictures have taken and stored in hashmap
-                if (ImagesByte.size() > 0) {
-                    String value = Constants.imagesFiles.get(oldidentityNumber);
-                    Constants.imagesFiles.remove(oldidentityNumber);
-                    Constants.imagesFiles.put(identityNumber, value);
-                }
+                Constants.Idintity_Number = txtIdentityNumber.getText().toString();
+//                if (txtIdentityNumber.getText().toString().equals("")) {
+//                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
+//                    txtIdentityNumber.setText(identityNumber);
+//                    return;
+//                }
+//
+//                //store the previous identity number
+//                String oldidentityNumber = identityNumber;
+//
+//                //Update the key to new key
+//                identityNumber = txtIdentityNumber.getText().toString();
+//
+////                if (Constants.imagesFiles.containsKey(identityNumber))
+////                    Constants.imagesFiles.put(identityNumber, "");
+//
+//                //if pictures have taken and stored in hashmap
+//                if (ImagesByte.size() > 0) {
+//                    String value = Constants.imagesFiles.get(oldidentityNumber);
+//                    Constants.imagesFiles.remove(oldidentityNumber);
+//                    Constants.imagesFiles.put(identityNumber, value);
+//                }
             }
         });
         btn_Image_Document.setOnClickListener(view12 -> {
-            identityNumber = txtIdentityNumber.getText().toString();
-            if (identityNumber.equals("")) {
-                Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
-                return;
-            }
             AddImage(getContext());
         });
 
@@ -135,11 +131,25 @@ public class Tab1 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ValidationController.ENABLE_FEMALE_TAB = i == 0;    //في حالة المستفيد أنثى
-                if (i == 1 ) {  //المستفيد ذكر
+                if (i == 1) {  //المستفيد ذكر
                     ValidationController.needToEnable[2] = 0;
-                } else if(spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/ {
-                    ValidationController.needToEnable[2] = 1;
+
+                    if (Constants.allMembersCount == Constants.femaleCount + Constants.maleCount)
+                        Constants.femaleCount--;
+                    Constants.maleCount++;
+                } else {
+                    if (spnExisitStatus.getSelectedItemId() == 0) /*المستفيد موجود*/
+                        ValidationController.needToEnable[2] = 1;
+
+                    if (Constants.allMembersCount == Constants.femaleCount + Constants.maleCount)
+                        Constants.maleCount--;
+                    Constants.femaleCount++;
                 }
+
+                //refresh the show
+                ((EditText) Constants.view8.findViewById(R.id.FeMaleCount)).setText(String.valueOf(Constants.femaleCount));
+                ((EditText) Constants.view8.findViewById(R.id.MaleCount)).setText(String.valueOf(Constants.maleCount));
+                ((EditText) Constants.view8.findViewById(R.id.FinalCount)).setText(String.valueOf(Constants.allMembersCount));
             }
 
             @Override
@@ -257,7 +267,7 @@ public class Tab1 extends Fragment {
                         photo.compress(Bitmap.CompressFormat.PNG, 90, stream);
                         byte[] byte_arr = stream.toByteArray();
                         ImagesByte.add(byte_arr);
-                        Constants.imagesFiles.put(identityNumber, ConvertImagesToPdf());
+                        Constants.imagesFiles.put(Constants.ZakatID + "-" + 0, ConvertImagesToPdf());
                     }
                     break;
             }

@@ -244,9 +244,9 @@ public class Tab9 extends Fragment implements View.OnClickListener {
         getAllControlsNamesAndData(Constants.view1);
 
         //get the identity number for the person
-        String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
+        String personId = Objects.requireNonNull(DBHelper.PersonsTable.get("PersonID")).toString();
         //set the person pdfFile of his identity
-        DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
+        DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(personId));
 
         //لم أضع جدول families هنا لأن الجدول لم نكنمل كل بياناته
         // ستكتمل بياناته في الفراغمنت الأخيرة view9 وعندها سنأخذ البيانات منه
@@ -387,24 +387,24 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             View PersonInfo = PersonsList.getChildAt(i);
             String _PersonID = ((EditText) PersonInfo.findViewById(R.id.PersonID)).getText().toString();
 
-            // if personid not empty, take the max person id
-            if (!_PersonID.equals(""))
-                Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
-
-                // if person id is empty
-            else {
-                Constants.IncrementPersonID++;
-                _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
-                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(_PersonID);
-            }
+//            // if personid not empty, take the max person id
+//            if (!_PersonID.equals(""))
+//                Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
+//
+//                // if person id is empty
+//            else {
+//                Constants.IncrementPersonID++;
+//                _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
+//                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(_PersonID);
+//            }
 
             getAllControlsNamesAndData(PersonInfo);
 
             //get the identity number for the person
-            String identityNumber = Objects.requireNonNull(DBHelper.PersonsTable.get("IdentityNumber")).toString();
+            String personId = Objects.requireNonNull(DBHelper.PersonsTable.get("PersonID")).toString();
             //set the person pdfFile of his identity
-            if (Constants.imagesFiles.containsKey(identityNumber))
-                DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(identityNumber));
+            if (Constants.imagesFiles.containsKey(personId))
+                DBHelper.PersonsTable.put("IdentityFile", Constants.imagesFiles.get(personId));
 
             insertQuery.append(getInsertQuery(tablesNames, allItemsTable));
 
