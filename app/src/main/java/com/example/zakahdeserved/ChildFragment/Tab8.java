@@ -1,5 +1,6 @@
 package com.example.zakahdeserved.ChildFragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -51,8 +52,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
     // this variable for binding the identityFile with its Number to know for whose person this file
     // and store the images data wile taking photos
-    HashMap<String, ArrayList<byte[]>> identityNumber_ImagesByte = new HashMap<>();
-    String tempIdentityNumber = "";
+    HashMap<String, ArrayList<byte[]>> personId_ImagesByte = new HashMap<>();
+    String tempPersonID = "";
     //    ArrayList<String> lst_identityNumber = new ArrayList<>();
 //    ArrayList<ArrayList<byte[]>> lst_ImagesByte = new ArrayList<>();
 //    int tagForperson = 0;
@@ -119,6 +120,7 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private View addPersonView(int id, int imageID, LinearLayout linearLayout, boolean enableDeleteView) {
 
         final View WifeView = getLayoutInflater().inflate(id, null, false);
@@ -129,7 +131,10 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         layout_list_Wifes_HealthStatus = WifeView.findViewById(R.id.layout_list_Wifes_HealthStatus);
         Button btn_Image_Document_Person = WifeView.findViewById(R.id.btn_Image_Document_Person);
         Button btn_Image_Document_Person_delete = WifeView.findViewById(R.id.btn_Image_Document_Person_delete);
-        EditText txtIdentityNumber = WifeView.findViewById(R.id.IdentityNumber);
+        EditText txtPersonId = WifeView.findViewById(R.id.PersonID);
+
+        //set person id
+        txtPersonId.setText(Constants.ZakatID + "-" + Constants.IncrementPersonID++);
 
         //coin conversion
         EditText txtMonthlyIncome = WifeView.findViewById(R.id.MonthlyIncome);
@@ -155,68 +160,22 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         if (!enableDeleteView)
             imageClose.setVisibility(View.GONE);
 
-        txtIdentityNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                tempIdentityNumber = txtIdentityNumber.getText().toString();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (txtIdentityNumber.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "لا يمكن أن يكون حقل رقم الوثيقة فارغا", Toast.LENGTH_SHORT).show();
-                    txtIdentityNumber.setText(tempIdentityNumber);
-                    return;
-                }
-
-                //store the previous identity number
-                String oldidentityNumber = tempIdentityNumber;
-
-                //Update the key to new key
-                String newidentityNumber = txtIdentityNumber.getText().toString();
-
-                //swap between old and new
-                identityNumber_ImagesByte.put(newidentityNumber, identityNumber_ImagesByte.get(oldidentityNumber));
-                identityNumber_ImagesByte.remove(oldidentityNumber);
-
-//                if (Constants.imagesFiles.containsKey(identityNumber))
-//                    Constants.imagesFiles.put(identityNumber, "");
-
-                //if pictures have taken and stored in hashmap, swap between old and new idintityNumber
-                if (identityNumber_ImagesByte.get(newidentityNumber) != null) {
-                    //swap between old and new
-                    String value = Constants.imagesFiles.get(oldidentityNumber);
-                    Constants.imagesFiles.remove(oldidentityNumber);
-                    Constants.imagesFiles.put(newidentityNumber, value);
-                }
-            }
-        });
-
         btn_Image_Document_Person.setOnClickListener(view1 -> {
-            tempIdentityNumber = txtIdentityNumber.getText().toString();
-            if (tempIdentityNumber.equals("")) {
-                Toast.makeText(getContext(), "الرجاء إدخال رقم الوثيقة قبل تصوير الوثيقة", Toast.LENGTH_LONG).show();
-                return;
-            }
+            tempPersonID = txtPersonId.getText().toString();
 
             Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(camera_intent, pic_id);
         });
 
-        btn_Image_Document_Person_delete.setOnClickListener(view -> Objects.requireNonNull(identityNumber_ImagesByte.get(txtIdentityNumber.getText().toString())).clear());
+        btn_Image_Document_Person_delete.setOnClickListener(view -> Objects.requireNonNull(personId_ImagesByte.get(txtPersonId.getText().toString())).clear());
 
 
         imageClose.setOnClickListener(v -> {
             Constants.allMembersCount--;
 
             //remove the pdf and the images associated to this person
-            identityNumber_ImagesByte.remove(txtIdentityNumber.getText().toString());
-            Constants.imagesFiles.remove(txtIdentityNumber.getText().toString());
+            personId_ImagesByte.remove(txtPersonId.getText().toString());
+            Constants.imagesFiles.remove(txtPersonId.getText().toString());
 
             if (((Spinner) WifeView.findViewById(R.id.Gender)).getSelectedItemId() == 0)  //أنثى
                 Constants.femaleCount--;
@@ -339,24 +298,22 @@ public class Tab8 extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            switch (requestCode) {
-                case pic_id:
-                    if (data != null) {
-                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
-                        byte[] byte_arr = stream.toByteArray();
+            if (requestCode == pic_id) {
+                if (data != null) {
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
+                    byte[] byte_arr = stream.toByteArray();
 
-                        if (identityNumber_ImagesByte.get(tempIdentityNumber) != null)
-                            identityNumber_ImagesByte.get(tempIdentityNumber).add(byte_arr);
-                        else    // set a new arraylist if no arraylist founded
-                            identityNumber_ImagesByte.put(tempIdentityNumber, new ArrayList<>() {{
-                                add(byte_arr);
-                            }});
+                    if (personId_ImagesByte.get(tempPersonID) != null)
+                        personId_ImagesByte.get(tempPersonID).add(byte_arr);
+                    else    // set a new arraylist if no arraylist founded
+                        personId_ImagesByte.put(tempPersonID, new ArrayList<>() {{
+                            add(byte_arr);
+                        }});
 
-                        Constants.imagesFiles.put(tempIdentityNumber, ConvertImagesToPdf());
-                    }
-                    break;
+                    Constants.imagesFiles.put(tempPersonID, ConvertImagesToPdf());
+                }
             }
         } catch (Exception ex) {
             Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
@@ -444,13 +401,13 @@ public class Tab8 extends Fragment implements View.OnClickListener {
 
     public String ConvertImagesToPdf() {
         Image image1;
-        ByteArrayOutputStream baos = null;
+        ByteArrayOutputStream baos;
         String pdfString = "";
         try {
-            for (int i = 0; i < identityNumber_ImagesByte.get(tempIdentityNumber).size(); i++) {
+            for (int i = 0; i < personId_ImagesByte.get(tempPersonID).size(); i++) {
                 baos = new ByteArrayOutputStream();
                 PdfWriter pdfWriter = PdfWriter.getInstance(document, baos);
-                image1 = Image.getInstance(identityNumber_ImagesByte.get(tempIdentityNumber).get(i));
+                image1 = Image.getInstance(personId_ImagesByte.get(tempPersonID).get(i));
                 document.open();
                 document.add(image1);
                 document.close();

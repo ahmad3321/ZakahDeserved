@@ -387,16 +387,16 @@ public class Tab9 extends Fragment implements View.OnClickListener {
             View PersonInfo = PersonsList.getChildAt(i);
             String _PersonID = ((EditText) PersonInfo.findViewById(R.id.PersonID)).getText().toString();
 
-            // if personid not empty, take the max person id
-            if (!_PersonID.equals(""))
-                Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
-
-                // if person id is empty
-            else {
-                Constants.IncrementPersonID++;
-                _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
-                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(_PersonID);
-            }
+//            // if personid not empty, take the max person id
+//            if (!_PersonID.equals(""))
+//                Constants.IncrementPersonID = Integer.parseInt(_PersonID.substring(_PersonID.indexOf('-')));
+//
+//                // if person id is empty
+//            else {
+//                Constants.IncrementPersonID++;
+//                _PersonID = Constants.ZakatID + "-" + Constants.IncrementPersonID;
+//                ((EditText) PersonInfo.findViewById(R.id.PersonID)).setText(_PersonID);
+//            }
 
             getAllControlsNamesAndData(PersonInfo);
 

@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -319,7 +318,18 @@ public class PackageView extends AppCompatActivity {
                 packagerecord.ifPresent(packageRecord -> Constants.PackagePersonID = packageRecord.PersonID);
 
                 DBHelper.getfamilyFormFromSQLite(_zakatID);
-                Constants.IncrementPersonID = (int) Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).count();
+
+                //get the max personId
+                int maxId = -1;
+                ArrayList<SQLiteRecord> personsRecords = Constants.familyInfo.stream().filter(record -> Objects.equals(record.getTableName(), "persons")).collect(Collectors.toCollection(ArrayList::new));
+
+                for (int j = 0; j < personsRecords.size(); j++) {
+                    String personid = Objects.requireNonNull(personsRecords.get(j).getRecord().get("PersonID")).toString();
+                    int id = Integer.parseInt(personid.substring(personid.indexOf('-') + 1));
+                    if (id > maxId)
+                        maxId = id;
+                }
+                Constants.IncrementPersonID = maxId + 1;
 
                 //load pdfFiles
                 for (SQLiteRecord sqLiteRecord : Constants.familyInfo) {
