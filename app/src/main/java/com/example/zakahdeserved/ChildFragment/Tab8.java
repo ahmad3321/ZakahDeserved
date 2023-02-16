@@ -136,6 +136,8 @@ public class Tab8 extends Fragment implements View.OnClickListener {
         //set person id
         txtPersonId.setText(Constants.ZakatID + "-" + Constants.IncrementPersonID++);
 
+        ((EditText)WifeView.findViewById(R.id.IdentityNumber)).setText(Constants.Idintity_Number);
+
         //coin conversion
         EditText txtMonthlyIncome = WifeView.findViewById(R.id.MonthlyIncome);
         ((Spinner) WifeView.findViewById(R.id.CoinType)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

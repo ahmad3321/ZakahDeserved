@@ -53,4 +53,5 @@ public class Constants {
     public static HashMap<String, String> imagesFiles = new HashMap<>();
 
     public static int femaleCount = 1/*start from 1 for "رب الأسرة"*/, maleCount = 0, allMembersCount = 0;
+    public static String Idintity_Number = "";
 }
