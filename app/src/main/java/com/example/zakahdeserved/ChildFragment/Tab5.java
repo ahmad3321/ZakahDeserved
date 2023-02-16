@@ -65,19 +65,21 @@ public class Tab5 extends Fragment {
                     listHusbandStatuses = new String[]{"سليم", "معاق", "معتقل", "مفقود", "مسافر"};
                     ValidationController.UnlockThePage(view5);
                 }
-
-                //,مهجورة, مطلقة, عزباء
-                else if (i == 1 || i == 3 || i == 4) {
-                    ValidationController.lockThePage(view5);
-                    spnWifeSocialStatus.setEnabled(true);   // بعد قفل الصفحة, تمكين قائمة نوع الزوجة
+                //مهجورةومطلقة
+                else if (i == 1||i == 4) {
+                    ValidationController.UnlockThePage(view5);
+                    spnWifeSocialStatus.setEnabled(true);
                 }
-
                 //أرملة
                 else if (i == 2) {
                     listHusbandStatuses = new String[]{"متوفى"};
                     ValidationController.UnlockThePage(view5);
                 }
-
+                //, عزباء
+                else if ( i == 3 ) {
+                    ValidationController.lockThePage(view5);
+                    spnWifeSocialStatus.setEnabled(true);
+                }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(view5.getContext(),
                         android.R.layout.simple_spinner_item, listHusbandStatuses);
 
