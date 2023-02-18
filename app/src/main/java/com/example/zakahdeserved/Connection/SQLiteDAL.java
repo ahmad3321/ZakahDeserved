@@ -218,25 +218,24 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public String getAllQueries() {
+    public HashMap<String,String> getAllQueries() {
         try {
-            StringBuilder strQueries = new StringBuilder();
+            HashMap<String,String> mapQueries = new HashMap<>();
             SQLiteDatabase db = getReadableDatabase();
 
             Cursor cursor = db.query(false,
                     TABLE_QUERIES,
-                    new String[]{"QueryContents"},
+                    new String[]{"QueryID", "QueryContents"},
                     null, null, null, null, null, null);
 
             if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
                 cursor.moveToFirst();
                 do {
-                    String value = cursor.getString(0);
-                    strQueries.append(value).append("\n");
+                    mapQueries.put(cursor.getString(0),cursor.getString(1));
                 } while (cursor.moveToNext());
                 cursor.close();
             }
-            return strQueries.toString();
+            return mapQueries;
         } catch (Exception ex) {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "getAllQueries in SQLliteDAL", "");
             return null;
@@ -282,10 +281,20 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         return value;
     }
 
-    public void deleteQuery(String zakatID) {
+//    public void deleteQuery(String zakatID) {
+//        try {
+//            SQLiteDatabase db = getWritableDatabase();
+//            db.execSQL("Delete from " + TABLE_QUERIES + " where ZakatID = '" + zakatID + "';");
+//        } catch (Exception ex) {
+//            ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
+//            Log.d("SQLITEErr", ex.toString());
+//        }
+//    }
+
+    public void deleteQuery(String queryID) {
         try {
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("Delete from " + TABLE_QUERIES + " where ZakatID = '" + zakatID + "';");
+            db.execSQL("Delete from " + TABLE_QUERIES + " where QueryID = '" + queryID + "';");
         } catch (Exception ex) {
             ValidationController.GetException(ex.toString().replace("\"", ""), "", "clearQueries in SQLliteDAL", "");
             Log.d("SQLITEErr", ex.toString());
