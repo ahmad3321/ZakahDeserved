@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -363,11 +364,15 @@ public class PackageView extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            if (DAL.executeQueries(Constants.SQLITEDAL.getAllQueries())) {
-                Constants.SQLITEDAL.clearQueries();
-                return true;
+            boolean success = true;
+            HashMap<String, String> allQueries = Constants.SQLITEDAL.getAllQueries();
+            for (Map.Entry<String, String> query : allQueries.entrySet()) {
+                if (DAL.executeQueries(query.getValue()))
+                    Constants.SQLITEDAL.deleteQuery(query.getKey());
+                else
+                    success = false;
             }
-            return false;
+            return success;
         }
 
         @Override
@@ -381,7 +386,7 @@ public class PackageView extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
                 CustomToast("تم رفع جميع السجلات بنجاح", R.drawable.ic_baseline_true);
             else
-                CustomToast("فشلت عملية رفع السجلات", R.drawable.ic_baseline_cancel);
+                CustomToast("فشل...لم يتم رفع جميع السجلات", R.drawable.ic_baseline_cancel);
             //Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
         }
     }

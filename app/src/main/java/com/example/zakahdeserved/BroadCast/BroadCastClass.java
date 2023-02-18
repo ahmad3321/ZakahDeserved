@@ -13,19 +13,7 @@ import com.example.zakahdeserved.Utility.Constants;
 public class BroadCastClass extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        try {
-            if (isOnline(context)) {
-                String allSavedQueries = Constants.SQLITEDAL.getAllQueries();
-                if (DAL.executeQueries(allSavedQueries))
-                    Constants.SQLITEDAL.clearQueries();
-//            Toast.makeText(context, "Successfull", Toast.LENGTH_LONG).show();
-                Log.e("Status", "connected");
-            } else {
-//            Toast.makeText(context, "Bad", Toast.LENGTH_LONG).show();
-                Log.e("Status", "Failure");
-            }
-        } catch (Exception ex) {
-        }
+
     }
 
     public boolean isOnline(Context context) {
