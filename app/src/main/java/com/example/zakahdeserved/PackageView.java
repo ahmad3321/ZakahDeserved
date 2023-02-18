@@ -377,12 +377,12 @@ public class PackageView extends AppCompatActivity {
                 btn_download.setEnabled(true);
                 btn_upload.setEnabled(true);
             });
-            if (done)
-                // Toast.makeText(getApplicationContext(), "تم رفع جميع السجلات بنجاح", Toast.LENGTH_LONG).show();
+            if (done) {
                 CustomToast("تم رفع جميع السجلات بنجاح", R.drawable.ic_baseline_true);
+                refreshShow();
+            }
             else
                 CustomToast("فشلت عملية رفع السجلات", R.drawable.ic_baseline_cancel);
-            //Toast.makeText(getApplicationContext(), "فشلت عملية رفع السجلات", Toast.LENGTH_LONG).show();
         }
     }
 
