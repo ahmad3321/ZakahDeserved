@@ -214,7 +214,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             contentValues.put("QueryType", queryType);
             db.insert(TABLE_QUERIES, null, contentValues);
         } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "addQuery in SQLliteDAL", "query");
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "addQuery in SQLliteDAL", "query :"+query);
         }
     }
 

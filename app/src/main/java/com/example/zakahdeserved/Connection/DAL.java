@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -427,7 +429,7 @@ public class DAL {
             success = true;
         } catch (Exception ex) {
             try {
-                ValidationController.GetException(ex.toString().replace("\"", ""), "", "executeQueries in DAL", "queries: "+queries);
+                ValidationController.GetException(ex.toString().replace("\"", ""), Calendar.getInstance().toString(), "executeQueries in DAL", "queries: ");
                 connection.rollback();
             } catch (SQLException e) {
                 e.printStackTrace();

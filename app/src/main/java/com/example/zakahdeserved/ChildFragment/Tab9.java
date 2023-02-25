@@ -102,9 +102,13 @@ public class Tab9 extends Fragment implements View.OnClickListener {
                 alert.setTitle("إدخال البيانات");
                 alert.setMessage("هل أنت متأكد من ادخال البيانات ؟");
                 alert.setPositiveButton("نعم", (dialogInterface, i) -> {
-                    getData();
-                    if (!DAL.executeQueries(insertQuery.toString()))
-                        Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.PackageID, Constants.ZakatID,Constants.PackagePersonID, "package");
+                    try {
+                        getData();
+                        if (!DAL.executeQueries(insertQuery.toString()))
+                            Constants.SQLITEDAL.addQuery(insertQuery.toString(), Constants.PackageID, Constants.ZakatID, Constants.PackagePersonID, "package");
+                    }catch (Exception ignored){
+                        ValidationController.GetException(ignored.toString().replace("\"", ""), "", "insert in Tab9", insertQuery.toString());
+                    }
                     dialogInterface.dismiss();
                 });
                 alert.setNegativeButton("لا", (dialog, which) -> dialog.dismiss());
@@ -143,35 +147,39 @@ public class Tab9 extends Fragment implements View.OnClickListener {
 
 
     void getData() {
-        DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.PersonsTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.HusbandsTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.HousingInformaionTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.WaterTypesTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.IncomesTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.AidsTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.AssetsTable.put("ZakatID", Constants.ZakatID);
-        DBHelper.SurveyConclusionTable.put("ZakatID", Constants.ZakatID);
+        try {
+            DBHelper.FamiliesTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.PersonsTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.HusbandsTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.HousingInformaionTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.WaterTypesTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.IncomesTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.AidsTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.AssetsTable.put("ZakatID", Constants.ZakatID);
+            DBHelper.SurveyConclusionTable.put("ZakatID", Constants.ZakatID);
 
-        removeRecordsFromSubTables();
+            removeRecordsFromSubTables();
 
-        getFromView1();
-        getFromView2();
-        getFromView4();
-        if (ValidationController.ENABLE_FEMALE_TAB) //المستفيد أنثى
-            getFromView5();
-        getFromView6();
-        getFromView7();
-        getFromView8();
-        getFromView9();
+            getFromView1();
+            getFromView2();
+            getFromView4();
+            if (ValidationController.ENABLE_FEMALE_TAB) //المستفيد أنثى
+                getFromView5();
+            getFromView6();
+            getFromView7();
+            getFromView8();
+            getFromView9();
 
-        addToPackage();
-        linkRecordToEntry();
-        //calculate family pointers
-        insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
+            addToPackage();
+            linkRecordToEntry();
+            //calculate family pointers
+            insertQuery.append("call calculate_pointers('").append(Constants.ZakatID).append("', '").append(autoDate).append("');");
 
-        // remove the package from local after end work with it.
-        Constants.SQLITEDAL.deletePackage(Constants.ZakatID, Constants.PackagePersonID);
+            // remove the package from local after end work with it.
+            Constants.SQLITEDAL.deletePackage(Constants.ZakatID, Constants.PackagePersonID);
+        }  catch (Exception ignored) {
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "getData in Tab9", "");
+        }
     }
 
     private void linkRecordToEntry() {
