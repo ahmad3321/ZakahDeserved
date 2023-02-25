@@ -1,6 +1,6 @@
 package com.example.zakahdeserved.Connection;
 
-import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -156,6 +156,7 @@ public class DBHelper {
 
     public static void loadDataToControls(View view, SQLiteRecord sqLiteRecord) {
         final ViewGroup viewGroup = (ViewGroup) view;
+
         try {
             int count = viewGroup.getChildCount();
             for (int i = 0; i < count; i++) {
@@ -215,11 +216,11 @@ public class DBHelper {
 
                 if (v instanceof EditText) {
                     String name = v.getResources().getResourceEntryName(v.getId());
-                    ((EditText) v).setText(getValueOfControl(name, familyInfo, false).toString());
+                    ((EditText) v).setText(getValueOfControl(name, familyInfo).toString());
 
                 } else if (v instanceof Spinner || v instanceof AppCompatSpinner) {
                     String name = v.getResources().getResourceEntryName(v.getId());
-                    Object value = getValueOfControl(name, familyInfo, false);
+                    Object value = getValueOfControl(name, familyInfo);
 
                     if (Constants.dynamisLists.contains(name))
                         ((Spinner) v).setSelection(Integer.parseInt(value.toString()) - 1);
@@ -228,8 +229,8 @@ public class DBHelper {
 
                 } else if (v instanceof CheckBox) {
                     String name = v.getResources().getResourceEntryName(v.getId());
-                    Object value = getValueOfControl(name, familyInfo, false);
-                    ((CheckBox) v).setChecked(Boolean.getBoolean(value.toString()));
+                    Object value = getValueOfControl(name, familyInfo);
+                    ((CheckBox) v).setChecked(value.toString().equals("1"));
 
                 } else if (v instanceof LinearLayout || v instanceof ScrollView || v instanceof RelativeLayout || v instanceof FrameLayout) {
                     loadDataToControls(v, familyInfo);
@@ -241,16 +242,13 @@ public class DBHelper {
         }
     }
 
-    private static Object getValueOfControl(String controlName, ArrayList<SQLiteRecord> familyInfo, boolean deleteRecord) {
+    private static Object getValueOfControl(String controlName, ArrayList<SQLiteRecord> familyInfo) {
         Object value;
         Optional<SQLiteRecord> row = familyInfo.stream()
                 .filter(x -> x.getRecord().containsKey(controlName))
                 .findFirst();
         if (row.isPresent()) {
             value = row.get().getRecord().get(controlName);
-
-            if (deleteRecord)
-                familyInfo.remove(row.get());
         } else
             value = 0;
 

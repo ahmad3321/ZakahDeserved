@@ -1,7 +1,7 @@
 <resources>
     <string-array name="CoinType">
-        <item>TL</item>
         <item>$</item>
+        <item>TL</item>
     </string-array>
     <string-array name="HealthStatus">
         <item>جيد</item>

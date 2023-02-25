@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -116,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                         loginToActivity(sharedPreferences.getString("entered_date:" + sharedPreferences.getString("empCode", ""), ""), empDepartment);
 
                     } catch (GeneralSecurityException | IOException e) {
-
                         e.printStackTrace();
                     }
                 } else {
@@ -137,13 +137,14 @@ public class MainActivity extends AppCompatActivity {
 
         //if not entered check entry from server
         //this could be done if employee entered from a device and tried to enter from another one
+        SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
+                getApplicationContext(),
+                "MySharedPref",
+                Constants.SHAREDPREFERENCES_KEY, // masterKey created above
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
         if (!isEntered) {
-            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                    getApplicationContext(),
-                    "MySharedPref",
-                    Constants.SHAREDPREFERENCES_KEY, // masterKey created above
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             lastEnterDate = DAL.getMaxID("daily_staff_entries", "AutomaticVisitDate", sharedPreferences.getString("empCode", ""));
             isEntered = autoDate.equals(lastEnterDate);
@@ -151,9 +152,16 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent1;
 
-        if (isEntered)
+        if (isEntered) {
             intent1 = new Intent(getApplicationContext(), PackageView.class);
-        else
+            String entryID = DAL.getMaxID("daily_staff_entries", "EntryID", sharedPreferences.getString("empCode", ""));
+            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+            if (Objects.equals(entryID, ""))
+                return;
+
+            myEdit.putString("entry_id", entryID);
+            myEdit.apply();
+        } else
             intent1 = new Intent(getApplicationContext(), actdelayentrystatisticalActivity.class);
 
         if (EmpDepartment == Constants.STATISTICAL_JOB_TITLE)

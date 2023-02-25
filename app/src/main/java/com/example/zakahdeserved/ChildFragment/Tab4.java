@@ -70,7 +70,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
         Constants.view4 = view;
 
 
-        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForHeadFamily();
+        ArrayList<SQLiteRecord> records = Constants.SQLITEDAL.getHelthStatusForHeadFamily(DBHelper.Helth_StatusesColumns);
         for (SQLiteRecord record : records) {
             View v = addView();
             DBHelper.loadDataToControls(v, record);
@@ -149,7 +149,7 @@ public class Tab4 extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!((Spinner) cricketerView.findViewById(R.id.HealthStatus)).getSelectedItem().equals("جيد")) {
-                    if (i == 0 && txtMonthlyCost.getText().toString().length() > 0 )  //tr
+                    if (i == 1 && txtMonthlyCost.getText().toString().length() > 0 )  //tr
                     {
                         txtMonthlyCost.setText(String.valueOf(Double.parseDouble(txtMonthlyCost.getText().toString()) * Constants.DollarPrise));
                         txtMonthlyCost.setEnabled(false);

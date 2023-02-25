@@ -214,13 +214,13 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             contentValues.put("QueryType", queryType);
             db.insert(TABLE_QUERIES, null, contentValues);
         } catch (Exception ignored) {
-            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "addQuery in SQLliteDAL", "query :"+query);
+            ValidationController.GetException(ignored.toString().replace("\"", ""), "", "addQuery in SQLliteDAL", "query :" + query);
         }
     }
 
-    public HashMap<String,String> getAllQueries() {
+    public HashMap<String, String> getAllQueries() {
         try {
-            HashMap<String,String> mapQueries = new HashMap<>();
+            HashMap<String, String> mapQueries = new HashMap<>();
             SQLiteDatabase db = getReadableDatabase();
 
             Cursor cursor = db.query(false,
@@ -231,7 +231,7 @@ public class SQLiteDAL extends SQLiteOpenHelper {
             if (cursor != null && cursor.moveToNext())/*if cursor has data*/ {
                 cursor.moveToFirst();
                 do {
-                    mapQueries.put(cursor.getString(0),cursor.getString(1));
+                    mapQueries.put(cursor.getString(0), cursor.getString(1));
                 } while (cursor.moveToNext());
                 cursor.close();
             }
@@ -342,12 +342,13 @@ public class SQLiteDAL extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<SQLiteRecord> getHelthStatusForHeadFamily() {
+    public ArrayList<SQLiteRecord> getHelthStatusForHeadFamily(String[] Columns) {
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<SQLiteRecord> Records = new ArrayList<>();
+        String columns = String.join(",", Columns);
 
-        Cursor cursor = db.rawQuery("select * from health_statuses where personid = (select personid from persons where whois = 'رب الأسرة');", null);
+        Cursor cursor = db.rawQuery("select " + columns + " from health_statuses where personid = (select personid from persons where whois = 'رب الأسرة');", null);
 
         if (cursor != null && cursor.moveToNext()) {
             cursor.moveToFirst();
