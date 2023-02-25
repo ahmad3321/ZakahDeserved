@@ -344,6 +344,7 @@
                     android:layout_marginStart="25dp"
                     android:fontFamily="@font/jaz_reg"
                     android:text="عدد المدخنين"
+                    android:inputType="number"
                     android:textSize="18sp"
                     android:typeface="serif" />
 
@@ -514,6 +515,7 @@
                     android:layout_marginStart="30dp"
                     android:backgroundTint="@color/purple_200"
                     android:fontFamily="@font/jaz_bold"
+                    android:inputType="phone"
                     android:hint="رقم التواصل 1"  />
             </LinearLayout>
             <LinearLayout
@@ -530,6 +532,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="35dp"
                     android:fontFamily="@font/jaz_reg"
+                    android:inputType="phone"
                     android:text="رقم التواصل 2"
                     android:textSize="18sp"
                     android:typeface="serif" />
